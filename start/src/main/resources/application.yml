@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: oms-service
+  profiles:
+    active: dev
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+  main:
+    #不允许循环依赖，先google解决，如果是业务循环依赖，看看中间是否能加一层，如果循环依赖了@SpyBean会报错
+    allow-circular-references: false
+    lazy-initialization: false
+    allow-bean-definition-overriding: false
