@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -21,6 +23,7 @@ import lombok.EqualsAndHashCode;
 @TableName("\"order\"")
 public class Order implements Serializable {
 
+    @TableId(type = IdType.AUTO)
     private Long orderId;
 
     private String orderStatus;

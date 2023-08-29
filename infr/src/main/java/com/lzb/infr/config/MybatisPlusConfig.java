@@ -1,7 +1,8 @@
-package com.lzb.component.mybatis.config;
+package com.lzb.infr.config;
 
 import javax.sql.DataSource;
 
+import com.baomidou.mybatisplus.annotation.FieldStrategy;
 import com.baomidou.mybatisplus.core.MybatisConfiguration;
 import com.baomidou.mybatisplus.core.config.GlobalConfig;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
@@ -21,7 +22,7 @@ import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 @Configuration
-@MapperScan(value = {"com.lzb.**.mapper"})
+@MapperScan(value = {"com.lzb.infr.**.mapper"})
 public class MybatisPlusConfig {
 
     @Autowired
@@ -38,6 +39,11 @@ public class MybatisPlusConfig {
         configuration.setMapUnderscoreToCamelCase(true);
         configuration.setJdbcTypeForNull(JdbcType.NULL);
         GlobalConfig globalConfig = new GlobalConfig();
+        GlobalConfig.DbConfig dbConfig = new GlobalConfig.DbConfig();
+        // 全字段更新
+        dbConfig.setUpdateStrategy(FieldStrategy.ALWAYS);
+        dbConfig.setInsertStrategy(FieldStrategy.NOT_NULL);
+        globalConfig.setDbConfig(dbConfig);
         globalConfig.setBanner(false);
         factoryBean.setGlobalConfig(globalConfig);
         factoryBean.setConfiguration(configuration);

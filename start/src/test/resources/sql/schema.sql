@@ -3,14 +3,20 @@ create table "order"
     order_id         bigint not null
         constraint "PRIMARY_order"
             primary key,
-    order_status     text not null,
+    order_status     text   not null,
     currency         text,
     exchange_rate    numeric,
     total_should_pay numeric,
     total_actual_pay numeric,
-    add_time         timestamp default CURRENT_TIMESTAMP,
-    update_time      timestamp
+    add_time         timestamp default CURRENT_TIMESTAMP not null,
+    update_time      timestamp not null
 );
+
+create sequence order_order_id_seq;
+
+alter table "order"
+    alter column order_id set default nextval('order_order_id_seq'::regclass);
+
 
 create table order_detail
 (
@@ -21,6 +27,6 @@ create table order_detail
     sku_id       integer,
     order_status text not null,
     price        numeric,
-    add_time     timestamp default CURRENT_TIMESTAMP,
-    update_time  timestamp
+    add_time     timestamp default CURRENT_TIMESTAMP not null,
+    update_time  timestamp not null
 );
