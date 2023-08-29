@@ -1,6 +1,5 @@
 package com.lzb;
 
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Transactional
 @TestPropertySource(locations = "classpath:application-addition.properties")
-@SpringBootTest(classes = MyDddApplication.class)
+@SpringBootTest(classes = Application.class)
 public abstract class BaseIntegrationTest extends BaseDockerTest {
 
 }
