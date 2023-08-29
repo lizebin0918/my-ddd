@@ -38,7 +38,8 @@ public abstract class BaseDockerTest extends BaseTest {
             .withPrivilegedMode(true)
             .withReuse(true)
             .withUsername("postgres")
-            .withPassword("123456");
+            .withPassword("123456")
+            .withInitScript("sql/schema.sql");
 
     public static final RedisContainer redis =
             new RedisContainer(DockerImageName.parse("redis:5.0.3-alpine"))
@@ -50,6 +51,7 @@ public abstract class BaseDockerTest extends BaseTest {
         @Override
         public void initialize(ConfigurableApplicationContext applicationContext) {
             PostgreSQLContainer<?> database = BaseDockerTest.database;
+            System.out.println("url:" + database.getJdbcUrl());
             TestPropertySourceUtils.addInlinedPropertiesToEnvironment(
                     applicationContext,
                     "spring.datasource.url=" + database.getJdbcUrl(),

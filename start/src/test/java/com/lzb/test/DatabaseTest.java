@@ -1,4 +1,4 @@
-package com.lzb;
+package com.lzb.test;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -6,6 +6,7 @@ import java.sql.Statement;
 
 import javax.sql.DataSource;
 
+import com.lzb.BaseIntegrationTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -32,7 +33,7 @@ class DatabaseTest extends BaseIntegrationTest {
         Assertions.assertNotNull(connection);
 
         Statement statement = connection.createStatement();
-        boolean execute = statement.execute("select * from \"order\"");
+        boolean execute = statement.execute("select * from order_detail");
         Assertions.assertTrue(execute);
 
     }
