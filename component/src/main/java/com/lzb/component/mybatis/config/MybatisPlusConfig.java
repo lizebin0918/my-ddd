@@ -8,7 +8,6 @@ import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.OptimisticLockerInnerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
-import com.lzb.component.mybatis.methods.MySqlInjector;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.type.JdbcType;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -40,7 +39,6 @@ public class MybatisPlusConfig {
         configuration.setJdbcTypeForNull(JdbcType.NULL);
         GlobalConfig globalConfig = new GlobalConfig();
         globalConfig.setBanner(false);
-        globalConfig.setSqlInjector(new MySqlInjector());
         factoryBean.setGlobalConfig(globalConfig);
         factoryBean.setConfiguration(configuration);
         return factoryBean.getObject();

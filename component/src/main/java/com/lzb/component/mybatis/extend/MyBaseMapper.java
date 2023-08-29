@@ -10,12 +10,4 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface MyBaseMapper<T> extends BaseMapper<T> {
 
-    /**
-     * 更新实体所有字段，add_time/update_time属于数据库维护的字段，没有业务含义，不映射到Do
-     *
-     * @param entity
-     * @return
-     */
-    boolean updateAllFieldsById(@Param(Constants.ENTITY) T entity);
-
 }

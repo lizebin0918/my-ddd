@@ -14,3 +14,5 @@ spring:
     allow-circular-references: false
     lazy-initialization: false
     allow-bean-definition-overriding: false
+logging:
+  config: classpath:logback.xml

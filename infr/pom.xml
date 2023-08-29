@@ -28,5 +28,10 @@
 			<artifactId>mybatis-plus-boot-starter</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>com.lzb</groupId>
+			<artifactId>component</artifactId>
+		</dependency>
+
 	</dependencies>
 </project>

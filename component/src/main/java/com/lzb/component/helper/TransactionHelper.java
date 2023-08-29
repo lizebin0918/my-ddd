@@ -102,7 +102,7 @@ public class TransactionHelper {
 	 * 事务提交后执行
 	 *
 	 * @param task 任务
-	 * @author 张子宽
+	 * @author mac
 	 * @date 2022/11/29
 	 */
 	public void runAfterCommit(@NonNull Runnable task) {
@@ -122,7 +122,7 @@ public class TransactionHelper {
 	 * 事务提交后异步执行
 	 *
 	 * @param task 任务
-	 * @author 张子宽
+	 * @author mac
 	 * @date 2022/11/29
 	 */
 	public void asyncRunAfterCommit(@NonNull Runnable task) {

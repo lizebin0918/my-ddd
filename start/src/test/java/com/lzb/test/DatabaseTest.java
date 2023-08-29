@@ -7,6 +7,7 @@ import java.sql.Statement;
 import javax.sql.DataSource;
 
 import com.lzb.BaseIntegrationTest;
+import com.lzb.infr.order.service.IOrderService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,9 +26,12 @@ class DatabaseTest extends BaseIntegrationTest {
     @Autowired
     private DataSource dataSource;
 
+    @Autowired
+    private IOrderService orderService;
+
     @Test
     @DisplayName("测试数据库连接")
-    void should_() throws SQLException {
+    void should_connect_datasource() throws SQLException {
 
         Connection connection = dataSource.getConnection();
         Assertions.assertNotNull(connection);
@@ -36,6 +40,12 @@ class DatabaseTest extends BaseIntegrationTest {
         boolean execute = statement.execute("select * from order_detail");
         Assertions.assertTrue(execute);
 
+    }
+
+    @Test
+    @DisplayName("测试订单条数")
+    void should_count_from_order() {
+        assertThat(orderService.count()).isGreaterThanOrEqualTo(0);
     }
 
 }
