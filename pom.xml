@@ -10,6 +10,7 @@
 	<modules>
 		<module>start</module>
 		<module>infr</module>
+		<module>test-component</module>
 	</modules>
 	<properties>
 		<java.version>17</java.version>
@@ -21,7 +22,11 @@
 		<spring-boot.version>3.1.3</spring-boot.version>
 		<postgresql.version>42.3.1</postgresql.version>
 		<mybatis-plus.version>3.5.3.2</mybatis-plus.version>
-
+		<archunit.version>1.0.1</archunit.version>
+		<lombok.version>1.18.28</lombok.version>
+		<approvaltests.version>18.7.1</approvaltests.version>
+		<hutool.version>5.8.21</hutool.version>
+		<testcontainers.version>1.19.0</testcontainers.version>
 	</properties>
 
 	<dependencyManagement>
@@ -36,6 +41,12 @@
 			<dependency>
 				<groupId>com.lzb</groupId>
 				<artifactId>infr</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.lzb</groupId>
+				<artifactId>test-component</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 
@@ -79,6 +90,134 @@
 				<version>${mybatis-plus.version}</version>
 			</dependency>
 
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>${lombok.version}</version>
+			</dependency>
+
+			<!--测试相关-->
+			<dependency>
+				<groupId>com.pholser</groupId>
+				<artifactId>junit-quickcheck-core</artifactId>
+				<version>1.0</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.pholser</groupId>
+				<artifactId>junit-quickcheck-generators</artifactId>
+				<version>1.0</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.github.javafaker</groupId>
+				<artifactId>javafaker</artifactId>
+				<version>1.0.2</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-core</artifactId>
+				<version>4.1.0</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-junit-jupiter</artifactId>
+				<version>4.1.0</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-inline</artifactId>
+				<version>4.1.0</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter</artifactId>
+				<version>5.8.2</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.platform</groupId>
+				<artifactId>junit-platform-engine</artifactId>
+				<version>1.8.2</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>com.approvaltests</groupId>
+				<artifactId>approvaltests</artifactId>
+				<version>${approvaltests.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>com.approvaltests</groupId>
+				<artifactId>approvaltests-util-tests</artifactId>
+				<version>${approvaltests.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>com.baomidou</groupId>
+				<artifactId>mybatis-plus-boot-starter-test</artifactId>
+				<version>${mybatis-plus.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<!--testcontainer-->
+
+			<dependency>
+				<groupId>org.testcontainers</groupId>
+				<artifactId>testcontainers</artifactId>
+				<version>${testcontainers.version}</version>
+				<scope>compile</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>com.redis.testcontainers</groupId>
+				<artifactId>testcontainers-redis-junit-jupiter</artifactId>
+				<version>1.4.6</version>
+				<scope>compile</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.testcontainers</groupId>
+				<artifactId>postgresql</artifactId>
+				<version>${testcontainers.version}</version>
+				<scope>compile</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.testcontainers</groupId>
+				<artifactId>junit-jupiter</artifactId>
+				<version>${testcontainers.version}</version>
+				<scope>compile</scope>
+			</dependency>
+
+			<!--testcontainer-->
+
+			<dependency>
+				<groupId>com.tngtech.archunit</groupId>
+				<artifactId>archunit-junit5</artifactId>
+				<version>${archunit.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jeasy</groupId>
+				<artifactId>easy-random-core</artifactId>
+				<version>5.0.0</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>cn.hutool</groupId>
+				<artifactId>hutool-core</artifactId>
+				<version>${hutool.version}</version>
+			</dependency>
 
 		</dependencies>
 	</dependencyManagement>

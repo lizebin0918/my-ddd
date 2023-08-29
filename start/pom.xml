@@ -19,6 +19,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>com.lzb</groupId>
+			<artifactId>test-component</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 		</dependency>

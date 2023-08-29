@@ -18,7 +18,7 @@ import org.springframework.boot.test.context.SpringBootTest;
  * @author mac
  */
 @SpringBootTest(classes = MyDddApplication.class)
-class DatabaseTest {
+class DatabaseTest extends BaseDockerTest {
 
     @Autowired
     private DataSource dataSource;
