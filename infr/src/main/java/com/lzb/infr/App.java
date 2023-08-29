@@ -1,4 +1,4 @@
-package com.lzb;
+package com.lzb.infr;
 
 /**
  * Hello world!

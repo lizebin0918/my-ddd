@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
  * 1. 只能加到静态方法上
  * 2. 方法入参只能1个
  * 3. 方法入参必须为@MockBean或者@SpyBean注解的类型
- * @author 张子宽
+ * @author mac
  * @date 2023/07/22
  */
 @Target({ElementType.METHOD})

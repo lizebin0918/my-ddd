@@ -11,6 +11,7 @@
 		<module>start</module>
 		<module>infr</module>
 		<module>test-component</module>
+		<module>component</module>
 	</modules>
 	<properties>
 		<java.version>17</java.version>
@@ -27,6 +28,8 @@
 		<approvaltests.version>18.7.1</approvaltests.version>
 		<hutool.version>5.8.21</hutool.version>
 		<testcontainers.version>1.19.0</testcontainers.version>
+		<jackson.version>2.15.2</jackson.version>
+		<javers.version>7.3.2</javers.version>
 	</properties>
 
 	<dependencyManagement>
@@ -47,6 +50,13 @@
 			<dependency>
 				<groupId>com.lzb</groupId>
 				<artifactId>test-component</artifactId>
+				<version>${project.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>com.lzb</groupId>
+				<artifactId>component</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 
@@ -94,6 +104,37 @@
 				<groupId>org.projectlombok</groupId>
 				<artifactId>lombok</artifactId>
 				<version>${lombok.version}</version>
+			</dependency>
+
+			<!--jackson-->
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-core</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-annotations</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.annotation</groupId>
+				<artifactId>javax.annotation-api</artifactId>
+				<version>1.3.2</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.javers</groupId>
+				<artifactId>javers-core</artifactId>
+				<version>${javers.version}</version>
 			</dependency>
 
 			<!--测试相关-->
@@ -217,6 +258,12 @@
 				<groupId>cn.hutool</groupId>
 				<artifactId>hutool-core</artifactId>
 				<version>${hutool.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>3.13.0</version>
 			</dependency>
 
 		</dependencies>
