@@ -26,7 +26,7 @@ import org.springframework.test.context.support.TestPropertySourceUtils;
         BaseDockerTest.DataSourceInitializer.class,
         BaseDockerTest.RedisInitializer.class
 })
-public abstract class BaseDockerTest {
+public abstract class BaseDockerTest extends BaseTest {
 
 
     ///////////////////////////////////////////////////////////////////////////
