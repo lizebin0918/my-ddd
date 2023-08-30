@@ -1,8 +1,9 @@
-package com.lzb.infr.order.service;
+package com.lzb.infr.order.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lzb.infr.order.entity.OrderDo;
 import com.lzb.infr.order.mapper.OrderMapper;
+import com.lzb.infr.order.service.IOrderService;
 
 import org.springframework.stereotype.Service;
 

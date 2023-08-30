@@ -23,10 +23,15 @@ create table order_detail
     id           bigint
         constraint "PRIMARY_order_detail"
             primary key,
-    order_id     integer,
+    order_id     bigint not null,
     sku_id       integer,
     order_status text not null,
     price        numeric,
     add_time     timestamp default CURRENT_TIMESTAMP not null,
     update_time  timestamp not null
 );
+
+create sequence order_detail_id_seq;
+
+alter table order_detail alter column id set default nextval('order_detail_id_seq'::regclass);
+
