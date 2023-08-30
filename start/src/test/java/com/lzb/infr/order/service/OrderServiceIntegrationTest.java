@@ -1,14 +1,15 @@
 package com.lzb.infr.order.service;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import com.lzb.BaseIntegrationTest;
 import com.lzb.component.utils.date.DateUtils;
 import com.lzb.infr.order.entity.OrderDo;
-import com.lzb.infr.order.mapper.OrderMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -83,25 +84,56 @@ class OrderServiceIntegrationTest extends BaseIntegrationTest {
     }
 
     @Test
-    @DisplayName("批量更新填充update_time，不改变add_time，字段可以设置null")
-    void should_() {
-        // given
+    @DisplayName("批量更新自动填充update_time，不改变add_time，字段可以设置null")
+    void should_batch_update() {
 
-        // when
+        batchInsert();
 
-        // then
+        List<OrderDo> list = orderService.list();
+        Map<Long, Long> orderId2UpdateTime = new HashMap<>();
+        Map<Long, Long> orderId2AddTime = new HashMap<>();
+
+        for (OrderDo orderDo : list) {
+            orderDo.setTotalShouldPay(null);
+            orderDo.setExchangeRate(null);
+            orderDo.setTotalActualPay(null);
+            orderId2UpdateTime.put(orderDo.getOrderId(), DateUtils.toUnix(orderDo.getUpdateTime()));
+            orderId2AddTime.put(orderDo.getOrderId(), DateUtils.toUnix(orderDo.getAddTime()));
+        }
+
+        orderService.updateBatchById(list);
+
+        List<OrderDo> newList = orderService.list();
+        for (OrderDo orderDo : newList) {
+            assertThat(orderDo.getTotalShouldPay()).isNull();
+            assertThat(orderDo.getExchangeRate()).isNull();
+            assertThat(orderDo.getTotalActualPay()).isNull();
+            assertThat(DateUtils.toUnix(orderDo.getAddTime())).isEqualTo(orderId2AddTime.get(orderDo.getOrderId()));
+            assertThat(DateUtils.toUnix(orderDo.getUpdateTime())).isGreaterThanOrEqualTo(orderId2UpdateTime.get(orderDo.getOrderId()));
+        }
 
     }
 
-    @Test
-    @DisplayName("批量插入填充update_time/add_time，字段可以设置null")
-    void should_() {
-        // given
+    private void batchInsert() {
+        List<OrderDo> list = new ArrayList<>();
 
-        // when
+        OrderDo orderDo = new OrderDo();
+        orderDo.setOrderStatus("WAIT_AUTH");
+        orderDo.setCurrency("CNY");
+        orderDo.setExchangeRate(BigDecimal.ZERO);
+        orderDo.setTotalShouldPay(BigDecimal.ZERO);
+        orderDo.setTotalActualPay(BigDecimal.ZERO);
+        list.add(orderDo);
 
-        // then
+        OrderDo orderDo1 = new OrderDo();
+        orderDo1.setOrderStatus("WAIT_AUTH");
+        orderDo1.setCurrency("CNY");
+        orderDo1.setExchangeRate(BigDecimal.ONE);
+        orderDo1.setTotalShouldPay(BigDecimal.ONE);
+        orderDo1.setTotalActualPay(BigDecimal.ONE);
+        list.add(orderDo1);
 
+        orderService.saveBatch(list);
     }
 
 }
