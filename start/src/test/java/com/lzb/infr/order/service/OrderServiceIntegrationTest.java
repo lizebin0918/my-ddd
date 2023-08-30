@@ -82,4 +82,26 @@ class OrderServiceIntegrationTest extends BaseIntegrationTest {
         assertThat(DateUtils.toUnix(o.getUpdateTime())).isGreaterThanOrEqualTo(DateUtils.toUnix(updateTime));
     }
 
+    @Test
+    @DisplayName("批量更新填充update_time，不改变add_time，字段可以设置null")
+    void should_() {
+        // given
+
+        // when
+
+        // then
+
+    }
+
+    @Test
+    @DisplayName("批量插入填充update_time/add_time，字段可以设置null")
+    void should_() {
+        // given
+
+        // when
+
+        // then
+
+    }
+
 }
