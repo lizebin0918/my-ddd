@@ -45,9 +45,15 @@ public class MybatisPlusConfig {
         dbConfig.setInsertStrategy(FieldStrategy.NOT_NULL);
         globalConfig.setDbConfig(dbConfig);
         globalConfig.setBanner(false);
+        globalConfig.setMetaObjectHandler(myMetaObjectHandler());
         factoryBean.setGlobalConfig(globalConfig);
         factoryBean.setConfiguration(configuration);
         return factoryBean.getObject();
+    }
+
+    @Bean
+    public MyMetaObjectHandler myMetaObjectHandler() {
+        return new MyMetaObjectHandler();
     }
 
     @Bean

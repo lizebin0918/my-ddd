@@ -2,13 +2,11 @@ package com.lzb.infr.order.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.lzb.infr.common.BaseDo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -23,7 +21,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("\"order\"")
-public class Order implements Serializable {
+public class OrderDo extends BaseDo {
 
     @TableId(type = IdType.AUTO)
     private Long orderId;
@@ -37,12 +35,5 @@ public class Order implements Serializable {
     private BigDecimal totalShouldPay;
 
     private BigDecimal totalActualPay;
-
-    //@TableField(fill = FieldFill.INSERT)
-    private LocalDateTime addTime;
-
-    //@TableField(fill = FieldFill.INSERT_UPDATE)
-    private LocalDateTime updateTime;
-
 
 }
