@@ -1,8 +1,8 @@
-package com.lzb.component.repository.aop;
+package com.lzb.infr.aop;
 
 import java.util.Optional;
 
-import com.lzb.component.aggregate.BaseAggregate;
+import com.lzb.domain.common.BaseAggregate;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -20,9 +20,9 @@ public class SnapshotAspect {
      * @param pjp
      * @param returnVal
      */
-    /*@AfterReturning(pointcut = "execution(* GetRepository.get(..)) " +
-            "|| @annotation(Snapshot)",
-            returning = "returnVal")*/
+    @AfterReturning(pointcut = "execution(* com.lzb.domain.common.repository.GetRepository.get(..)) " +
+            "|| @annotation(com.lzb.domain.common.annotation.Snapshot)",
+            returning = "returnVal")
     public void handleRequestMethod(JoinPoint pjp, Object returnVal) {
         if (returnVal instanceof BaseAggregate) {
             ((BaseAggregate<?>) returnVal).setSnapshot();

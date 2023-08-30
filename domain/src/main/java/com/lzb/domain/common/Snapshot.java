@@ -1,4 +1,4 @@
-package com.lzb.component.aggregate;
+package com.lzb.domain.common;
 
 import org.apache.commons.lang3.SerializationUtils;
 

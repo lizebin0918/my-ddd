@@ -1,7 +1,7 @@
-package com.lzb.component.repository.base;
+package com.lzb.domain.common.repository;
 
 
-import com.lzb.component.aggregate.BaseAggregate;
+import com.lzb.domain.common.BaseAggregate;
 
 /**
  * 新增聚合<br/>

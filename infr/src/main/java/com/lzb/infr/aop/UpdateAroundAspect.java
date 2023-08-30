@@ -1,10 +1,10 @@
-package com.lzb.component.repository.aop;
+package com.lzb.infr.aop;
 
 import java.util.Objects;
 
 import javax.annotation.Priority;
 
-import com.lzb.component.aggregate.BaseAggregate;
+import com.lzb.domain.common.BaseAggregate;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -24,7 +24,7 @@ public class UpdateAroundAspect {
     /**
      * 支持方法 or 注解
      */
-    /*@Around("execution(* UpdateRepository.update(..))")*/
+    @Around("execution(* com.lzb.domain.common.repository.UpdateRepository.update(..))")
     public Object handleRequestMethod(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         Object result = null;
         Object[] paramValues = proceedingJoinPoint.getArgs();

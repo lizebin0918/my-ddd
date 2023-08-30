@@ -1,7 +1,6 @@
-package com.lzb.component.aggregate.event;
+package com.lzb.domain.common.event;
 
 import java.io.Serializable;
-import java.util.List;
 
 import lombok.Data;
 

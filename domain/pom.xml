@@ -8,30 +8,17 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-	<artifactId>infr</artifactId>
-	<packaging>jar</packaging>
-	<name>infr</name>
+	<artifactId>domain</artifactId>
+	<name>domain</name>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 
 	<dependencies>
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>com.baomidou</groupId>
-			<artifactId>mybatis-plus-boot-starter</artifactId>
-		</dependency>
-
 		<dependency>
 			<groupId>com.lzb</groupId>
 			<artifactId>component</artifactId>
 		</dependency>
-
-		<dependency>
-			<groupId>com.lzb</groupId>
-			<artifactId>domain</artifactId>
-		</dependency>
-
 	</dependencies>
 </project>
