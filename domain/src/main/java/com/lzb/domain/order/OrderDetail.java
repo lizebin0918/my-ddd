@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 import com.lzb.domain.common.BaseEntity;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.slf4j.Slf4j;
 
@@ -17,12 +18,16 @@ import lombok.extern.slf4j.Slf4j;
 @SuperBuilder
 public class OrderDetail extends BaseEntity<OrderDetail> {
 
+    @NonNull
     private Long orderId;
 
+    @NonNull
     private Integer skuId;
 
+    @NonNull
     private String orderStatus;
 
+    @NonNull
     private BigDecimal price;
 
 }

@@ -1,9 +1,12 @@
 package com.lzb.domain.order;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
 import com.lzb.domain.common.BaseAggregate;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
 import lombok.extern.slf4j.Slf4j;
@@ -23,16 +26,28 @@ import lombok.extern.slf4j.Slf4j;
 @Jacksonized
 public class Order extends BaseAggregate<Order> {
 
+    @NonNull
     private Long orderId;
 
+    @NonNull
     private String orderStatus;
 
+    @NonNull
     private String currency;
 
+    @NonNull
     private BigDecimal exchangeRate;
 
+    @NonNull
     private BigDecimal totalShouldPay;
 
+    @NonNull
     private BigDecimal totalActualPay;
+
+    @NonNull
+    private OrderAddress orderAddress;
+
+    @Builder.Default
+    private OrderDetails orderDetails = new OrderDetails(new ArrayList<>());
 
 }

@@ -1,11 +1,17 @@
 package com.lzb.infr.order.repository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.function.LongSupplier;
 
 import com.lzb.domain.common.BaseRepository;
 import com.lzb.domain.order.Order;
 import com.lzb.domain.order.OrderRepository;
+import com.lzb.infr.order.converter.OrderConverter;
+import com.lzb.infr.order.persistence.po.OrderDetailPo;
+import com.lzb.infr.order.persistence.po.OrderPo;
+import com.lzb.infr.order.persistence.service.impl.OrderDetailPoService;
+import com.lzb.infr.order.persistence.service.impl.OrderPoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,6 +27,10 @@ import org.springframework.stereotype.Repository;
 @RequiredArgsConstructor
 public class OrderRepositoryDbImpl extends BaseRepository<Order> implements OrderRepository {
 
+    private final OrderPoService orderPoService;
+
+    private final OrderDetailPoService orderDetailPoService;
+
     @Override
     protected LongSupplier doAdd(Order aggregate) {
         return null;
@@ -33,6 +43,12 @@ public class OrderRepositoryDbImpl extends BaseRepository<Order> implements Orde
 
     @Override
     public Optional<Order> get(long id) {
-        return Optional.empty();
+        Optional<OrderPo> orderOpt = orderPoService.getOptById(id);
+        if (orderOpt.isEmpty()) {
+            return Optional.empty();
+        }
+        OrderPo orderPo = orderOpt.get();
+        List<OrderDetailPo> orderDetailPos = orderDetailPoService.listByOrderId(id);
+        return Optional.of(OrderConverter.toOrder(orderPo, orderDetailPos));
     }
 }
