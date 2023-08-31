@@ -1,8 +1,8 @@
 spring:
   application:
-    name: oms-service
+    name: my-ddd
   profiles:
-    active: dev
+    active: @activatedProperties@
   servlet:
     multipart:
       max-file-size: 10MB
