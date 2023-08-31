@@ -1,4 +1,4 @@
-package com.lzb.component.exception;
+package com.lzb.domain.common.exception;
 
 /**
  * 不合法版本号<br/>

@@ -8,8 +8,8 @@ import java.util.Objects;
 import java.util.Queue;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.lzb.component.exception.IllegalVersionException;
 import com.lzb.domain.common.event.DomainEvent;
+import com.lzb.domain.common.exception.IllegalVersionException;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -66,16 +66,6 @@ public abstract class BaseAggregate<R extends BaseEntity<R>> extends BaseEntity<
      */
     public R getSnapshot() {
         return snapshot.get();
-    }
-
-    /**
-     * 手动设置快照
-     *
-     * @param aggregate
-     */
-    @Deprecated
-    public void setSnapshot(R aggregate) {
-        snapshot.set(aggregate);
     }
 
     /**
