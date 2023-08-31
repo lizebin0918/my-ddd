@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.LongSupplier;
 
-import com.lzb.domain.common.BaseRepository;
 import com.lzb.domain.order.Order;
 import com.lzb.domain.order.OrderRepository;
+import com.lzb.infr.common.BaseRepository;
 import com.lzb.infr.order.converter.OrderConverter;
 import com.lzb.infr.order.persistence.po.OrderDetailPo;
 import com.lzb.infr.order.persistence.po.OrderPo;
