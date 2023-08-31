@@ -1,0 +1,8 @@
+{
+  "id" : 0,
+  "version" : null,
+  "orderId" : 0,
+  "skuId" : 0,
+  "orderStatus" : "WAIT_PAY",
+  "price" : 10
+}

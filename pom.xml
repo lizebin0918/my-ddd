@@ -81,7 +81,7 @@
 				<groupId>com.lzb</groupId>
 				<artifactId>test-component</artifactId>
 				<version>${project.version}</version>
-				<scope>test</scope>
+
 			</dependency>
 
 			<dependency>
@@ -166,70 +166,62 @@
 				<groupId>com.pholser</groupId>
 				<artifactId>junit-quickcheck-core</artifactId>
 				<version>1.0</version>
-				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>com.pholser</groupId>
 				<artifactId>junit-quickcheck-generators</artifactId>
 				<version>1.0</version>
-				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>com.github.javafaker</groupId>
 				<artifactId>javafaker</artifactId>
 				<version>1.0.2</version>
-				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.mockito</groupId>
 				<artifactId>mockito-core</artifactId>
 				<version>4.1.0</version>
-				<scope>test</scope>
+
 			</dependency>
 			<dependency>
 				<groupId>org.mockito</groupId>
 				<artifactId>mockito-junit-jupiter</artifactId>
 				<version>4.1.0</version>
-				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.mockito</groupId>
 				<artifactId>mockito-inline</artifactId>
 				<version>4.1.0</version>
-				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.junit.jupiter</groupId>
 				<artifactId>junit-jupiter</artifactId>
 				<version>5.8.2</version>
-				<scope>test</scope>
+
 			</dependency>
 			<dependency>
 				<groupId>org.junit.platform</groupId>
 				<artifactId>junit-platform-engine</artifactId>
 				<version>1.8.2</version>
-				<scope>test</scope>
 			</dependency>
 
 			<dependency>
 				<groupId>com.approvaltests</groupId>
 				<artifactId>approvaltests</artifactId>
 				<version>${approvaltests.version}</version>
-				<scope>test</scope>
 			</dependency>
 
 			<dependency>
 				<groupId>com.approvaltests</groupId>
 				<artifactId>approvaltests-util-tests</artifactId>
 				<version>${approvaltests.version}</version>
-				<scope>test</scope>
 			</dependency>
 
 			<dependency>
 				<groupId>com.baomidou</groupId>
 				<artifactId>mybatis-plus-boot-starter-test</artifactId>
 				<version>${mybatis-plus.version}</version>
-				<scope>test</scope>
+
 			</dependency>
 
 			<!--testcontainer-->
@@ -268,14 +260,14 @@
 				<groupId>com.tngtech.archunit</groupId>
 				<artifactId>archunit-junit5</artifactId>
 				<version>${archunit.version}</version>
-				<scope>test</scope>
+
 			</dependency>
 
 			<dependency>
 				<groupId>org.jeasy</groupId>
 				<artifactId>easy-random-core</artifactId>
 				<version>5.0.0</version>
-				<scope>test</scope>
+
 			</dependency>
 
 			<dependency>
@@ -353,7 +345,7 @@
 							<!-- :/**/*TestCase.java -->
 							<!-- 自定义规则 -->
 							<!-- <include>%regex[.*(Cat|Dog).*], !%regex[pkg.*Slow.*.class], pkg/**/*Fast*.java, Basic????, !Unstable*</include>-->
-							<include>com.lzb.demo.test1/*UnitTest.java</include>
+							<include>**/*UnitTest.java</include>
 						</includes>
 						<excludes>
 							<exclude>**/*IntegrationTest.java</exclude>

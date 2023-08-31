@@ -39,13 +39,13 @@ public final class OrderConverter {
                 .build();
     }
 
-    private static OrderDetails toOrderDetails(List<OrderDetailPo> orderDetailPos) {
+    public static OrderDetails toOrderDetails(List<OrderDetailPo> orderDetailPos) {
         return new OrderDetails(orderDetailPos.stream()
                 .map(OrderConverter::toOrderDetail)
                 .toList());
     }
 
-    private static OrderDetail toOrderDetail(OrderDetailPo orderDetailPo) {
+    public static OrderDetail toOrderDetail(OrderDetailPo orderDetailPo) {
         return OrderDetail.builder()
                 .orderId(orderDetailPo.getOrderId())
                 .orderStatus(orderDetailPo.getOrderStatus())
@@ -55,7 +55,7 @@ public final class OrderConverter {
                 .build();
     }
 
-    private static OrderAddress toOrderAddress(OrderPo orderPo) {
+    public static OrderAddress toOrderAddress(OrderPo orderPo) {
         return OrderAddress.builder()
                 .orderId(orderPo.getOrderId())
                 .country(orderPo.getCountry())

@@ -30,6 +30,12 @@
 
 		<dependency>
 			<groupId>com.lzb</groupId>
+			<artifactId>test-component</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.lzb</groupId>
 			<artifactId>domain</artifactId>
 		</dependency>
 
