@@ -1,29 +1,38 @@
-package com.lzb.infr.order.entity;
+package com.lzb.infr.order.persistence.po;
 
 import java.math.BigDecimal;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.lzb.infr.common.BaseDo;
+import com.lzb.infr.common.BasePo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+/**
+ * <p>
+ * 
+ * </p>
+ *
+ * @author lizebin
+ * @since 2023-08-29
+ */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@TableName("order_detail")
-public class OrderDetailDo extends BaseDo {
+@TableName("\"order\"")
+public class OrderPo extends BasePo {
 
     @TableId(type = IdType.AUTO)
-    private Long id;
-
     private Long orderId;
-
-    private Integer skuId;
 
     private String orderStatus;
 
-    private BigDecimal price;
+    private String currency;
 
+    private BigDecimal exchangeRate;
+
+    private BigDecimal totalShouldPay;
+
+    private BigDecimal totalActualPay;
 
 }

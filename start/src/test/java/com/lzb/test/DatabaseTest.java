@@ -1,6 +1,4 @@
 package com.lzb.test;
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -9,9 +7,6 @@ import java.sql.Statement;
 import javax.sql.DataSource;
 
 import com.lzb.BaseIntegrationTest;
-import com.lzb.infr.order.entity.OrderDo;
-import com.lzb.infr.order.mapper.OrderMapper;
-import com.lzb.infr.order.service.IOrderService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

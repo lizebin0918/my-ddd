@@ -16,7 +16,7 @@ import lombok.experimental.FieldNameConstants;
  */
 @Data
 @FieldNameConstants
-public abstract class BaseDo implements Serializable {
+public abstract class BasePo implements Serializable {
 
     @TableField(fill = FieldFill.INSERT, updateStrategy = FieldStrategy.NEVER)
     private LocalDateTime addTime;

@@ -1,7 +1,7 @@
 package com.lzb.infr.order.converter;
 
 import com.lzb.domain.order.Order;
-import com.lzb.infr.order.entity.OrderDo;
+import com.lzb.infr.order.persistence.po.OrderPo;
 import lombok.experimental.UtilityClass;
 
 /**
@@ -12,7 +12,7 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public final class OrderConverter {
 
-    public static OrderDo toOrderDo(Order order) {
+    public static OrderPo toOrderDo(Order order) {
         return null;
     }
 
