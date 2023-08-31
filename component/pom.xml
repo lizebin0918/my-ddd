@@ -72,6 +72,12 @@
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.lzb</groupId>
+            <artifactId>test-component</artifactId>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
 </project>

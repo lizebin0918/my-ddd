@@ -6,7 +6,7 @@ package com.lzb.component.utils.enums;
  *
  * @author lizebin
  */
-public interface EnumShortValue extends BaseEnumValue {
+public interface EnumShortValue {
     short getValue();
 
 }

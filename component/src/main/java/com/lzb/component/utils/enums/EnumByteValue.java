@@ -6,7 +6,7 @@ package com.lzb.component.utils.enums;
  *
  * @author lizebin
  */
-public interface EnumByteValue extends BaseEnumValue {
+public interface EnumByteValue {
 
     byte getValue();
 
