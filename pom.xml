@@ -31,6 +31,7 @@
 		<testcontainers.version>1.19.0</testcontainers.version>
 		<jackson.version>2.15.2</jackson.version>
 		<javers.version>7.3.2</javers.version>
+		<guava.version>30.1-jre</guava.version>
 	</properties>
 
 	<dependencyManagement>
@@ -271,6 +272,18 @@
 				<groupId>org.apache.commons</groupId>
 				<artifactId>commons-lang3</artifactId>
 				<version>3.13.0</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>${guava.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-collections4</artifactId>
+				<version>4.4</version>
 			</dependency>
 
 		</dependencies>
