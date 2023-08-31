@@ -8,6 +8,13 @@ create table "order"
     exchange_rate    numeric,
     total_should_pay numeric,
     total_actual_pay numeric,
+    email                text,
+    phone_number         text,
+    first_name           text,
+    last_name            text,
+    address_line1        text,
+    address_line2        text,
+    country              text,
     add_time         timestamp default CURRENT_TIMESTAMP not null,
     update_time      timestamp not null
 );

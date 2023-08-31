@@ -29,10 +29,41 @@ public class OrderPo extends BasePo {
 
     private String currency;
 
+    /**
+     * 汇率
+     */
     private BigDecimal exchangeRate;
 
     private BigDecimal totalShouldPay;
 
     private BigDecimal totalActualPay;
 
+    /**
+     * 邮箱
+     */
+    private String email;
+
+    /**
+     * 电话
+     */
+    private String phoneNumber;
+
+    private String firstName;
+
+    private String lastName;
+
+    /**
+     * 地址1
+     */
+    private String addressLine1;
+
+    /**
+     * 地址2
+     */
+    private String addressLine2;
+
+    /**
+     * 国家
+     */
+    private String country;
 }
