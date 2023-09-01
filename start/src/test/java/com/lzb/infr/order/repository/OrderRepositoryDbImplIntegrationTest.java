@@ -1,5 +1,8 @@
 package com.lzb.infr.order.repository;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import com.lzb.BaseIntegrationTest;
@@ -19,9 +22,16 @@ class OrderRepositoryDbImplIntegrationTest extends BaseIntegrationTest {
     @Sql("/sql/OrderRepositoryDbImplIntegrationTest/should_order_get.sql")
     @DisplayName("测试聚合根查询")
     void should_order_get() {
+
         long orderId = 1L;
         Order order = orderRepository.get(orderId).orElseThrow();
-        assertJSON(order);
+        assertThat(order.snapshot()).isNotNull();
+
+        Map<String, Order> excepted = new HashMap<>();
+        excepted.put("current", order);
+        excepted.put("snapshot", order.snapshot());
+
+        assertJSON(excepted);
     }
 
 }
