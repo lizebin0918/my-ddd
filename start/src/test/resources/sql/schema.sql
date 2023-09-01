@@ -15,9 +15,9 @@ create table "order"
     address_line1    text,
     address_line2    text,
     country          text,
-    version          int not null,
+    version          int                                 not null,
     add_time         timestamp default CURRENT_TIMESTAMP not null,
-    update_time      timestamp                           not null
+    update_time      timestamp default CURRENT_TIMESTAMP not null
 );
 
 create sequence order_order_id_seq;
@@ -36,7 +36,7 @@ create table order_detail
     order_status text                                not null,
     price        numeric,
     add_time     timestamp default CURRENT_TIMESTAMP not null,
-    update_time  timestamp                           not null
+    update_time  timestamp default CURRENT_TIMESTAMP not null
 );
 
 create sequence order_detail_id_seq;

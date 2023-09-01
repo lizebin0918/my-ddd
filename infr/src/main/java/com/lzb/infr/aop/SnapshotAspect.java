@@ -25,15 +25,14 @@ public class SnapshotAspect {
             returning = "returnVal")
     public void handleRequestMethod(JoinPoint pjp, Object returnVal) {
         if (returnVal instanceof BaseAggregate) {
-            ((BaseAggregate<?>) returnVal).setSnapshot();
+            ((BaseAggregate<?>) returnVal).attachSnapshot();
             return;
         }
-        if (returnVal instanceof Optional) {
-            Optional returnValOpt = (Optional) returnVal;
+        if (returnVal instanceof Optional<?> returnValOpt) {
             if (returnValOpt.isPresent()) {
                 Object o = returnValOpt.get();
-                if (o instanceof BaseAggregate) {
-                    ((BaseAggregate<?>) o).setSnapshot();
+                if (o instanceof BaseAggregate<?> aggregate) {
+                    aggregate.attachSnapshot();
                     return;
                 }
             }

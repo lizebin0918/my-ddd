@@ -1,4 +1,4 @@
-package com.lzb.component.utils.enums;
+package com.lzb.component.utils;
 
 import java.util.Comparator;
 import java.util.List;
@@ -7,6 +7,12 @@ import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import com.lzb.component.utils.enums.EnumByteValue;
+import com.lzb.component.utils.enums.EnumIntValue;
+import com.lzb.component.utils.enums.EnumLongValue;
+import com.lzb.component.utils.enums.EnumShortValue;
+import com.lzb.component.utils.enums.EnumValue;
 
 /**
  * 枚举工具类

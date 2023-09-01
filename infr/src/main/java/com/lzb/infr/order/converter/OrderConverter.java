@@ -27,7 +27,7 @@ public final class OrderConverter {
     public static Order toOrder(OrderPo orderPo,
             List<OrderDetailPo> orderDetailPos) {
         return Order.builder()
-                .orderId(orderPo.getOrderId())
+                .id(orderPo.getOrderId())
                 .orderStatus(orderPo.getOrderStatus())
                 .currency(orderPo.getCurrency())
                 .exchangeRate(orderPo.getExchangeRate())

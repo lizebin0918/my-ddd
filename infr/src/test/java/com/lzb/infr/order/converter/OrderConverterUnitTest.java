@@ -35,7 +35,7 @@ class OrderConverterUnitTest extends BaseUnitTest {
         orderDetailPo.setPrice(BigDecimal.TEN);
 
         OrderDetail orderDetail = OrderConverter.toOrderDetail(orderDetailPo);
-        JsonJacksonApprovals.verifyAsJson(orderDetail);
+        assertJSON(orderDetail);
     }
 
     @Test
@@ -53,7 +53,7 @@ class OrderConverterUnitTest extends BaseUnitTest {
         orderPo.setCountry("country");
 
         OrderAddress orderAddress = OrderConverter.toOrderAddress(orderPo);
-        JsonJacksonApprovals.verifyAsJson(orderAddress);
+        assertJSON(orderAddress);
 
     }
 }

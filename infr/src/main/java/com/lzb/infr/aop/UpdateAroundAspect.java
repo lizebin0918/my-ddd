@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import javax.annotation.Priority;
 
+import com.lzb.component.utils.JsonUtils;
 import com.lzb.domain.common.BaseAggregate;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -30,9 +31,10 @@ public class UpdateAroundAspect {
         Object[] paramValues = proceedingJoinPoint.getArgs();
         if (Objects.nonNull(paramValues) && paramValues.length > 0) {
             Object aggregateRoot = paramValues[0];
-            if (aggregateRoot instanceof BaseAggregate) {
-                var snapshotHolder = ((BaseAggregate<?>) aggregateRoot);
+            if (aggregateRoot instanceof BaseAggregate<?> snapshotHolder) {
                 snapshotHolder.checkForVersion();
+                log.info("聚合根/实体更新 快照旧 {}", JsonUtils.toJSONString(snapshotHolder.snapshot()));
+                log.info("聚合根/实体更新 快照新 {}", JsonUtils.toJSONString(aggregateRoot));
                 try {
                     result = proceedingJoinPoint.proceed(paramValues);
                 } catch (Exception e) {

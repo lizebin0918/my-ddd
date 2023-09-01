@@ -1,4 +1,4 @@
-package com.lzb.component.utils.date;
+package com.lzb.component.utils;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;

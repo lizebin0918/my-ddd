@@ -23,9 +23,11 @@ import org.springframework.stereotype.Repository;
  * @author mac
  */
 @Slf4j
-@Repository
+@Repository(OrderRepositoryDbImpl.BEAN_NAME)
 @RequiredArgsConstructor
 public class OrderRepositoryDbImpl extends BaseRepository<Order> implements OrderRepository {
+
+    public static final String BEAN_NAME = "orderRepositoryDbImpl";
 
     private final OrderPoService orderPoService;
 

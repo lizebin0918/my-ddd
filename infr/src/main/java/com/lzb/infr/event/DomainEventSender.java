@@ -1,6 +1,8 @@
-package com.lzb.domain.common.event;
+package com.lzb.infr.event;
 
 import java.util.Queue;
+
+import com.lzb.domain.common.event.DomainEvent;
 
 /**
  * 领域事件发送<br/>

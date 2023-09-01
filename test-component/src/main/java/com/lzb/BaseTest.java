@@ -1,6 +1,7 @@
 package com.lzb;
 
 
+import org.approvaltests.JsonJacksonApprovals;
 import org.mockito.Mockito;
 
 /**
@@ -10,5 +11,8 @@ import org.mockito.Mockito;
  */
 public abstract class BaseTest extends Mockito implements BaseAssertions {
 
+    protected void assertJSON(Object o) {
+        JsonJacksonApprovals.verifyAsJson(o);
+    }
 
 }

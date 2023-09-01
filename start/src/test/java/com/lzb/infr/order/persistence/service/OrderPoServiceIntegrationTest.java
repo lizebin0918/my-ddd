@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.lzb.BaseIntegrationTest;
-import com.lzb.component.utils.date.DateUtils;
+import com.lzb.component.utils.DateUtils;
 import com.lzb.infr.order.persistence.po.OrderPo;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -27,9 +27,6 @@ import lombok.extern.slf4j.Slf4j;
 public class Order extends BaseAggregate<Order> {
 
     @NonNull
-    private Long orderId;
-
-    @NonNull
     private String orderStatus;
 
     @NonNull

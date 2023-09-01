@@ -48,14 +48,14 @@ public abstract class BaseAggregate<R extends BaseEntity<R>> extends BaseEntity<
      * 快照组件
      */
     @JsonIgnore
-    @Setter(AccessLevel.NONE)
     @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
     private final transient Snapshot<R> snapshot = new Snapshot<>();
 
     /**
      * 切面设置快照
      */
-    public void setSnapshot() {
+    public void attachSnapshot() {
         snapshot.set((R) this);
     }
 
@@ -64,7 +64,7 @@ public abstract class BaseAggregate<R extends BaseEntity<R>> extends BaseEntity<
      *
      * @return
      */
-    public R getSnapshot() {
+    public R snapshot() {
         return snapshot.get();
     }
 

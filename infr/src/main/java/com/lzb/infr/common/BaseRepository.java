@@ -7,8 +7,8 @@ import java.util.function.LongSupplier;
 import javax.annotation.Resource;
 
 import com.lzb.domain.common.BaseAggregate;
-import com.lzb.domain.common.event.DomainEventSender;
 import com.lzb.domain.common.repository.CommonRepository;
+import com.lzb.infr.event.DomainEventSender;
 import com.lzb.infr.transaction.TransactionHelper;
 import lombok.NonNull;
 import lombok.Setter;

@@ -4,6 +4,7 @@ import com.lzb.domain.common.BaseEntity;
 import com.lzb.domain.order.valobj.FullAddressLine;
 import com.lzb.domain.order.valobj.FullName;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.experimental.SuperBuilder;
 
 /**
@@ -15,6 +16,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class OrderAddress extends BaseEntity<OrderAddress> {
 
+    @NonNull
     private Long orderId;
 
     private FullName fullName;
