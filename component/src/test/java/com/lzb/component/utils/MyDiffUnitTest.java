@@ -51,13 +51,13 @@ class MyDiffUnitTest extends BaseUnitTest {
 
         Person p2 = new Person();
         p2.setId(1L);
-        p1.age = 11;
+        p2.money = BigDecimal.TEN;
 
         MyDiff<Person> diff = new MyDiff<>(p1, p2);
         assertThat(diff.hasChanges()).isTrue();
 
-        p1.age = 10;
-        p2.age = 10;
+        p1.money = new BigDecimal("88");
+        p2.money = new BigDecimal("88");
         diff = new MyDiff<>(p1, p2);
         assertThat(diff.hasChanges()).isFalse();
     }
