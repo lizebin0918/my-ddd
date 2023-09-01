@@ -1,86 +1,86 @@
 {
   "current" : {
-    "id" : 1,
-    "version" : 1,
-    "orderStatus" : "WAIT_PAY",
     "currency" : "CNY",
+    "events" : [ ],
     "exchangeRate" : 1,
-    "totalShouldPay" : 88,
-    "totalActualPay" : 88,
+    "id" : 1,
+    "logs" : [ ],
     "orderAddress" : {
-      "id" : null,
-      "version" : null,
-      "orderId" : 1,
-      "fullName" : {
-        "firstName" : "first",
-        "lastName" : "last"
-      },
+      "country" : "CHINA",
+      "email" : "123456@qq.com",
       "fullAddressLine" : {
         "addressLine1" : "line1",
         "addressLine2" : "line2"
       },
-      "email" : "123456@qq.com",
+      "fullName" : {
+        "firstName" : "first",
+        "lastName" : "last"
+      },
+      "id" : null,
+      "orderId" : 1,
       "phoneNumber" : "13800000000",
-      "country" : "CHINA"
+      "version" : null
     },
     "orderDetails" : [ {
       "id" : 1,
-      "version" : null,
       "orderId" : 1,
-      "skuId" : 1,
       "orderStatus" : "WAIT_PAY",
-      "price" : 1
+      "price" : 1,
+      "skuId" : 1,
+      "version" : null
     }, {
       "id" : 2,
-      "version" : null,
       "orderId" : 1,
-      "skuId" : 2,
       "orderStatus" : "WAIT_PAY",
-      "price" : 10
+      "price" : 10,
+      "skuId" : 2,
+      "version" : null
     } ],
-    "logs" : [ ],
-    "events" : [ ]
+    "orderStatus" : "WAIT_PAY",
+    "totalActualPay" : 88,
+    "totalShouldPay" : 88,
+    "version" : 1
   },
   "snapshot" : {
-    "id" : 1,
-    "version" : 1,
-    "orderStatus" : "WAIT_PAY",
     "currency" : "CNY",
+    "events" : null,
     "exchangeRate" : 1,
-    "totalShouldPay" : 88,
-    "totalActualPay" : 88,
+    "id" : 1,
+    "logs" : null,
     "orderAddress" : {
-      "id" : null,
-      "version" : null,
-      "orderId" : 1,
-      "fullName" : {
-        "firstName" : "first",
-        "lastName" : "last"
-      },
+      "country" : "CHINA",
+      "email" : "123456@qq.com",
       "fullAddressLine" : {
         "addressLine1" : "line1",
         "addressLine2" : "line2"
       },
-      "email" : "123456@qq.com",
+      "fullName" : {
+        "firstName" : "first",
+        "lastName" : "last"
+      },
+      "id" : null,
+      "orderId" : 1,
       "phoneNumber" : "13800000000",
-      "country" : "CHINA"
+      "version" : null
     },
     "orderDetails" : [ {
       "id" : 1,
-      "version" : null,
       "orderId" : 1,
-      "skuId" : 1,
       "orderStatus" : "WAIT_PAY",
-      "price" : 1
+      "price" : 1,
+      "skuId" : 1,
+      "version" : null
     }, {
       "id" : 2,
-      "version" : null,
       "orderId" : 1,
-      "skuId" : 2,
       "orderStatus" : "WAIT_PAY",
-      "price" : 10
+      "price" : 10,
+      "skuId" : 2,
+      "version" : null
     } ],
-    "logs" : null,
-    "events" : null
+    "orderStatus" : "WAIT_PAY",
+    "totalActualPay" : 88,
+    "totalShouldPay" : 88,
+    "version" : 1
   }
 }

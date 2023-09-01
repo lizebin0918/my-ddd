@@ -20,8 +20,44 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public final class OrderConverter {
 
-    public static OrderPo toOrderDo(Order order) {
-        return null;
+    public static OrderPo toOrderPo(Order order) {
+        OrderPo orderPo = new OrderPo();
+        orderPo.setOrderId(order.getId());
+        orderPo.setOrderStatus(order.getOrderStatus());
+        orderPo.setCurrency(order.getCurrency());
+        orderPo.setExchangeRate(order.getExchangeRate());
+        orderPo.setTotalShouldPay(order.getTotalShouldPay());
+        orderPo.setTotalActualPay(order.getTotalActualPay());
+        orderPo.setVersion(order.getVersion());
+        setOrderAddress(orderPo, order.getOrderAddress());
+        return orderPo;
+    }
+    public static List<OrderDetailPo> toOrderDetailPos(OrderDetails orderDetails) {
+        return orderDetails.toStream().map(OrderConverter::toOrderDetailPo).toList();
+    }
+
+    private static OrderDetailPo toOrderDetailPo(OrderDetail orderDetail) {
+        OrderDetailPo orderDetailPo = new OrderDetailPo();
+        orderDetailPo.setId(orderDetail.getId());
+        orderDetailPo.setOrderId(orderDetail.getOrderId());
+        orderDetailPo.setSkuId(orderDetail.getSkuId());
+        orderDetailPo.setOrderStatus(orderDetail.getOrderStatus());
+        orderDetailPo.setPrice(orderDetail.getPrice());
+        return orderDetailPo;
+    }
+
+    public static void setOrderAddress(OrderPo orderPo, OrderAddress orderAddress) {
+        orderPo.setEmail(orderAddress.getEmail());
+        orderPo.setPhoneNumber(orderAddress.getPhoneNumber());
+        orderPo.setCountry(orderAddress.getCountry());
+
+        FullName fullName = orderAddress.getFullName();
+        orderPo.setFirstName(fullName.firstName());
+        orderPo.setLastName(fullName.lastName());
+
+        FullAddressLine fullAddressLine = orderAddress.getFullAddressLine();
+        orderPo.setAddressLine1(fullAddressLine.addressLine1());
+        orderPo.setAddressLine2(fullAddressLine.addressLine2());
     }
 
     public static Order toOrder(OrderPo orderPo,

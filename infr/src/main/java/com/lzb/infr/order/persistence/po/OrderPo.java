@@ -9,6 +9,7 @@ import com.baomidou.mybatisplus.annotation.Version;
 import com.lzb.infr.common.BasePo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.javers.core.metamodel.annotation.Id;
 
 /**
  * <p>
@@ -23,6 +24,7 @@ import lombok.EqualsAndHashCode;
 @TableName("\"order\"")
 public class OrderPo extends BasePo {
 
+    @Id
     @TableId(type = IdType.AUTO)
     private Long orderId;
 

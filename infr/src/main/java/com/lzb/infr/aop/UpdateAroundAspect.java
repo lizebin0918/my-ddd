@@ -33,8 +33,8 @@ public class UpdateAroundAspect {
             Object aggregateRoot = paramValues[0];
             if (aggregateRoot instanceof BaseAggregate<?> snapshotHolder) {
                 snapshotHolder.checkForVersion();
-                log.info("聚合根/实体更新 快照旧 {}", JsonUtils.toJSONString(snapshotHolder.snapshot()));
-                log.info("聚合根/实体更新 快照新 {}", JsonUtils.toJSONString(aggregateRoot));
+                log.info("聚合根/实体更新 快照 {}", JsonUtils.toJSONString(snapshotHolder.snapshot()));
+                log.info("聚合根/实体更新 当前 {}", JsonUtils.toJSONString(aggregateRoot));
                 try {
                     result = proceedingJoinPoint.proceed(paramValues);
                 } catch (Exception e) {

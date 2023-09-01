@@ -1,16 +1,16 @@
 {
-  "id" : null,
-  "version" : null,
-  "orderId" : 888,
-  "fullName" : {
-    "firstName" : "firstName",
-    "lastName" : "lastName"
-  },
+  "country" : "country",
+  "email" : "thisIsEmail@qq.com",
   "fullAddressLine" : {
     "addressLine1" : "addressLine1",
     "addressLine2" : "addreaaLine2"
   },
-  "email" : "thisIsEmail@qq.com",
+  "fullName" : {
+    "firstName" : "firstName",
+    "lastName" : "lastName"
+  },
+  "id" : null,
+  "orderId" : 888,
   "phoneNumber" : "123456",
-  "country" : "country"
+  "version" : null
 }

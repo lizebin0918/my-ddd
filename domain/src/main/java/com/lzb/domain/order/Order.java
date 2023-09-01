@@ -47,4 +47,15 @@ public class Order extends BaseAggregate<Order> {
     @Builder.Default
     private OrderDetails orderDetails = new OrderDetails(new ArrayList<>());
 
+    public void updateTotalActualPay(BigDecimal totalActualPay) {
+        this.totalActualPay = totalActualPay;
+    }
+
+    /**
+     * 取消订单
+     */
+    public void cancel() {
+        orderStatus = "CANCEL";
+        orderDetails.forEach(OrderDetail::cancel);
+    }
 }

@@ -16,6 +16,7 @@ import cn.hutool.core.util.ReflectUtil;
 import com.google.common.collect.Lists;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.javers.common.reflection.ReflectionUtil;
 import org.javers.core.Changes;
 import org.javers.core.Javers;
@@ -50,7 +51,6 @@ public class MyDiff<T extends Serializable> {
         this.diff = javers.compare(oldVersion, currentVersion);
         setNullIfNegativeId(currentVersion);
     }
-
 
     /**
      * @param oldList       旧list
@@ -209,6 +209,27 @@ public class MyDiff<T extends Serializable> {
                 ReflectUtil.setFieldValue(entity, ID_FIELD, id);
             }
         }
+    }
+
+    /**
+     *
+     * @param oldList
+     * @param newList
+     * @return left=新增集合(addList),right=更新集合(updateList)
+     */
+    public static <T extends Serializable> ImmutablePair<List<T>, List<T>> diff(Class<T> entityClass, List<T> oldList, List<T> newList) {
+        List<T> addList = new ArrayList<>();
+        List<T> updateList = new ArrayList<>();
+        MyDiff.listChangeFunction(
+                oldList,
+                newList,
+                entityClass,
+                addList::addAll,
+                updateList::addAll,
+                removeList -> {
+                }
+        );
+        return ImmutablePair.of(addList, updateList);
     }
 
     private static class CustomFixedEqualBigDecimalComparator implements CustomValueComparator<BigDecimal> {

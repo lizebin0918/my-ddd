@@ -30,4 +30,10 @@ public class OrderDetail extends BaseEntity<OrderDetail> {
     @NonNull
     private BigDecimal price;
 
+    /**
+     * 订单明细取消
+     */
+    void cancel() {
+        orderStatus = "CANCEL";
+    }
 }
