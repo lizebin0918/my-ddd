@@ -1,0 +1,11 @@
+[ {
+  "id" : 1,
+  "name" : null,
+  "money" : 2,
+  "age" : null
+}, {
+  "id" : 2,
+  "name" : null,
+  "money" : 11,
+  "age" : null
+} ]
