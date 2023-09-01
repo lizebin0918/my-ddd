@@ -382,7 +382,7 @@
 							<additionalClasspathElement>${basedir}/target/classes</additionalClasspathElement>
 						</additionalClasspathElements>
 						<includes>
-							<include>com.lzb.demo.test1/*IntegrationTest.java</include>
+							<include>**/*IntegrationTest.java</include>
 						</includes>
 					</configuration>
 				</plugin>
