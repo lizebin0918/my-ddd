@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
  * @author lizebin
  */
 @Service
-public class DomainEventSenderInRocketMq implements DomainEventSender {
+public class DomainEventSenderRocketMqImpl implements DomainEventSender {
 
     @Override
     public void send(DomainEvent event) {

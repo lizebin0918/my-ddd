@@ -1,9 +1,9 @@
-package com.lzb.infr.order.persistence.service.impl;
+package com.lzb.infr.order.persistence.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lzb.infr.order.persistence.po.OrderPo;
 import com.lzb.infr.order.persistence.mapper.OrderPoMapper;
-import com.lzb.infr.order.persistence.service.IOrderPoService;
 
 import org.springframework.stereotype.Service;
 
@@ -16,6 +16,6 @@ import org.springframework.stereotype.Service;
  * @since 2023-08-29
  */
 @Service
-public class OrderPoService extends ServiceImpl<OrderPoMapper, OrderPo> implements IOrderPoService {
+public class OrderPoService extends ServiceImpl<OrderPoMapper, OrderPo> implements IService<OrderPo> {
 
 }

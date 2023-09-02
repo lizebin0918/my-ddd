@@ -23,7 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 class OrderPoServiceIntegrationTest extends BaseIntegrationTest {
 
     @Autowired
-    private IOrderPoService orderPoService;
+    private OrderPoService orderPoService;
 
     @Test
     @DisplayName("测试订单条数")

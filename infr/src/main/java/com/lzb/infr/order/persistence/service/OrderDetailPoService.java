@@ -1,4 +1,4 @@
-package com.lzb.infr.order.persistence.service.impl;
+package com.lzb.infr.order.persistence.service;
 
 import java.util.List;
 
@@ -7,7 +7,6 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lzb.infr.order.persistence.po.OrderDetailPo;
 import com.lzb.infr.order.persistence.mapper.OrderDetailPoMapper;
-import com.lzb.infr.order.persistence.service.IOrderDetailPoService;
 
 import org.springframework.stereotype.Service;
 
@@ -20,9 +19,8 @@ import org.springframework.stereotype.Service;
  * @since 2023-08-30
  */
 @Service
-public class OrderDetailPoService extends ServiceImpl<OrderDetailPoMapper, OrderDetailPo> implements IOrderDetailPoService {
+public class OrderDetailPoService extends ServiceImpl<OrderDetailPoMapper, OrderDetailPo> {
 
-    @Override
     public List<OrderDetailPo> listByOrderId(long id) {
         LambdaQueryWrapper<OrderDetailPo> query = Wrappers.lambdaQuery(OrderDetailPo.class);
         query.eq(OrderDetailPo::getOrderId, id);
