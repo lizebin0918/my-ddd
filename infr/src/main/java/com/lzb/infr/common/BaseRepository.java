@@ -1,14 +1,21 @@
 package com.lzb.infr.common;
 
 
+import java.util.List;
+import java.util.Queue;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.LongSupplier;
 
 import javax.annotation.Resource;
 
 import com.lzb.domain.common.BaseAggregate;
+import com.lzb.domain.common.event.DomainEvent;
 import com.lzb.domain.common.repository.CommonRepository;
 import com.lzb.infr.event.DomainEventSender;
+import com.lzb.infr.event.common.Constants;
+import com.lzb.infr.event.convertor.DomainEventConvertor;
+import com.lzb.infr.event.persistence.DomainEventPo;
+import com.lzb.infr.event.persistence.service.DomainEventPoService;
 import com.lzb.infr.transaction.TransactionHelper;
 import lombok.NonNull;
 import lombok.Setter;
@@ -21,6 +28,9 @@ public abstract class BaseRepository<R extends BaseAggregate<R>> implements Comm
 
     @Resource
     public DomainEventSender domainEventSender;
+
+    @Resource
+    private DomainEventPoService domainEventPoService;
 
 
     /**
@@ -45,9 +55,14 @@ public abstract class BaseRepository<R extends BaseAggregate<R>> implements Comm
         LongSupplier idSupplier = doAdd(aggregate);
         transactionHelper.runWithRequired(() -> {
             id.set(idSupplier.getAsLong());
-            domainEventSender.sendEvents(aggregate.getEvents());
+            saveEvent(aggregate.getEvents());
+            transactionHelper.runAfterCommit(() -> domainEventSender.sendEvents(aggregate.getEvents()));
         });
         return id.get();
+    }
+
+    private void saveEvent(Queue<DomainEvent> events) {
+        List<DomainEventPo> domainEventPos = DomainEventConvertor.toDomainEventPos(Constants.TOPIC, events);
     }
 
     @Override
@@ -56,7 +71,8 @@ public abstract class BaseRepository<R extends BaseAggregate<R>> implements Comm
         Runnable doUpdate = doUpdate(aggregate);
         transactionHelper.runWithRequired(() -> {
             doUpdate.run();
-            domainEventSender.sendEvents(aggregate.getEvents());
+            saveEvent(aggregate.getEvents());
+            transactionHelper.runAfterCommit(() -> domainEventSender.sendEvents(aggregate.getEvents()));
         });
     }
 }
