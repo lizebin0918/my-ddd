@@ -2,8 +2,11 @@ package com.lzb.domain.order;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Objects;
 
+import cn.hutool.core.lang.UUID;
 import com.lzb.domain.common.BaseAggregate;
+import com.lzb.domain.order.event.OrderCanceledEvent;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;
@@ -57,5 +60,10 @@ public class Order extends BaseAggregate<Order> {
     public void cancel() {
         orderStatus = "CANCEL";
         orderDetails.forEach(OrderDetail::cancel);
+        addEvent(OrderCanceledEvent.create(
+                UUID.randomUUID().toString(),
+                Objects.toString(id),
+                Objects.toString(id),
+                id));
     }
 }

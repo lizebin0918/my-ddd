@@ -2,24 +2,28 @@ package com.lzb.domain.common.event;
 
 import java.io.Serializable;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NonNull;
 
-@Data
+@Getter
+@AllArgsConstructor
 public abstract class DomainEvent implements Serializable {
 
     private final long timestamp = System.currentTimeMillis();
 
+    @NonNull
     private String msgId;
-    private String key;
-    private String shardingKey;
 
-    public abstract String getTag();
+    @NonNull
+    private String shardingKey;
 
     /**
      * 业务唯一id, 可用于做幂等
      */
+    @NonNull
     private String bizId;
 
-    protected DomainEvent() {}
+    public abstract String getTag();
 
 }
