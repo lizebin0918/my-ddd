@@ -1,4 +1,4 @@
-package com.lzb.infr.event;
+package com.lzb.infr.event.sender;
 
 import java.util.Queue;
 

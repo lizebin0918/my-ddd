@@ -1,4 +1,4 @@
-package com.lzb.infr.event;
+package com.lzb.infr.event.sender;
 
 import com.lzb.component.utils.JsonUtils;
 import com.lzb.domain.common.event.DomainEvent;
@@ -10,8 +10,10 @@ import org.springframework.stereotype.Service;
  * Created on : 2023-09-01 10:17
  * @author lizebin
  */
-@Service
+@Service(DomainEventSenderRocketMqImpl.BEAN_NAME)
 public class DomainEventSenderRocketMqImpl implements DomainEventSender {
+
+    public static final String BEAN_NAME = "domainEventSenderRocketMqImpl";
 
     @Override
     public void send(DomainEvent event) {
