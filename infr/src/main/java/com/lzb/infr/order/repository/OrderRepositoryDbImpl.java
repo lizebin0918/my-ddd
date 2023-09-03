@@ -5,11 +5,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.LongSupplier;
 
-import com.lzb.component.utils.json.JsonUtils;
 import com.lzb.component.utils.MyDiff;
+import com.lzb.component.utils.json.JsonUtils;
 import com.lzb.domain.order.Order;
 import com.lzb.domain.order.OrderRepository;
 import com.lzb.infr.common.BaseRepository;
+import com.lzb.infr.common.CacheRepository;
 import com.lzb.infr.order.converter.OrderConverter;
 import com.lzb.infr.order.persistence.po.OrderDetailPo;
 import com.lzb.infr.order.persistence.po.OrderPo;
@@ -19,6 +20,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -29,7 +32,8 @@ import org.springframework.stereotype.Repository;
 @Slf4j
 @Repository(OrderRepositoryDbImpl.BEAN_NAME)
 @RequiredArgsConstructor
-public class OrderRepositoryDbImpl extends BaseRepository<Order> implements OrderRepository {
+//@CacheConfig(cacheNames = {OrderRepositoryDbImpl.BEAN_NAME})
+public class OrderRepositoryDbImpl extends BaseRepository<Order> implements OrderRepository, CacheRepository<Order> {
 
     public static final String BEAN_NAME = "orderRepositoryDbImpl";
 
@@ -91,5 +95,11 @@ public class OrderRepositoryDbImpl extends BaseRepository<Order> implements Orde
         OrderPo orderPo = orderOpt.get();
         List<OrderDetailPo> orderDetailPos = orderDetailPoService.listByOrderId(id);
         return Optional.of(OrderConverter.toOrder(orderPo, orderDetailPos));
+    }
+
+    @Override
+    //@Cacheable(key = "#id")
+    public Order getInCache(long id) {
+        return getOrThrow(id);
     }
 }
