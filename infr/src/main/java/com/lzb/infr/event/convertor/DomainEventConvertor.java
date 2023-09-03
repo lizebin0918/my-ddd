@@ -2,9 +2,8 @@ package com.lzb.infr.event.convertor;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import com.lzb.component.utils.JsonUtils;
+import com.lzb.component.utils.json.JsonUtils;
 import com.lzb.domain.common.event.DomainEvent;
 import com.lzb.infr.event.persistence.DomainEventPo;
 import lombok.experimental.UtilityClass;
@@ -22,7 +21,7 @@ public final class DomainEventConvertor {
         domainEventPo.setTopic(topic);
         domainEventPo.setTag(event.getTag());
         domainEventPo.setBizId(event.getBizId());
-        domainEventPo.setShardingKey(event.getShardingKey());
+        domainEventPo.setKey(event.getKey());
         domainEventPo.setContent(JsonUtils.toJSONString(event));
         domainEventPo.setMsgId(event.getMsgId());
         return domainEventPo;

@@ -32,6 +32,7 @@ public class MybatisPlusConfig {
     public SqlSessionFactory masterSqlSessionFactory() throws Exception {
         MybatisSqlSessionFactoryBean factoryBean = new MybatisSqlSessionFactoryBean();
         factoryBean.setDataSource(dataSource);
+        factoryBean.setTypeHandlersPackage("com.lzb.infr.config");
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         factoryBean.setMapperLocations(resolver.getResources("classpath*:/mapper/**/*.xml"));
         factoryBean.setPlugins(mybatisPlusInterceptor());

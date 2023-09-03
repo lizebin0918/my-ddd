@@ -1,6 +1,7 @@
 package com.lzb.component.utils;
 
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.util.Date;
@@ -15,14 +16,18 @@ public final class DateUtils {
      */
     private static final ZoneId GMT_ZONE_ID = ZoneId.of("GMT");
 
+
     /**
      * 时间转时间戳
      *
      * @param date Date类型的时间
      * @return unix time
      */
-    public static int toUnix(Date date) {
-        return (int) date.toInstant().getEpochSecond();
+    public static Long toUnix(OffsetDateTime dateTime) {
+        if (Objects.isNull(dateTime)) {
+            return null;
+        }
+        return dateTime.toInstant().toEpochMilli();
     }
 
     /**

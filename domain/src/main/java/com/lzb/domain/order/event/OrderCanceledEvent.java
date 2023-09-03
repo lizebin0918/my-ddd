@@ -1,12 +1,10 @@
 package com.lzb.domain.order.event;
 
+import java.util.Objects;
+
 import com.lzb.domain.common.event.DomainEvent;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
-import lombok.experimental.SuperBuilder;
 
 /**
  * 订单取消事件<br/>
@@ -18,19 +16,16 @@ public class OrderCanceledEvent extends DomainEvent {
 
     private final long orderId;
 
-    private OrderCanceledEvent(@NonNull String msgId,
-            @NonNull String shardingKey,
+    private OrderCanceledEvent(
+            @NonNull String key,
             @NonNull String bizId, long orderId) {
-        super(msgId, shardingKey, bizId);
+        super(key, bizId);
         this.orderId = orderId;
     }
 
-    public static OrderCanceledEvent create(@NonNull String msgId,
-            @NonNull String shardingKey,
-            @NonNull String bizId, long orderId) {
-        return new OrderCanceledEvent(msgId, shardingKey, bizId, orderId);
+    public static OrderCanceledEvent create(long orderId) {
+        return new OrderCanceledEvent(Objects.toString(orderId), Objects.toString(orderId), orderId);
     }
-
 
     @Override
     public String getTag() {

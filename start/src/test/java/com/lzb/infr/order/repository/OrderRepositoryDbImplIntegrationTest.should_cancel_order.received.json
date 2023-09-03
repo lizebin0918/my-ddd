@@ -1,9 +1,9 @@
 {
   "events" : [ {
     "bizId" : "1",
-    "content" : "\"{\\n  \\\"bizId\\\" : \\\"1\\\",\\n  \\\"key\\\" : \\\"1\\\",\\n  \\\"msgId\\\" : \\\"2130bc82-b7d8-45c8-b67e-d3fc11ecf0e5\\\",\\n  \\\"orderId\\\" : 1,\\n  \\\"tag\\\" : \\\"ORDER_CANCELED\\\",\\n  \\\"timestamp\\\" : 0\\n}\"",
+    "content" : "\"{\\n  \\\"bizId\\\" : \\\"1\\\",\\n  \\\"key\\\" : \\\"1\\\",\\n  \\\"msgId\\\" : \\\"1ae4035b-0900-445e-bece-0105bb73c37e\\\",\\n  \\\"orderId\\\" : 1,\\n  \\\"tag\\\" : \\\"ORDER_CANCELED\\\",\\n  \\\"timestamp\\\" : 0\\n}\"",
     "key" : "1",
-    "msgId" : "2130bc82-b7d8-45c8-b67e-d3fc11ecf0e5",
+    "msgId" : "1ae4035b-0900-445e-bece-0105bb73c37e",
     "sent" : false,
     "tag" : "ORDER_CANCELED",
     "topic" : "order"

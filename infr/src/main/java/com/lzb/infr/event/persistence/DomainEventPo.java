@@ -1,6 +1,9 @@
 package com.lzb.infr.event.persistence;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.lzb.infr.common.BasePo;
+import com.lzb.infr.event.typehandler.ContentTypeHandler;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -14,6 +17,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
+@TableName("domain_event")
 public class DomainEventPo extends BasePo {
 
     private String topic;
@@ -22,8 +26,9 @@ public class DomainEventPo extends BasePo {
 
     private String bizId;
 
-    private String shardingKey;
+    private String key;
 
+    @TableField(typeHandler = ContentTypeHandler.class)
     private String content;
 
     private Boolean sent;

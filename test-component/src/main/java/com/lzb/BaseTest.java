@@ -1,6 +1,10 @@
 package com.lzb;
 
 
+import java.time.ZoneId;
+import java.util.Locale;
+import java.util.TimeZone;
+
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.json.JsonReadFeature;
@@ -9,6 +13,8 @@ import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.databind.util.StdDateFormat;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
 import org.mockito.Mockito;
@@ -30,7 +36,14 @@ public abstract class BaseTest extends Mockito implements BaseAssertions {
             .configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true)
             .configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS, true)
             .configure(SerializationFeature.INDENT_OUTPUT, true)
+            .defaultLocale(Locale.CHINA)
+            .defaultTimeZone(TimeZone.getTimeZone(ZoneId.systemDefault()))
+            .addModule(new JavaTimeModule())
             .build();
+
+    static {
+        INSTANCE.setDateFormat(new StdDateFormat().withColonInTimeZone(true));
+    }
 
     protected void assertJSON(Object o) {
         try {

@@ -1,24 +1,35 @@
 package com.lzb.infr.order.repository;
 
 import java.math.BigDecimal;
+import java.time.Clock;
+import java.time.Instant;
+import java.time.ZoneId;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import javax.annotation.Resource;
 
 import com.lzb.BaseIntegrationTest;
 import com.lzb.domain.order.Order;
 import com.lzb.domain.order.OrderRepository;
+import com.lzb.infr.event.persistence.DomainEventPo;
+import com.lzb.infr.event.persistence.service.DomainEventPoService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.MockedStatic;
 
 import org.springframework.test.context.jdbc.Sql;
+
+import static java.time.Instant.ofEpochMilli;
 
 class OrderRepositoryDbImplIntegrationTest extends BaseIntegrationTest {
 
     @Resource(name = OrderRepositoryDbImpl.BEAN_NAME)
     private OrderRepository orderRepository;
+
+    @Resource
+    private DomainEventPoService domainEventPoService;
 
     @Test
     @Sql("/sql/OrderRepositoryDbImplIntegrationTest/should_order_get.sql")
@@ -55,15 +66,24 @@ class OrderRepositoryDbImplIntegrationTest extends BaseIntegrationTest {
         // given
         long orderId = 1L;
         Order order = orderRepository.get(orderId).orElseThrow();
+        Clock constantClock = Clock.fixed(ofEpochMilli(0), ZoneId.systemDefault());
+        try (MockedStatic<Instant> instant = mockStatic(Instant.class)) {
+            instant.when(() -> Instant.now()).thenReturn(constantClock.instant());
+            order.cancel();
+        }
 
         // when
-        order.cancel();
         orderRepository.update(order);
 
         // then
         Order newOrder = orderRepository.get(orderId).orElseThrow();
-        assertJSON(newOrder);
+        List<DomainEventPo> events = domainEventPoService.list();
 
+        var assertMap = new HashMap<>();
+        assertMap.put("order", newOrder);
+        assertMap.put("events", events);
+
+        assertJSON(assertMap);
     }
 
 }

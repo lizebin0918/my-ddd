@@ -4,7 +4,7 @@ import java.util.Objects;
 
 import javax.annotation.Priority;
 
-import com.lzb.component.utils.JsonUtils;
+import com.lzb.component.utils.json.JsonUtils;
 import com.lzb.domain.common.BaseAggregate;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;

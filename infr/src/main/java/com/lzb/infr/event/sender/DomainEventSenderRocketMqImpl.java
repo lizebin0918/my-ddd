@@ -1,6 +1,6 @@
 package com.lzb.infr.event.sender;
 
-import com.lzb.component.utils.JsonUtils;
+import com.lzb.component.utils.json.JsonUtils;
 import com.lzb.domain.common.event.DomainEvent;
 
 import org.springframework.stereotype.Service;

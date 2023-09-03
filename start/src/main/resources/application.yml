@@ -14,5 +14,8 @@ spring:
     allow-circular-references: false
     lazy-initialization: false
     allow-bean-definition-overriding: false
+  jackson:
+    serialization:
+      write-dates-as-timestamps: true
 logging:
   config: classpath:logback.xml

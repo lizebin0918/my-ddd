@@ -1,9 +1,12 @@
-package com.lzb.component.utils;
+package com.lzb.component.utils.json;
 
 import java.io.IOException;
+import java.time.ZoneId;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.TimeZone;
 
 import cn.hutool.core.exceptions.ExceptionUtil;
 import com.fasterxml.jackson.core.JsonParser;
@@ -12,15 +15,39 @@ import com.fasterxml.jackson.core.json.JsonReadFeature;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.databind.util.StdDateFormat;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
+import org.checkerframework.checker.units.qual.A;
 import org.jetbrains.annotations.Nullable;
 
 @UtilityClass
 @Slf4j
 public class JsonUtils {
+
+    private static final ObjectMapper INSTANCE = JsonMapper.builder()
+            .configure(JsonReadFeature.ALLOW_UNESCAPED_CONTROL_CHARS.mappedFeature(), true)
+            .configure(JsonReadFeature.ALLOW_BACKSLASH_ESCAPING_ANY_CHARACTER.mappedFeature(), true)
+            .configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false)
+            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+            .configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true)
+            .configure(SerializationFeature.WRITE_ENUMS_USING_TO_STRING, true)
+            .configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true)
+            .configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS, true)
+            .configure(SerializationFeature.INDENT_OUTPUT, true)
+            .defaultLocale(Locale.CHINA)
+            .defaultTimeZone(TimeZone.getTimeZone(ZoneId.systemDefault()))
+            .addModule(new JavaTimeModule())
+            .build();
+
+    static {
+        INSTANCE.setDateFormat(new StdDateFormat().withColonInTimeZone(true));
+    }
 
     /**
      * 将对象序列化成json字符串
@@ -32,7 +59,7 @@ public class JsonUtils {
     @Nullable
     public static <T> String toJSONString(T value) {
         try {
-            return getInstance().writeValueAsString(value);
+            return INSTANCE.writeValueAsString(value);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
@@ -60,7 +87,7 @@ public class JsonUtils {
      */
     public static <T> T json2JavaBean(String content, Class<T> valueType) {
         try {
-            return getInstance().readValue(content, valueType);
+            return INSTANCE.readValue(content, valueType);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
@@ -77,7 +104,7 @@ public class JsonUtils {
      */
     public static <T> T json2JavaBean(String content, TypeReference<T> typeReference) {
         try {
-            return getInstance().readValue(content, typeReference);
+            return INSTANCE.readValue(content, typeReference);
         } catch (IOException e) {
             throw ExceptionUtil.wrapRuntime(e.getMessage());
         }
@@ -85,10 +112,10 @@ public class JsonUtils {
 
     public static <T> List<T> json2Array(String json, Class<T> valueTypeRef) {
 
-        JavaType javaType = getInstance().getTypeFactory().constructParametricType(List.class, valueTypeRef);
+        JavaType javaType = INSTANCE.getTypeFactory().constructParametricType(List.class, valueTypeRef);
         List<T> objectList = Collections.emptyList();
         try {
-            return getInstance().readValue(json, javaType);
+            return INSTANCE.readValue(json, javaType);
         }
         catch (JsonProcessingException e) {
             log.error(e.getMessage(), e);
@@ -104,7 +131,7 @@ public class JsonUtils {
      */
     public static Map<String, Object> json2Map(String content) {
         try {
-            return getInstance().readValue(content, Map.class);
+            return INSTANCE.readValue(content, Map.class);
         } catch (IOException e) {
             log.error(e.getMessage(), e);
         }
@@ -121,38 +148,5 @@ public class JsonUtils {
         }
         return result;
     }
-
-    public static ObjectMapper getInstance() {
-        return JacksonHolder.INSTANCE;
-    }
-
-    private static class JacksonHolder {
-
-        private static final ObjectMapper INSTANCE = new JacksonObjectMapper();
-
-    }
-
-    public static class JacksonObjectMapper extends ObjectMapper {
-
-        public JacksonObjectMapper() {
-            super();
-            //序列化处理
-            super.configure(JsonReadFeature.ALLOW_UNESCAPED_CONTROL_CHARS.mappedFeature(), true);
-            super.configure(JsonReadFeature.ALLOW_BACKSLASH_ESCAPING_ANY_CHARACTER.mappedFeature(), true);
-            super.findAndRegisterModules();
-            //失败处理
-            super.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
-            super.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            //单引号处理
-            super.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
-            //反序列化时，属性不存在的兼容处理
-            super.getDeserializationConfig().withoutFeatures(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-            super.findAndRegisterModules();
-        }
-
-    }
-
-
-
 
 }

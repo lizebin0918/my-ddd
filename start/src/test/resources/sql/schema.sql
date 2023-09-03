@@ -46,23 +46,24 @@ alter table order_detail
 
 create table domain_event
 (
-    id           bigint                               not null
+    id          bigint                              not null
         primary key,
-    topic        varchar(255)                         not null,
-    tag          varchar(255)                         not null,
-    biz_id       varchar(255)                         not null,
-    sharding_key varchar(255)                         not null,
-    content      json                                 not null,
-    sent         boolean default false                 not null,
-    msg_id       varchar(255)                         null,
-    add_time     timestamp   default CURRENT_TIMESTAMP not null,
-    update_time  timestamp   default CURRENT_TIMESTAMP not null,
+    topic       text                                not null,
+    tag         text                                not null,
+    biz_id      text                                not null,
+    key         text                                not null,
+    content     jsonb                               not null,
+    sent        boolean   default false             not null,
+    msg_id      text null,
+    add_time    timestamp default CURRENT_TIMESTAMP not null,
+    update_time timestamp default CURRENT_TIMESTAMP not null,
     constraint uk_topic_tag_biz_id
         unique (topic, tag, biz_id)
 );
 
-create index domain_event_sharding_key_index on domain_event (sharding_key);
+create index domain_event_sharding_key_index on domain_event (key);
 
 create sequence domain_event_id_seq;
 
-alter table domain_event alter column id set default nextval('domain_event_id_seq'::regclass);
+alter table domain_event
+    alter column id set default nextval('domain_event_id_seq'::regclass);

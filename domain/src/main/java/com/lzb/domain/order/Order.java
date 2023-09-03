@@ -60,10 +60,6 @@ public class Order extends BaseAggregate<Order> {
     public void cancel() {
         orderStatus = "CANCEL";
         orderDetails.forEach(OrderDetail::cancel);
-        addEvent(OrderCanceledEvent.create(
-                UUID.randomUUID().toString(),
-                Objects.toString(id),
-                Objects.toString(id),
-                id));
+        addEvent(OrderCanceledEvent.create(id));
     }
 }
