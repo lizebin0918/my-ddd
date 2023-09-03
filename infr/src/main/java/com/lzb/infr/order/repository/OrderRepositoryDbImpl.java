@@ -7,7 +7,6 @@ import java.util.function.LongSupplier;
 
 import com.lzb.component.utils.MyDiff;
 import com.lzb.component.utils.json.JsonUtils;
-import com.lzb.domain.common.repository.CacheRepository;
 import com.lzb.domain.order.aggregate.Order;
 import com.lzb.domain.order.repository.OrderRepository;
 import com.lzb.infr.common.BaseRepository;
@@ -22,6 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
 import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
@@ -43,7 +43,7 @@ public class OrderRepositoryDbImpl extends BaseRepository<Order> implements Orde
     private final OrderDetailPoService orderDetailPoService;
 
     @Override
-    protected LongSupplier doAdd(Order aggregate) {
+    public LongSupplier doAdd(Order aggregate) {
         OrderPo orderPo = OrderConverter.toOrderPo(aggregate);
         orderPoService.save(orderPo);
         orderDetailPoService.saveBatch(OrderConverter.toOrderDetailPos(aggregate.getOrderDetails()));
@@ -51,7 +51,8 @@ public class OrderRepositoryDbImpl extends BaseRepository<Order> implements Orde
     }
 
     @Override
-    protected Runnable doUpdate(Order order) {
+    @CacheEvict(key = "#order.id")
+    public Runnable doUpdate(Order order) {
 
         ImmutablePair<List<OrderDetailPo>, List<OrderDetailPo>> leftToAddAndRightToUpdate = diffOrderDetailPos(order);
         OrderPo orderPo = OrderConverter.toOrderPo(order);

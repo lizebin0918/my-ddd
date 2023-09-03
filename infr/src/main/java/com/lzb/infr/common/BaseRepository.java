@@ -13,6 +13,8 @@ import com.lzb.infr.transaction.TransactionHelper;
 import lombok.NonNull;
 import lombok.Setter;
 
+import org.springframework.aop.framework.AopContext;
+
 @Setter
 public abstract class BaseRepository<R extends BaseAggregate<R>> implements CommonRepository<R> {
 
@@ -28,7 +30,7 @@ public abstract class BaseRepository<R extends BaseAggregate<R>> implements Comm
      * @param aggregate
      * @return 返回主键
      */
-    protected abstract LongSupplier doAdd(R aggregate);
+    public abstract LongSupplier doAdd(R aggregate);
 
     /**
      * 更新聚合根
@@ -36,12 +38,16 @@ public abstract class BaseRepository<R extends BaseAggregate<R>> implements Comm
      * @param aggregate
      * @return
      */
-    protected abstract Runnable doUpdate(R aggregate);
+    public abstract Runnable doUpdate(R aggregate);
+
+    private BaseRepository<R> getCurrentProxy() {
+        return (BaseRepository<R>) AopContext.currentProxy();
+    }
 
     @Override
     public /*final 无法切面*/ long add(@NonNull R aggregate) {
         AtomicReference<Long> id = new AtomicReference<>();
-        LongSupplier idSupplier = doAdd(aggregate);
+        LongSupplier idSupplier = getCurrentProxy().doAdd(aggregate);
         transactionHelper.runWithRequired(() -> {
             id.set(idSupplier.getAsLong());
             domainEventSupport.asynSendAfterPersist(aggregate.getEvents());
@@ -53,7 +59,7 @@ public abstract class BaseRepository<R extends BaseAggregate<R>> implements Comm
     @Override
     public /*final 无法切面*/ void update(@NonNull R aggregate) {
         // 这样可读性会好点
-        Runnable doUpdate = doUpdate(aggregate);
+        Runnable doUpdate = getCurrentProxy().doUpdate(aggregate);
         transactionHelper.runWithRequired(() -> {
             doUpdate.run();
             domainEventSupport.asynSendAfterPersist(aggregate.getEvents());

@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.time.Clock;
 import java.time.Instant;
 import java.time.ZoneId;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -76,12 +75,13 @@ class OrderRepositoryDbImplIntegrationTest extends BaseIntegrationTest {
         Clock constantClock = Clock.fixed(ofEpochMilli(0), ZoneId.systemDefault());
 
         // DomainEvent设置了默认值，这里设置固定返回
+        String msgId = "1";
         try (
             MockedStatic<Instant> instant = mockStatic(Instant.class);
             MockedStatic<IdUtil> idUtil = mockStatic(IdUtil.class);
         ) {
             instant.when(() -> Instant.now()).thenReturn(constantClock.instant());
-            idUtil.when(() -> IdUtil.randomUUID()).thenReturn("1");
+            idUtil.when(() -> IdUtil.randomUUID()).thenReturn(msgId);
             order.cancel();
         }
 
@@ -91,11 +91,11 @@ class OrderRepositoryDbImplIntegrationTest extends BaseIntegrationTest {
         // then
         Order newOrder = orderRepository.get(orderId).orElseThrow();
         List<DomainEventPo> events = domainEventPoService.list();
+        assertThat(events).hasSize(1);
 
         var assertMap = new HashMap<>();
+        assertMap.put("event", events.get(0).getContent());
         assertMap.put("order", newOrder);
-        assertMap.put("events", events);
-
         assertJSON(assertMap);
     }
 
@@ -114,6 +114,24 @@ class OrderRepositoryDbImplIntegrationTest extends BaseIntegrationTest {
         var assertMap = Map.of("order1", order1, "order2", order2);
         assertJSON(assertMap);
 
+    }
+
+    @Test
+    @DisplayName("测试缓存清除")
+    @Sql("/sql/OrderRepositoryDbImplIntegrationTest/should_clear_cache_when_get_in_cache.sql")
+    void should_clear_cache_when_get_in_cache() {
+        long orderId = 1L;
+        Order order = orderRepository.getInCache(orderId);
+        assertThat(order).isNotNull();
+
+        order = orderRepository.getOrThrow(orderId);
+        order.cancel();
+        orderRepository.update(order);
+
+        Order cacheOrder = orderRepository.getInCache(orderId);
+        assertThat(cacheOrder.cancelFlag()).isTrue();
+        assertThat(cacheOrder.getVersion()).isEqualTo(2);
+        assertJSON(cacheOrder);
     }
 
 }

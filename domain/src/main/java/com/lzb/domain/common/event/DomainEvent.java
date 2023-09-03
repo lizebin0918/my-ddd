@@ -21,9 +21,12 @@ public abstract class DomainEvent implements Serializable {
      */
     private final String bizId;
 
+    private final String tag;
+
     protected DomainEvent(@NonNull String key, @NonNull String bizId) {
         this.key = key;
         this.bizId = bizId;
+        this.tag = getTag();
     }
 
     public abstract String getTag();

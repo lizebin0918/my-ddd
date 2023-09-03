@@ -39,7 +39,7 @@ public class JsonUtils {
             .configure(SerializationFeature.WRITE_ENUMS_USING_TO_STRING, true)
             .configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true)
             .configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS, true)
-            .configure(SerializationFeature.INDENT_OUTPUT, true)
+            .configure(SerializationFeature.INDENT_OUTPUT, false)
             .defaultLocale(Locale.CHINA)
             .defaultTimeZone(TimeZone.getTimeZone(ZoneId.systemDefault()))
             .addModule(new JavaTimeModule())

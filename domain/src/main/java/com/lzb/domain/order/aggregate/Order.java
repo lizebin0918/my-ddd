@@ -60,4 +60,12 @@ public class Order extends BaseAggregate<Order> {
         orderDetails.forEach(OrderDetail::cancel);
         addEvent(OrderCanceledEvent.create(id));
     }
+
+    /**
+     * 是否取消
+     * @return
+     */
+    public boolean cancelFlag() {
+        return "CANCEL".equals(orderStatus);
+    }
 }
