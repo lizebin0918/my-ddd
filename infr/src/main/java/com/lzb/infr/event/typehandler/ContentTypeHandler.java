@@ -1,10 +1,10 @@
 package com.lzb.infr.event.typehandler;
 
-import java.sql.CallableStatement;
-import java.sql.ResultSet;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import com.lzb.infr.config.JsonbTypeHandler;
+import org.apache.ibatis.type.JdbcType;
+import org.apache.ibatis.type.StringTypeHandler;
 import org.postgresql.util.PGobject;
 
 /**
@@ -12,6 +12,13 @@ import org.postgresql.util.PGobject;
  * Created on : 2023-09-02 23:10
  * @author mac
  */
-public class ContentTypeHandler extends JsonbTypeHandler<String> {
+public class ContentTypeHandler extends StringTypeHandler {
 
+    @Override
+    public void setNonNullParameter(PreparedStatement ps, int i, String parameter, JdbcType jdbcType) throws SQLException {
+        PGobject jsonObject = new PGobject();
+        jsonObject.setType("jsonb");
+        jsonObject.setValue(parameter);
+        ps.setObject(i, jsonObject);
+    }
 }

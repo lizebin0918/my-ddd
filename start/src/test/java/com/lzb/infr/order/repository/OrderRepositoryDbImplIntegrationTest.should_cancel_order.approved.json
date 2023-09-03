@@ -1,7 +1,7 @@
 {
   "events" : [ {
     "bizId" : "1",
-    "content" : "\"{\\n  \\\"bizId\\\" : \\\"1\\\",\\n  \\\"key\\\" : \\\"1\\\",\\n  \\\"msgId\\\" : \\\"1\\\",\\n  \\\"orderId\\\" : 1,\\n  \\\"tag\\\" : \\\"ORDER_CANCELED\\\",\\n  \\\"timestamp\\\" : 0\\n}\"",
+    "content" : "{\"key\": \"1\", \"tag\": \"ORDER_CANCELED\", \"bizId\": \"1\", \"msgId\": \"1\", \"orderId\": 1, \"timestamp\": 0}",
     "key" : "1",
     "msgId" : "1",
     "sent" : false,
