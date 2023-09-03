@@ -100,8 +100,8 @@ public class OrderRepositoryDbImpl extends BaseRepository<Order> implements Orde
     }
 
     @Override
-    @Cacheable(key = "#id")
+    @Cacheable(key = "#id", unless = "#result == null")
     public Order getInCache(long id) {
-        return getOrThrow(id);
+        return get(id).orElse(null);
     }
 }

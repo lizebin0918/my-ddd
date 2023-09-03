@@ -42,7 +42,7 @@ public abstract class BaseDockerTest extends BaseTest {
             .withInitScript("sql/schema.sql");
 
     public static final RedisContainer redis =
-            new RedisContainer(DockerImageName.parse("redis:5.0.3-alpine"))
+            new RedisContainer(DockerImageName.parse("redis:7.2.0"))
                     .withExposedPorts(6379)
                     .withReuse(true);
 
@@ -51,7 +51,6 @@ public abstract class BaseDockerTest extends BaseTest {
         @Override
         public void initialize(ConfigurableApplicationContext applicationContext) {
             PostgreSQLContainer<?> database = BaseDockerTest.database;
-            System.out.println("url:" + database.getJdbcUrl());
             TestPropertySourceUtils.addInlinedPropertiesToEnvironment(
                     applicationContext,
                     "spring.datasource.url=" + database.getJdbcUrl(),
@@ -69,9 +68,8 @@ public abstract class BaseDockerTest extends BaseTest {
             RedisContainer redis = BaseDockerTest.redis;
             TestPropertySourceUtils.addInlinedPropertiesToEnvironment(
                     applicationContext,
-                    "redis.host=" + redis.getHost(),
-                    "redis.port=" + redis.getFirstMappedPort(),
-                    "redis.password=" + ""
+                    "spring.data.redis.host=" + redis.getHost(),
+                    "spring.data.redis.port=" + redis.getFirstMappedPort()
             );
         }
     }
