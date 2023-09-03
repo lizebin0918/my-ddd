@@ -10,3 +10,9 @@ spring:
     redis:
       host: localhost
       port: 6379
+cache:
+  caffeine:
+    maximumSize: 1000
+    expireAfterWriteSeconds: 300
+  redis:
+    timeToLiveSeconds: 600
