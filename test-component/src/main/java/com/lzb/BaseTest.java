@@ -39,11 +39,8 @@ public abstract class BaseTest extends Mockito implements BaseAssertions {
             .defaultLocale(Locale.CHINA)
             .defaultTimeZone(TimeZone.getTimeZone(ZoneId.systemDefault()))
             .addModule(new JavaTimeModule())
+            .defaultDateFormat(new StdDateFormat().withColonInTimeZone(true))
             .build();
-
-    static {
-        INSTANCE.setDateFormat(new StdDateFormat().withColonInTimeZone(true));
-    }
 
     protected void assertJSON(Object o) {
         try {

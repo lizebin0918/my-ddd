@@ -43,11 +43,8 @@ public class JsonUtils {
             .defaultLocale(Locale.CHINA)
             .defaultTimeZone(TimeZone.getTimeZone(ZoneId.systemDefault()))
             .addModule(new JavaTimeModule())
+            .defaultDateFormat(new StdDateFormat().withColonInTimeZone(true))
             .build();
-
-    static {
-        INSTANCE.setDateFormat(new StdDateFormat().withColonInTimeZone(true));
-    }
 
     /**
      * 将对象序列化成json字符串
