@@ -1,4 +1,4 @@
-package com.lzb.infr.config;
+package com.lzb.infr.config.mybatis.handler;
 
 import java.lang.reflect.ParameterizedType;
 import java.sql.CallableStatement;
@@ -13,6 +13,10 @@ import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 import org.postgresql.util.PGobject;
 
+/**
+ * 对PO对象的jsonb字段转领域对象
+ * @param <T>
+ */
 public abstract class JsonbTypeHandler<T> extends BaseTypeHandler<T> {
 
     @NonNull

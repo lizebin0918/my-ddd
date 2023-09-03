@@ -1,4 +1,4 @@
-package com.lzb.infr.config;
+package com.lzb.infr.config.mybatis.handler;
 
 import java.math.BigDecimal;
 import java.sql.Array;

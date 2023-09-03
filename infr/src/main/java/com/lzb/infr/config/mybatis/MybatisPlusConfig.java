@@ -1,5 +1,6 @@
-package com.lzb.infr.config;
+package com.lzb.infr.config.mybatis;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 import com.baomidou.mybatisplus.annotation.FieldStrategy;
@@ -9,6 +10,7 @@ import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.OptimisticLockerInnerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
+import com.lzb.infr.config.mybatis.handler.MyMetaObjectHandler;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.type.JdbcType;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -25,14 +27,14 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 @MapperScan(value = {"com.lzb.infr.**.mapper"})
 public class MybatisPlusConfig {
 
-    @Autowired
+    @Resource
     private DataSource dataSource;
 
     @Bean
     public SqlSessionFactory masterSqlSessionFactory() throws Exception {
         MybatisSqlSessionFactoryBean factoryBean = new MybatisSqlSessionFactoryBean();
         factoryBean.setDataSource(dataSource);
-        factoryBean.setTypeHandlersPackage("com.lzb.infr.config");
+        factoryBean.setTypeHandlersPackage("com.lzb.infr.config.mybatis.handler");
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         factoryBean.setMapperLocations(resolver.getResources("classpath*:/mapper/**/*.xml"));
         factoryBean.setPlugins(mybatisPlusInterceptor());
