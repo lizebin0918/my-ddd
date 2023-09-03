@@ -10,6 +10,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import cn.hutool.core.util.IdUtil;
 import com.lzb.BaseIntegrationTest;
 import com.lzb.domain.order.Order;
 import com.lzb.domain.order.OrderRepository;
@@ -67,8 +68,14 @@ class OrderRepositoryDbImplIntegrationTest extends BaseIntegrationTest {
         long orderId = 1L;
         Order order = orderRepository.get(orderId).orElseThrow();
         Clock constantClock = Clock.fixed(ofEpochMilli(0), ZoneId.systemDefault());
-        try (MockedStatic<Instant> instant = mockStatic(Instant.class)) {
+
+        // DomainEvent设置了默认值，这里设置固定返回
+        try (
+            MockedStatic<Instant> instant = mockStatic(Instant.class);
+            MockedStatic<IdUtil> idUtil = mockStatic(IdUtil.class);
+        ) {
             instant.when(() -> Instant.now()).thenReturn(constantClock.instant());
+            idUtil.when(() -> IdUtil.randomUUID()).thenReturn("1");
             order.cancel();
         }
 
