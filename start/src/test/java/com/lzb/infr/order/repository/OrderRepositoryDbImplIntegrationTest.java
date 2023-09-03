@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.Clock;
 import java.time.Instant;
 import java.time.ZoneId;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,14 +13,16 @@ import javax.annotation.Resource;
 
 import cn.hutool.core.util.IdUtil;
 import com.lzb.BaseIntegrationTest;
-import com.lzb.domain.order.Order;
-import com.lzb.domain.order.OrderRepository;
+import com.lzb.domain.order.aggregate.Order;
+import com.lzb.domain.order.repository.OrderRepository;
+import com.lzb.infr.config.cache.CacheConstants;
 import com.lzb.infr.event.persistence.DomainEventPo;
 import com.lzb.infr.event.persistence.service.DomainEventPoService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 
+import org.springframework.cache.CacheManager;
 import org.springframework.test.context.jdbc.Sql;
 
 import static java.time.Instant.ofEpochMilli;
@@ -31,6 +34,9 @@ class OrderRepositoryDbImplIntegrationTest extends BaseIntegrationTest {
 
     @Resource
     private DomainEventPoService domainEventPoService;
+
+    @Resource
+    private CacheManager cacheManager;
 
     @Test
     @Sql("/sql/OrderRepositoryDbImplIntegrationTest/should_order_get.sql")
@@ -91,6 +97,23 @@ class OrderRepositoryDbImplIntegrationTest extends BaseIntegrationTest {
         assertMap.put("events", events);
 
         assertJSON(assertMap);
+    }
+
+    @Test
+    @DisplayName("测试缓存查询")
+    @Sql("/sql/OrderRepositoryDbImplIntegrationTest/should_get_in_cache.sql")
+    void should_get_in_cache() {
+
+        long orderId = 1L;
+        Order order1 = orderRepository.getInCache(orderId);
+        Order order2 = orderRepository.getInCache(orderId);
+
+        verify(cacheManager, atLeast(1)).getCache(CacheConstants.ORDER);
+        assertThat(order1.snapshot()).isNull();
+        assertThat(order2.snapshot()).isNull();
+        var assertMap = Map.of("order1", order1, "order2", order2);
+        assertJSON(assertMap);
+
     }
 
 }

@@ -1,15 +1,12 @@
 package com.lzb.infr.order.converter;
-import java.time.LocalDateTime;
 
 import java.math.BigDecimal;
 
 import com.lzb.BaseUnitTest;
-import com.lzb.domain.order.OrderAddress;
-import com.lzb.domain.order.OrderDetail;
+import com.lzb.domain.order.aggregate.OrderAddress;
+import com.lzb.domain.order.aggregate.OrderDetail;
 import com.lzb.infr.order.persistence.po.OrderDetailPo;
 import com.lzb.infr.order.persistence.po.OrderPo;
-import org.approvaltests.JsonJacksonApprovals;
-import org.approvaltests.core.Options;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

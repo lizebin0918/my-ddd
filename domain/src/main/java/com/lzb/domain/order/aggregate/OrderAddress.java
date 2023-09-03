@@ -1,4 +1,4 @@
-package com.lzb.domain.order;
+package com.lzb.domain.order.aggregate;
 
 import com.lzb.domain.common.BaseEntity;
 import com.lzb.domain.order.valobj.FullAddressLine;

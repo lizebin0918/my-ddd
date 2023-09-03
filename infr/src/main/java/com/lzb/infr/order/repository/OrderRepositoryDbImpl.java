@@ -7,10 +7,10 @@ import java.util.function.LongSupplier;
 
 import com.lzb.component.utils.MyDiff;
 import com.lzb.component.utils.json.JsonUtils;
-import com.lzb.domain.order.Order;
-import com.lzb.domain.order.OrderRepository;
+import com.lzb.domain.common.repository.CacheRepository;
+import com.lzb.domain.order.aggregate.Order;
+import com.lzb.domain.order.repository.OrderRepository;
 import com.lzb.infr.common.BaseRepository;
-import com.lzb.infr.common.CacheRepository;
 import com.lzb.infr.config.cache.CacheConstants;
 import com.lzb.infr.order.converter.OrderConverter;
 import com.lzb.infr.order.persistence.po.OrderDetailPo;
@@ -34,7 +34,7 @@ import org.springframework.stereotype.Repository;
 @Repository(OrderRepositoryDbImpl.BEAN_NAME)
 @RequiredArgsConstructor
 @CacheConfig(cacheNames = {CacheConstants.ORDER})
-public class OrderRepositoryDbImpl extends BaseRepository<Order> implements OrderRepository, CacheRepository<Order> {
+public class OrderRepositoryDbImpl extends BaseRepository<Order> implements OrderRepository {
 
     public static final String BEAN_NAME = "orderRepositoryDbImpl";
 
