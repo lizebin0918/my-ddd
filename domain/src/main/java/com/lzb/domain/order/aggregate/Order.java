@@ -65,7 +65,7 @@ public class Order extends BaseAggregate<Order> {
      * 是否取消
      * @return
      */
-    public boolean cancelFlag() {
+    public boolean isCancel() {
         return "CANCEL".equals(orderStatus);
     }
 }

@@ -129,7 +129,7 @@ class OrderRepositoryDbImplIntegrationTest extends BaseIntegrationTest {
         orderRepository.update(order);
 
         Order cacheOrder = orderRepository.getInCache(orderId);
-        assertThat(cacheOrder.cancelFlag()).isTrue();
+        assertThat(cacheOrder.isCancel()).isTrue();
         assertThat(cacheOrder.getVersion()).isEqualTo(2);
         assertJSON(cacheOrder);
     }

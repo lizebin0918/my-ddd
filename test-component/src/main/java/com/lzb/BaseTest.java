@@ -5,6 +5,8 @@ import java.time.ZoneId;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.json.JsonReadFeature;
@@ -41,6 +43,15 @@ public abstract class BaseTest extends Mockito implements BaseAssertions {
             .addModule(new JavaTimeModule())
             .defaultDateFormat(new StdDateFormat().withColonInTimeZone(true))
             .build();
+
+    static {
+        INSTANCE
+        // 不包含空值
+        //.setSerializationInclusion(JsonInclude.Include.NON_ABSENT)
+        // isGetter不可见
+        .setVisibility(PropertyAccessor.IS_GETTER, JsonAutoDetect.Visibility.NONE)
+                ;
+    }
 
     protected void assertJSON(Object o) {
         try {
