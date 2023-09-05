@@ -39,7 +39,7 @@ public abstract class BaseDockerTest extends BaseTest {
             .withReuse(true)
             .withUsername("postgres")
             .withPassword("123456")
-            .withInitScript("sql/schema.sql");
+            ;
 
     public static final RedisContainer redis =
             new RedisContainer(DockerImageName.parse("redis:7.2.0"))
