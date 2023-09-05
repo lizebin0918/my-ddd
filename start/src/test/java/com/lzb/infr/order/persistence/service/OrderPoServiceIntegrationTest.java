@@ -7,8 +7,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.lzb.BaseIntegrationTest;
 import com.lzb.component.utils.DateUtils;
+import com.lzb.domain.order.enums.OrderStatus;
 import com.lzb.infr.order.persistence.po.OrderPo;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -35,7 +38,7 @@ class OrderPoServiceIntegrationTest extends BaseIntegrationTest {
     @DisplayName("插入设置addTime和updateTime")
     void should_fill_add_time_and_update_time() {
         OrderPo orderPo = new OrderPo();
-        orderPo.setOrderStatus("WAIT_AUTH");
+        orderPo.setOrderStatus(OrderStatus.WAIT_PAY);
         orderPo.setCurrency("CNY");
         orderPo.setExchangeRate(BigDecimal.ZERO);
         orderPo.setTotalShouldPay(BigDecimal.ZERO);
@@ -55,7 +58,7 @@ class OrderPoServiceIntegrationTest extends BaseIntegrationTest {
     void should_update_null() {
 
         OrderPo orderPo = new OrderPo();
-        orderPo.setOrderStatus("WAIT_AUTH");
+        orderPo.setOrderStatus(OrderStatus.WAIT_PAY);
         orderPo.setCurrency("CNY");
         orderPo.setExchangeRate(BigDecimal.ZERO);
         orderPo.setTotalShouldPay(BigDecimal.ZERO);
@@ -70,7 +73,7 @@ class OrderPoServiceIntegrationTest extends BaseIntegrationTest {
         // 更新update_time，不更新add_time
         OrderPo orderPo1 = new OrderPo();
         orderPo1.setOrderId(orderId);
-        orderPo1.setOrderStatus("WAIT_AUTH");
+        orderPo1.setOrderStatus(OrderStatus.WAIT_PAY);
         orderPo1.setCurrency("CNY");
         boolean updateFlag = orderPoService.updateById(orderPo1);
         assertThat(updateFlag).isTrue();
@@ -114,11 +117,27 @@ class OrderPoServiceIntegrationTest extends BaseIntegrationTest {
 
     }
 
+    @Test
+    @DisplayName("测试根据订单状态查询")
+    void should_list_order_by_order_status_query() {
+        // given
+        batchInsert();
+
+        // when
+        LambdaQueryWrapper<OrderPo> query = Wrappers.lambdaQuery(OrderPo.class);
+        query.eq(OrderPo::getOrderStatus, OrderStatus.WAIT_PAY);
+        long count = orderPoService.count(query);
+
+        // then
+        assertThat(count).isEqualTo(2);
+
+    }
+
     private void batchInsert() {
         List<OrderPo> list = new ArrayList<>();
 
         OrderPo orderPo = new OrderPo();
-        orderPo.setOrderStatus("WAIT_AUTH");
+        orderPo.setOrderStatus(OrderStatus.WAIT_PAY);
         orderPo.setCurrency("CNY");
         orderPo.setExchangeRate(BigDecimal.ZERO);
         orderPo.setTotalShouldPay(BigDecimal.ZERO);
@@ -126,7 +145,7 @@ class OrderPoServiceIntegrationTest extends BaseIntegrationTest {
         list.add(orderPo);
 
         OrderPo orderPo1 = new OrderPo();
-        orderPo1.setOrderStatus("WAIT_AUTH");
+        orderPo1.setOrderStatus(OrderStatus.WAIT_PAY);
         orderPo1.setCurrency("CNY");
         orderPo1.setExchangeRate(BigDecimal.ONE);
         orderPo1.setTotalShouldPay(BigDecimal.ONE);

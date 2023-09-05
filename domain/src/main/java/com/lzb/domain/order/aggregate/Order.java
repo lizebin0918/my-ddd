@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import com.lzb.domain.common.BaseAggregate;
+import com.lzb.domain.order.enums.OrderStatus;
 import com.lzb.domain.order.event.OrderCanceledEvent;
 import lombok.Builder;
 import lombok.Getter;
@@ -28,7 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 public class Order extends BaseAggregate<Order> {
 
     @NonNull
-    private String orderStatus;
+    private OrderStatus orderStatus;
 
     @NonNull
     private String currency;
@@ -56,7 +57,7 @@ public class Order extends BaseAggregate<Order> {
      * 取消订单
      */
     public void cancel() {
-        orderStatus = "CANCEL";
+        orderStatus = OrderStatus.CANCELED;
         orderDetails.forEach(OrderDetail::cancel);
         addEvent(OrderCanceledEvent.create(id));
     }
@@ -66,6 +67,6 @@ public class Order extends BaseAggregate<Order> {
      * @return
      */
     public boolean isCancel() {
-        return "CANCEL".equals(orderStatus);
+        return OrderStatus.CANCELED == orderStatus;
     }
 }

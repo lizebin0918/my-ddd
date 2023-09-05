@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.lzb.domain.order.enums.OrderStatus;
 import com.lzb.infr.common.BasePo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -23,7 +24,7 @@ public class OrderDetailPo extends BasePo {
 
     private Integer skuId;
 
-    private String orderStatus;
+    private OrderStatus orderStatus;
 
     private BigDecimal price;
 

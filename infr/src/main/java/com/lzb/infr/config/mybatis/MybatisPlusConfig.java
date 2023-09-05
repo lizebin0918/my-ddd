@@ -16,7 +16,6 @@ import org.apache.ibatis.type.JdbcType;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
@@ -41,6 +40,7 @@ public class MybatisPlusConfig {
         MybatisConfiguration configuration = new MybatisConfiguration();
         configuration.setMapUnderscoreToCamelCase(true);
         configuration.setJdbcTypeForNull(JdbcType.NULL);
+        configuration.getTypeHandlerRegistry().setDefaultEnumTypeHandler(DefaultEnumValueTypeHandler.class);
         GlobalConfig globalConfig = new GlobalConfig();
         GlobalConfig.DbConfig dbConfig = new GlobalConfig.DbConfig();
         // 全字段更新
@@ -51,6 +51,7 @@ public class MybatisPlusConfig {
         globalConfig.setMetaObjectHandler(myMetaObjectHandler());
         factoryBean.setGlobalConfig(globalConfig);
         factoryBean.setConfiguration(configuration);
+
         return factoryBean.getObject();
     }
 

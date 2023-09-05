@@ -3,6 +3,7 @@ package com.lzb.domain.order.aggregate;
 import java.math.BigDecimal;
 
 import com.lzb.domain.common.BaseEntity;
+import com.lzb.domain.order.enums.OrderStatus;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.experimental.SuperBuilder;
@@ -25,7 +26,7 @@ public class OrderDetail extends BaseEntity<OrderDetail> {
     private Integer skuId;
 
     @NonNull
-    private String orderStatus;
+    private OrderStatus orderStatus;
 
     @NonNull
     private BigDecimal price;
@@ -34,6 +35,6 @@ public class OrderDetail extends BaseEntity<OrderDetail> {
      * 订单明细取消
      */
     void cancel() {
-        orderStatus = "CANCEL";
+        orderStatus = OrderStatus.CANCELED;
     }
 }

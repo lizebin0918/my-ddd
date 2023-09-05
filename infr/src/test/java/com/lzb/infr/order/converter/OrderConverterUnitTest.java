@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import com.lzb.BaseUnitTest;
 import com.lzb.domain.order.aggregate.OrderAddress;
 import com.lzb.domain.order.aggregate.OrderDetail;
+import com.lzb.domain.order.enums.OrderStatus;
 import com.lzb.infr.order.persistence.po.OrderDetailPo;
 import com.lzb.infr.order.persistence.po.OrderPo;
 import org.junit.jupiter.api.DisplayName;
@@ -28,7 +29,7 @@ class OrderConverterUnitTest extends BaseUnitTest {
         orderDetailPo.setId(0L);
         orderDetailPo.setOrderId(0L);
         orderDetailPo.setSkuId(0);
-        orderDetailPo.setOrderStatus("WAIT_PAY");
+        orderDetailPo.setOrderStatus(OrderStatus.WAIT_PAY);
         orderDetailPo.setPrice(BigDecimal.TEN);
 
         OrderDetail orderDetail = OrderConverter.toOrderDetail(orderDetailPo);

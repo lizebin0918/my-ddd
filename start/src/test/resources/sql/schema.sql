@@ -3,7 +3,7 @@ create table "order"
     order_id         bigint                              not null
         constraint "PRIMARY_order"
             primary key,
-    order_status     text                                not null,
+    order_status     integer                             not null,
     currency         text,
     exchange_rate    numeric,
     total_should_pay numeric,
@@ -33,7 +33,7 @@ create table order_detail
             primary key,
     order_id     bigint                              not null,
     sku_id       integer,
-    order_status text                                not null,
+    order_status integer                             not null,
     price        numeric,
     add_time     timestamp default CURRENT_TIMESTAMP not null,
     update_time  timestamp default CURRENT_TIMESTAMP not null
