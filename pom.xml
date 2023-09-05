@@ -13,6 +13,7 @@
 		<module>test-component</module>
 		<module>component</module>
 		<module>domain</module>
+		<module>app</module>
 	</modules>
 	<properties>
 		<java.version>17</java.version>
@@ -94,6 +95,12 @@
 			<dependency>
 				<groupId>com.lzb</groupId>
 				<artifactId>domain</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.lzb</groupId>
+				<artifactId>app</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 
