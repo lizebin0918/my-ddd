@@ -5,20 +5,24 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.baomidou.mybatisplus.annotation.IEnum;
 import com.lzb.component.utils.EnumUtils;
 import com.lzb.component.utils.enums.EnumValue;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 
-public class EnumValueTypeHandler<V, E extends Enum<?> & EnumValue<V>> extends BaseTypeHandler<EnumValue<V>> {
+public class EnumValueTypeHandler<E extends Enum<EnumValue<?>>, V> extends BaseTypeHandler<EnumValue<V>> {
 
-    private Class<E> type;
+    private final Class<E> enumClassType;
 
-    public EnumValueTypeHandler(Class<E> type) {
-        if (type == null) {
+    public EnumValueTypeHandler(Class<E> enumClassType) {
+        if (enumClassType == null) {
             throw new IllegalArgumentException("Type argument cannot be null");
         }
-        this.type = type;
+        this.enumClassType = enumClassType;
+        if (!EnumValue.class.isAssignableFrom(enumClassType)) {
+            throw new IllegalArgumentException("Type argument must implement EnumValue");
+        }
     }
 
 
@@ -43,20 +47,21 @@ public class EnumValueTypeHandler<V, E extends Enum<?> & EnumValue<V>> extends B
         return this.valueOf(value);
     }
 
-    private E valueOf(V value) {
-        return null;
+    private <V> E valueOf(V value) {
+        Class<E> c = null;
+        return EnumUtils.getByValue(c, value).orElse(null);
     }
 
     @Override
     public E getNullableResult(ResultSet rs, int columnIndex) throws SQLException {
-        Object code = rs.getInt(columnIndex);
-        return rs.wasNull() ? null : valueOf(code);
+        Object value = rs.getInt(columnIndex);
+        return rs.wasNull() ? null : valueOf(value);
     }
 
     @Override
     public E getNullableResult(CallableStatement cs, int columnIndex) throws SQLException {
-        Object code = cs.getInt(columnIndex);
-        return cs.wasNull() ? null : valueOf(code);
+        Object value = cs.getInt(columnIndex);
+        return cs.wasNull() ? null : valueOf(value);
     }
 
 }
