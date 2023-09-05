@@ -19,3 +19,8 @@ spring:
       write-dates-as-timestamps: true
 logging:
   config: classpath:logback.xml
+redisson:
+  host: ${spring.data.redis.host}
+  port: ${spring.data.redis.port}
+  netty-threads: 1
+  threads: 1
