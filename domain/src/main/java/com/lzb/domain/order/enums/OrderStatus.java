@@ -1,6 +1,5 @@
 package com.lzb.domain.order.enums;
 
-import com.lzb.component.utils.enums.EnumIntValue;
 import com.lzb.component.utils.enums.EnumValue;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

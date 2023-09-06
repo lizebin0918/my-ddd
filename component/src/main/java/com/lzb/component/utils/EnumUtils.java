@@ -1,18 +1,12 @@
 package com.lzb.component.utils;
 
 import java.util.Comparator;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-import com.lzb.component.utils.enums.EnumByteValue;
-import com.lzb.component.utils.enums.EnumIntValue;
-import com.lzb.component.utils.enums.EnumLongValue;
-import com.lzb.component.utils.enums.EnumShortValue;
 import com.lzb.component.utils.enums.EnumValue;
+import lombok.experimental.UtilityClass;
 
 /**
  * 枚举工具类
@@ -26,9 +20,8 @@ import com.lzb.component.utils.enums.EnumValue;
  * @author lizebin
  * @date 2022/06/25
  */
+@UtilityClass
 public final class EnumUtils {
-
-    private EnumUtils() {}
 
     private static final ConcurrentHashMap<Class<? extends Enum<?>>, Enum[]> cache = new ConcurrentHashMap<>();
 
@@ -88,46 +81,6 @@ public final class EnumUtils {
         return Optional.empty();
     }
 
-    public static <E extends Enum<? extends EnumIntValue>> Optional<E> getByValue(Class<E> enumClass, int value) {
-        E[] enums = (E[]) getEnums(enumClass);
-        for (E e : enums) {
-            if (((EnumIntValue) e).getValue() == value) {
-                return Optional.of(e);
-            }
-        }
-        return Optional.empty();
-    }
-
-    public static <E extends Enum<? extends EnumShortValue>> Optional<E> getByValue(Class<E> enumClass, short value) {
-        E[] enums = (E[]) getEnums(enumClass);
-        for (E e : enums) {
-            if (((EnumShortValue) e).getValue() == value) {
-                return Optional.of(e);
-            }
-        }
-        return Optional.empty();
-    }
-
-    public static <E extends Enum<? extends EnumLongValue>> Optional<E> getByValue(Class<E> enumClass, long value) {
-        E[] enums = (E[]) getEnums(enumClass);
-        for (E e : enums) {
-            if (((EnumLongValue) e).getValue() == value) {
-                return Optional.of(e);
-            }
-        }
-        return Optional.empty();
-    }
-
-    public static <E extends Enum<? extends EnumByteValue>> Optional<E> getByValue(Class<E> enumClass, byte value) {
-        E[] enums = (E[]) getEnums(enumClass);
-        for (E e : enums) {
-            if (((EnumByteValue) e).getValue() == value) {
-                return Optional.of(e);
-            }
-        }
-        return Optional.empty();
-    }
-
     /**
      * 根据枚举值获取对应的枚举对象
      *
@@ -139,17 +92,6 @@ public final class EnumUtils {
     public static <E extends Enum<? extends EnumValue<V>>, V> Optional<E> getByValue(
             Class<E> enumClass, V value, Comparator<V> comparator) {
         return getByValue(getEnums(enumClass), value, comparator);
-    }
-
-    /**
-     * 枚举名称列表
-     *
-     * @param enumClass
-     * @return
-     * @param <E>
-     */
-    public static <E extends Enum<?>> List<String> listName(Class<E> enumClass) {
-        return Stream.of(getEnums(enumClass)).map(Enum::name).collect(Collectors.toList());
     }
 
 }

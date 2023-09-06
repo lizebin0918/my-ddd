@@ -7,12 +7,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Comparator;
 
-import com.lzb.component.utils.EnumUtils;
 import com.lzb.component.utils.enums.EnumValue;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 
-import org.springframework.util.comparator.Comparators;
+import static com.lzb.component.utils.EnumUtils.getByValue;
 
 public class DefaultEnumValueTypeHandler<E extends Enum<? extends EnumValue<V>>, V> extends BaseTypeHandler<E> {
 
@@ -51,9 +50,9 @@ public class DefaultEnumValueTypeHandler<E extends Enum<? extends EnumValue<V>>,
 
     private E valueOf(Object value) {
         if (value instanceof BigDecimal) {
-            return EnumUtils.getByValue(enumClassType, (V) value, Comparator.comparing(o -> ((BigDecimal) o))).orElse(null);
+            return getByValue(enumClassType, (V) value, Comparator.comparing(o -> ((BigDecimal) o))).orElse(null);
         }
-        return EnumUtils.getByValue(enumClassType, (V) value).orElse(null);
+        return getByValue(enumClassType, (V) value).orElse(null);
     }
 
     @Override
