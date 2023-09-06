@@ -12,6 +12,7 @@ import javax.annotation.Resource;
 
 import cn.hutool.core.util.IdUtil;
 import com.lzb.BaseIntegrationTest;
+import com.lzb.component.helper.SpringHelper;
 import com.lzb.domain.order.aggregate.Order;
 import com.lzb.domain.order.repository.OrderRepository;
 import com.lzb.infr.config.cache.CacheConstants;
@@ -37,6 +38,15 @@ class OrderRepositoryDbIntegrationTest extends BaseIntegrationTest {
 
     @Resource
     private CacheManager cacheManager;
+
+    @Resource
+    private SpringHelper springHelper;
+
+    @Test
+    @DisplayName("测试SpringHelper")
+    void should_get_bean_from_spring_helper() {
+        assertThat(springHelper.getBean(OrderRepositoryDb.BEAN_NAME)).isNotNull();
+    }
 
     @Test
     @Sql("/sql/OrderRepositoryDbImplIntegrationTest/should_order_get.sql")

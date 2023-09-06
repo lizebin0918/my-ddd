@@ -14,40 +14,38 @@ import org.springframework.stereotype.Component;
 @Component
 public class SpringHelper implements ApplicationContextAware, EnvironmentAware {
 
-    private static ApplicationContext APPLICATION_CONTEXT;
-    private static StandardEnvironment ENVIRONMENT;
-    private final static Pattern PATTERN = Pattern.compile("(?<=\\$\\{)[A-Za-z_\\-0-9.]+");
+    private ApplicationContext applicationContext;
+    private StandardEnvironment enviroment;
+    private static final Pattern PATTERN = Pattern.compile("(?<=\\$\\{)[A-Za-z_\\-0-9.]+");
+
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        SpringHelper.APPLICATION_CONTEXT = applicationContext;
+        this.applicationContext = applicationContext;
     }
 
     @Override
     public void setEnvironment(Environment environment) {
-        SpringHelper.ENVIRONMENT = (StandardEnvironment) environment;
+        this.enviroment = (StandardEnvironment) environment;
     }
 
-    private static ApplicationContext getApplicationContext() {
-        return APPLICATION_CONTEXT;
+    public Object getBean(String name) {
+        return applicationContext.getBean(name);
     }
 
-    public static Object getBean(String name) {
-        return getApplicationContext().getBean(name);
+    public <T> T getBean(Class<T> clazz) {
+        return applicationContext.getBean(clazz);
     }
 
-    public static <T> T getBean(Class<T> clazz) {
-        return getApplicationContext().getBean(clazz);
+    public <T> T getBean(String name, Class<T> clazz) {
+        return applicationContext.getBean(name, clazz);
     }
 
-    public static <T> T getBean(String name, Class<T> clazz) {
-        return getApplicationContext().getBean(name, clazz);
+    public String getProperty(String propertyName, String defaultValue) {
+        return enviroment.getProperty(real(propertyName), defaultValue);
     }
 
-    public static String getProperty(String propertyName, String defaultValue) {
-        return ENVIRONMENT.getProperty(real(propertyName), defaultValue);
-    }
     public <T> T getProperty(String propertyName, Class<T> targetType, T defaultValue) {
-        return ENVIRONMENT.getProperty(real(propertyName), targetType, defaultValue);
+        return enviroment.getProperty(real(propertyName), targetType, defaultValue);
     }
 
     private static String real(String propertyName) {
