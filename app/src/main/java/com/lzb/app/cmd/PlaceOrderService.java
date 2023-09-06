@@ -1,10 +1,9 @@
 package com.lzb.app.cmd;
 
+import com.lzb.component.dto.MyReponse;
 import com.lzb.domain.order.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +19,9 @@ public class PlaceOrderService {
 
     private final OrderRepository orders;
 
-
-
+    public MyReponse<Long> placeOrder(PlaceOrderCmd cmd) {
+        log.info("place order: {}", cmd);
+        return MyReponse.success(1L);
+    }
 
 }
