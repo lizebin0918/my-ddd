@@ -51,12 +51,7 @@ public class DefaultEnumValueTypeHandler<E extends Enum<? extends EnumValue<V>>,
 
     private E valueOf(Object value) {
         if (value instanceof BigDecimal) {
-            return EnumUtils.getByValue(enumClassType, (V) value, new Comparator<V>() {
-                @Override
-                public int compare(V o1, V o2) {
-                    return o1.compareTo(o2);
-                }
-            }).orElse(null);
+            return EnumUtils.getByValue(enumClassType, (V) value, Comparator.comparing(o -> ((BigDecimal) o))).orElse(null);
         }
         return EnumUtils.getByValue(enumClassType, (V) value).orElse(null);
     }
