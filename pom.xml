@@ -33,7 +33,7 @@
 		<testcontainers.version>1.19.0</testcontainers.version>
 		<jackson.version>2.15.2</jackson.version>
 		<javers.version>7.3.2</javers.version>
-		<guava.version>30.1-jre</guava.version>
+		<guava.version>32.1.2-jre</guava.version>
 		<caffeine.version>3.1.8</caffeine.version>
 		<commons-collections4.version>4.4</commons-collections4.version>
 		<io.vavr.version>0.10.4</io.vavr.version>
