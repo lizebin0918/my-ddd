@@ -24,7 +24,6 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
  * Created on : 2023-09-03 12:15
  * @author mac
  */
-@EnableCaching
 @Configuration
 public class CacheConfig {
 

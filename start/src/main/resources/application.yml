@@ -24,3 +24,5 @@ redisson:
   port: ${spring.data.redis.port}
   netty-threads: 1
   threads: 1
+  connection-minimum-idle-size: 1
+  connection-pool-size: 1

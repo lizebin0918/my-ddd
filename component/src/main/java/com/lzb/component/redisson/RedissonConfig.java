@@ -24,6 +24,10 @@ public class RedissonConfig {
 
     private int threads = 8;
 
+    private int connectionMinimumIdleSize = 1;
+
+    private int connectionPoolSize = 24;
+
 
     @Bean
     public RedissonClient redisson() {
@@ -33,6 +37,9 @@ public class RedissonConfig {
         config.setCodec(JsonJacksonCodec.INSTANCE);
         config.setNettyThreads(nettyThreads);
         config.setThreads(threads);
+        config.useSingleServer()
+                .setConnectionMinimumIdleSize(connectionMinimumIdleSize)
+                .setConnectionPoolSize(connectionPoolSize);
         return Redisson.create(config);
     }
 }
