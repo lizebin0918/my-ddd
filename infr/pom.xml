@@ -36,11 +36,6 @@
 
 		<dependency>
 			<groupId>com.lzb</groupId>
-			<artifactId>component</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>com.lzb</groupId>
 			<artifactId>test-component</artifactId>
 			<scope>test</scope>
 		</dependency>
