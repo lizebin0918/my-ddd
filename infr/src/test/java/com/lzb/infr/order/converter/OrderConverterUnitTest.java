@@ -6,8 +6,9 @@ import com.lzb.BaseUnitTest;
 import com.lzb.domain.order.aggregate.OrderAddress;
 import com.lzb.domain.order.aggregate.OrderDetail;
 import com.lzb.domain.order.enums.OrderStatus;
-import com.lzb.infr.order.persistence.po.OrderDetailPo;
-import com.lzb.infr.order.persistence.po.OrderPo;
+import com.lzb.infr.domain.order.converter.OrderConverter;
+import com.lzb.infr.domain.order.persistence.po.OrderDetailPo;
+import com.lzb.infr.domain.order.persistence.po.OrderPo;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

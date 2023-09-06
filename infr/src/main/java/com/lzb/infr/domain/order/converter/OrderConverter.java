@@ -1,4 +1,4 @@
-package com.lzb.infr.order.converter;
+package com.lzb.infr.domain.order.converter;
 
 import java.util.List;
 
@@ -8,8 +8,8 @@ import com.lzb.domain.order.aggregate.OrderDetail;
 import com.lzb.domain.order.aggregate.OrderDetails;
 import com.lzb.domain.order.valobj.FullAddressLine;
 import com.lzb.domain.order.valobj.FullName;
-import com.lzb.infr.order.persistence.po.OrderDetailPo;
-import com.lzb.infr.order.persistence.po.OrderPo;
+import com.lzb.infr.domain.order.persistence.po.OrderDetailPo;
+import com.lzb.infr.domain.order.persistence.po.OrderPo;
 import lombok.experimental.UtilityClass;
 
 /**

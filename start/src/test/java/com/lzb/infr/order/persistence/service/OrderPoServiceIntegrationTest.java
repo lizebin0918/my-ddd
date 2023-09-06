@@ -12,7 +12,8 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.lzb.BaseIntegrationTest;
 import com.lzb.component.utils.DateUtils;
 import com.lzb.domain.order.enums.OrderStatus;
-import com.lzb.infr.order.persistence.po.OrderPo;
+import com.lzb.infr.domain.order.persistence.po.OrderPo;
+import com.lzb.infr.domain.order.persistence.service.OrderPoService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

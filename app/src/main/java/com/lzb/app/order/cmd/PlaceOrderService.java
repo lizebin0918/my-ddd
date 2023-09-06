@@ -1,6 +1,6 @@
-package com.lzb.app.cmd;
+package com.lzb.app.order.cmd;
 
-import com.lzb.app.cmd.dto.PlaceOrderCmd;
+import com.lzb.app.order.cmd.dto.PlaceOrderCmd;
 import com.lzb.component.dto.MyReponse;
 import com.lzb.domain.order.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;

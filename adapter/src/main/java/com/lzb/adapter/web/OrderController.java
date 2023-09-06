@@ -1,7 +1,7 @@
 package com.lzb.adapter.web;
 
-import com.lzb.app.cmd.PlaceOrderService;
-import com.lzb.app.cmd.dto.PlaceOrderCmd;
+import com.lzb.app.order.cmd.PlaceOrderService;
+import com.lzb.app.order.cmd.dto.PlaceOrderCmd;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.context.annotation.Lazy;

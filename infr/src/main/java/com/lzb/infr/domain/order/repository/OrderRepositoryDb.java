@@ -1,4 +1,4 @@
-package com.lzb.infr.order.repository;
+package com.lzb.infr.domain.order.repository;
 
 import java.util.ConcurrentModificationException;
 import java.util.List;
@@ -11,11 +11,11 @@ import com.lzb.domain.order.aggregate.Order;
 import com.lzb.domain.order.repository.OrderRepository;
 import com.lzb.infr.common.BaseRepository;
 import com.lzb.infr.config.cache.CacheConstants;
-import com.lzb.infr.order.converter.OrderConverter;
-import com.lzb.infr.order.persistence.po.OrderDetailPo;
-import com.lzb.infr.order.persistence.po.OrderPo;
-import com.lzb.infr.order.persistence.service.OrderDetailPoService;
-import com.lzb.infr.order.persistence.service.OrderPoService;
+import com.lzb.infr.domain.order.persistence.po.OrderDetailPo;
+import com.lzb.infr.domain.order.persistence.service.OrderDetailPoService;
+import com.lzb.infr.domain.order.persistence.service.OrderPoService;
+import com.lzb.infr.domain.order.converter.OrderConverter;
+import com.lzb.infr.domain.order.persistence.po.OrderPo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.ImmutablePair;
@@ -31,12 +31,12 @@ import org.springframework.stereotype.Repository;
  * @author mac
  */
 @Slf4j
-@Repository(OrderRepositoryDbImpl.BEAN_NAME)
+@Repository(OrderRepositoryDb.BEAN_NAME)
 @RequiredArgsConstructor
 @CacheConfig(cacheNames = {CacheConstants.ORDER})
-public class OrderRepositoryDbImpl extends BaseRepository<Order> implements OrderRepository {
+public class OrderRepositoryDb extends BaseRepository<Order> implements OrderRepository {
 
-    public static final String BEAN_NAME = "orderRepositoryDbImpl";
+    public static final String BEAN_NAME = "orderRepositoryDb";
 
     private final OrderPoService orderPoService;
 

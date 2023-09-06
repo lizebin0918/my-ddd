@@ -15,6 +15,7 @@ import com.lzb.BaseIntegrationTest;
 import com.lzb.domain.order.aggregate.Order;
 import com.lzb.domain.order.repository.OrderRepository;
 import com.lzb.infr.config.cache.CacheConstants;
+import com.lzb.infr.domain.order.repository.OrderRepositoryDb;
 import com.lzb.infr.event.persistence.DomainEventPo;
 import com.lzb.infr.event.persistence.service.DomainEventPoService;
 import org.junit.jupiter.api.DisplayName;
@@ -26,9 +27,9 @@ import org.springframework.test.context.jdbc.Sql;
 
 import static java.time.Instant.ofEpochMilli;
 
-class OrderRepositoryDbImplIntegrationTest extends BaseIntegrationTest {
+class OrderRepositoryDbIntegrationTest extends BaseIntegrationTest {
 
-    @Resource(name = OrderRepositoryDbImpl.BEAN_NAME)
+    @Resource(name = OrderRepositoryDb.BEAN_NAME)
     private OrderRepository orderRepository;
 
     @Resource

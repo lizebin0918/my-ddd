@@ -1,7 +1,7 @@
-package com.lzb.infr.order.persistence.mapper;
+package com.lzb.infr.domain.order.persistence.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.lzb.infr.order.persistence.po.OrderPo;
+import com.lzb.infr.domain.order.persistence.po.OrderPo;
 
 /**
  * <p>

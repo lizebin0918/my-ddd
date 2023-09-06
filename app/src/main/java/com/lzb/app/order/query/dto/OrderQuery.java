@@ -1,4 +1,4 @@
-package com.lzb.app.query.dto;
+package com.lzb.app.order.query.dto;
 
 /**
  * 订单查询<br/>

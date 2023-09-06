@@ -1,20 +1,35 @@
-package com.lzb.app.cmd.dto;
+package com.lzb.infr.domain.order.persistence.po;
 
 import java.math.BigDecimal;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.Version;
+import com.lzb.domain.order.enums.OrderStatus;
+import com.lzb.infr.common.BasePo;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.javers.core.metamodel.annotation.Id;
 
 /**
- * 生单指令<br/>
- * Created on : 2023-09-06 13:00
+ * <p>
+ * 
+ * </p>
+ *
  * @author lizebin
+ * @since 2023-08-29
  */
-@Getter
-@Builder
-@AllArgsConstructor
-public class PlaceOrderCmd {
+@Data
+@EqualsAndHashCode(callSuper = false)
+@TableName("\"order\"")
+public class OrderPo extends BasePo {
+
+    @Id
+    @TableId(type = IdType.AUTO)
+    private Long orderId;
+
+    private OrderStatus orderStatus;
 
     private String currency;
 
@@ -26,6 +41,9 @@ public class PlaceOrderCmd {
     private BigDecimal totalShouldPay;
 
     private BigDecimal totalActualPay;
+
+    @Version
+    private int version;
 
     ///////////////////////////////////////////////////////////////////////////
     // 地址相关
@@ -59,5 +77,4 @@ public class PlaceOrderCmd {
      * 国家
      */
     private String country;
-
 }
