@@ -5,6 +5,7 @@ import java.util.Queue;
 
 import javax.annotation.Resource;
 
+import com.lzb.component.helper.TransactionHelper;
 import com.lzb.domain.common.event.DomainEvent;
 import com.lzb.infr.event.common.Constants;
 import com.lzb.infr.event.convertor.DomainEventConvertor;
@@ -12,7 +13,6 @@ import com.lzb.infr.event.persistence.DomainEventPo;
 import com.lzb.infr.event.persistence.service.DomainEventPoService;
 import com.lzb.infr.event.sender.DomainEventSender;
 import com.lzb.infr.event.sender.DomainEventSenderRocketMqImpl;
-import com.lzb.infr.transaction.TransactionHelper;
 import lombok.NonNull;
 
 import org.springframework.stereotype.Component;

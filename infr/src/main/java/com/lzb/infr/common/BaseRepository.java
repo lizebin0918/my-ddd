@@ -6,10 +6,10 @@ import java.util.function.LongSupplier;
 
 import javax.annotation.Resource;
 
+import com.lzb.component.helper.TransactionHelper;
 import com.lzb.domain.common.BaseAggregate;
 import com.lzb.domain.common.repository.CommonRepository;
 import com.lzb.infr.event.DomainEventSupport;
-import com.lzb.infr.transaction.TransactionHelper;
 import lombok.NonNull;
 import lombok.Setter;
 

@@ -20,6 +20,11 @@ public class PlaceOrderService {
 
     private final OrderRepository orders;
 
+    /**
+     * 生单
+     * @param cmd
+     * @return
+     */
     public MyReponse<Long> placeOrder(PlaceOrderCmd cmd) {
         log.info("place order: {}", cmd);
         return MyReponse.success(1L);
