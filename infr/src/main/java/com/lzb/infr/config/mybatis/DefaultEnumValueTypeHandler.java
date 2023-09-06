@@ -1,14 +1,18 @@
 package com.lzb.infr.config.mybatis;
 
+import java.math.BigDecimal;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Comparator;
 
 import com.lzb.component.utils.EnumUtils;
 import com.lzb.component.utils.enums.EnumValue;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
+
+import org.springframework.util.comparator.Comparators;
 
 public class DefaultEnumValueTypeHandler<E extends Enum<? extends EnumValue<V>>, V> extends BaseTypeHandler<E> {
 
@@ -46,6 +50,14 @@ public class DefaultEnumValueTypeHandler<E extends Enum<? extends EnumValue<V>>,
     }
 
     private E valueOf(Object value) {
+        if (value instanceof BigDecimal) {
+            return EnumUtils.getByValue(enumClassType, (V) value, new Comparator<V>() {
+                @Override
+                public int compare(V o1, V o2) {
+                    return o1.compareTo(o2);
+                }
+            }).orElse(null);
+        }
         return EnumUtils.getByValue(enumClassType, (V) value).orElse(null);
     }
 
