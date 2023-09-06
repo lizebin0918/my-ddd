@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
  * Created on : 2023-09-06 13:00
  * @author lizebin
  */
-@NoArgsConstructor
 @Getter
 @Builder
 @AllArgsConstructor

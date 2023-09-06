@@ -14,6 +14,7 @@
 		<module>component</module>
 		<module>domain</module>
 		<module>app</module>
+		<module>adapter</module>
 	</modules>
 	<properties>
 		<java.version>17</java.version>
@@ -39,6 +40,7 @@
 		<streamex.version>0.8.1</streamex.version>
 		<archunit.version>1.0.1</archunit.version>
 		<redission.version>3.23.4</redission.version>
+		<commons-lang3.version>3.13.0</commons-lang3.version>
 	</properties>
 
 	<repositories>
@@ -101,6 +103,12 @@
 			<dependency>
 				<groupId>com.lzb</groupId>
 				<artifactId>app</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.lzb</groupId>
+				<artifactId>adapter</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 
@@ -287,7 +295,7 @@
 			<dependency>
 				<groupId>org.apache.commons</groupId>
 				<artifactId>commons-lang3</artifactId>
-				<version>3.13.0</version>
+				<version>${commons-lang3.version}</version>
 			</dependency>
 
 			<dependency>

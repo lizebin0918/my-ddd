@@ -12,11 +12,14 @@ import lombok.NonNull;
  * Created on : 2023-09-06 13:02
  * @author lizebin
  */
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Builder
+@AllArgsConstructor
 public class MyReponse<R> {
+
+    private MyReponse() {
+
+    }
 
     public static final String SUCCESS_CODE = "SUCCESS";
 
