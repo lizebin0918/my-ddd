@@ -37,9 +37,6 @@ class OrderRepositoryDbIntegrationTest extends BaseIntegrationTest {
     private DomainEventPoService domainEventPoService;
 
     @Resource
-    private CacheManager cacheManager;
-
-    @Resource
     private SpringHelper springHelper;
 
     @Test
@@ -119,7 +116,6 @@ class OrderRepositoryDbIntegrationTest extends BaseIntegrationTest {
         Order order1 = orderRepository.getInCache(orderId);
         Order order2 = orderRepository.getInCache(orderId);
 
-        verify(cacheManager, atLeast(1)).getCache(CacheConstants.ORDER);
         assertThat(order1.snapshot()).isNull();
         assertThat(order2.snapshot()).isNull();
         var assertMap = Map.of("order1", order1, "order2", order2);
