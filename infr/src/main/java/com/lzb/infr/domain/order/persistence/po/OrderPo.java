@@ -26,7 +26,7 @@ import org.javers.core.metamodel.annotation.Id;
 public class OrderPo extends BasePo {
 
     @Id
-    @TableId(type = IdType.AUTO)
+    @TableId(type = IdType.INPUT)
     private Long orderId;
 
     private OrderStatus orderStatus;

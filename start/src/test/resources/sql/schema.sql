@@ -20,11 +20,6 @@ create table "order"
     update_time      timestamp default CURRENT_TIMESTAMP not null
 );
 
-create sequence order_order_id_seq;
-
-alter table "order"
-    alter column order_id set default nextval('order_order_id_seq'::regclass);
-
 
 create table order_detail
 (

@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import cn.hutool.core.util.IdUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.lzb.BaseIntegrationTest;
@@ -39,6 +40,7 @@ class OrderPoServiceIntegrationTest extends BaseIntegrationTest {
     @DisplayName("插入设置addTime和updateTime")
     void should_fill_add_time_and_update_time() {
         OrderPo orderPo = new OrderPo();
+        orderPo.setOrderId(IdUtil.getSnowflakeNextId());
         orderPo.setOrderStatus(OrderStatus.WAIT_PAY);
         orderPo.setCurrency("CNY");
         orderPo.setExchangeRate(BigDecimal.ZERO);
@@ -59,6 +61,7 @@ class OrderPoServiceIntegrationTest extends BaseIntegrationTest {
     void should_update_null() {
 
         OrderPo orderPo = new OrderPo();
+        orderPo.setOrderId(IdUtil.getSnowflakeNextId());
         orderPo.setOrderStatus(OrderStatus.WAIT_PAY);
         orderPo.setCurrency("CNY");
         orderPo.setExchangeRate(BigDecimal.ZERO);
@@ -138,6 +141,7 @@ class OrderPoServiceIntegrationTest extends BaseIntegrationTest {
         List<OrderPo> list = new ArrayList<>();
 
         OrderPo orderPo = new OrderPo();
+        orderPo.setOrderId(IdUtil.getSnowflakeNextId());
         orderPo.setOrderStatus(OrderStatus.WAIT_PAY);
         orderPo.setCurrency("CNY");
         orderPo.setExchangeRate(BigDecimal.ZERO);
@@ -146,6 +150,7 @@ class OrderPoServiceIntegrationTest extends BaseIntegrationTest {
         list.add(orderPo);
 
         OrderPo orderPo1 = new OrderPo();
+        orderPo1.setOrderId(IdUtil.getSnowflakeNextId());
         orderPo1.setOrderStatus(OrderStatus.WAIT_PAY);
         orderPo1.setCurrency("CNY");
         orderPo1.setExchangeRate(BigDecimal.ONE);
