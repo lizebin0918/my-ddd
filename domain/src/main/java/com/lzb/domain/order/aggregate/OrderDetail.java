@@ -16,7 +16,6 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Getter
-@SuperBuilder
 public class OrderDetail extends BaseEntity<OrderDetail> {
 
     @NonNull
@@ -30,6 +29,14 @@ public class OrderDetail extends BaseEntity<OrderDetail> {
 
     @NonNull
     private BigDecimal price;
+
+    public OrderDetail(long id, @NonNull Long orderId, @NonNull Integer skuId, @NonNull OrderStatus orderStatus, @NonNull BigDecimal price) {
+        super(id);
+        this.orderId = orderId;
+        this.skuId = skuId;
+        this.orderStatus = orderStatus;
+        this.price = price;
+    }
 
     /**
      * 订单明细取消

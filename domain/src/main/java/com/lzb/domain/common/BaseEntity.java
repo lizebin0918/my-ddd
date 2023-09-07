@@ -4,8 +4,6 @@ package com.lzb.domain.common;
 import java.io.Serializable;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -15,9 +13,11 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Getter
-@SuperBuilder
-@NoArgsConstructor
 public abstract class BaseEntity<R extends BaseEntity<R>> implements Serializable {
+
+    protected BaseEntity(long id) {
+        this.id = id;
+    }
 
     /**
      * id 新增的时候，可能为空
@@ -27,10 +27,6 @@ public abstract class BaseEntity<R extends BaseEntity<R>> implements Serializabl
     /**
      * 版本号，乐观锁使用,若数据库没有此字段，可忽略此字段
      */
-    protected Integer version;
-
-    public void setVersion(Integer version) {
-        this.version = version;
-    }
+    protected int version = 1;
 
 }

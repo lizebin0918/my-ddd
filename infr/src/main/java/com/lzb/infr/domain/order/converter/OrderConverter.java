@@ -32,6 +32,7 @@ public final class OrderConverter {
         setOrderAddress(orderPo, order.getOrderAddress());
         return orderPo;
     }
+
     public static List<OrderDetailPo> toOrderDetailPos(OrderDetails orderDetails) {
         return orderDetails.toStream().map(OrderConverter::toOrderDetailPo).toList();
     }
@@ -62,17 +63,9 @@ public final class OrderConverter {
 
     public static Order toOrder(OrderPo orderPo,
             List<OrderDetailPo> orderDetailPos) {
-        return Order.builder()
-                .id(orderPo.getOrderId())
-                .orderStatus(orderPo.getOrderStatus())
-                .currency(orderPo.getCurrency())
-                .exchangeRate(orderPo.getExchangeRate())
-                .totalActualPay(orderPo.getTotalActualPay())
-                .totalShouldPay(orderPo.getTotalShouldPay())
-                .orderAddress(toOrderAddress(orderPo))
-                .orderDetails(toOrderDetails(orderDetailPos))
-                .version(orderPo.getVersion())
-                .build();
+        return new Order(orderPo.getOrderId(), orderPo.getVersion(), orderPo.getOrderStatus(),
+                orderPo.getCurrency(), orderPo.getExchangeRate(), orderPo.getTotalShouldPay(),
+                orderPo.getTotalActualPay(), toOrderAddress(orderPo), toOrderDetails(orderDetailPos));
     }
 
     public static OrderDetails toOrderDetails(List<OrderDetailPo> orderDetailPos) {
@@ -82,24 +75,15 @@ public final class OrderConverter {
     }
 
     public static OrderDetail toOrderDetail(OrderDetailPo orderDetailPo) {
-        return OrderDetail.builder()
-                .orderId(orderDetailPo.getOrderId())
-                .orderStatus(orderDetailPo.getOrderStatus())
-                .price(orderDetailPo.getPrice())
-                .skuId(orderDetailPo.getSkuId())
-                .id(orderDetailPo.getId())
-                .build();
+        return new OrderDetail(orderDetailPo.getId(), orderDetailPo.getOrderId(),
+                orderDetailPo.getSkuId(), orderDetailPo.getOrderStatus(), orderDetailPo.getPrice());
     }
 
     public static OrderAddress toOrderAddress(OrderPo orderPo) {
-        return OrderAddress.builder()
-                .orderId(orderPo.getOrderId())
-                .country(orderPo.getCountry())
-                .email(orderPo.getEmail())
-                .fullName(new FullName(orderPo.getFirstName(), orderPo.getLastName()))
-                .fullAddressLine(new FullAddressLine(orderPo.getAddressLine1(), orderPo.getAddressLine2()))
-                .phoneNumber(orderPo.getPhoneNumber())
-                .build();
+        return new OrderAddress(orderPo.getOrderId(), orderPo.getOrderId(),
+                new FullName(orderPo.getFirstName(), orderPo.getLastName()),
+                new FullAddressLine(orderPo.getAddressLine1(), orderPo.getAddressLine2()),
+                orderPo.getEmail(), orderPo.getPhoneNumber(), orderPo.getCountry());
 
     }
 

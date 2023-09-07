@@ -4,5 +4,5 @@
   "orderStatus" : "WAIT_PAY",
   "price" : 10,
   "skuId" : 0,
-  "version" : null
+  "version" : 1
 }

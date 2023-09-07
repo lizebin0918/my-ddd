@@ -6,11 +6,10 @@ import java.util.ArrayList;
 import com.lzb.domain.common.BaseAggregate;
 import com.lzb.domain.order.enums.OrderStatus;
 import com.lzb.domain.order.event.OrderCanceledEvent;
-import lombok.Builder;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NonNull;
-import lombok.experimental.SuperBuilder;
-import lombok.extern.jackson.Jacksonized;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -23,9 +22,6 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Getter
-// builder 反序列化
-@SuperBuilder
-@Jacksonized
 public class Order extends BaseAggregate<Order> {
 
     @NonNull
@@ -46,8 +42,29 @@ public class Order extends BaseAggregate<Order> {
     @NonNull
     private OrderAddress orderAddress;
 
-    @Builder.Default
-    private OrderDetails orderDetails = new OrderDetails(new ArrayList<>());
+    @NonNull
+    private OrderDetails orderDetails;
+
+
+    public Order(long id,
+            int version,
+            @NonNull OrderStatus orderStatus,
+            @NonNull String currency,
+            @NonNull BigDecimal exchangeRate,
+            @NonNull BigDecimal totalShouldPay,
+            @NonNull BigDecimal totalActualPay,
+            @NonNull OrderAddress orderAddress,
+            @NonNull OrderDetails orderDetails) {
+        super(id);
+        this.version = version;
+        this.orderStatus = orderStatus;
+        this.currency = currency;
+        this.exchangeRate = exchangeRate;
+        this.totalShouldPay = totalShouldPay;
+        this.totalActualPay = totalActualPay;
+        this.orderAddress = orderAddress;
+        this.orderDetails = orderDetails;
+    }
 
     public void updateTotalActualPay(BigDecimal totalActualPay) {
         this.totalActualPay = totalActualPay;

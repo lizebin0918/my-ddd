@@ -27,21 +27,17 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Getter
-@SuperBuilder
-@NoArgsConstructor
 public abstract class BaseAggregate<R extends BaseEntity<R>> extends BaseEntity<R> {
 
     /**
      * 领域事件
      */
-    @Builder.Default
     protected final transient Queue<DomainEvent> events = new LinkedList<>();
 
     /**
      * 订单的操作日志
      * 订单的操作日志(这里会有风险-类型不安全，暂时只能想到这个方法)
      */
-    @Builder.Default
     protected final transient List<OperationLog> logs = new ArrayList<>();
 
     /**
@@ -51,6 +47,10 @@ public abstract class BaseAggregate<R extends BaseEntity<R>> extends BaseEntity<
     @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
     private final transient Snapshot<R> snapshot = new Snapshot<>();
+
+    protected BaseAggregate(long id) {
+        super(id);
+    }
 
     /**
      * 切面设置快照

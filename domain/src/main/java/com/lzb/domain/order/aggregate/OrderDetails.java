@@ -30,7 +30,7 @@ public class OrderDetails implements Iterable<OrderDetail>, Serializable {
      */
     @JsonCreator
     public OrderDetails(List<OrderDetail> list) {
-        Assert.notEmpty(list, "订单明细扩展不能为空");
+        Assert.notEmpty(list, "订单明细不能为空");
         this.list = list;
     }
 
