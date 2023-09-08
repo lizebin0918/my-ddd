@@ -1,13 +1,14 @@
 package com.lzb.domain.order.aggregate;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Stream;
 
 import cn.hutool.core.lang.Assert;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import lombok.Builder;
+import com.lzb.domain.common.Identified;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -19,8 +20,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author lizebin
  */
 @Slf4j
-@Builder
-public class OrderDetails implements Iterable<OrderDetail>, Serializable {
+public class OrderDetails implements Iterable<OrderDetail>, Serializable, Identified<OrderDetail> {
 
     private final List<OrderDetail> list;
 
@@ -30,8 +30,15 @@ public class OrderDetails implements Iterable<OrderDetail>, Serializable {
      */
     @JsonCreator
     public OrderDetails(List<OrderDetail> list) {
-        Assert.notEmpty(list, "订单明细不能为空");
         this.list = list;
+        validate();
+    }
+
+    private void validate() {
+        Assert.notEmpty(this.list, "订单明细不能为空");
+        if (isDuplicated()) {
+            throw new IllegalArgumentException("订单明细id重复");
+        }
     }
 
     @Override
@@ -41,5 +48,10 @@ public class OrderDetails implements Iterable<OrderDetail>, Serializable {
 
     public Stream<OrderDetail> toStream() {
         return list.stream();
+    }
+
+    @Override
+    public Collection<OrderDetail> getCollection() {
+        return list;
     }
 }

@@ -2,16 +2,21 @@ package com.lzb.domain.common;
 
 import java.util.Collection;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public interface Identified {
-    static boolean isDuplicated(Collection<? extends Identified> collection) {
+
+public interface Identified<T extends BaseEntity<T>> {
+
+    @JsonIgnore
+    default boolean isDuplicated() {
+        var collection = getCollection();
         if (collection == null || collection.isEmpty()) {
             return false;
         }
-
-        long count = collection.stream().map(Identified::getIdentifier).distinct().count();
+        long count = collection.stream().map(BaseEntity::getId).distinct().count();
         return count != collection.size();
     }
 
-    String getIdentifier();
+    @JsonIgnore
+    Collection<T> getCollection();
 }

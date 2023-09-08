@@ -3,10 +3,10 @@ package com.lzb.domain.order.aggregate;
 import java.math.BigDecimal;
 
 import com.lzb.domain.common.BaseEntity;
+import com.lzb.domain.common.Identified;
 import com.lzb.domain.order.enums.OrderStatus;
 import lombok.Getter;
 import lombok.NonNull;
-import lombok.experimental.SuperBuilder;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -44,4 +44,5 @@ public class OrderDetail extends BaseEntity<OrderDetail> {
     void cancel() {
         orderStatus = OrderStatus.CANCELED;
     }
+
 }
