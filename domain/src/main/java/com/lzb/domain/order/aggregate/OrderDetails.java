@@ -34,7 +34,7 @@ public class OrderDetails implements Iterable<OrderDetail>, Serializable, Identi
         validate();
     }
 
-    private void validate() {
+    void validate() {
         Assert.notEmpty(this.list, "订单明细不能为空");
         if (isDuplicated()) {
             throw new IllegalArgumentException("订单明细id重复");

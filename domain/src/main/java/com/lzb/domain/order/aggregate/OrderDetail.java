@@ -18,11 +18,9 @@ import lombok.extern.slf4j.Slf4j;
 @Getter
 public class OrderDetail extends BaseEntity<OrderDetail> {
 
-    @NonNull
-    private Long orderId;
+    private long orderId;
 
-    @NonNull
-    private Integer skuId;
+    private int skuId;
 
     @NonNull
     private OrderStatus orderStatus;
@@ -30,7 +28,7 @@ public class OrderDetail extends BaseEntity<OrderDetail> {
     @NonNull
     private BigDecimal price;
 
-    public OrderDetail(long id, @NonNull Long orderId, @NonNull Integer skuId, @NonNull OrderStatus orderStatus, @NonNull BigDecimal price) {
+    public OrderDetail(long id, long orderId, int skuId, @NonNull OrderStatus orderStatus, @NonNull BigDecimal price) {
         super(id);
         this.orderId = orderId;
         this.skuId = skuId;

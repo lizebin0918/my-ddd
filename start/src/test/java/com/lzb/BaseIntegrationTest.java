@@ -39,7 +39,7 @@ public abstract class BaseIntegrationTest extends BaseDockerTest implements Init
     @Override
     public void afterPropertiesSet() {
 
-        // com.shopcider.oms.config.MockBeanConfig.postProcessBeanFactory() 会执行一次mock行为，这是在容器启动过程中执行
+        // {@link com.lzb.config.MockBeanConfig} 会执行一次mock行为，这是在容器启动过程中执行
         // 这里再执行一次，是为了在每个test方法执行之前，都能执行一次mock行为
         MockBeanConfig.initMockBean(beanFactory);
 

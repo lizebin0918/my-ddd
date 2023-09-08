@@ -20,5 +20,9 @@
 			<groupId>com.lzb</groupId>
 			<artifactId>component</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.lzb</groupId>
+			<artifactId>test-component</artifactId>
+		</dependency>
 	</dependencies>
 </project>
