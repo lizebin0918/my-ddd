@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 
 import com.lzb.component.helper.SpringHelper;
 import com.lzb.component.id.IdGenerator;
-import com.lzb.domain.common.builder.BaseBuilder;
 import com.lzb.domain.order.gateway.ProductGateway;
 import lombok.RequiredArgsConstructor;
 
@@ -20,7 +19,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @RequiredArgsConstructor(onConstructor = @__(@Lazy))
-public class OrderBuilder extends BaseBuilder<OrderBuilder> {
+public class OrderBuilder {
 
     private final ProductGateway productGateway;
 
@@ -37,6 +36,9 @@ public class OrderBuilder extends BaseBuilder<OrderBuilder> {
     private String addressLine1;
     private String addressLine2;
     private String country;
+    public static OrderBuilder newInstance() {
+        return SpringHelper.getBean(OrderBuilder.class);
+    }
 
     public long id() {
         return idGenerator.id();
