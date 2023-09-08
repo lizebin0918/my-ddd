@@ -10,17 +10,19 @@ import org.springframework.context.EnvironmentAware;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.StandardEnvironment;
 import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
 
 @Component
 public class SpringHelper implements ApplicationContextAware, EnvironmentAware {
 
-    private ApplicationContext applicationContext;
+    private static ApplicationContext applicationContext;
     private StandardEnvironment enviroment;
     private static final Pattern PATTERN = Pattern.compile("(?<=\\$\\{)[A-Za-z_\\-0-9.]+");
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.applicationContext = applicationContext;
+        assertApplicationNotNull(applicationContext);
+        SpringHelper.applicationContext = applicationContext;
     }
 
     @Override
@@ -28,16 +30,23 @@ public class SpringHelper implements ApplicationContextAware, EnvironmentAware {
         this.enviroment = (StandardEnvironment) environment;
     }
 
-    public Object getBean(String name) {
+    public static Object getBean(String name) {
+        assertApplicationNotNull(applicationContext);
         return applicationContext.getBean(name);
     }
 
-    public <T> T getBean(Class<T> clazz) {
+    public static <T> T getBean(Class<T> clazz) {
+        assertApplicationNotNull(applicationContext);
         return applicationContext.getBean(clazz);
     }
 
-    public <T> T getBean(String name, Class<T> clazz) {
+    public static <T> T getBean(String name, Class<T> clazz) {
+        assertApplicationNotNull(applicationContext);
         return applicationContext.getBean(name, clazz);
+    }
+
+    private static void assertApplicationNotNull(ApplicationContext applicationContext) {
+        Assert.notNull(applicationContext, "容器还没初始化");
     }
 
     public String getProperty(String propertyName, String defaultValue) {
