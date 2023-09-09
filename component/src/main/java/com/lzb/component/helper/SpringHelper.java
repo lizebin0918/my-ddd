@@ -24,7 +24,6 @@ public class SpringHelper implements ApplicationContextAware, EnvironmentAware {
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        System.out.println("application.......");
         assertApplicationNotNull(applicationContext);
         SpringHelper.applicationContext = applicationContext;
     }

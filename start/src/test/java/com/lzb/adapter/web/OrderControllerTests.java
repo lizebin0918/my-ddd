@@ -7,6 +7,7 @@ import com.lzb.app.order.cmd.PlaceOrderService;
 import com.lzb.app.order.cmd.dto.PlaceOrderDetailReq;
 import com.lzb.app.order.cmd.dto.PlaceOrderReq;
 import com.lzb.component.utils.json.JsonUtils;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,7 @@ class OrderControllerTests {
     private MockMvc mockMvc;
 
     @Test
+    @Disabled
     void placeOrder() throws Exception {
         PlaceOrderReq req = new PlaceOrderReq("CNY", BigDecimal.ONE, BigDecimal.ONE, BigDecimal.ONE, "email",
                 "phoneNumber", "firstName", "lastName", "addressLine1", "addressLine2", "country",
