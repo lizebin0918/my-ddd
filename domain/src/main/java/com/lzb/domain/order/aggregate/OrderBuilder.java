@@ -21,8 +21,6 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor(onConstructor = @__(@Lazy))
 public class OrderBuilder {
 
-    private final ProductGateway productGateway;
-
     private final IdGenerator idGenerator;
 
     private String currency;
@@ -38,10 +36,6 @@ public class OrderBuilder {
     private String country;
     public static OrderBuilder newInstance() {
         return SpringHelper.getBean(OrderBuilder.class);
-    }
-
-    public long id() {
-        return idGenerator.id();
     }
 
 }

@@ -23,7 +23,6 @@ class OrderBuilderIntegrationTest extends BaseIntegrationTest {
         OrderBuilder orderBuilder1 = OrderBuilder.newInstance();
         OrderBuilder orderBuilder2 = OrderBuilder.newInstance();
         assertThat(orderBuilder1).isNotSameAs(orderBuilder2);
-        assertThat(orderBuilder1.id()).isNotEqualTo(orderBuilder2.id());
     }
 
 }

@@ -1,7 +1,7 @@
 package com.lzb.adapter.web;
 
 import com.lzb.app.order.cmd.PlaceOrderService;
-import com.lzb.app.order.cmd.dto.PlaceOrderCmd;
+import com.lzb.app.order.cmd.dto.PlaceOrderReq;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.context.annotation.Lazy;
@@ -21,8 +21,8 @@ public class OrderController {
 
     private final PlaceOrderService placeOrderService;
 
-    public void placeOrder(@RequestBody PlaceOrderCmd placeOrderCmd) {
-        placeOrderService.placeOrder(placeOrderCmd);
+    public void placeOrder(@RequestBody PlaceOrderReq placeOrderReq) {
+        placeOrderService.placeOrder(placeOrderReq);
     }
 
 }
