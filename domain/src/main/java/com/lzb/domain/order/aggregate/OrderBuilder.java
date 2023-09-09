@@ -4,14 +4,15 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.lzb.component.exception.BizException;
 import com.lzb.component.helper.SpringHelper;
-import com.lzb.component.id.IdGenerator;
+import com.lzb.domain.order.dto.Sku;
 import com.lzb.domain.order.enums.OrderStatus;
+import com.lzb.domain.order.gateway.ProductGateway;
 import com.lzb.domain.order.valobj.FullAddressLine;
 import com.lzb.domain.order.valobj.FullName;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.mockito.internal.matchers.Or;
 
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Lazy;
@@ -19,6 +20,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 /**
+ * OrderBuilder用于app构建聚合根
  * Created on : 2023-09-07 22:52
  * @author mac
  */
@@ -26,6 +28,8 @@ import org.springframework.stereotype.Component;
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @RequiredArgsConstructor(onConstructor = @__(@Lazy))
 public class OrderBuilder {
+
+    private final ProductGateway productGateway;
 
     ///////////////////////////////////////////////////////////////////////////
     // 属性值
@@ -45,7 +49,7 @@ public class OrderBuilder {
     private String country;
     private int version;
     private OrderStatus orderStatus;
-    private List<OrderDetailBuilder> orderDetailBuilders = new ArrayList<>();
+    private final List<OrderDetailBuilder> orderDetailBuilders = new ArrayList<>();
 
     public static OrderBuilder newInstance() {
         return SpringHelper.getBean(OrderBuilder.class);
@@ -126,14 +130,29 @@ public class OrderBuilder {
         return this;
     }
 
-
     public Order build() {
+
         var fullName = new FullName(firstName, lastName);
         var fullAddressLine = new FullAddressLine(addressLine1, addressLine2);
         var orderAddress = new OrderAddress(orderId, fullName, fullAddressLine, email, phoneNumber, country);
         var orderDetails = new OrderDetails(orderDetailBuilders.stream().map(OrderDetailBuilder::build).toList());
-        return new Order(orderId, version, orderStatus, currency,
-                exchangeRate, totalShouldPay, totalActualPay, orderAddress, orderDetails);
+
+        checkForSku(orderDetails);
+
+        return new Order(orderId, version, orderStatus, currency, exchangeRate, totalShouldPay, totalActualPay, orderAddress, orderDetails);
+    }
+
+    public void checkForSku(OrderDetails orderDetails) {
+        int[] skuIds = orderDetails.getSkuIds()
+                .stream()
+                .mapToInt(Integer::intValue)
+                .toArray();
+        boolean allIsOnSale = productGateway.onSale(skuIds)
+                .stream()
+                .allMatch(Sku::isOnSale);
+        if (!allIsOnSale) {
+            throw new BizException("订单明细包含下架商品，无法创建订单");
+        }
     }
 
 }

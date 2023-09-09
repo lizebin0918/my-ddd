@@ -28,6 +28,14 @@ public class OrderDetail extends BaseEntity<OrderDetail> {
     @NonNull
     private BigDecimal price;
 
+    /**
+     * 直接提供给仓储层使用，无需校验业务逻辑
+     * @param id
+     * @param orderId
+     * @param skuId
+     * @param orderStatus
+     * @param price
+     */
     public OrderDetail(long id, long orderId, int skuId, @NonNull OrderStatus orderStatus, @NonNull BigDecimal price) {
         super(id);
         this.orderId = orderId;

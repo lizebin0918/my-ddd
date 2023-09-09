@@ -46,6 +46,18 @@ public class Order extends BaseAggregate<Order> {
     private OrderDetails orderDetails;
 
 
+    /**
+     * 仓储层使用，无需校验业务逻辑，直接构造
+     * @param id
+     * @param version
+     * @param orderStatus
+     * @param currency
+     * @param exchangeRate
+     * @param totalShouldPay
+     * @param totalActualPay
+     * @param orderAddress
+     * @param orderDetails
+     */
     public Order(long id,
             int version,
             @NonNull OrderStatus orderStatus,

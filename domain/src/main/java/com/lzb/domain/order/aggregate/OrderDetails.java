@@ -4,12 +4,14 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import cn.hutool.core.lang.Assert;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.lzb.domain.common.Identified;
 import lombok.extern.slf4j.Slf4j;
+import one.util.streamex.StreamEx;
 
 /**
  * 订单聚合根关联对象-订单明细<br/>
@@ -53,5 +55,9 @@ public class OrderDetails implements Iterable<OrderDetail>, Serializable, Identi
     @Override
     public Collection<OrderDetail> getCollection() {
         return list;
+    }
+
+    Set<Integer> getSkuIds() {
+        return StreamEx.of(list).map(OrderDetail::getSkuId).toSet();
     }
 }

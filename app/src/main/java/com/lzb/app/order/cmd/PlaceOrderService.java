@@ -1,10 +1,13 @@
 package com.lzb.app.order.cmd;
 
 import com.lzb.app.order.cmd.dto.PlaceOrderReq;
+import com.lzb.app.order.cmd.factory.OrderFactory;
 import com.lzb.component.dto.MyReponse;
+import com.lzb.domain.order.aggregate.Order;
 import com.lzb.domain.order.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
@@ -20,16 +23,18 @@ public class PlaceOrderService {
 
     private final OrderRepository orders;
 
+    private final OrderFactory orderFactory;
+
     /**
      * 生单
-     * @param cmd
+     * @param req
      * @return
      */
-    public MyReponse<Long> placeOrder(PlaceOrderReq cmd) {
-
-
-        log.info("place order: {}", cmd);
-        return MyReponse.success(1L);
+    public MyReponse<Long> placeOrder(PlaceOrderReq req) {
+        log.info("place order: {}", req);
+        Order order = orderFactory.create(req);
+        orders.add(order);
+        return MyReponse.success(order.getId());
     }
 
 }
