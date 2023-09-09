@@ -19,11 +19,9 @@ import lombok.experimental.FieldNameConstants;
 @FieldNameConstants
 public abstract class BasePo implements Serializable {
 
-    @JsonIgnore
     @TableField(fill = FieldFill.INSERT, updateStrategy = FieldStrategy.NEVER)
     private LocalDateTime addTime;
 
-    @JsonIgnore
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
 
