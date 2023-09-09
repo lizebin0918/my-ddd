@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.lzb.annotation.MockBeanInit;
 import com.lzb.component.helper.TransactionHelper;
+import com.lzb.component.id.IdGenerator;
 import com.lzb.component.utils.DateUtils;
 import org.jetbrains.annotations.NotNull;
 import org.mockito.MockingDetails;
@@ -43,7 +44,8 @@ import static org.mockito.Mockito.when;
  */
 @TestConfiguration
 @SpyBeans({
-    @SpyBean(TransactionHelper.class)
+    @SpyBean(TransactionHelper.class),
+    @SpyBean(IdGenerator.class),
 })
 @MockBeans({
 

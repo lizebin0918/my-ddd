@@ -2,7 +2,6 @@
   "currency" : "CNY",
   "events" : [ ],
   "exchangeRate" : 1,
-  "id" : 1,
   "logs" : [ ],
   "orderAddress" : {
     "country" : "country",
@@ -15,12 +14,10 @@
       "firstName" : "firstName",
       "lastName" : "lastName"
     },
-    "id" : 1,
     "phoneNumber" : "phoneNumber",
     "version" : 1
   },
   "orderDetails" : [ {
-    "id" : 2,
     "orderId" : 1,
     "orderStatus" : "WAIT_PAY",
     "price" : 1,

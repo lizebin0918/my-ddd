@@ -2,6 +2,8 @@ package com.lzb;
 
 
 import java.time.ZoneId;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
@@ -14,6 +16,8 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.introspect.AnnotatedMember;
+import com.fasterxml.jackson.databind.introspect.JacksonAnnotationIntrospector;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.databind.util.StdDateFormat;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -46,16 +50,31 @@ public abstract class BaseTest extends Mockito implements BaseAssertions {
 
     static {
         INSTANCE
-        // 不包含空值
-        //.setSerializationInclusion(JsonInclude.Include.NON_ABSENT)
-        // isGetter不可见
-        .setVisibility(PropertyAccessor.IS_GETTER, JsonAutoDetect.Visibility.NONE)
-                ;
+                // 不包含空值
+                //.setSerializationInclusion(JsonInclude.Include.NON_ABSENT)
+                // isGetter不可见
+                .setVisibility(PropertyAccessor.IS_GETTER, JsonAutoDetect.Visibility.NONE)
+        ;
     }
 
     protected void assertJSON(Object o) {
         try {
-            Approvals.verify(INSTANCE.writerWithDefaultPrettyPrinter().writeValueAsString(o),
+            Approvals.verify(INSTANCE.copy().writerWithDefaultPrettyPrinter().writeValueAsString(o),
+                    new Options().forFile().withExtension(".json"));
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    protected void assertJSON(Object o, String... excludeFields) {
+        try {
+            Approvals.verify(INSTANCE.copy().setAnnotationIntrospector(new JacksonAnnotationIntrospector() {
+                @Override
+                public boolean hasIgnoreMarker(final AnnotatedMember m) {
+                    List<String> exclusions = Arrays.asList(excludeFields);
+                    return exclusions.contains(m.getName()) || super.hasIgnoreMarker(m);
+                }
+            }).writerWithDefaultPrettyPrinter().writeValueAsString(o),
                     new Options().forFile().withExtension(".json"));
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);

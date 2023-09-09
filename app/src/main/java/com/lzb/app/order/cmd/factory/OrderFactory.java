@@ -43,7 +43,6 @@ public class OrderFactory {
         for (int i = 0; i < req.details().size(); i++) {
             PlaceOrderDetailReq detailReq = req.details().get(i);
             OrderDetailBuilder orderDetailBuilder = OrderDetailBuilder.newInstance()
-                    .id(orderId + i + 1)
                     .orderId(orderId)
                     .skuId(detailReq.skuId())
                     .price(detailReq.price())
