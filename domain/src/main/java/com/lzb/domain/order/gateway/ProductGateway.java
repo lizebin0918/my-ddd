@@ -13,8 +13,8 @@ public interface ProductGateway {
 
     /**
      * 查询上架的sku
-     * @param skuId
+     * @param skuIds
      * @return
      */
-    List<Sku> onSale(int... skuId);
+    List<Sku> onSale(int... skuIds);
 }

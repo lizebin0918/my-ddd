@@ -4,11 +4,9 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.lzb.component.exception.BizException;
 import com.lzb.component.helper.SpringHelper;
-import com.lzb.domain.order.dto.Sku;
 import com.lzb.domain.order.enums.OrderStatus;
-import com.lzb.domain.order.gateway.ProductGateway;
+import com.lzb.domain.order.service.SkuValidator;
 import com.lzb.domain.order.valobj.FullAddressLine;
 import com.lzb.domain.order.valobj.FullName;
 import lombok.NonNull;
@@ -29,7 +27,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor(onConstructor = @__(@Lazy))
 public class OrderBuilder {
 
-    private final ProductGateway productGateway;
+    private final SkuValidator skuValidator;
 
     ///////////////////////////////////////////////////////////////////////////
     // 属性值
@@ -137,22 +135,9 @@ public class OrderBuilder {
         var orderAddress = new OrderAddress(orderId, fullName, fullAddressLine, email, phoneNumber, country);
         var orderDetails = new OrderDetails(orderDetailBuilders.stream().map(OrderDetailBuilder::build).toList());
 
-        checkForSku(orderDetails);
+        skuValidator.assertAllOfSkuIsOnSale(orderDetails.getSkuIds());
 
         return new Order(orderId, version, orderStatus, currency, exchangeRate, totalShouldPay, totalActualPay, orderAddress, orderDetails);
-    }
-
-    public void checkForSku(OrderDetails orderDetails) {
-        int[] skuIds = orderDetails.getSkuIds()
-                .stream()
-                .mapToInt(Integer::intValue)
-                .toArray();
-        boolean allIsOnSale = productGateway.onSale(skuIds)
-                .stream()
-                .allMatch(Sku::isOnSale);
-        if (!allIsOnSale) {
-            throw new BizException("订单明细包含下架商品，无法创建订单");
-        }
     }
 
 }
