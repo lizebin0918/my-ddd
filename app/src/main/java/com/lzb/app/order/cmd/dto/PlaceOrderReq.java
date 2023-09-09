@@ -1,6 +1,7 @@
 package com.lzb.app.order.cmd.dto;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * 生单指令<br/>
@@ -9,7 +10,8 @@ import java.math.BigDecimal;
  */
 public record PlaceOrderReq(String currency, BigDecimal exchangeRate, BigDecimal totalShouldPay,
                             BigDecimal totalActualPay, String email, String phoneNumber, String firstName,
-                            String lastName, String addressLine1, String addressLine2, String country) {
+                            String lastName, String addressLine1, String addressLine2, String country,
+                            List<PlaceOrderDetailReq> details) {
 
 
 }

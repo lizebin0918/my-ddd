@@ -17,7 +17,6 @@
         "lastName" : "last"
       },
       "id" : 1,
-      "orderId" : 1,
       "phoneNumber" : "13800000000",
       "version" : 1
     },
@@ -59,7 +58,6 @@
         "lastName" : "last"
       },
       "id" : 1,
-      "orderId" : 1,
       "phoneNumber" : "13800000000",
       "version" : 1
     },

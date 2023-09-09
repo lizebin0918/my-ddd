@@ -18,9 +18,6 @@ import lombok.experimental.SuperBuilder;
 public class OrderAddress extends BaseEntity<OrderAddress> {
 
     @NonNull
-    private Long orderId;
-
-    @NonNull
     private FullName fullName;
 
     @NonNull
@@ -44,9 +41,13 @@ public class OrderAddress extends BaseEntity<OrderAddress> {
     @NonNull
     private String country;
 
-    public OrderAddress(long id, @NonNull Long orderId, @NonNull FullName fullName, @NonNull FullAddressLine fullAddressLine, @NonNull String email, @NonNull String phoneNumber, @NonNull String country) {
+    public OrderAddress(long id,
+            @NonNull FullName fullName,
+            @NonNull FullAddressLine fullAddressLine,
+            @NonNull String email,
+            @NonNull String phoneNumber,
+            @NonNull String country) {
         super(id);
-        this.orderId = orderId;
         this.fullName = fullName;
         this.fullAddressLine = fullAddressLine;
         this.email = email;

@@ -10,7 +10,6 @@
     "lastName" : "lastName"
   },
   "id" : 888,
-  "orderId" : 888,
   "phoneNumber" : "123456",
   "version" : 1
 }

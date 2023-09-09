@@ -80,7 +80,7 @@ public final class OrderConverter {
     }
 
     public static OrderAddress toOrderAddress(OrderPo orderPo) {
-        return new OrderAddress(orderPo.getOrderId(), orderPo.getOrderId(),
+        return new OrderAddress(orderPo.getOrderId(),
                 new FullName(orderPo.getFirstName(), orderPo.getLastName()),
                 new FullAddressLine(orderPo.getAddressLine1(), orderPo.getAddressLine2()),
                 orderPo.getEmail(), orderPo.getPhoneNumber(), orderPo.getCountry());
