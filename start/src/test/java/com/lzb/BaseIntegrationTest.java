@@ -7,8 +7,11 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,11 +23,17 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Transactional
 @TestPropertySource(locations = "classpath:application-addition.properties")
-@SpringBootTest(classes = Application.class)
+@SpringBootTest(classes = Application.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @Import({TestConfig.class, MockBeanConfig.class})
 public abstract class BaseIntegrationTest extends BaseDockerTest implements InitializingBean, BeanFactoryAware {
 
-    private ConfigurableListableBeanFactory beanFactory;
+    protected ConfigurableListableBeanFactory beanFactory;
+
+    @Value(value="${server.port}")
+    protected int port;
+
+    @Autowired
+    protected TestRestTemplate restTemplate;
 
     @Override
     public void setBeanFactory(BeanFactory beanFactory) throws BeansException {

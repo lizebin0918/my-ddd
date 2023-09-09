@@ -45,8 +45,8 @@ class PlaceOrderServiceIntegrationTest extends BaseIntegrationTest {
                 "phoneNumber", "firstName", "lastName", "addressLine1", "addressLine2", "country",
                 List.of(new PlaceOrderDetailReq(1, BigDecimal.ONE)));
 
-        MyReponse<Long> response = placeOrderService.placeOrder(req);
-        Order order = orderRepository.getOrThrow(response.getData());
+        long orderId = placeOrderService.placeOrder(req);
+        Order order = orderRepository.getOrThrow(orderId);
         assertJSON(order, "id");
     }
 

@@ -30,11 +30,11 @@ public class PlaceOrderService {
      * @param req
      * @return
      */
-    public MyReponse<Long> placeOrder(PlaceOrderReq req) {
+    public long placeOrder(PlaceOrderReq req) {
         log.info("place order: {}", req);
         Order order = orderFactory.create(req);
         orders.add(order);
-        return MyReponse.success(order.getId());
+        return order.getId();
     }
 
 }
