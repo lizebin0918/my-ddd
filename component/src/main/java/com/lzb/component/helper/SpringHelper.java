@@ -7,11 +7,13 @@ import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.EnvironmentAware;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.StandardEnvironment;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
+@Lazy(false)
 @Component
 public class SpringHelper implements ApplicationContextAware, EnvironmentAware {
 
@@ -19,8 +21,10 @@ public class SpringHelper implements ApplicationContextAware, EnvironmentAware {
     private StandardEnvironment enviroment;
     private static final Pattern PATTERN = Pattern.compile("(?<=\\$\\{)[A-Za-z_\\-0-9.]+");
 
+
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        System.out.println("application.......");
         assertApplicationNotNull(applicationContext);
         SpringHelper.applicationContext = applicationContext;
     }
