@@ -28,6 +28,7 @@ public class OrderDetailBuilder {
     // 属性值
     ///////////////////////////////////////////////////////////////////////////
 
+    private long id;
     private long orderId;
     private int skuId;
     private BigDecimal price;
@@ -57,8 +58,13 @@ public class OrderDetailBuilder {
         return this;
     }
 
+    public OrderDetailBuilder id(long id) {
+        this.id = id;
+        return this;
+    }
+
     public OrderDetail build() {
-        return new OrderDetail(idGenerator.id(), orderId, skuId, orderStatus, price);
+        return new OrderDetail(id, orderId, skuId, orderStatus, price);
     }
 
 }

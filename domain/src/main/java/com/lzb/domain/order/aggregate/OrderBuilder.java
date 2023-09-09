@@ -1,6 +1,7 @@
 package com.lzb.domain.order.aggregate;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.lzb.component.helper.SpringHelper;
@@ -8,6 +9,7 @@ import com.lzb.component.id.IdGenerator;
 import com.lzb.domain.order.enums.OrderStatus;
 import com.lzb.domain.order.valobj.FullAddressLine;
 import com.lzb.domain.order.valobj.FullName;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.mockito.internal.matchers.Or;
 
@@ -43,7 +45,7 @@ public class OrderBuilder {
     private String country;
     private int version;
     private OrderStatus orderStatus;
-    private List<OrderDetailBuilder> orderDetailBuilders;
+    private List<OrderDetailBuilder> orderDetailBuilders = new ArrayList<>();
 
     public static OrderBuilder newInstance() {
         return SpringHelper.getBean(OrderBuilder.class);
@@ -119,7 +121,7 @@ public class OrderBuilder {
         return this;
     }
 
-    public OrderBuilder addDetailBuilder(OrderDetailBuilder orderDetailBuilder) {
+    public OrderBuilder addDetailBuilder(@NonNull OrderDetailBuilder orderDetailBuilder) {
         orderDetailBuilders.add(orderDetailBuilder);
         return this;
     }

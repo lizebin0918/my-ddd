@@ -36,7 +36,7 @@ class PlaceOrderServiceIntegrationTest extends BaseIntegrationTest {
                 "phoneNumber", "firstName", "lastName", "addressLine1", "addressLine2", "country",
                 List.of(new PlaceOrderDetailReq(1, BigDecimal.ONE)));
 
-        long orderId = idGenerator.id();
+        long orderId = 1L;
         OrderBuilder orderBuilder = OrderBuilder.newInstance()
                 .orderId(orderId)
                 .currency(req.currency())
@@ -52,14 +52,17 @@ class PlaceOrderServiceIntegrationTest extends BaseIntegrationTest {
                 .country(req.country())
                 .orderStatus(OrderStatus.WAIT_PAY);
 
-        req.details().forEach(detail -> {
+        for (int i = 0; i < req.details().size(); i++) {
+            PlaceOrderDetailReq detailReq = req.details().get(i);
             OrderDetailBuilder orderDetailBuilder = OrderDetailBuilder.newInstance()
+                    .id(orderId + i + 1)
                     .orderId(orderId)
-                    .skuId(detail.skuId())
-                    .price(detail.price())
+                    .skuId(detailReq.skuId())
+                    .price(detailReq.price())
                     .orderStatus(OrderStatus.WAIT_PAY);
             orderBuilder.addDetailBuilder(orderDetailBuilder);
-        });
+        }
+
         Order order = orderBuilder.build();
         assertJSON(order);
     }
