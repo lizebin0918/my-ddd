@@ -41,6 +41,8 @@
 		<archunit.version>1.0.1</archunit.version>
 		<redission.version>3.23.4</redission.version>
 		<commons-lang3.version>3.13.0</commons-lang3.version>
+		<jakarta.version>3.0.2</jakarta.version>
+		<hibernate.validator>8.0.1.Final</hibernate.validator>
 	</properties>
 
 	<repositories>
@@ -348,6 +350,37 @@
 				<groupId>io.netty</groupId>
 				<artifactId>netty-resolver-dns-native-macos</artifactId>
 				<version>4.1.97.Final</version>
+			</dependency>
+
+			<!--bean validation-->
+			<dependency>
+				<groupId>jakarta.validation</groupId>
+				<artifactId>jakarta.validation-api</artifactId>
+				<version>${jakarta.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.hibernate.validator</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>${hibernate.validator}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.hibernate.validator</groupId>
+				<artifactId>hibernate-validator-cdi</artifactId>
+				<version>${hibernate.validator}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.hibernate.validator</groupId>
+				<artifactId>hibernate-validator-annotation-processor</artifactId>
+				<version>${hibernate.validator}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.glassfish.expressly</groupId>
+				<artifactId>expressly</artifactId>
+				<version>5.0.0</version>
 			</dependency>
 
 		</dependencies>
