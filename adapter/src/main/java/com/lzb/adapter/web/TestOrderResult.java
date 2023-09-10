@@ -3,6 +3,8 @@ package com.lzb.adapter.web;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,5 +24,8 @@ public class TestOrderResult {
     private final BigDecimal amount;
     private final OffsetDateTime offsetDateTime;
     private final LocalDateTime localDateTime;
+
+    @Builder.Default
+    private final List<String> list = new ArrayList<>();
 
 }

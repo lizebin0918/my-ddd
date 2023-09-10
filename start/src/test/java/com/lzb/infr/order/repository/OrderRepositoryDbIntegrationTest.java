@@ -3,27 +3,28 @@ package com.lzb.infr.order.repository;
 import java.math.BigDecimal;
 import java.time.Clock;
 import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.time.ZoneId;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
 import cn.hutool.core.util.IdUtil;
 import com.lzb.BaseIntegrationTest;
+import com.lzb.adapter.web.TestOrderResult;
 import com.lzb.component.helper.SpringHelper;
+import com.lzb.component.utils.json.JsonUtils;
 import com.lzb.domain.order.aggregate.Order;
 import com.lzb.domain.order.repository.OrderRepository;
-import com.lzb.infr.config.cache.CacheConstants;
 import com.lzb.infr.domain.order.repository.OrderRepositoryDb;
 import com.lzb.infr.event.persistence.DomainEventPo;
 import com.lzb.infr.event.persistence.service.DomainEventPoService;
+import jakarta.annotation.Resource;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 
-import org.springframework.cache.CacheManager;
 import org.springframework.test.context.jdbc.Sql;
 
 import static java.time.Instant.ofEpochMilli;

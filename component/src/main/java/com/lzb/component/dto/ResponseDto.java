@@ -48,7 +48,6 @@ public class ResponseDto<R> {
      * 是否成功
      * @return
      */
-    @JsonIgnore
     public boolean isSuccess() {
         return Objects.equals(SUCCESS_CODE, this.code);
     }

@@ -1,6 +1,5 @@
 package com.lzb.app.order.cmd.factory;
 
-import javax.annotation.Resource;
 
 import com.lzb.app.order.cmd.dto.PlaceOrderDetailReq;
 import com.lzb.app.order.cmd.dto.PlaceOrderReq;
@@ -9,6 +8,7 @@ import com.lzb.domain.order.aggregate.Order;
 import com.lzb.domain.order.aggregate.OrderBuilder;
 import com.lzb.domain.order.aggregate.OrderDetailBuilder;
 import com.lzb.domain.order.enums.OrderStatus;
+import jakarta.annotation.Resource;
 
 import org.springframework.stereotype.Component;
 

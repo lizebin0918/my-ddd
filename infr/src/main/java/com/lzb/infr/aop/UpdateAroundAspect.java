@@ -2,10 +2,9 @@ package com.lzb.infr.aop;
 
 import java.util.Objects;
 
-import javax.annotation.Priority;
-
 import com.lzb.component.utils.json.JsonUtils;
 import com.lzb.domain.common.BaseAggregate;
+import jakarta.annotation.Priority;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;

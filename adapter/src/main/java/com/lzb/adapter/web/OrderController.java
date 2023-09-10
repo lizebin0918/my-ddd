@@ -2,6 +2,7 @@ package com.lzb.adapter.web;
 
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 
 import com.lzb.app.order.cmd.PlaceOrderService;
 import com.lzb.app.order.cmd.dto.PlaceOrderReq;
@@ -35,10 +36,10 @@ public class OrderController {
     @PostMapping("/test")
     public ResponseDto<TestOrderResult> test(@RequestBody TestOrder order) {
         return ResponseDto.success(TestOrderResult.builder()
-                .status(order.status())
-                .amount(order.amount())
-                .localDateTime(LocalDateTime.now())
-                .offsetDateTime(OffsetDateTime.now())
+                .status(order.getStatus())
+                .amount(order.getAmount())
+                .localDateTime(LocalDateTime.of(2023, 1, 1, 1, 1, 1))
+                .offsetDateTime(OffsetDateTime.of(2023, 1, 1, 1, 1, 1, 1, ZoneOffset.UTC))
                 .build());
     }
 

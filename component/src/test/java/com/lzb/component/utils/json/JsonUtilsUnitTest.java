@@ -7,6 +7,7 @@ import java.time.LocalTime;
 import java.time.OffsetDateTime;
 
 import com.lzb.BaseUnitTest;
+import lombok.Data;
 import lombok.Getter;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
@@ -21,13 +22,22 @@ class JsonUtilsUnitTest extends BaseUnitTest {
         System.out.println(new A());
     }
 
-    @Getter
+    @Data
     static class A {
         LocalDateTime localDateTime = LocalDateTime.now();
         LocalDate localDate = LocalDate.now();
         LocalTime localTime = LocalTime.now();
         Instant timestamp = Instant.now();
         OffsetDateTime offsetDateTime = OffsetDateTime.now();
+    }
+
+    @Test
+    @DisplayName("测试最小日期")
+    void should_to_json_when_localDateTime_min() {
+        A a = new A();
+        a.setLocalDateTime(LocalDateTime.MIN);
+        a.setOffsetDateTime(OffsetDateTime.MIN);
+        System.out.println(JsonUtils.toJSONString(a));
     }
 
 }

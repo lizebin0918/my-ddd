@@ -1,6 +1,5 @@
 package com.lzb.infr.config.mybatis;
 
-import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 import com.baomidou.mybatisplus.annotation.FieldStrategy;
@@ -11,6 +10,7 @@ import com.baomidou.mybatisplus.extension.plugins.inner.OptimisticLockerInnerInt
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
 import com.lzb.infr.config.mybatis.handler.MyMetaObjectHandler;
+import jakarta.annotation.Resource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.type.JdbcType;
 import org.mybatis.spring.SqlSessionTemplate;
