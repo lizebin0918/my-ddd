@@ -9,12 +9,15 @@ import com.lzb.app.order.cmd.dto.PlaceOrderReq;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.jdbc.SqlConfig;
+import org.springframework.test.context.jdbc.SqlGroup;
 
+@SqlGroup({@Sql(config = @SqlConfig(transactionMode = SqlConfig.TransactionMode.ISOLATED))})
 class OrderControllerIntegrationTest extends BaseIntegrationTest {
 
     @Test
-    @Disabled
+    @Disabled("事务无法回滚，会起一个新的线程")
     void placeOrder() {
         PlaceOrderReq req = new PlaceOrderReq("CNY", BigDecimal.ONE, BigDecimal.ONE, BigDecimal.ONE, "email",
                 "phoneNumber", "firstName", "lastName", "addressLine1", "addressLine2", "country",

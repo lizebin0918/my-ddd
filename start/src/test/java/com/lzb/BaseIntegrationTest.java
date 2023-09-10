@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,13 +24,13 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Transactional
 @TestPropertySource(locations = "classpath:application-addition.properties")
-@SpringBootTest(classes = Application.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest(classes = Application.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Import({TestConfig.class, MockBeanConfig.class})
 public abstract class BaseIntegrationTest extends BaseDockerTest implements InitializingBean, BeanFactoryAware {
 
     protected ConfigurableListableBeanFactory beanFactory;
 
-    @Value(value="${server.port}")
+    @LocalServerPort
     protected int port;
 
     @Autowired
