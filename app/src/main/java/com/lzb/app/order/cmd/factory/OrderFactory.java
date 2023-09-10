@@ -40,8 +40,7 @@ public class OrderFactory {
                 .country(req.country())
                 .orderStatus(OrderStatus.WAIT_PAY);
 
-        for (int i = 0; i < req.details().size(); i++) {
-            PlaceOrderDetailReq detailReq = req.details().get(i);
+        for (PlaceOrderDetailReq detailReq : req.details()) {
             OrderDetailBuilder orderDetailBuilder = OrderDetailBuilder.newInstance()
                     .orderId(orderId)
                     .skuId(detailReq.skuId())
