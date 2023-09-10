@@ -13,7 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.ResultActions;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -42,9 +45,12 @@ class OrderControllerLayerTest {
 
         when(placeOrderService.placeOrder(any())).thenReturn(1L);
 
-        mockMvc.perform(put("/order")
+        ResultActions perform = mockMvc.perform(put("/order")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(JsonUtils.toJSONString(req)))
-                .andExpect(status().is(200));
+                .content(JsonUtils.toJSONString(req)));
+        perform.andExpect(status().is(200));
+        MvcResult result = perform.andReturn();
+        MockHttpServletResponse response = result.getResponse();
+        System.out.println(response.getContentAsString());
     }
 }

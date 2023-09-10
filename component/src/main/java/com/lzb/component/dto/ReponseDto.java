@@ -4,7 +4,6 @@ import java.util.Objects;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 /**
@@ -15,9 +14,9 @@ import lombok.NonNull;
 @Getter
 @Builder
 @AllArgsConstructor
-public class MyReponse<R> {
+public class ReponseDto<R> {
 
-    private MyReponse() {
+    private ReponseDto() {
 
     }
 
@@ -39,8 +38,8 @@ public class MyReponse<R> {
      */
     private R data;
 
-    public static <T> MyReponse<T> success(T data) {
-        return MyReponse.<T>builder().code(SUCCESS_CODE).data(data).build();
+    public static <T> ReponseDto<T> success(T data) {
+        return ReponseDto.<T>builder().code(SUCCESS_CODE).data(data).build();
     }
 
     /**

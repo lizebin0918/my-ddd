@@ -2,7 +2,6 @@ package com.lzb.app.order.cmd;
 
 import com.lzb.app.order.cmd.dto.PlaceOrderReq;
 import com.lzb.app.order.cmd.factory.OrderFactory;
-import com.lzb.component.dto.MyReponse;
 import com.lzb.domain.order.aggregate.Order;
 import com.lzb.domain.order.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;

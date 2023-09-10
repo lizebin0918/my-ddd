@@ -6,14 +6,9 @@ import java.util.List;
 import com.lzb.BaseIntegrationTest;
 import com.lzb.app.order.cmd.dto.PlaceOrderDetailReq;
 import com.lzb.app.order.cmd.dto.PlaceOrderReq;
-import com.lzb.component.dto.MyReponse;
 import com.lzb.component.id.IdGenerator;
 import com.lzb.domain.order.aggregate.Order;
-import com.lzb.domain.order.aggregate.OrderBuilder;
-import com.lzb.domain.order.aggregate.OrderDetailBuilder;
-import com.lzb.domain.order.enums.OrderStatus;
 import com.lzb.domain.order.repository.OrderRepository;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
