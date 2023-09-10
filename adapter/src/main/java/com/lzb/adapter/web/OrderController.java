@@ -38,8 +38,8 @@ public class OrderController {
         return ResponseDto.success(TestOrderResult.builder()
                 .status(order.getStatus())
                 .amount(order.getAmount())
-                .localDateTime(LocalDateTime.of(2023, 1, 1, 1, 1, 1))
-                .offsetDateTime(OffsetDateTime.of(2023, 1, 1, 1, 1, 1, 1, ZoneOffset.UTC))
+                .localDateTime(LocalDateTime.MIN)
+                .offsetDateTime(OffsetDateTime.MIN)
                 .build());
     }
 

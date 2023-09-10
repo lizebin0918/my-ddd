@@ -14,6 +14,14 @@ spring:
     allow-circular-references: false
     lazy-initialization: false
     allow-bean-definition-overriding: false
+  jackson:
+    default-property-inclusion: non_null
+    serialization:
+      write-bigdecimal-as-plain: true
+      write-enums-using-to-string: true
+    visibility:
+      all: none
+      field: any
 server:
   port: 8080
 logging:
