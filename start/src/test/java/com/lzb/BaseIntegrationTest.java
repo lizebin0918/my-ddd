@@ -24,17 +24,11 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Transactional
 @TestPropertySource(locations = "classpath:application-addition.properties")
-@SpringBootTest(classes = Application.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = Application.class)
 @Import({TestConfig.class, MockBeanConfig.class})
 public abstract class BaseIntegrationTest extends BaseDockerTest implements InitializingBean, BeanFactoryAware {
 
     protected ConfigurableListableBeanFactory beanFactory;
-
-    @LocalServerPort
-    protected int port;
-
-    @Autowired
-    protected TestRestTemplate restTemplate;
 
     @Override
     public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
