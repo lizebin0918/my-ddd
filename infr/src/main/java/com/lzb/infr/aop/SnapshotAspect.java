@@ -24,18 +24,14 @@ public class SnapshotAspect {
             "|| @annotation(com.lzb.domain.common.annotation.Snapshot)",
             returning = "returnVal")
     public void handleRequestMethod(JoinPoint pjp, Object returnVal) {
-        if (returnVal instanceof BaseAggregate) {
-            ((BaseAggregate<?>) returnVal).attachSnapshot();
+        if (returnVal instanceof BaseAggregate<?> aggregate) {
+            aggregate.attachSnapshot();
             return;
         }
-        if (returnVal instanceof Optional<?> returnValOpt) {
-            if (returnValOpt.isPresent()) {
-                Object o = returnValOpt.get();
-                if (o instanceof BaseAggregate<?> aggregate) {
-                    aggregate.attachSnapshot();
-                    return;
-                }
-            }
+        if (returnVal instanceof Optional<?> returnValOpt
+                && returnValOpt.isPresent()
+                && returnValOpt.get() instanceof BaseAggregate<?> aggregate) {
+            aggregate.attachSnapshot();
         }
     }
 
