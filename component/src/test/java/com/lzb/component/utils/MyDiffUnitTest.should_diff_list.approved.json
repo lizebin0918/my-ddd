@@ -1,11 +1,7 @@
 [ {
-  "age" : null,
   "id" : 1,
-  "money" : 2,
-  "name" : null
+  "money" : 2
 }, {
-  "age" : null,
   "id" : 2,
-  "money" : 11,
-  "name" : null
+  "money" : 11
 } ]

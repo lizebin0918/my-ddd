@@ -1,25 +1,33 @@
 package com.lzb.adapter.web;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.lzb.app.order.cmd.PlaceOrderService;
 import com.lzb.app.order.cmd.dto.PlaceOrderDetailReq;
 import com.lzb.app.order.cmd.dto.PlaceOrderReq;
 import com.lzb.component.utils.json.JsonUtils;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
+import static org.springframework.http.RequestEntity.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -52,5 +60,26 @@ class OrderControllerLayerTest {
         MvcResult result = perform.andReturn();
         MockHttpServletResponse response = result.getResponse();
         System.out.println(response.getContentAsString());
+    }
+
+    @RepeatedTest(2)
+    @DisplayName("测试提交参数和返回值")
+    void should_test_req_rsp() throws Exception {
+        Map<String, Object> params = new HashMap<>();
+        params.put("orderNo", "orderNo");
+        params.put("status", "WAIT");
+        params.put("amount", BigDecimal.ONE);
+        params.put("skuCodes", List.of(1,2,3));
+
+        MockHttpServletRequestBuilder content = MockMvcRequestBuilders.post("/order/test")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(JsonUtils.toJSONString(params));
+        ResultActions perform = mockMvc.perform(content).andExpect(status().is(200));
+
+        MvcResult mvcResult = perform.andReturn();
+        MockHttpServletResponse response = mvcResult.getResponse();
+        System.out.println("-----------getContentAsString---------------");
+        System.out.println(response.getContentAsString());
+        System.out.println("--------------------------");
     }
 }

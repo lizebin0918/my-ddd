@@ -2,10 +2,8 @@
   "event" : "{\"key\": \"1\", \"tag\": \"ORDER_CANCELED\", \"bizId\": \"1\", \"msgId\": \"1\", \"orderId\": 1, \"timestamp\": 0}",
   "order" : {
     "currency" : "CNY",
-    "events" : [ ],
     "exchangeRate" : 1,
     "id" : 1,
-    "logs" : [ ],
     "orderAddress" : {
       "country" : "CHINA",
       "email" : "123456@qq.com",
@@ -21,21 +19,23 @@
       "phoneNumber" : "13800000000",
       "version" : 1
     },
-    "orderDetails" : [ {
-      "id" : 1,
-      "orderId" : 1,
-      "orderStatus" : "CANCELED",
-      "price" : 1,
-      "skuId" : 1,
-      "version" : 1
-    }, {
-      "id" : 2,
-      "orderId" : 1,
-      "orderStatus" : "CANCELED",
-      "price" : 10,
-      "skuId" : 2,
-      "version" : 1
-    } ],
+    "orderDetails" : {
+      "list" : [ {
+        "id" : 1,
+        "orderId" : 1,
+        "orderStatus" : "CANCELED",
+        "price" : 1,
+        "skuId" : 1,
+        "version" : 1
+      }, {
+        "id" : 2,
+        "orderId" : 1,
+        "orderStatus" : "CANCELED",
+        "price" : 10,
+        "skuId" : 2,
+        "version" : 1
+      } ]
+    },
     "orderStatus" : "CANCELED",
     "totalActualPay" : 88,
     "totalShouldPay" : 88,

@@ -1,8 +1,6 @@
 {
   "currency" : "CNY",
-  "events" : [ ],
   "exchangeRate" : 1,
-  "logs" : [ ],
   "orderAddress" : {
     "country" : "country",
     "email" : "email",
@@ -17,13 +15,15 @@
     "phoneNumber" : "phoneNumber",
     "version" : 1
   },
-  "orderDetails" : [ {
-    "orderId" : 1,
-    "orderStatus" : "WAIT_PAY",
-    "price" : 1,
-    "skuId" : 1,
-    "version" : 1
-  } ],
+  "orderDetails" : {
+    "list" : [ {
+      "orderId" : 1,
+      "orderStatus" : "WAIT_PAY",
+      "price" : 1,
+      "skuId" : 1,
+      "version" : 1
+    } ]
+  },
   "orderStatus" : "WAIT_PAY",
   "totalActualPay" : 1,
   "totalShouldPay" : 1,

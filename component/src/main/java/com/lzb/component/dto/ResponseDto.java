@@ -1,6 +1,8 @@
 package com.lzb.component.dto;
 
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,9 +16,9 @@ import lombok.NonNull;
 @Getter
 @Builder
 @AllArgsConstructor
-public class ReponseDto<R> {
+public class ResponseDto<R> {
 
-    private ReponseDto() {
+    private ResponseDto() {
 
     }
 
@@ -38,14 +40,15 @@ public class ReponseDto<R> {
      */
     private R data;
 
-    public static <T> ReponseDto<T> success(T data) {
-        return ReponseDto.<T>builder().code(SUCCESS_CODE).data(data).build();
+    public static <T> ResponseDto<T> success(T data) {
+        return ResponseDto.<T>builder().code(SUCCESS_CODE).data(data).build();
     }
 
     /**
      * 是否成功
      * @return
      */
+    @JsonIgnore
     public boolean isSuccess() {
         return Objects.equals(SUCCESS_CODE, this.code);
     }
