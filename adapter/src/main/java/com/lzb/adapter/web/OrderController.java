@@ -35,11 +35,12 @@ public class OrderController {
 
     @PostMapping("/test")
     public ResponseDto<TestOrderResult> test(@RequestBody TestOrder order) {
+        LocalDateTime time = LocalDateTime.of(2023, 9, 11, 11, 8, 8);
         return ResponseDto.success(TestOrderResult.builder()
                 .status(order.getStatus())
                 .amount(order.getAmount())
-                .localDateTime(LocalDateTime.MIN)
-                .offsetDateTime(OffsetDateTime.MIN)
+                .localDateTime(time)
+                .offsetDateTime(OffsetDateTime.of(time, ZoneOffset.ofHours(8)))
                 .build());
     }
 
