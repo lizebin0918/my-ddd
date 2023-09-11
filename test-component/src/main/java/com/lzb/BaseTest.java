@@ -46,7 +46,6 @@ public abstract class BaseTest extends Mockito implements BaseAssertions {
             .defaultLocale(Locale.CHINA)
             .defaultTimeZone(TimeZone.getTimeZone(ZoneId.systemDefault()))
             .addModule(new JavaTimeModule())
-            .defaultDateFormat(new StdDateFormat().withColonInTimeZone(true))
             .build();
 
     static {

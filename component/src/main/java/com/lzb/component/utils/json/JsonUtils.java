@@ -9,9 +9,13 @@ import java.util.Map;
 import java.util.TimeZone;
 
 import cn.hutool.core.exceptions.ExceptionUtil;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.json.JsonReadFeature;
+import com.fasterxml.jackson.core.json.JsonWriteFeature;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JavaType;
@@ -30,7 +34,33 @@ import org.jetbrains.annotations.Nullable;
 @Slf4j
 public class JsonUtils {
 
-    private static final ObjectMapper INSTANCE = JsonMapper.builder()
+    public static final JsonMapper SPRING_MVC_RETURN_OBJECT_MAPPER = JsonMapper.builder()
+            .configure(JsonReadFeature.ALLOW_UNESCAPED_CONTROL_CHARS, true)
+            .configure(JsonReadFeature.ALLOW_BACKSLASH_ESCAPING_ANY_CHARACTER, true)
+            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+            .configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true)
+            // BigDecimal写成字符串
+            .configure(JsonWriteFeature.WRITE_NUMBERS_AS_STRINGS, true)
+            .configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false)
+            // 枚举写成字符串
+            .configure(SerializationFeature.WRITE_ENUMS_USING_TO_STRING, true)
+            // 时间序列化
+            .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
+            // 时区
+            .defaultLocale(Locale.CHINA)
+            .defaultTimeZone(TimeZone.getTimeZone(ZoneId.systemDefault()))
+            .addModule(new JavaTimeModule())
+            .build();
+
+    static {
+        // 输入非空字段
+        SPRING_MVC_RETURN_OBJECT_MAPPER.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        // 只显示有的字段
+        SPRING_MVC_RETURN_OBJECT_MAPPER.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE);
+        SPRING_MVC_RETURN_OBJECT_MAPPER.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+    }
+
+    public static final ObjectMapper INSTANCE = JsonMapper.builder()
             .configure(JsonReadFeature.ALLOW_UNESCAPED_CONTROL_CHARS.mappedFeature(), true)
             .configure(JsonReadFeature.ALLOW_BACKSLASH_ESCAPING_ANY_CHARACTER.mappedFeature(), true)
             .configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false)
@@ -43,7 +73,6 @@ public class JsonUtils {
             .defaultLocale(Locale.CHINA)
             .defaultTimeZone(TimeZone.getTimeZone(ZoneId.systemDefault()))
             .addModule(new JavaTimeModule())
-            .defaultDateFormat(new StdDateFormat().withColonInTimeZone(true))
             .build();
 
     /**

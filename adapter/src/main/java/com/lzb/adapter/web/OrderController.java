@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 
+import com.lzb.adapter.annotation.MyResponseBody;
 import com.lzb.app.order.cmd.PlaceOrderService;
 import com.lzb.app.order.cmd.dto.PlaceOrderReq;
 import com.lzb.component.dto.ResponseDto;
@@ -33,15 +34,16 @@ public class OrderController {
         return ResponseDto.success(placeOrderService.placeOrder(placeOrderReq));
     }
 
+    @MyResponseBody
     @PostMapping("/test")
-    public ResponseDto<TestOrderResult> test(@RequestBody TestOrder order) {
+    public TestOrderResult test(@RequestBody TestOrder order) {
         LocalDateTime time = LocalDateTime.of(2023, 9, 11, 11, 8, 8);
-        return ResponseDto.success(TestOrderResult.builder()
+        return TestOrderResult.builder()
                 .status(order.getStatus())
                 .amount(order.getAmount())
                 .localDateTime(time)
                 .offsetDateTime(OffsetDateTime.of(time, ZoneOffset.ofHours(8)))
-                .build());
+                .build();
     }
 
 }

@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.lzb.adapter.config.JacksonConfig;
 import com.lzb.app.order.cmd.PlaceOrderService;
 import com.lzb.app.order.cmd.dto.PlaceOrderDetailReq;
 import com.lzb.app.order.cmd.dto.PlaceOrderReq;
@@ -38,7 +37,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @Author lizebin
  */
 @WebMvcTest(OrderController.class)
-@Import({JacksonConfig.class})
 class OrderControllerLayerTest {
 
     @MockBean
