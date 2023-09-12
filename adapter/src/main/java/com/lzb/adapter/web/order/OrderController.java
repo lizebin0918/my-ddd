@@ -36,16 +36,4 @@ public class OrderController {
         return ResponseDto.success(placeOrderAppService.placeOrder(placeOrderReq));
     }
 
-    @MyResponseBody
-    @PostMapping("/test")
-    public TestOrderResult test(@RequestBody TestOrder order) {
-        LocalDateTime time = LocalDateTime.of(2023, 9, 11, 11, 8, 8);
-        return TestOrderResult.builder()
-                .status(order.getStatus())
-                .amount(order.getAmount())
-                .localDateTime(time)
-                .offsetDateTime(OffsetDateTime.of(time, ZoneOffset.ofHours(8)))
-                .build();
-    }
-
 }
