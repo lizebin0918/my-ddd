@@ -1,9 +1,8 @@
-package com.lzb.adapter.web;
+package com.lzb.adapter.web.test;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-import com.lzb.domain.order.enums.OrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

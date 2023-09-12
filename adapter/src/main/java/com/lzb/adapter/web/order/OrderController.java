@@ -1,10 +1,12 @@
-package com.lzb.adapter.web;
+package com.lzb.adapter.web.order;
 
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 
 import com.lzb.adapter.annotation.MyResponseBody;
+import com.lzb.adapter.web.test.TestOrder;
+import com.lzb.adapter.web.test.TestOrderResult;
 import com.lzb.app.order.cmd.PlaceOrderService;
 import com.lzb.app.order.cmd.dto.PlaceOrderReq;
 import com.lzb.component.dto.ResponseDto;
