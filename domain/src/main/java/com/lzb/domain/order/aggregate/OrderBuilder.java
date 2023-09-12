@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.lzb.component.helper.SpringHelper;
+import com.lzb.domain.common.aggregate.BaseBuilder;
 import com.lzb.domain.order.enums.OrderStatus;
 import com.lzb.domain.order.service.SkuValidator;
 import com.lzb.domain.order.valobj.FullAddressLine;
@@ -25,7 +26,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @RequiredArgsConstructor(onConstructor = @__(@Lazy))
-public class OrderBuilder {
+public class OrderBuilder extends BaseBuilder<Order> {
 
     private final SkuValidator skuValidator;
 
@@ -129,25 +130,23 @@ public class OrderBuilder {
         return this;
     }
 
-    public OrderBuilder addDetailBuilder(@NonNull OrderDetailBuilder orderDetailBuilder) {
-        innerOrderDetails.add(orderDetailBuilder.build());
+    public OrderBuilder addOrderDetail(@NonNull OrderDetail orderDetail) {
+        innerOrderDetails.add(orderDetail);
         return this;
     }
 
 
-    public Order build() {
-
+    @Override
+    protected Order doBuild() {
         fullName = new FullName(firstName, lastName);
         fullAddressLine = new FullAddressLine(addressLine1, addressLine2);
         orderAddress = new OrderAddress(orderId, fullName, fullAddressLine, email, phoneNumber, country);
         orderDetails = new OrderDetails(this.innerOrderDetails);
-
-        validate();
-
         return new Order(orderId, version, orderStatus, currency, exchangeRate, totalShouldPay, totalActualPay, orderAddress, orderDetails);
     }
 
-    private void validate() {
+    @Override
+    protected void validate(Order order) {
         skuValidator.assertAllOfSkuIsOnSale(orderDetails.getSkuIds());
     }
 

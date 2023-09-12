@@ -3,7 +3,7 @@ package com.lzb.infr.aop;
 import java.util.Objects;
 
 import com.lzb.component.utils.json.JsonUtils;
-import com.lzb.domain.common.BaseAggregate;
+import com.lzb.domain.common.aggregate.BaseAggregate;
 import jakarta.annotation.Priority;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;

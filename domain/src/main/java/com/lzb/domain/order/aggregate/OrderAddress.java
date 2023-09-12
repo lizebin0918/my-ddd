@@ -1,13 +1,10 @@
 package com.lzb.domain.order.aggregate;
 
-import com.lzb.domain.common.BaseEntity;
+import com.lzb.domain.common.aggregate.BaseEntity;
 import com.lzb.domain.order.valobj.FullAddressLine;
 import com.lzb.domain.order.valobj.FullName;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NonNull;
-import lombok.Setter;
-import lombok.experimental.SuperBuilder;
 
 /**
  * 订单地址实体<br/>

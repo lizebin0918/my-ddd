@@ -1,4 +1,4 @@
-package com.lzb.domain.common;
+package com.lzb.domain.common.aggregate;
 
 
 import java.io.Serializable;

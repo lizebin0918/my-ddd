@@ -5,7 +5,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.LongSupplier;
 
 import com.lzb.component.helper.TransactionHelper;
-import com.lzb.domain.common.BaseAggregate;
+import com.lzb.domain.common.aggregate.BaseAggregate;
 import com.lzb.domain.common.repository.CommonRepository;
 import com.lzb.infr.event.DomainEventSupport;
 import jakarta.annotation.Resource;

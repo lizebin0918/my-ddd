@@ -3,7 +3,7 @@ package com.lzb.domain.common.repository;
 
 import java.util.Optional;
 
-import com.lzb.domain.common.BaseAggregate;
+import com.lzb.domain.common.aggregate.BaseAggregate;
 import com.lzb.domain.common.annotation.Snapshot;
 
 

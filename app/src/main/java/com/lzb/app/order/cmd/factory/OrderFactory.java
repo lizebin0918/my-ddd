@@ -6,6 +6,7 @@ import com.lzb.app.order.cmd.dto.PlaceOrderReq;
 import com.lzb.component.id.IdGenerator;
 import com.lzb.domain.order.aggregate.Order;
 import com.lzb.domain.order.aggregate.OrderBuilder;
+import com.lzb.domain.order.aggregate.OrderDetail;
 import com.lzb.domain.order.aggregate.OrderDetailBuilder;
 import com.lzb.domain.order.enums.OrderStatus;
 import jakarta.annotation.Resource;
@@ -41,12 +42,13 @@ public class OrderFactory {
                 .orderStatus(OrderStatus.WAIT_PAY);
 
         for (PlaceOrderDetailReq detailReq : req.details()) {
-            OrderDetailBuilder orderDetailBuilder = OrderDetailBuilder.newInstance()
+            OrderDetail orderDetail = OrderDetailBuilder.newInstance()
                     .orderId(orderId)
                     .skuId(detailReq.skuId())
                     .price(detailReq.price())
-                    .orderStatus(OrderStatus.WAIT_PAY);
-            orderBuilder.addDetailBuilder(orderDetailBuilder);
+                    .orderStatus(OrderStatus.WAIT_PAY)
+                    .build();
+            orderBuilder.addOrderDetail(orderDetail);
         }
 
         return orderBuilder.build();

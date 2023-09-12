@@ -1,6 +1,6 @@
 package com.lzb.domain.common.repository;
 
-import com.lzb.domain.common.BaseAggregate;
+import com.lzb.domain.common.aggregate.BaseAggregate;
 
 /**
  * <br/>

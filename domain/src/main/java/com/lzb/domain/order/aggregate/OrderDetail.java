@@ -2,8 +2,7 @@ package com.lzb.domain.order.aggregate;
 
 import java.math.BigDecimal;
 
-import com.lzb.domain.common.BaseEntity;
-import com.lzb.domain.common.Identified;
+import com.lzb.domain.common.aggregate.BaseEntity;
 import com.lzb.domain.order.enums.OrderStatus;
 import lombok.Getter;
 import lombok.NonNull;

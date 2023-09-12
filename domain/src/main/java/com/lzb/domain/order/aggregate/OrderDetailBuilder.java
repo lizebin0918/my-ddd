@@ -4,7 +4,9 @@ import java.math.BigDecimal;
 
 import com.lzb.component.helper.SpringHelper;
 import com.lzb.component.id.IdGenerator;
+import com.lzb.domain.common.aggregate.BaseBuilder;
 import com.lzb.domain.order.enums.OrderStatus;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -20,7 +22,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @RequiredArgsConstructor(onConstructor = @__(@Lazy))
-public class OrderDetailBuilder {
+public class OrderDetailBuilder extends BaseBuilder<OrderDetail> {
 
     private final IdGenerator idGenerator;
 
@@ -48,12 +50,12 @@ public class OrderDetailBuilder {
         return this;
     }
 
-    public OrderDetailBuilder price(BigDecimal price) {
+    public OrderDetailBuilder price(@NonNull BigDecimal price) {
         this.price = price;
         return this;
     }
 
-    public OrderDetailBuilder orderStatus(OrderStatus orderStatus) {
+    public OrderDetailBuilder orderStatus(@NonNull OrderStatus orderStatus) {
         this.orderStatus = orderStatus;
         return this;
     }
@@ -63,7 +65,8 @@ public class OrderDetailBuilder {
         return this;
     }
 
-    public OrderDetail build() {
+    @Override
+    protected OrderDetail doBuild() {
         return new OrderDetail(id, orderId, skuId, orderStatus, price);
     }
 

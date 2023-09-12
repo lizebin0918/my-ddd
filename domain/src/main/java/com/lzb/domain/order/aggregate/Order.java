@@ -2,7 +2,7 @@ package com.lzb.domain.order.aggregate;
 
 import java.math.BigDecimal;
 
-import com.lzb.domain.common.BaseAggregate;
+import com.lzb.domain.common.aggregate.BaseAggregate;
 import com.lzb.domain.order.enums.OrderStatus;
 import com.lzb.domain.order.event.OrderCanceledEvent;
 import com.lzb.domain.order.event.OrderPlacedEvent;
