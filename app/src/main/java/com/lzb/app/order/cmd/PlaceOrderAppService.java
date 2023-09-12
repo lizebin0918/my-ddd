@@ -38,6 +38,7 @@ public class PlaceOrderAppService {
 
         // 锁库存
 
+
         orders.add(order);
         return order.getId();
     }

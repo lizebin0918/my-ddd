@@ -2,13 +2,12 @@ package com.lzb.infr.app.order;
 
 import java.util.List;
 
-import com.lzb.app.order.query.OrderQueryService;
+import com.lzb.app.order.query.OrderQueryAppService;
 import com.lzb.app.order.query.dto.OrderDetailView;
 import com.lzb.app.order.query.dto.OrderQuery;
 import com.lzb.app.order.query.dto.OrderView;
 import lombok.RequiredArgsConstructor;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +18,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Lazy))
-public class OrderQueryServiceDb implements OrderQueryService {
+public class OrderQueryAppServiceDb implements OrderQueryAppService {
 
     @Override
     public List<OrderView> list(OrderQuery query) {

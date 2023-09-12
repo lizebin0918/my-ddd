@@ -11,7 +11,7 @@ import com.lzb.app.order.query.dto.OrderQuery;
  * Created on : 2023-09-06 22:39
  * @author mac
  */
-public interface OrderQueryService {
+public interface OrderQueryAppService {
 
     /**
      * 订单列表
