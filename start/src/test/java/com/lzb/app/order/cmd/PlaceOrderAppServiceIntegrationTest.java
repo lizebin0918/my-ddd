@@ -19,13 +19,13 @@ import org.springframework.beans.factory.annotation.Autowired;
  * Created on : 2023-09-09 14:23
  * @author lizebin
  */
-class PlaceOrderServiceIntegrationTest extends BaseIntegrationTest {
+class PlaceOrderAppServiceIntegrationTest extends BaseIntegrationTest {
     
     @Autowired
     private IdGenerator idGenerator;
 
     @Autowired
-    private PlaceOrderService placeOrderService;
+    private PlaceOrderAppService placeOrderAppService;
 
     @Autowired
     private OrderRepository orderRepository;
@@ -40,7 +40,7 @@ class PlaceOrderServiceIntegrationTest extends BaseIntegrationTest {
                 "phoneNumber", "firstName", "lastName", "addressLine1", "addressLine2", "country",
                 List.of(new PlaceOrderDetailReq(1, BigDecimal.ONE)));
 
-        long orderId = placeOrderService.placeOrder(req);
+        long orderId = placeOrderAppService.placeOrder(req);
         Order order = orderRepository.getOrThrow(orderId);
         assertJSON(order, "id");
     }

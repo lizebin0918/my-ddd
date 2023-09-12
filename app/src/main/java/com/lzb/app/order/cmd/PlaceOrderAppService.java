@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Lazy))
-public class PlaceOrderService {
+public class PlaceOrderAppService {
 
     private final OrderRepository orders;
 
@@ -31,7 +31,13 @@ public class PlaceOrderService {
      */
     public long placeOrder(PlaceOrderReq req) {
         log.info("place order: {}", req);
+
+        // 生单
         Order order = orderFactory.create(req);
+        order.place();
+
+        // 锁库存
+
         orders.add(order);
         return order.getId();
     }

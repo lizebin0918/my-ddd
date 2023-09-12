@@ -47,7 +47,13 @@ public class OrderBuilder {
     private String country;
     private int version;
     private OrderStatus orderStatus;
-    private final List<OrderDetailBuilder> orderDetailBuilders = new ArrayList<>();
+    private final List<OrderDetail> innerOrderDetails = new ArrayList<>();
+
+    // 聚合根内部值对象
+    private FullName fullName;
+    private FullAddressLine fullAddressLine;
+    private OrderAddress orderAddress;
+    private OrderDetails orderDetails;
 
     public static OrderBuilder newInstance() {
         return SpringHelper.getBean(OrderBuilder.class);
@@ -58,57 +64,57 @@ public class OrderBuilder {
         return this;
     }
 
-    public OrderBuilder currency(String currency) {
+    public OrderBuilder currency(@NonNull String currency) {
         this.currency = currency;
         return this;
     }
 
-    public OrderBuilder exchangeRate(BigDecimal exchangeRate) {
+    public OrderBuilder exchangeRate(@NonNull BigDecimal exchangeRate) {
         this.exchangeRate = exchangeRate;
         return this;
     }
 
-    public OrderBuilder totalShouldPay(BigDecimal totalShouldPay) {
+    public OrderBuilder totalShouldPay(@NonNull BigDecimal totalShouldPay) {
         this.totalShouldPay = totalShouldPay;
         return this;
     }
 
-    public OrderBuilder totalActualPay(BigDecimal totalActualPay) {
+    public OrderBuilder totalActualPay(@NonNull BigDecimal totalActualPay) {
         this.totalActualPay = totalActualPay;
         return this;
     }
 
-    public OrderBuilder email(String email) {
+    public OrderBuilder email(@NonNull String email) {
         this.email = email;
         return this;
     }
 
-    public OrderBuilder phoneNumber(String phoneNumber) {
+    public OrderBuilder phoneNumber(@NonNull String phoneNumber) {
         this.phoneNumber = phoneNumber;
         return this;
     }
 
-    public OrderBuilder firstName(String firstName) {
+    public OrderBuilder firstName(@NonNull String firstName) {
         this.firstName = firstName;
         return this;
     }
 
-    public OrderBuilder lastName(String lastName) {
+    public OrderBuilder lastName(@NonNull String lastName) {
         this.lastName = lastName;
         return this;
     }
 
-    public OrderBuilder addressLine1(String addressLine1) {
+    public OrderBuilder addressLine1(@NonNull String addressLine1) {
         this.addressLine1 = addressLine1;
         return this;
     }
 
-    public OrderBuilder addressLine2(String addressLine2) {
+    public OrderBuilder addressLine2(@NonNull String addressLine2) {
         this.addressLine2 = addressLine2;
         return this;
     }
 
-    public OrderBuilder country(String country) {
+    public OrderBuilder country(@NonNull String country) {
         this.country = country;
         return this;
     }
@@ -118,26 +124,31 @@ public class OrderBuilder {
         return this;
     }
 
-    public OrderBuilder orderStatus(OrderStatus orderStatus) {
+    public OrderBuilder orderStatus(@NonNull OrderStatus orderStatus) {
         this.orderStatus = orderStatus;
         return this;
     }
 
     public OrderBuilder addDetailBuilder(@NonNull OrderDetailBuilder orderDetailBuilder) {
-        orderDetailBuilders.add(orderDetailBuilder);
+        innerOrderDetails.add(orderDetailBuilder.build());
         return this;
     }
 
+
     public Order build() {
 
-        var fullName = new FullName(firstName, lastName);
-        var fullAddressLine = new FullAddressLine(addressLine1, addressLine2);
-        var orderAddress = new OrderAddress(orderId, fullName, fullAddressLine, email, phoneNumber, country);
-        var orderDetails = new OrderDetails(orderDetailBuilders.stream().map(OrderDetailBuilder::build).toList());
+        fullName = new FullName(firstName, lastName);
+        fullAddressLine = new FullAddressLine(addressLine1, addressLine2);
+        orderAddress = new OrderAddress(orderId, fullName, fullAddressLine, email, phoneNumber, country);
+        orderDetails = new OrderDetails(this.innerOrderDetails);
 
-        skuValidator.assertAllOfSkuIsOnSale(orderDetails.getSkuIds());
+        validate();
 
         return new Order(orderId, version, orderStatus, currency, exchangeRate, totalShouldPay, totalActualPay, orderAddress, orderDetails);
+    }
+
+    private void validate() {
+        skuValidator.assertAllOfSkuIsOnSale(orderDetails.getSkuIds());
     }
 
 }

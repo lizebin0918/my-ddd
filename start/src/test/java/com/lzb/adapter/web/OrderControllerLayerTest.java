@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.lzb.adapter.web.order.OrderController;
-import com.lzb.app.order.cmd.PlaceOrderService;
+import com.lzb.app.order.cmd.PlaceOrderAppService;
 import com.lzb.app.order.cmd.dto.PlaceOrderDetailReq;
 import com.lzb.app.order.cmd.dto.PlaceOrderReq;
 import com.lzb.component.utils.json.JsonUtils;
@@ -40,7 +40,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class OrderControllerLayerTest {
 
     @MockBean
-    private PlaceOrderService placeOrderService;
+    private PlaceOrderAppService placeOrderAppService;
 
     @Autowired
     private MockMvc mockMvc;
@@ -52,7 +52,7 @@ class OrderControllerLayerTest {
                 "phoneNumber", "firstName", "lastName", "addressLine1", "addressLine2", "country",
                 List.of(new PlaceOrderDetailReq(1, BigDecimal.ONE)));
 
-        when(placeOrderService.placeOrder(any())).thenReturn(1L);
+        when(placeOrderAppService.placeOrder(any())).thenReturn(1L);
 
         ResultActions perform = mockMvc.perform(put("/order")
                 .contentType(MediaType.APPLICATION_JSON)

@@ -7,7 +7,7 @@ import java.time.ZoneOffset;
 import com.lzb.adapter.annotation.MyResponseBody;
 import com.lzb.adapter.web.test.TestOrder;
 import com.lzb.adapter.web.test.TestOrderResult;
-import com.lzb.app.order.cmd.PlaceOrderService;
+import com.lzb.app.order.cmd.PlaceOrderAppService;
 import com.lzb.app.order.cmd.dto.PlaceOrderReq;
 import com.lzb.component.dto.ResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -29,11 +29,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor(onConstructor = @__(@Lazy))
 public class OrderController {
 
-    private final PlaceOrderService placeOrderService;
+    private final PlaceOrderAppService placeOrderAppService;
 
     @PutMapping
     public ResponseDto<Long> placeOrder(@RequestBody PlaceOrderReq placeOrderReq) {
-        return ResponseDto.success(placeOrderService.placeOrder(placeOrderReq));
+        return ResponseDto.success(placeOrderAppService.placeOrder(placeOrderReq));
     }
 
     @MyResponseBody

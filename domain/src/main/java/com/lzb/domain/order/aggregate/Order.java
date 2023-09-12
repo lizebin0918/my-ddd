@@ -1,15 +1,13 @@
 package com.lzb.domain.order.aggregate;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 
 import com.lzb.domain.common.BaseAggregate;
 import com.lzb.domain.order.enums.OrderStatus;
 import com.lzb.domain.order.event.OrderCanceledEvent;
-import lombok.AccessLevel;
+import com.lzb.domain.order.event.OrderPlacedEvent;
 import lombok.Getter;
 import lombok.NonNull;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -97,5 +95,12 @@ public class Order extends BaseAggregate<Order> {
      */
     public boolean isCancel() {
         return OrderStatus.CANCELED == orderStatus;
+    }
+
+    /**
+     * 生单
+     */
+    public void place() {
+        addEvent(OrderPlacedEvent.create(this.id));
     }
 }
