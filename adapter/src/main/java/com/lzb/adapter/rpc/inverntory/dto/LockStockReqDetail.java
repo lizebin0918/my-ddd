@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class LockStockReqDetail {
 
-    private final long skuId;
+    private final int skuId;
     private final int num;
 
 }

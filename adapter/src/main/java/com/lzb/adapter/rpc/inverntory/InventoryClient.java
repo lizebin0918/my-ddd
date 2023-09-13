@@ -1,7 +1,11 @@
 package com.lzb.adapter.rpc.inverntory;
 
+import java.util.List;
+
 import com.lzb.adapter.rpc.inverntory.dto.LockStockReq;
+import com.lzb.adapter.rpc.inverntory.dto.LockStockReqDetail;
 import com.lzb.adapter.rpc.inverntory.dto.LockStockRsp;
+import com.lzb.adapter.rpc.inverntory.dto.LockStockRspDetail;
 
 import org.springframework.stereotype.Component;
 
@@ -13,7 +17,8 @@ import org.springframework.stereotype.Component;
 public class InventoryClient {
 
     public LockStockRsp lockStock(LockStockReq lockStockReq) {
-        return null;
+        List<LockStockReqDetail> details = lockStockReq.getDetails();
+        return new LockStockRsp(details.stream().map(detail -> new LockStockRspDetail(detail.getSkuId(), 1)).toList());
     }
 
     /**

@@ -1,6 +1,9 @@
 package com.lzb.domain.order.aggregate;
 
 import java.math.BigDecimal;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 import com.lzb.domain.common.aggregate.BaseAggregate;
 import com.lzb.domain.order.dto.LockStockDto;
@@ -10,6 +13,7 @@ import com.lzb.domain.order.event.OrderPlacedEvent;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
+import one.util.streamex.StreamEx;
 
 /**
  * 订单聚合根<br/>
@@ -77,6 +81,20 @@ public class Order extends BaseAggregate<Order> {
         this.orderDetails = orderDetails;
     }
 
+    /**
+     * 更新库存结果
+     * @param lockStock
+     */
+    public void updateLockStock(LockStockDto lockStock) {
+        Map<Integer, List<OrderDetail>> skuId2OrderDetails = StreamEx.of(orderDetails.toStream()).groupingBy(OrderDetail::getSkuId);
+        skuId2OrderDetails.keySet().forEach(skuId -> {
+            List<OrderDetail> skuOrderDetails = skuId2OrderDetails.getOrDefault(skuId, Collections.emptyList());
+            for (int i = 1; i <= skuOrderDetails.size(); i++) {
+                skuOrderDetails.get(i - 1).updateLocked(i <= lockStock.getDetail(skuId).getLockedNum());
+            }
+        });
+    }
+
     public void updateTotalActualPay(BigDecimal totalActualPay) {
         this.totalActualPay = totalActualPay;
     }
@@ -106,6 +124,4 @@ public class Order extends BaseAggregate<Order> {
     }
 
 
-    public void updateStockLocked(int skuId, int lockedNum) {
-    }
 }

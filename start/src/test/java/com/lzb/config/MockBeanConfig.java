@@ -37,7 +37,7 @@ import static org.mockito.Mockito.doAnswer;
 @SpyBeans({
         @SpyBean(TransactionHelper.class),
         @SpyBean(IdGenerator.class),
-        @SpyBean(InventoryClient.class)
+        @SpyBean(InventoryClient.class),
 })
 @MockBeans({
 

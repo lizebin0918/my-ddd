@@ -40,7 +40,7 @@ public class PlaceOrderAppService {
         order.place();
 
         // 锁库存
-        // stockHandler.lockStock(order);
+        stockHandler.lockStock(order);
 
         orders.add(order);
         return order.getId();

@@ -36,15 +36,13 @@ public abstract class BaseDockerTest extends BaseTest {
     public static final PostgreSQLContainer<?> database = new PostgreSQLContainer<>("postgres:14.9")
             .withAccessToHost(true)
             .withPrivilegedMode(true)
-            .withReuse(true)
             .withUsername("postgres")
             .withPassword("123456")
             ;
 
     public static final RedisContainer redis =
             new RedisContainer(DockerImageName.parse("redis:7.2.0"))
-                    .withExposedPorts(6379)
-                    .withReuse(true);
+                    .withExposedPorts(6379);
 
     static class DataSourceInitializer
             implements ApplicationContextInitializer<ConfigurableApplicationContext> {

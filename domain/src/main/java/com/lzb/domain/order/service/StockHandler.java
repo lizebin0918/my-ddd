@@ -24,10 +24,7 @@ public class StockHandler {
      */
     public void lockStock(Order order) {
         LockStockDto lockStockDto = productGateway.lockStock(order);
-        order.getOrderDetails().forEach(orderDetail -> {
-            LockStockDto.LockStockDetailDto detail = lockStockDto.getDetail(orderDetail.getSkuId());
-            order.updateStockLocked(detail.getSkuId(), detail.getLockedNum());
-        });
+        order.updateLockStock(lockStockDto);
     }
 
 }

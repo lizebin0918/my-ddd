@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import com.lzb.BaseIntegrationTest;
+import com.lzb.adapter.rpc.inverntory.InventoryClient;
 import com.lzb.app.order.cmd.dto.PlaceOrderDetailReq;
 import com.lzb.app.order.cmd.dto.PlaceOrderReq;
 import com.lzb.component.id.IdGenerator;
@@ -30,11 +31,15 @@ class PlaceOrderAppServiceIntegrationTest extends BaseIntegrationTest {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private InventoryClient inventoryClient;
+
     @Test
     @DisplayName("测试OrderDetailBuilder")
     void should_place_order() {
 
         doReturn(1L).when(idGenerator).id();
+        // doReturn().when(inventoryClient).lockStock(any());
 
         PlaceOrderReq req = new PlaceOrderReq("CNY", BigDecimal.ONE, BigDecimal.ONE, BigDecimal.ONE, "email",
                 "phoneNumber", "firstName", "lastName", "addressLine1", "addressLine2", "country",
