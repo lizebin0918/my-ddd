@@ -36,7 +36,7 @@ public class ProductGatewayImpl implements ProductGateway {
 
     @Override
     public LockStockDto lockStock(Order order) {
-        LockStockReq req = OrderConverter.toLockStockReq(order);
+        LockStockReq req = OrderConverter.toLockStockReq(order.getId(), order.getOrderDetails());
         return OrderConverter.toLockStockResult(inventoryClient.lockStock(req));
     }
 

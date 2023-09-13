@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Lazy))
-public class OrderQueryAppServiceDb implements OrderQueryAppService {
+public class OrderQueryAppServiceImpl implements OrderQueryAppService {
 
     @Override
     public List<OrderView> list(OrderQuery query) {

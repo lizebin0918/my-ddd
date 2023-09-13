@@ -13,7 +13,7 @@ import com.lzb.BaseIntegrationTest;
 import com.lzb.component.helper.SpringHelper;
 import com.lzb.domain.order.aggregate.Order;
 import com.lzb.domain.order.repository.OrderRepository;
-import com.lzb.infr.domain.order.repository.OrderRepositoryDb;
+import com.lzb.infr.domain.order.repository.OrderRepositoryImpl;
 import com.lzb.infr.event.persistence.DomainEventPo;
 import com.lzb.infr.event.persistence.service.DomainEventPoService;
 import jakarta.annotation.Resource;
@@ -25,9 +25,9 @@ import org.springframework.test.context.jdbc.Sql;
 
 import static java.time.Instant.ofEpochMilli;
 
-class OrderRepositoryDbIntegrationTest extends BaseIntegrationTest {
+class OrderRepositoryImplIntegrationTest extends BaseIntegrationTest {
 
-    @Resource(name = OrderRepositoryDb.BEAN_NAME)
+    @Resource(name = OrderRepositoryImpl.BEAN_NAME)
     private OrderRepository orderRepository;
 
     @Resource
@@ -39,11 +39,11 @@ class OrderRepositoryDbIntegrationTest extends BaseIntegrationTest {
     @Test
     @DisplayName("测试SpringHelper")
     void should_get_bean_from_spring_helper() {
-        assertThat(springHelper.getBean(OrderRepositoryDb.BEAN_NAME)).isNotNull();
+        assertThat(springHelper.getBean(OrderRepositoryImpl.BEAN_NAME)).isNotNull();
     }
 
     @Test
-    @Sql("/sql/OrderRepositoryDbImplIntegrationTest/should_order_get.sql")
+    @Sql("/sql/OrderRepositoryImplIntegrationTest/should_order_get.sql")
     @DisplayName("测试聚合根查询")
     void should_order_get() {
 
@@ -59,7 +59,7 @@ class OrderRepositoryDbIntegrationTest extends BaseIntegrationTest {
     }
 
     @Test
-    @Sql("/sql/OrderRepositoryDbImplIntegrationTest/should_update_order_info.sql")
+    @Sql("/sql/OrderRepositoryImplIntegrationTest/should_update_order_info.sql")
     @DisplayName("测试聚合根查询")
     void should_update_order_info() {
         long orderId = 1L;
@@ -72,7 +72,7 @@ class OrderRepositoryDbIntegrationTest extends BaseIntegrationTest {
 
     @Test
     @DisplayName("测试取消订单")
-    @Sql("/sql/OrderRepositoryDbImplIntegrationTest/should_cancel_order.sql")
+    @Sql("/sql/OrderRepositoryImplIntegrationTest/should_cancel_order.sql")
     void should_cancel_order() {
         // given
         long orderId = 1L;
@@ -106,7 +106,7 @@ class OrderRepositoryDbIntegrationTest extends BaseIntegrationTest {
 
     @Test
     @DisplayName("测试缓存查询")
-    @Sql("/sql/OrderRepositoryDbImplIntegrationTest/should_get_in_cache.sql")
+    @Sql("/sql/OrderRepositoryImplIntegrationTest/should_get_in_cache.sql")
     void should_get_in_cache() {
 
         long orderId = 1L;
@@ -122,7 +122,7 @@ class OrderRepositoryDbIntegrationTest extends BaseIntegrationTest {
 
     @Test
     @DisplayName("测试缓存清除")
-    @Sql("/sql/OrderRepositoryDbImplIntegrationTest/should_clear_cache_when_get_in_cache.sql")
+    @Sql("/sql/OrderRepositoryImplIntegrationTest/should_clear_cache_when_get_in_cache.sql")
     void should_clear_cache_when_get_in_cache() {
         long orderId = 1L;
         Order order = orderRepository.getInCache(orderId);

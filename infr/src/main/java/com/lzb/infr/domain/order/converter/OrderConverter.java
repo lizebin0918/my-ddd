@@ -1,9 +1,9 @@
 package com.lzb.infr.domain.order.converter;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import com.lzb.adapter.rpc.inverntory.dto.LockStockReq;
 import com.lzb.adapter.rpc.inverntory.dto.LockStockReqDetail;
@@ -20,6 +20,7 @@ import com.lzb.infr.domain.order.persistence.po.OrderDetailPo;
 import com.lzb.infr.domain.order.persistence.po.OrderPo;
 import lombok.NonNull;
 import lombok.experimental.UtilityClass;
+import one.util.streamex.StreamEx;
 
 /**
  * <br/>
@@ -99,13 +100,12 @@ public final class OrderConverter {
     }
 
     public static List<LockStockReqDetail> toLocakStockDetails(OrderDetails orderDetails) {
-        Map<Integer, Integer> skuId2Num = new HashMap<>();
-        orderDetails.forEach(orderDetail -> skuId2Num.merge(orderDetail.getSkuId(), 1, Integer::sum));
-        return skuId2Num.entrySet().stream().map(entry -> new LockStockReqDetail(entry.getKey(), entry.getValue())).toList();
+        Map<Integer, Long> skuId2Num = StreamEx.of(orderDetails.toStream()).groupingBy(OrderDetail::getSkuId, Collectors.counting());
+        return skuId2Num.entrySet().stream().map(entry -> new LockStockReqDetail(entry.getKey(), entry.getValue().intValue())).toList();
     }
 
-    public static LockStockReq toLockStockReq(@NonNull Order order) {
-        return new LockStockReq(Objects.toString(order.getId()), toLocakStockDetails(order.getOrderDetails()));
+    public static LockStockReq toLockStockReq(long orderId, @NonNull OrderDetails orderDetails) {
+        return new LockStockReq(Objects.toString(orderId), toLocakStockDetails(orderDetails));
     }
 
     public static LockStockDto toLockStockResult(LockStockRsp lockStockRsp) {
