@@ -4,6 +4,7 @@ import com.lzb.app.order.cmd.dto.PlaceOrderReq;
 import com.lzb.app.order.cmd.factory.OrderFactory;
 import com.lzb.domain.order.aggregate.Order;
 import com.lzb.domain.order.repository.OrderRepository;
+import com.lzb.domain.order.service.StockHandler;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,6 +25,8 @@ public class PlaceOrderAppService {
 
     private final OrderFactory orderFactory;
 
+    private final StockHandler stockHandler;
+
     /**
      * 生单
      * @param req
@@ -37,7 +40,7 @@ public class PlaceOrderAppService {
         order.place();
 
         // 锁库存
-
+        // stockHandler.lockStock(order);
 
         orders.add(order);
         return order.getId();

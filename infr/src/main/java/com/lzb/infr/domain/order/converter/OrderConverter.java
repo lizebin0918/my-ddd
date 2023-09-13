@@ -76,7 +76,7 @@ public final class OrderConverter {
 
     public static OrderDetail toOrderDetail(OrderDetailPo orderDetailPo) {
         return new OrderDetail(orderDetailPo.getId(), orderDetailPo.getOrderId(),
-                orderDetailPo.getSkuId(), orderDetailPo.getOrderStatus(), orderDetailPo.getPrice());
+                orderDetailPo.getSkuId(), orderDetailPo.getOrderStatus(), orderDetailPo.getPrice(), orderDetailPo.getLocked());
     }
 
     public static OrderAddress toOrderAddress(OrderPo orderPo) {

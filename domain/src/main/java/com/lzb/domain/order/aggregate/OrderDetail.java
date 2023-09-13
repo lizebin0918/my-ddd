@@ -28,6 +28,13 @@ public class OrderDetail extends BaseEntity<OrderDetail> {
     private BigDecimal price;
 
     /**
+     * null:未知
+     * true:锁定库存
+     * false:缺货
+     */
+    private Boolean locked;
+
+    /**
      * 直接提供给仓储层使用，无需校验业务逻辑
      * @param id
      * @param orderId
@@ -35,12 +42,13 @@ public class OrderDetail extends BaseEntity<OrderDetail> {
      * @param orderStatus
      * @param price
      */
-    public OrderDetail(long id, long orderId, int skuId, @NonNull OrderStatus orderStatus, @NonNull BigDecimal price) {
+    public OrderDetail(long id, long orderId, int skuId, @NonNull OrderStatus orderStatus, @NonNull BigDecimal price, Boolean locked) {
         super(id);
         this.orderId = orderId;
         this.skuId = skuId;
         this.orderStatus = orderStatus;
         this.price = price;
+        this.locked = locked;
     }
 
     /**
@@ -50,4 +58,11 @@ public class OrderDetail extends BaseEntity<OrderDetail> {
         orderStatus = OrderStatus.CANCELED;
     }
 
+    /**
+     * 更新库存锁定状态
+     * @param locked
+     */
+    void updateLocked(Boolean locked) {
+        this.locked = locked;
+    }
 }

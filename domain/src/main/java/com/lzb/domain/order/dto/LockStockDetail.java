@@ -14,7 +14,5 @@ public class LockStockDetail {
 
     private final long orderDetailId;
     private final boolean locked;
-    private final long warehouseId;
-
 
 }

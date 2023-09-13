@@ -28,5 +28,7 @@ public class OrderDetailPo extends BasePo {
 
     private BigDecimal price;
 
+    private Boolean locked;
+
 
 }

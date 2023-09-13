@@ -20,6 +20,7 @@ import org.springframework.stereotype.Component;
 public class SkuValidator {
 
     private final ProductGateway productGateway;
+
     public void assertAllOfSkuIsOnSale(Set<Integer> skuIds) {
         boolean allIsOnSale = StreamEx.of(productGateway.onSale(toInts(skuIds))).allMatch(Sku::isOnSale);
         if (!allIsOnSale) {

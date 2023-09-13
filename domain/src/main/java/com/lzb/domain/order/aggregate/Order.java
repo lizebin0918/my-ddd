@@ -3,6 +3,8 @@ package com.lzb.domain.order.aggregate;
 import java.math.BigDecimal;
 
 import com.lzb.domain.common.aggregate.BaseAggregate;
+import com.lzb.domain.order.dto.LockStockDetail;
+import com.lzb.domain.order.dto.LockStockResult;
 import com.lzb.domain.order.enums.OrderStatus;
 import com.lzb.domain.order.event.OrderCanceledEvent;
 import com.lzb.domain.order.event.OrderPlacedEvent;
@@ -102,5 +104,15 @@ public class Order extends BaseAggregate<Order> {
      */
     public void place() {
         addEvent(OrderPlacedEvent.create(this.id));
+    }
+
+    /**
+     * 更新库存结果
+     * @param lockStockResult
+     */
+    public void updateStockStatus(LockStockResult lockStockResult) {
+        orderDetails.forEach(orderDetail ->
+                lockStockResult.getBy(orderDetail.getId())
+                        .ifPresent(stockStatus -> orderDetail.updateLocked(stockStatus.isLocked())));
     }
 }

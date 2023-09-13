@@ -30,6 +30,7 @@ create table order_detail
     sku_id       integer,
     order_status integer                             not null,
     price        numeric,
+    locked       bit(1),
     add_time     timestamp default CURRENT_TIMESTAMP not null,
     update_time  timestamp default CURRENT_TIMESTAMP not null
 );

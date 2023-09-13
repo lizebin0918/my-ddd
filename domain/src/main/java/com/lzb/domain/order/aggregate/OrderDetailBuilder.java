@@ -35,6 +35,7 @@ public class OrderDetailBuilder extends BaseBuilder<OrderDetail> {
     private int skuId;
     private BigDecimal price;
     private OrderStatus orderStatus;
+    private Boolean locked;
 
     public static OrderDetailBuilder newInstance() {
         return SpringHelper.getBean(OrderDetailBuilder.class);
@@ -65,9 +66,14 @@ public class OrderDetailBuilder extends BaseBuilder<OrderDetail> {
         return this;
     }
 
+    public OrderDetailBuilder locked(Boolean locked) {
+        this.locked = locked;
+        return this;
+    }
+
     @Override
     protected OrderDetail doBuild() {
-        return new OrderDetail(id, orderId, skuId, orderStatus, price);
+        return new OrderDetail(id, orderId, skuId, orderStatus, price, locked);
     }
 
 }
