@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-class SkuValidatorIntegrationTest extends BaseIntegrationTest {
+class SkuDtoValidatorIntegrationTest extends BaseIntegrationTest {
 
 
     @Autowired

@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 
-import com.lzb.adapter.annotation.MyResponseBody;
+import com.lzb.adapter.web.annotation.MyResponseBody;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.context.annotation.Lazy;

@@ -1,7 +1,9 @@
-package com.lzb.adapter.rpc;
+package com.lzb.adapter.rpc.inverntory;
+
+import com.lzb.adapter.rpc.inverntory.dto.LockStockReq;
+import com.lzb.adapter.rpc.inverntory.dto.LockStockRsp;
 
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.PostMapping;
 
 /*@FeignClient(value = "inventory", contextId = "inventory",
         url = "",
@@ -9,6 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
         configuration = {FeignConfig.class, InnerGatewayFeignConfig.class})*/
 @Component
 public class InventoryClient {
+
+    public LockStockRsp lockStock(LockStockReq lockStockReq) {
+        return null;
+    }
 
     /**
      * 锁定库存

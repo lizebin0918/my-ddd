@@ -1,8 +1,8 @@
-package com.lzb.adapter.intercepter;
+package com.lzb.adapter.web.intercepter;
 
 import java.util.Objects;
 
-import com.lzb.adapter.annotation.MyResponseBody;
+import com.lzb.adapter.web.annotation.MyResponseBody;
 import com.lzb.component.dto.ResponseDto;
 import com.lzb.component.utils.json.JsonUtils;
 import jakarta.servlet.http.HttpServletResponse;

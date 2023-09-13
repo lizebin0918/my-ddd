@@ -7,5 +7,5 @@
 
 ## 规范
 - 所有Builder都是多例的，参考：`com.lzb.domain.order.aggregate.OrderBuilder`
-
+- rpc的请求和响应的结尾：req/rsp
 

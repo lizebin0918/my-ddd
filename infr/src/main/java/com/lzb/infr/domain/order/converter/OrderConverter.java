@@ -1,15 +1,24 @@
 package com.lzb.infr.domain.order.converter;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
+import com.lzb.adapter.rpc.inverntory.dto.LockStockReq;
+import com.lzb.adapter.rpc.inverntory.dto.LockStockReqDetail;
+import com.lzb.adapter.rpc.inverntory.dto.LockStockRsp;
+import com.lzb.adapter.rpc.inverntory.dto.LockStockRspDetail;
 import com.lzb.domain.order.aggregate.Order;
 import com.lzb.domain.order.aggregate.OrderAddress;
 import com.lzb.domain.order.aggregate.OrderDetail;
 import com.lzb.domain.order.aggregate.OrderDetails;
+import com.lzb.domain.order.dto.LockStockDto;
 import com.lzb.domain.order.valobj.FullAddressLine;
 import com.lzb.domain.order.valobj.FullName;
 import com.lzb.infr.domain.order.persistence.po.OrderDetailPo;
 import com.lzb.infr.domain.order.persistence.po.OrderPo;
+import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 
 /**
@@ -87,4 +96,20 @@ public final class OrderConverter {
 
     }
 
+    public static List<LockStockReqDetail> toLocakStockDetails(OrderDetails orderDetails) {
+        Map<Integer, Integer> skuId2Num = new HashMap<>();
+        orderDetails.forEach(orderDetail -> skuId2Num.merge(orderDetail.getSkuId(), 1, Integer::sum));
+        return skuId2Num.entrySet().stream().map(entry -> new LockStockReqDetail(entry.getKey(), entry.getValue())).toList();
+    }
+
+    public static LockStockReq toLockStockReq(@NonNull Order order) {
+        return new LockStockReq(Objects.toString(order.getId()), toLocakStockDetails(order.getOrderDetails()));
+    }
+
+    public static LockStockDto toLockStockResult(LockStockRsp lockStockRsp) {
+        List<LockStockRspDetail> lockedDetails = lockStockRsp.getLockedDetails();
+        return new LockStockDto(lockedDetails.stream()
+                .map(lockedDetail -> new LockStockDto.LockStockDetailDto(lockedDetail.getSkuId(), lockedDetail.getLockedNum()))
+                .toList());
+    }
 }

@@ -3,8 +3,8 @@ package com.lzb.domain.order.gateway;
 import java.util.List;
 
 import com.lzb.domain.order.aggregate.Order;
-import com.lzb.domain.order.dto.LockStockResult;
-import com.lzb.domain.order.dto.Sku;
+import com.lzb.domain.order.dto.LockStockDto;
+import com.lzb.domain.order.dto.SkuDto;
 
 /**
  * <br/>
@@ -18,12 +18,12 @@ public interface ProductGateway {
      * @param skuIds
      * @return
      */
-    List<Sku> onSale(int... skuIds);
+    List<SkuDto> onSale(int... skuIds);
 
     /**
      * 锁定库存
      * @param order
      * @return
      */
-    LockStockResult lockStock(Order order);
+    LockStockDto lockStock(Order order);
 }

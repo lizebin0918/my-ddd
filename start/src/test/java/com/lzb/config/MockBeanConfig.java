@@ -3,19 +3,13 @@ package com.lzb.config;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.lzb.adapter.rpc.inverntory.InventoryClient;
 import com.lzb.annotation.MockBeanInit;
 import com.lzb.component.helper.TransactionHelper;
 import com.lzb.component.id.IdGenerator;
-import com.lzb.component.utils.DateUtils;
 import org.jetbrains.annotations.NotNull;
 import org.mockito.MockingDetails;
 import org.mockito.Mockito;
@@ -32,10 +26,7 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.util.Assert;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyList;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doAnswer;
-import static org.mockito.Mockito.when;
 
 /**
  * 定义MockBean默认行为
@@ -44,8 +35,9 @@ import static org.mockito.Mockito.when;
  */
 @TestConfiguration
 @SpyBeans({
-    @SpyBean(TransactionHelper.class),
-    @SpyBean(IdGenerator.class),
+        @SpyBean(TransactionHelper.class),
+        @SpyBean(IdGenerator.class),
+        @SpyBean(InventoryClient.class)
 })
 @MockBeans({
 

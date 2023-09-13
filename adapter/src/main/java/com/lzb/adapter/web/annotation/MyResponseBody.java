@@ -1,4 +1,4 @@
-package com.lzb.adapter.annotation;
+package com.lzb.adapter.web.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

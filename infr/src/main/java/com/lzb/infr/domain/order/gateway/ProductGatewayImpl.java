@@ -3,11 +3,13 @@ package com.lzb.infr.domain.order.gateway;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import com.lzb.adapter.rpc.InventoryClient;
+import com.lzb.adapter.rpc.inverntory.InventoryClient;
+import com.lzb.adapter.rpc.inverntory.dto.LockStockReq;
 import com.lzb.domain.order.aggregate.Order;
-import com.lzb.domain.order.dto.LockStockResult;
-import com.lzb.domain.order.dto.Sku;
+import com.lzb.domain.order.dto.LockStockDto;
+import com.lzb.domain.order.dto.SkuDto;
 import com.lzb.domain.order.gateway.ProductGateway;
+import com.lzb.infr.domain.order.converter.OrderConverter;
 import lombok.AllArgsConstructor;
 
 import org.springframework.context.annotation.Lazy;
@@ -28,13 +30,14 @@ public class ProductGatewayImpl implements ProductGateway {
     private final InventoryClient inventoryClient;
 
     @Override
-    public List<Sku> onSale(int... skuIds) {
-        return IntStream.of(skuIds).mapToObj(skuId -> new Sku(skuId, true)).toList();
+    public List<SkuDto> onSale(int... skuIds) {
+        return IntStream.of(skuIds).mapToObj(skuId -> new SkuDto(skuId, true)).toList();
     }
 
     @Override
-    public LockStockResult lockStock(Order order) {
-        // return inventoryClient.lockStock();
-        return null;
+    public LockStockDto lockStock(Order order) {
+        LockStockReq req = OrderConverter.toLockStockReq(order);
+        return OrderConverter.toLockStockResult(inventoryClient.lockStock(req));
     }
+
 }
