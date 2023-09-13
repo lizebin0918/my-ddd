@@ -53,6 +53,7 @@ public final class OrderConverter {
         orderDetailPo.setSkuId(orderDetail.getSkuId());
         orderDetailPo.setOrderStatus(orderDetail.getOrderStatus());
         orderDetailPo.setPrice(orderDetail.getPrice());
+        orderDetailPo.setLocked(orderDetail.getLocked());
         return orderDetailPo;
     }
 
@@ -84,7 +85,8 @@ public final class OrderConverter {
     }
 
     public static OrderDetail toOrderDetail(OrderDetailPo orderDetailPo) {
-        return new OrderDetail(orderDetailPo.getId(), orderDetailPo.getOrderId(),
+        return new OrderDetail(orderDetailPo.getId(),
+                orderDetailPo.getOrderId(),
                 orderDetailPo.getSkuId(), orderDetailPo.getOrderStatus(), orderDetailPo.getPrice(), orderDetailPo.getLocked());
     }
 
