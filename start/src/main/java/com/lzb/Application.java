@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.data.redis.RedisRepositoriesAutoConfiguration;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 // 启动报错：Multiple Spring Data modules found, entering strict repository configuration
 @SpringBootApplication(exclude = { RedisRepositoriesAutoConfiguration.class})
@@ -12,6 +13,8 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @EnableAspectJAutoProxy(proxyTargetClass = true, exposeProxy = true)
 // 启用缓存
 @EnableCaching
+// 开启异步
+@EnableAsync
 public class Application {
 
 	public static void main(String[] args) {
