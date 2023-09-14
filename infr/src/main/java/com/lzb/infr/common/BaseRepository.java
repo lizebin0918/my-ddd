@@ -49,7 +49,7 @@ public abstract class BaseRepository<R extends BaseAggregate<R>> implements Comm
         LongSupplier idSupplier = getCurrentProxy().doAdd(aggregate);
         transactionHelper.runWithRequired(() -> {
             id.set(idSupplier.getAsLong());
-            domainEventSupport.asynSendAfterPersist(aggregate.getEvents());
+            domainEventSupport.sendEventAfterPersist(aggregate.getEvents());
         });
         return id.get();
     }
@@ -61,7 +61,7 @@ public abstract class BaseRepository<R extends BaseAggregate<R>> implements Comm
         Runnable doUpdate = getCurrentProxy().doUpdate(aggregate);
         transactionHelper.runWithRequired(() -> {
             doUpdate.run();
-            domainEventSupport.asynSendAfterPersist(aggregate.getEvents());
+            domainEventSupport.sendEventAfterPersist(aggregate.getEvents());
         });
     }
 }

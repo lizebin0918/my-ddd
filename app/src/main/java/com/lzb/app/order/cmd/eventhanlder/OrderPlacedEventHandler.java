@@ -1,4 +1,4 @@
-package com.lzb.domain.order.event.handler;
+package com.lzb.app.order.cmd.eventhanlder;
 
 /**
  * <br/>
