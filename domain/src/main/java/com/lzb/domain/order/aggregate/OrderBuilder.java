@@ -147,7 +147,7 @@ public class OrderBuilder extends BaseBuilder<Order> {
 
     @Override
     protected void validate(Order order) {
-        skuValidator.assertAllOfSkuIsOnSale(orderDetails.getSkuIds());
+        skuValidator.assertAllOfSkuIsOnSale(order.getOrderDetails().getSkuIds());
     }
 
 }
