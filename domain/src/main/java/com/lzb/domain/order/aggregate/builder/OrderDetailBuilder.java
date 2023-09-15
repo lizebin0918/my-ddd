@@ -1,10 +1,11 @@
-package com.lzb.domain.order.aggregate;
+package com.lzb.domain.order.aggregate.builder;
 
 import java.math.BigDecimal;
 
 import com.lzb.component.helper.SpringHelper;
 import com.lzb.component.id.IdGenerator;
 import com.lzb.domain.common.aggregate.BaseBuilder;
+import com.lzb.domain.order.aggregate.OrderDetail;
 import com.lzb.domain.order.enums.OrderStatus;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
