@@ -1,14 +1,9 @@
 package com.lzb.domain.order.aggregate;
 
-import java.math.BigDecimal;
-import java.util.List;
-
 import com.lzb.BaseIntegrationTest;
-import com.lzb.app.order.cmd.dto.PlaceOrderDetailReq;
-import com.lzb.app.order.cmd.dto.PlaceOrderReq;
 import com.lzb.component.helper.SpringHelper;
 import com.lzb.component.id.IdGenerator;
-import com.lzb.domain.order.enums.OrderStatus;
+import com.lzb.domain.order.aggregate.builder.OrderBuilder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

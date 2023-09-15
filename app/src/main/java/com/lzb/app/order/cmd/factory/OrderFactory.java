@@ -5,9 +5,9 @@ import com.lzb.app.order.cmd.dto.PlaceOrderDetailReq;
 import com.lzb.app.order.cmd.dto.PlaceOrderReq;
 import com.lzb.component.id.IdGenerator;
 import com.lzb.domain.order.aggregate.Order;
-import com.lzb.domain.order.aggregate.OrderBuilder;
+import com.lzb.domain.order.aggregate.builder.OrderBuilder;
 import com.lzb.domain.order.aggregate.OrderDetail;
-import com.lzb.domain.order.aggregate.OrderDetailBuilder;
+import com.lzb.domain.order.aggregate.builder.OrderDetailBuilder;
 import com.lzb.domain.order.enums.OrderStatus;
 import jakarta.annotation.Resource;
 
