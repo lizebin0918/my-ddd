@@ -1,6 +1,7 @@
 package com.lzb.infr.event.sender;
 
 import java.util.Queue;
+import java.util.function.Consumer;
 
 import com.lzb.domain.common.event.DomainEvent;
 
@@ -17,11 +18,12 @@ public interface DomainEventSender {
      * 2.发送领域事件
      * @param event
      */
-    void send(DomainEvent event);
+    void send(DomainEvent event, Consumer<DomainEvent> callback);
 
-    default void sendEvents(Queue<DomainEvent> events) {
+    default void sendEvents(Queue<DomainEvent> events, Consumer<DomainEvent> callback) {
         while (!events.isEmpty()) {
-            send(events.poll());
+            send(events.poll(), callback);
         }
     }
+
 }

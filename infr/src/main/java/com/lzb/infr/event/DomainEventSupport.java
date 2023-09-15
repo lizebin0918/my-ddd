@@ -10,7 +10,7 @@ import com.lzb.infr.event.convertor.DomainEventConvertor;
 import com.lzb.infr.event.persistence.DomainEventPo;
 import com.lzb.infr.event.persistence.service.DomainEventPoService;
 import com.lzb.infr.event.sender.DomainEventSender;
-import com.lzb.infr.event.sender.DomainEventSenderEventBusImpl;
+import com.lzb.infr.event.sender.DomainEventSenderImpl;
 import jakarta.annotation.Resource;
 import lombok.NonNull;
 
@@ -25,7 +25,7 @@ import org.springframework.stereotype.Component;
 public class DomainEventSupport {
 
     //@Resource(name = DomainEventSenderRocketMqImpl.BEAN_NAME)
-    @Resource(name = DomainEventSenderEventBusImpl.BEAN_NAME)
+    @Resource(name = DomainEventSenderImpl.BEAN_NAME)
     public DomainEventSender domainEventSender;
 
     @Resource
@@ -43,7 +43,9 @@ public class DomainEventSupport {
             List<DomainEventPo> domainEventPos = DomainEventConvertor.toDomainEventPos(Constants.TOPIC, events);
             boolean success = domainEventPoService.saveBatch(domainEventPos);
             if (success) {
-                transactionHelper.runAfterCommit(() -> domainEventSender.sendEvents(events));
+                transactionHelper.runAfterCommit(() -> domainEventSender.sendEvents(events, event -> {
+                    domainEventPoService.updateSent(event.getBizId());
+                }));
             }
         });
     }

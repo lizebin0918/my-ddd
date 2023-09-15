@@ -1,5 +1,7 @@
 package com.lzb.infr.event.sender;
 
+import java.util.function.Consumer;
+
 import com.google.common.eventbus.EventBus;
 import com.lzb.component.utils.json.JsonUtils;
 import com.lzb.domain.common.event.DomainEvent;
@@ -15,16 +17,17 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class DomainEventSenderEventBusImpl implements DomainEventSender {
+public class DomainEventSenderImpl implements DomainEventSender {
 
-    public static final String BEAN_NAME = "domainEventSenderEventBusImpl";
+    public static final String BEAN_NAME = "domainEventSenderImpl";
 
     @Resource
     private EventBus eventBus;
 
     @Override
-    public void send(DomainEvent event) {
+    public void send(DomainEvent event, Consumer<DomainEvent> callback) {
         log.info("发送领域事件 {}", JsonUtils.toJSONString(event));
         eventBus.post(event);
+        callback.accept(event);
     }
 }
