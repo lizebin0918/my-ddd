@@ -5,6 +5,8 @@ import com.lzb.app.order.cmd.dto.PlaceOrderDetailReq;
 import com.lzb.app.order.cmd.dto.PlaceOrderReq;
 import com.lzb.component.id.IdGenerator;
 import com.lzb.domain.order.aggregate.Order;
+import com.lzb.domain.order.aggregate.OrderAddress;
+import com.lzb.domain.order.aggregate.builder.OrderAddressBuilder;
 import com.lzb.domain.order.aggregate.builder.OrderBuilder;
 import com.lzb.domain.order.aggregate.OrderDetail;
 import com.lzb.domain.order.aggregate.builder.OrderDetailBuilder;
@@ -32,14 +34,12 @@ public class OrderFactory {
                 .exchangeRate(req.exchangeRate())
                 .totalShouldPay(req.totalShouldPay())
                 .totalActualPay(req.totalActualPay())
-                .email(req.email())
-                .phoneNumber(req.phoneNumber())
-                .firstName(req.firstName())
-                .lastName(req.lastName())
-                .addressLine1(req.addressLine1())
-                .addressLine2(req.addressLine2())
-                .country(req.country())
                 .orderStatus(OrderStatus.WAIT_PAY);
+
+        OrderAddress orderAddress = OrderAddressBuilder.newInstance().email(req.email()).phoneNumber(req.phoneNumber())
+                .firstName(req.firstName()).lastName(req.lastName()).addressLine1(req.addressLine1())
+                .addressLine2(req.addressLine2()).country(req.country()).build();
+        orderBuilder.orderAddress(orderAddress);
 
         for (PlaceOrderDetailReq detailReq : req.details()) {
             OrderDetail orderDetail = OrderDetailBuilder.newInstance()
