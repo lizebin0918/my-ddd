@@ -3,8 +3,8 @@ package com.lzb.adapter.web;
 import java.math.BigDecimal;
 import java.util.List;
 
-import com.lzb.app.order.cmd.dto.PlaceOrderDetailCmd;
-import com.lzb.app.order.cmd.dto.PlaceOrderCmd;
+import com.lzb.domain.order.dto.PlaceOrderCmd;
+import com.lzb.domain.order.dto.PlaceOrderDetailCmd;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 

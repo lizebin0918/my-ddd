@@ -1,9 +1,9 @@
 package com.lzb.app.order.cmd;
 
-import com.lzb.app.order.cmd.dto.UpdateOrderAddressCmd;
 import com.lzb.domain.order.aggregate.Order;
 import com.lzb.domain.order.aggregate.OrderAddress;
 import com.lzb.domain.order.aggregate.builder.OrderAddressBuilder;
+import com.lzb.domain.order.dto.UpdateOrderAddressCmd;
 import com.lzb.domain.order.repository.OrderRepository;
 import jakarta.annotation.Resource;
 

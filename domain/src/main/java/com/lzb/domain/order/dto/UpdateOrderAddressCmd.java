@@ -1,4 +1,4 @@
-package com.lzb.app.order.cmd.dto;
+package com.lzb.domain.order.dto;
 
 /**
  * 更新订单地址<br/>
