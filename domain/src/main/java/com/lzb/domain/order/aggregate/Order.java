@@ -69,7 +69,7 @@ public class Order extends BaseAggregate<Order> {
             @NonNull BigDecimal totalShouldPay,
             @NonNull BigDecimal totalActualPay,
             @NonNull OrderAddress orderAddress,
-            @NonNull OrderDetails orderDetails) {
+            @NonNull List<OrderDetail> orderDetails) {
         super(id);
         this.version = version;
         this.orderStatus = orderStatus;
@@ -78,7 +78,7 @@ public class Order extends BaseAggregate<Order> {
         this.totalShouldPay = totalShouldPay;
         this.totalActualPay = totalActualPay;
         this.orderAddress = orderAddress;
-        this.orderDetails = orderDetails;
+        this.orderDetails = new OrderDetails(orderDetails);
     }
 
     /**

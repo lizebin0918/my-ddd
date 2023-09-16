@@ -9,7 +9,6 @@ import com.lzb.domain.common.aggregate.BaseBuilder;
 import com.lzb.domain.order.aggregate.Order;
 import com.lzb.domain.order.aggregate.OrderAddress;
 import com.lzb.domain.order.aggregate.OrderDetail;
-import com.lzb.domain.order.aggregate.OrderDetails;
 import com.lzb.domain.order.enums.OrderStatus;
 import com.lzb.domain.order.service.SkuValidator;
 import lombok.NonNull;
@@ -43,11 +42,10 @@ public class OrderBuilder extends BaseBuilder<Order> {
     private BigDecimal totalActualPay;
     private int version;
     private OrderStatus orderStatus;
-    private final List<OrderDetail> innerOrderDetails = new ArrayList<>();
+    private final List<OrderDetail> orderDetails = new ArrayList<>();
 
     // 聚合根内部值对象
     private OrderAddress orderAddress;
-    private OrderDetails orderDetails;
 
     public static OrderBuilder newInstance() {
         return SpringHelper.getBean(OrderBuilder.class);
@@ -89,7 +87,7 @@ public class OrderBuilder extends BaseBuilder<Order> {
     }
 
     public OrderBuilder addOrderDetail(@NonNull OrderDetail orderDetail) {
-        innerOrderDetails.add(orderDetail);
+        orderDetails.add(orderDetail);
         return this;
     }
 
@@ -101,7 +99,6 @@ public class OrderBuilder extends BaseBuilder<Order> {
 
     @Override
     protected Order doBuild() {
-        orderDetails = new OrderDetails(this.innerOrderDetails);
         return new Order(orderId, version, orderStatus, currency, exchangeRate, totalShouldPay, totalActualPay, orderAddress, orderDetails);
     }
 
