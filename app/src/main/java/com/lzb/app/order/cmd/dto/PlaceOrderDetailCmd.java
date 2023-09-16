@@ -7,7 +7,7 @@ import java.math.BigDecimal;
  * Created on : 2023-09-06 13:00
  * @author lizebin
  */
-public record PlaceOrderDetailReq(Integer skuId, BigDecimal price) {
+public record PlaceOrderDetailCmd(Integer skuId, BigDecimal price) {
 
 
 }

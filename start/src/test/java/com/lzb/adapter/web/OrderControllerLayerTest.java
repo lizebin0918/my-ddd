@@ -5,14 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.lzb.adapter.web.order.OrderController;
 import com.lzb.adapter.web.test.TestOrderController;
 import com.lzb.app.order.cmd.PlaceOrderAppService;
-import com.lzb.app.order.cmd.dto.PlaceOrderDetailReq;
-import com.lzb.app.order.cmd.dto.PlaceOrderReq;
 import com.lzb.component.utils.json.JsonUtils;
 import org.approvaltests.JsonApprovals;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -28,7 +24,6 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 

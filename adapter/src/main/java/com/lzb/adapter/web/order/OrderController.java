@@ -1,7 +1,7 @@
 package com.lzb.adapter.web.order;
 
 import com.lzb.app.order.cmd.PlaceOrderAppService;
-import com.lzb.app.order.cmd.dto.PlaceOrderReq;
+import com.lzb.app.order.cmd.dto.PlaceOrderCmd;
 import com.lzb.component.dto.ResponseDto;
 import lombok.RequiredArgsConstructor;
 
@@ -24,8 +24,8 @@ public class OrderController {
     private final PlaceOrderAppService placeOrderAppService;
 
     @PutMapping
-    public ResponseDto<Long> placeOrder(@RequestBody PlaceOrderReq placeOrderReq) {
-        return ResponseDto.success(placeOrderAppService.placeOrder(placeOrderReq));
+    public ResponseDto<Long> placeOrder(@RequestBody PlaceOrderCmd placeOrderCmd) {
+        return ResponseDto.success(placeOrderAppService.placeOrder(placeOrderCmd));
     }
 
 }

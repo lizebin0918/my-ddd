@@ -1,8 +1,8 @@
 package com.lzb.app.order.cmd.factory;
 
 
-import com.lzb.app.order.cmd.dto.PlaceOrderDetailReq;
-import com.lzb.app.order.cmd.dto.PlaceOrderReq;
+import com.lzb.app.order.cmd.dto.PlaceOrderDetailCmd;
+import com.lzb.app.order.cmd.dto.PlaceOrderCmd;
 import com.lzb.component.id.IdGenerator;
 import com.lzb.domain.order.aggregate.Order;
 import com.lzb.domain.order.aggregate.OrderAddress;
@@ -26,7 +26,7 @@ public class OrderFactory {
     @Resource
     private IdGenerator idGenerator;
 
-    public Order create(PlaceOrderReq req) {
+    public Order create(PlaceOrderCmd req) {
         long orderId = idGenerator.id();
         OrderBuilder orderBuilder = OrderBuilder.newInstance()
                 .orderId(orderId)
@@ -41,7 +41,7 @@ public class OrderFactory {
                 .addressLine2(req.addressLine2()).country(req.country()).build();
         orderBuilder.orderAddress(orderAddress);
 
-        for (PlaceOrderDetailReq detailReq : req.details()) {
+        for (PlaceOrderDetailCmd detailReq : req.details()) {
             OrderDetail orderDetail = OrderDetailBuilder.newInstance()
                     .orderId(orderId)
                     .skuId(detailReq.skuId())

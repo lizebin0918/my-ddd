@@ -1,6 +1,6 @@
 package com.lzb.app.order.cmd;
 
-import com.lzb.app.order.cmd.dto.PlaceOrderReq;
+import com.lzb.app.order.cmd.dto.PlaceOrderCmd;
 import com.lzb.app.order.cmd.factory.OrderFactory;
 import com.lzb.domain.order.aggregate.Order;
 import com.lzb.domain.order.repository.OrderRepository;
@@ -32,7 +32,7 @@ public class PlaceOrderAppService {
      * @param req
      * @return
      */
-    public long placeOrder(PlaceOrderReq req) {
+    public long placeOrder(PlaceOrderCmd req) {
         log.info("place order: {}", req);
 
         // 生单

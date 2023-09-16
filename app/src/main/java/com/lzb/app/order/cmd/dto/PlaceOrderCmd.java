@@ -8,10 +8,10 @@ import java.util.List;
  * Created on : 2023-09-06 13:00
  * @author lizebin
  */
-public record PlaceOrderReq(String currency, BigDecimal exchangeRate, BigDecimal totalShouldPay,
+public record PlaceOrderCmd(String currency, BigDecimal exchangeRate, BigDecimal totalShouldPay,
                             BigDecimal totalActualPay, String email, String phoneNumber, String firstName,
                             String lastName, String addressLine1, String addressLine2, String country,
-                            List<PlaceOrderDetailReq> details) {
+                            List<PlaceOrderDetailCmd> details) {
 
 
 }
