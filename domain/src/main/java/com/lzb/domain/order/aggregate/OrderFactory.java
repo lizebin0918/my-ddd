@@ -4,8 +4,8 @@ import com.lzb.component.id.IdGenerator;
 import com.lzb.domain.order.aggregate.builder.OrderAddressBuilder;
 import com.lzb.domain.order.aggregate.builder.OrderBuilder;
 import com.lzb.domain.order.aggregate.builder.OrderDetailBuilder;
-import com.lzb.domain.order.dto.PlaceOrderCmd;
-import com.lzb.domain.order.dto.PlaceOrderDetailCmd;
+import com.lzb.domain.order.dto.PlaceOrderDto;
+import com.lzb.domain.order.dto.PlaceOrderDetailDto;
 import com.lzb.domain.order.enums.OrderStatus;
 import jakarta.annotation.Resource;
 
@@ -22,7 +22,7 @@ public class OrderFactory {
     @Resource
     private IdGenerator idGenerator;
 
-    public Order create(PlaceOrderCmd req) {
+    public Order create(PlaceOrderDto req) {
         long orderId = idGenerator.id();
         OrderBuilder orderBuilder = OrderBuilder.newInstance()
                 .orderId(orderId)
@@ -37,7 +37,7 @@ public class OrderFactory {
                 .addressLine2(req.addressLine2()).country(req.country()).build();
         orderBuilder.orderAddress(orderAddress);
 
-        for (PlaceOrderDetailCmd detailReq : req.details()) {
+        for (PlaceOrderDetailDto detailReq : req.details()) {
             OrderDetail orderDetail = OrderDetailBuilder.newInstance()
                     .orderId(orderId)
                     .skuId(detailReq.skuId())

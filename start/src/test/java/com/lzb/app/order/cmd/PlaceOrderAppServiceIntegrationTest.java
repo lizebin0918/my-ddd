@@ -10,8 +10,8 @@ import com.lzb.adapter.rpc.inverntory.dto.LockStockRsp;
 import com.lzb.adapter.rpc.inverntory.dto.LockStockRspDetail;
 import com.lzb.component.id.IdGenerator;
 import com.lzb.domain.order.aggregate.Order;
-import com.lzb.domain.order.dto.PlaceOrderCmd;
-import com.lzb.domain.order.dto.PlaceOrderDetailCmd;
+import com.lzb.domain.order.dto.PlaceOrderDto;
+import com.lzb.domain.order.dto.PlaceOrderDetailDto;
 import com.lzb.domain.order.repository.OrderRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -44,9 +44,9 @@ class PlaceOrderAppServiceIntegrationTest extends BaseIntegrationTest {
         doReturn(1L).when(idGenerator).id();
         doReturn(new LockStockRsp(Arrays.asList(new LockStockRspDetail(1, 1)))).when(inventoryClient).lockStock(any());
 
-        PlaceOrderCmd req = new PlaceOrderCmd("CNY", BigDecimal.ONE, BigDecimal.ONE, BigDecimal.ONE, "email",
+        PlaceOrderDto req = new PlaceOrderDto("CNY", BigDecimal.ONE, BigDecimal.ONE, BigDecimal.ONE, "email",
                 "phoneNumber", "firstName", "lastName", "addressLine1", "addressLine2", "country",
-                List.of(new PlaceOrderDetailCmd(1, BigDecimal.ONE)));
+                List.of(new PlaceOrderDetailDto(1, BigDecimal.ONE)));
 
         long orderId = placeOrderAppService.placeOrder(req);
         Order order = orderRepository.getOrThrow(orderId);

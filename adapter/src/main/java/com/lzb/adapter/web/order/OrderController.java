@@ -2,7 +2,7 @@ package com.lzb.adapter.web.order;
 
 import com.lzb.app.order.cmd.PlaceOrderAppService;
 import com.lzb.component.dto.ResponseDto;
-import com.lzb.domain.order.dto.PlaceOrderCmd;
+import com.lzb.domain.order.dto.PlaceOrderDto;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.context.annotation.Lazy;
@@ -24,8 +24,8 @@ public class OrderController {
     private final PlaceOrderAppService placeOrderAppService;
 
     @PutMapping
-    public ResponseDto<Long> placeOrder(@RequestBody PlaceOrderCmd placeOrderCmd) {
-        return ResponseDto.success(placeOrderAppService.placeOrder(placeOrderCmd));
+    public ResponseDto<Long> placeOrder(@RequestBody PlaceOrderDto placeOrderDto) {
+        return ResponseDto.success(placeOrderAppService.placeOrder(placeOrderDto));
     }
 
 }
