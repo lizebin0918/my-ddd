@@ -1,6 +1,6 @@
 {
-  "country" : "email1",
-  "email" : "123456@qq.com",
+  "country" : "country1",
+  "email" : "email1",
   "fullAddressLine" : {
     "addressLine1" : "addressLine11",
     "addressLine2" : "addressLine21"

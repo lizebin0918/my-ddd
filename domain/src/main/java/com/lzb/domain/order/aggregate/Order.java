@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import com.lzb.component.exception.BizException;
 import com.lzb.domain.common.aggregate.BaseAggregate;
 import com.lzb.domain.order.dto.LockStockDto;
 import com.lzb.domain.order.enums.OrderStatus;
@@ -123,5 +124,18 @@ public class Order extends BaseAggregate<Order> {
         addEvent(OrderPlacedEvent.create(this.id));
     }
 
+    public boolean isShipped() {
+        return false;
+    }
 
+    /**
+     * 更新地址
+     * @param newOrderAddress
+     */
+    public void updateAddress(OrderAddress newOrderAddress) {
+        if (isShipped()) {
+            throw new BizException("订单已发货，不能修改地址");
+        }
+        this.orderAddress = newOrderAddress;
+    }
 }
