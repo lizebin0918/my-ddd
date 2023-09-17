@@ -2,5 +2,10 @@ package com.lzb.domain.order.valobj;
 
 import java.io.Serializable;
 
-public record FullAddressLine(String addressLine1, String addressLine2) implements Serializable {
+import lombok.Value;
+
+@Value
+public class FullAddressLine implements Serializable {
+    String addressLine1;
+    String addressLine2;
 }

@@ -64,12 +64,12 @@ public final class OrderConverter {
         orderPo.setCountry(orderAddress.getCountry());
 
         FullName fullName = orderAddress.getFullName();
-        orderPo.setFirstName(fullName.firstName());
-        orderPo.setLastName(fullName.lastName());
+        orderPo.setFirstName(fullName.getFirstName());
+        orderPo.setLastName(fullName.getLastName());
 
         FullAddressLine fullAddressLine = orderAddress.getFullAddressLine();
-        orderPo.setAddressLine1(fullAddressLine.addressLine1());
-        orderPo.setAddressLine2(fullAddressLine.addressLine2());
+        orderPo.setAddressLine1(fullAddressLine.getAddressLine1());
+        orderPo.setAddressLine2(fullAddressLine.getAddressLine2());
     }
 
     public static Order toOrder(OrderPo orderPo,

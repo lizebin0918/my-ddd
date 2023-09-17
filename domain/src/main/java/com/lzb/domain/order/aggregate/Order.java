@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.lzb.component.exception.BizException;
 import com.lzb.domain.common.aggregate.BaseAggregate;
 import com.lzb.domain.order.aggregate.builder.OrderAddressBuilder;
@@ -14,7 +15,6 @@ import com.lzb.domain.order.event.OrderCanceledEvent;
 import com.lzb.domain.order.event.OrderPlacedEvent;
 import com.lzb.domain.order.valobj.FullAddressLine;
 import com.lzb.domain.order.valobj.FullName;
-import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
@@ -94,12 +94,12 @@ public class Order extends BaseAggregate<Order> {
             throw new BizException("订单已发货，不能修改地址");
         }
         OrderAddress newOrderAddress = OrderAddressBuilder.newInstance(this.orderAddress)
-                .addressLine1(fullAddressLine.addressLine1())
-                .addressLine2(fullAddressLine.addressLine2())
+                .addressLine1(fullAddressLine.getAddressLine1())
+                .addressLine2(fullAddressLine.getAddressLine2())
                 .country(country)
                 .email(email)
-                .firstName(fullName.firstName())
-                .lastName(fullName.lastName())
+                .firstName(fullName.getFirstName())
+                .lastName(fullName.getLastName())
                 .phoneNumber(phoneNumber).build();
         this.orderAddress = newOrderAddress;
     }

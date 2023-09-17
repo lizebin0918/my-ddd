@@ -80,12 +80,12 @@ public class OrderAddressBuilder extends BaseBuilder<OrderAddress> {
         FullAddressLine sourcefullAddressLine = source.getFullAddressLine();
         FullName sourcefullName = source.getFullName();
         orderAddressBuilder.id(source.getId())
-                .addressLine1(sourcefullAddressLine.addressLine1())
-                .addressLine2(sourcefullAddressLine.addressLine2())
+                .addressLine1(sourcefullAddressLine.getAddressLine1())
+                .addressLine2(sourcefullAddressLine.getAddressLine2())
                 .country(source.getCountry())
                 .email(source.getEmail())
-                .firstName(sourcefullName.firstName())
-                .lastName(sourcefullName.lastName())
+                .firstName(sourcefullName.getFirstName())
+                .lastName(sourcefullName.getLastName())
                 .phoneNumber(source.getPhoneNumber());
         return orderAddressBuilder;
     }

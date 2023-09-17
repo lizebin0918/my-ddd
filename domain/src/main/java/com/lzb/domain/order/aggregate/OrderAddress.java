@@ -1,6 +1,7 @@
 package com.lzb.domain.order.aggregate;
 
 import cn.hutool.core.lang.Assert;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.lzb.domain.common.aggregate.BaseEntity;
 import com.lzb.domain.order.valobj.FullAddressLine;
 import com.lzb.domain.order.valobj.FullName;
@@ -40,6 +41,7 @@ public class OrderAddress extends BaseEntity<OrderAddress> {
     @NonNull
     private String country;
 
+    @JsonCreator
     public OrderAddress(Long id,
             @NonNull FullName fullName,
             @NonNull FullAddressLine fullAddressLine,
@@ -59,7 +61,7 @@ public class OrderAddress extends BaseEntity<OrderAddress> {
      * @param fullName
      */
     void updateFullName(FullName fullName) {
-        Assert.notBlank(fullName.firstName(), "firstName is null");
+        Assert.notBlank(fullName.getFirstName(), "firstName is null");
         this.fullName = fullName;
     }
 }
