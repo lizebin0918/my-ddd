@@ -1,5 +1,9 @@
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.lzb.component.utils.json.JsonUtils;
-import com.lzb.domain.order.aggregate.Order;
+import com.lzb.domain.common.aggregate.BaseEntity;
+import lombok.Getter;
 
 /**
  * <br/>
@@ -8,10 +12,60 @@ import com.lzb.domain.order.aggregate.Order;
  */
 public class MyTest {
 
-    public static void main(String[] args) {
-        String json = "{\"cancel\":false,\"currency\":\"CNY\",\"events\":null,\"excha1,\"id\":1,\"logs\":null,\"orderAddress\":{\"country\":\"CHINA\",\"email\":\"123456@qq.com\",\"fullAddressLine\":{\"addressLine1\":\"line1\",\"addressLine2\":\"line2\"},\"fullName\":{\"firstName\":\"first\",\"lastName\":\"last\"},\"id\":1,\"phoneNumber\":\"13800000000\",\"version\":1},\"orderDetails\":{\"skuIds\":[1,2]},\"orderStatus\":\"WAIT_PAY\",\"shipped\":false,\"totalActualPay\":88,\"totalShouldPay\":88,\"version\":1}";
-        Order order = JsonUtils.json2JavaBean(json, Order.class);
+    public static void main(String[] args) throws JsonProcessingException {
+        String json = "{\"id\":1,\"name\":\"lzb\",\"addTime\":123}";
+        A order = JsonUtils.INSTANCE.readerFor(A.class).readValue(json);
         System.out.println(JsonUtils.toJSONString(order));
+        String s = "{\n"
+                + "    \"cancel\":false,\n"
+                + "    \"currency\":\"CNY\",\n"
+                + "    \"events\":null,\n"
+                + "    \"exchangeRate\":1,\n"
+                + "    \"id\":1,\n"
+                + "    \"logs\":null,\n"
+                + "    \"orderAddress\":{\n"
+                + "        \"country\":\"CHINA\",\n"
+                + "        \"email\":\"123456@qq.com\",\n"
+                + "        \"fullAddressLine\":{\n"
+                + "            \"addressLine1\":\"line1\",\n"
+                + "            \"addressLine2\":\"line2\"\n"
+                + "        },\n"
+                + "        \"fullName\":{\n"
+                + "            \"firstName\":\"first\",\n"
+                + "            \"lastName\":\"last\"\n"
+                + "        },\n"
+                + "        \"id\":1,\n"
+                + "        \"phoneNumber\":\"13800000000\",\n"
+                + "        \"version\":1\n"
+                + "    },\n"
+                + "    \"orderDetails\":{\n"
+                + "        \"skuIds\":[\n"
+                + "            1,\n"
+                + "            2\n"
+                + "        ]\n"
+                + "    },\n"
+                + "    \"orderStatus\":\"WAIT_PAY\",\n"
+                + "    \"shipped\":false,\n"
+                + "    \"totalActualPay\":88,\n"
+                + "    \"totalShouldPay\":88,\n"
+                + "    \"version\":1\n"
+                + "}";
+    }
+
+    @Getter
+    public static class A extends BaseEntity<A> {
+        String name;
+
+        @JsonCreator
+        public A(@JsonProperty("id") long id, @JsonProperty("name") String name) {
+            super(id);
+            this.name = name;
+        }
+
+        /*public A(long id, String name) {
+            super(id);
+            this.name = name;
+        }*/
     }
 
 }
