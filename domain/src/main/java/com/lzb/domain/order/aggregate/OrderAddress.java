@@ -1,10 +1,12 @@
 package com.lzb.domain.order.aggregate;
 
+import cn.hutool.core.lang.Assert;
 import com.lzb.domain.common.aggregate.BaseEntity;
 import com.lzb.domain.order.valobj.FullAddressLine;
 import com.lzb.domain.order.valobj.FullName;
 import lombok.Getter;
 import lombok.NonNull;
+
 
 /**
  * 订单地址实体<br/>
@@ -50,5 +52,14 @@ public class OrderAddress extends BaseEntity<OrderAddress> {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.country = country;
+    }
+
+    /**
+     * 更新姓名
+     * @param fullName
+     */
+    void updateFullName(FullName fullName) {
+        Assert.notBlank(fullName.firstName(), "firstName is null");
+        this.fullName = fullName;
     }
 }

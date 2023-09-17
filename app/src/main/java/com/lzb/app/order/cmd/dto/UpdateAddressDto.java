@@ -7,11 +7,11 @@ import jakarta.validation.constraints.NotBlank;
  * Created on : 2023-09-16 10:29
  * @author lizebin
  */
-public record UpdateOrderAddressDto(long orderId,
-                                    @NotBlank
+public record UpdateAddressDto(long orderId,
+                               @NotBlank
                                     String email,
-                                    @NotBlank
+                               @NotBlank
                                     String phoneNumber, String firstName,
-                                    String lastName, String addressLine1, String addressLine2, String country) {
+                               String lastName, String addressLine1, String addressLine2, String country) {
 
 }

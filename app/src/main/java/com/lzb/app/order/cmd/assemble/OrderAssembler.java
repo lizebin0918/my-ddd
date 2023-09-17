@@ -4,7 +4,6 @@ import java.util.function.LongSupplier;
 
 import com.lzb.app.order.cmd.dto.PlaceOrderDetailDto;
 import com.lzb.app.order.cmd.dto.PlaceOrderDto;
-import com.lzb.app.order.cmd.dto.UpdateOrderAddressDto;
 import com.lzb.domain.order.aggregate.Order;
 import com.lzb.domain.order.aggregate.OrderAddress;
 import com.lzb.domain.order.aggregate.OrderDetail;
@@ -12,6 +11,8 @@ import com.lzb.domain.order.aggregate.builder.OrderAddressBuilder;
 import com.lzb.domain.order.aggregate.builder.OrderBuilder;
 import com.lzb.domain.order.aggregate.builder.OrderDetailBuilder;
 import com.lzb.domain.order.enums.OrderStatus;
+import com.lzb.domain.order.valobj.FullAddressLine;
+import com.lzb.domain.order.valobj.FullName;
 import lombok.experimental.UtilityClass;
 
 /**
@@ -50,16 +51,12 @@ public class OrderAssembler {
         return orderBuilder.build();
     }
 
-    public static OrderAddress toOrderAddress(UpdateOrderAddressDto updateOrderAddress) {
-        return OrderAddressBuilder.newInstance()
-                .email(updateOrderAddress.email())
-                .phoneNumber(updateOrderAddress.phoneNumber())
-                .firstName(updateOrderAddress.firstName())
-                .lastName(updateOrderAddress.lastName())
-                .addressLine1(updateOrderAddress.addressLine1())
-                .addressLine2(updateOrderAddress.addressLine2())
-                .country(updateOrderAddress.country())
-                .build();
+    public FullName toFullName(String firstName, String lastName) {
+        return new FullName(firstName, lastName);
+    }
+
+    public FullAddressLine toFullAddressLine(String addressLine1, String addressLine2) {
+        return new FullAddressLine(addressLine1, addressLine2);
     }
 
 }

@@ -12,6 +12,8 @@ import com.lzb.domain.order.dto.LockStockDto;
 import com.lzb.domain.order.enums.OrderStatus;
 import com.lzb.domain.order.event.OrderCanceledEvent;
 import com.lzb.domain.order.event.OrderPlacedEvent;
+import com.lzb.domain.order.valobj.FullAddressLine;
+import com.lzb.domain.order.valobj.FullName;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NonNull;
@@ -84,25 +86,20 @@ public class Order extends BaseAggregate<Order> {
         this.orderDetails = new OrderDetails(orderDetails);
     }
 
-    public void updateAddress(OrderAddress newOrderAddress) {
-        if (isShipped()) {
-            throw new BizException("订单已发货，不能修改地址");
-        }
-
-        this.orderAddress = newOrderAddress;
-    }
 
     public void updateAddress(String email,
-            String phoneNumber, String firstName,
-            String lastName, String addressLine1, String addressLine2, String country) {
+            String phoneNumber, FullName fullName,
+            FullAddressLine fullAddressLine, String country) {
         if (isShipped()) {
             throw new BizException("订单已发货，不能修改地址");
         }
         OrderAddress newOrderAddress = OrderAddressBuilder.newInstance(this.orderAddress)
-                .addressLine1(addressLine1).addressLine2(addressLine2)
+                .addressLine1(fullAddressLine.addressLine1())
+                .addressLine2(fullAddressLine.addressLine2())
                 .country(country)
                 .email(email)
-                .firstName(firstName).lastName(lastName)
+                .firstName(fullName.firstName())
+                .lastName(fullName.lastName())
                 .phoneNumber(phoneNumber).build();
         this.orderAddress = newOrderAddress;
     }
@@ -153,4 +150,11 @@ public class Order extends BaseAggregate<Order> {
         return false;
     }
 
+    /**
+     * 只更新姓名
+     * @param fullName
+     */
+    public void updateFullName(FullName fullName) {
+        this.orderAddress.updateFullName(fullName);
+    }
 }
