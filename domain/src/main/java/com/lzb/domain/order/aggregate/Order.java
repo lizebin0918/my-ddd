@@ -9,7 +9,6 @@ import com.lzb.component.exception.BizException;
 import com.lzb.domain.common.aggregate.BaseAggregate;
 import com.lzb.domain.order.aggregate.builder.OrderAddressBuilder;
 import com.lzb.domain.order.dto.LockStockDto;
-import com.lzb.domain.order.dto.UpdateOrderAddressDto;
 import com.lzb.domain.order.enums.OrderStatus;
 import com.lzb.domain.order.event.OrderCanceledEvent;
 import com.lzb.domain.order.event.OrderPlacedEvent;
@@ -84,17 +83,7 @@ public class Order extends BaseAggregate<Order> {
         this.orderDetails = new OrderDetails(orderDetails);
     }
 
-    public void updateAddress(UpdateOrderAddressDto updateOrderAddress) {
-        OrderAddress newOrderAddress = OrderAddressBuilder.newInstance()
-                .email(updateOrderAddress.email())
-                .phoneNumber(updateOrderAddress.phoneNumber())
-                .firstName(updateOrderAddress.firstName())
-                .lastName(updateOrderAddress.lastName())
-                .addressLine1(updateOrderAddress.addressLine1())
-                .addressLine2(updateOrderAddress.addressLine2())
-                .country(updateOrderAddress.country())
-                .build();
-
+    public void updateAddress(OrderAddress newOrderAddress) {
         if (isShipped()) {
             throw new BizException("订单已发货，不能修改地址");
         }

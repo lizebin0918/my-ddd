@@ -1,7 +1,9 @@
 package com.lzb.app.order.cmd;
 
+import com.lzb.app.order.cmd.dto.UpdateOrderAddressDto;
 import com.lzb.domain.order.aggregate.Order;
-import com.lzb.domain.order.dto.UpdateOrderAddressDto;
+import com.lzb.domain.order.aggregate.OrderAddress;
+import com.lzb.domain.order.aggregate.builder.OrderAddressBuilder;
 import com.lzb.domain.order.repository.OrderRepository;
 import jakarta.annotation.Resource;
 
@@ -25,7 +27,16 @@ public class UpdateOrderAddressAppService {
     public void updateOrderAddress(UpdateOrderAddressDto updateOrderAddress) {
         long orderId = updateOrderAddress.orderId();
         Order order = orderRepository.getOrThrow(orderId);
-        order.updateAddress(updateOrderAddress);
+        OrderAddress newOrderAddress = OrderAddressBuilder.newInstance()
+                .email(updateOrderAddress.email())
+                .phoneNumber(updateOrderAddress.phoneNumber())
+                .firstName(updateOrderAddress.firstName())
+                .lastName(updateOrderAddress.lastName())
+                .addressLine1(updateOrderAddress.addressLine1())
+                .addressLine2(updateOrderAddress.addressLine2())
+                .country(updateOrderAddress.country())
+                .build();
+        order.updateAddress(newOrderAddress);
         orderRepository.update(order);
     }
 

@@ -1,8 +1,7 @@
 package com.lzb.app.order.cmd;
 
+import com.lzb.app.order.cmd.dto.PlaceOrderDto;
 import com.lzb.domain.order.aggregate.Order;
-import com.lzb.domain.order.aggregate.OrderFactory;
-import com.lzb.domain.order.dto.PlaceOrderDto;
 import com.lzb.domain.order.repository.OrderRepository;
 import com.lzb.domain.order.service.StockHandler;
 import lombok.RequiredArgsConstructor;

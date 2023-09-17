@@ -1,4 +1,4 @@
-package com.lzb.domain.order.dto;
+package com.lzb.app.order.cmd.dto;
 
 import java.math.BigDecimal;
 import java.util.List;

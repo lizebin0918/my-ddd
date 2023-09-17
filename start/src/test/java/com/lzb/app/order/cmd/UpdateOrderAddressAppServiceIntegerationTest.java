@@ -1,8 +1,8 @@
 package com.lzb.app.order.cmd;
 
 import com.lzb.BaseIntegrationTest;
+import com.lzb.app.order.cmd.dto.UpdateOrderAddressDto;
 import com.lzb.domain.order.aggregate.Order;
-import com.lzb.domain.order.dto.UpdateOrderAddressDto;
 import com.lzb.domain.order.repository.OrderRepository;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.DisplayName;

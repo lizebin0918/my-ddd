@@ -1,11 +1,14 @@
-package com.lzb.domain.order.aggregate;
+package com.lzb.app.order.cmd;
 
+import com.lzb.app.order.cmd.dto.PlaceOrderDetailDto;
+import com.lzb.app.order.cmd.dto.PlaceOrderDto;
 import com.lzb.component.id.IdGenerator;
+import com.lzb.domain.order.aggregate.Order;
+import com.lzb.domain.order.aggregate.OrderAddress;
+import com.lzb.domain.order.aggregate.OrderDetail;
 import com.lzb.domain.order.aggregate.builder.OrderAddressBuilder;
 import com.lzb.domain.order.aggregate.builder.OrderBuilder;
 import com.lzb.domain.order.aggregate.builder.OrderDetailBuilder;
-import com.lzb.domain.order.dto.PlaceOrderDto;
-import com.lzb.domain.order.dto.PlaceOrderDetailDto;
 import com.lzb.domain.order.enums.OrderStatus;
 import jakarta.annotation.Resource;
 
