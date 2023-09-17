@@ -38,7 +38,7 @@ public class OrderAddress extends BaseEntity<OrderAddress> {
     @NonNull
     private String country;
 
-    public OrderAddress(long id,
+    public OrderAddress(Long id,
             @NonNull FullName fullName,
             @NonNull FullAddressLine fullAddressLine,
             @NonNull String email,

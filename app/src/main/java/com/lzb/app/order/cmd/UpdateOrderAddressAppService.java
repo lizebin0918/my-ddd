@@ -26,7 +26,14 @@ public class UpdateOrderAddressAppService {
     public void updateOrderAddress(UpdateOrderAddressDto updateOrderAddress) {
         long orderId = updateOrderAddress.orderId();
         Order order = orderRepository.getOrThrow(orderId);
-        order.updateAddress(OrderAssembler.toOrderAddress(updateOrderAddress));
+        // order.updateAddress(OrderAssembler.toOrderAddress(updateOrderAddress));
+        order.updateAddress(updateOrderAddress.email(),
+                updateOrderAddress.phoneNumber(),
+                updateOrderAddress.firstName(),
+                updateOrderAddress.lastName(),
+                updateOrderAddress.addressLine1(),
+                updateOrderAddress.addressLine2(),
+                updateOrderAddress.country());
         orderRepository.update(order);
     }
 

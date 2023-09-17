@@ -22,7 +22,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor(onConstructor = @__(@Lazy))
 public class OrderAddressBuilder extends BaseBuilder<OrderAddress> {
 
-    private long id;
+    private Long id;
     private String email;
     private String phoneNumber;
     private String firstName;
@@ -73,6 +73,21 @@ public class OrderAddressBuilder extends BaseBuilder<OrderAddress> {
 
     public static OrderAddressBuilder newInstance() {
         return SpringHelper.getBean(OrderAddressBuilder.class);
+    }
+
+    public static OrderAddressBuilder newInstance(OrderAddress source) {
+        OrderAddressBuilder orderAddressBuilder = newInstance();
+        FullAddressLine sourcefullAddressLine = source.getFullAddressLine();
+        FullName sourcefullName = source.getFullName();
+        orderAddressBuilder.id(source.getId())
+                .addressLine1(sourcefullAddressLine.addressLine1())
+                .addressLine2(sourcefullAddressLine.addressLine2())
+                .country(source.getCountry())
+                .email(source.getEmail())
+                .firstName(sourcefullName.firstName())
+                .lastName(sourcefullName.lastName())
+                .phoneNumber(source.getPhoneNumber());
+        return orderAddressBuilder;
     }
 
     @Override

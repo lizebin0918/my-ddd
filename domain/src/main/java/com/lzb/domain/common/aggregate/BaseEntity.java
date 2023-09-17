@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 @Getter
 public abstract class BaseEntity<R extends BaseEntity<R>> implements Serializable {
 
-    protected BaseEntity(long id) {
+    protected BaseEntity(Long id) {
         this.id = id;
     }
 

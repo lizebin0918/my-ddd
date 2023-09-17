@@ -12,6 +12,7 @@ import com.lzb.domain.order.dto.LockStockDto;
 import com.lzb.domain.order.enums.OrderStatus;
 import com.lzb.domain.order.event.OrderCanceledEvent;
 import com.lzb.domain.order.event.OrderPlacedEvent;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
@@ -88,6 +89,21 @@ public class Order extends BaseAggregate<Order> {
             throw new BizException("订单已发货，不能修改地址");
         }
 
+        this.orderAddress = newOrderAddress;
+    }
+
+    public void updateAddress(String email,
+            String phoneNumber, String firstName,
+            String lastName, String addressLine1, String addressLine2, String country) {
+        if (isShipped()) {
+            throw new BizException("订单已发货，不能修改地址");
+        }
+        OrderAddress newOrderAddress = OrderAddressBuilder.newInstance(this.orderAddress)
+                .addressLine1(addressLine1).addressLine2(addressLine2)
+                .country(country)
+                .email(email)
+                .firstName(firstName).lastName(lastName)
+                .phoneNumber(phoneNumber).build();
         this.orderAddress = newOrderAddress;
     }
 
