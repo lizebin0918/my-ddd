@@ -1,8 +1,10 @@
-package com.lzb.app.order.cmd;
+package com.lzb.app.order.cmd.assemble;
+
+import java.util.function.LongSupplier;
 
 import com.lzb.app.order.cmd.dto.PlaceOrderDetailDto;
 import com.lzb.app.order.cmd.dto.PlaceOrderDto;
-import com.lzb.component.id.IdGenerator;
+import com.lzb.app.order.cmd.dto.UpdateOrderAddressDto;
 import com.lzb.domain.order.aggregate.Order;
 import com.lzb.domain.order.aggregate.OrderAddress;
 import com.lzb.domain.order.aggregate.OrderDetail;
@@ -10,23 +12,18 @@ import com.lzb.domain.order.aggregate.builder.OrderAddressBuilder;
 import com.lzb.domain.order.aggregate.builder.OrderBuilder;
 import com.lzb.domain.order.aggregate.builder.OrderDetailBuilder;
 import com.lzb.domain.order.enums.OrderStatus;
-import jakarta.annotation.Resource;
-
-import org.springframework.stereotype.Component;
+import lombok.experimental.UtilityClass;
 
 /**
- * 订单聚合根工厂<br/>
- * Created on : 2023-09-09 16:38
- * @author lizebin
+ * <br/>
+ * Created on : 2023-09-17 13:49
+ * @author mac
  */
-@Component
-public class OrderFactory {
+@UtilityClass
+public class OrderAssembler {
 
-    @Resource
-    private IdGenerator idGenerator;
-
-    public Order create(PlaceOrderDto req) {
-        long orderId = idGenerator.id();
+    public static Order toOrder(PlaceOrderDto req, LongSupplier idProvider) {
+        long orderId = idProvider.getAsLong();
         OrderBuilder orderBuilder = OrderBuilder.newInstance()
                 .orderId(orderId)
                 .currency(req.currency())
@@ -53,5 +50,16 @@ public class OrderFactory {
         return orderBuilder.build();
     }
 
+    public static OrderAddress toOrderAddress(UpdateOrderAddressDto updateOrderAddress) {
+        return OrderAddressBuilder.newInstance()
+                .email(updateOrderAddress.email())
+                .phoneNumber(updateOrderAddress.phoneNumber())
+                .firstName(updateOrderAddress.firstName())
+                .lastName(updateOrderAddress.lastName())
+                .addressLine1(updateOrderAddress.addressLine1())
+                .addressLine2(updateOrderAddress.addressLine2())
+                .country(updateOrderAddress.country())
+                .build();
+    }
 
 }

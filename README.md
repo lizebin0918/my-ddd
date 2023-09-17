@@ -10,5 +10,5 @@
 - rpc的请求和响应的结尾：req/rsp
 
 ## 疑问
-- controller的cmd实体在app层定义，如果要传到domain层，那就只能在domian定义了，有点别扭...
+- controller的cmd实体在app层定义，如果要传到domain层，那就只能在domian定义了，有点别扭...(最后引入XxxxAssembler把dto转换domain对象)
 

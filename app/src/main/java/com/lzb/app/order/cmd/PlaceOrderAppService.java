@@ -1,6 +1,8 @@
 package com.lzb.app.order.cmd;
 
+import com.lzb.app.order.cmd.assemble.OrderAssembler;
 import com.lzb.app.order.cmd.dto.PlaceOrderDto;
+import com.lzb.component.id.IdGenerator;
 import com.lzb.domain.order.aggregate.Order;
 import com.lzb.domain.order.repository.OrderRepository;
 import com.lzb.domain.order.service.StockHandler;
@@ -22,9 +24,9 @@ public class PlaceOrderAppService {
 
     private final OrderRepository orders;
 
-    private final OrderFactory orderFactory;
-
     private final StockHandler stockHandler;
+
+    private final IdGenerator idGenerator;
 
     /**
      * 生单
@@ -35,7 +37,7 @@ public class PlaceOrderAppService {
         log.info("place order: {}", req);
 
         // 生单
-        Order order = orderFactory.create(req);
+        Order order = OrderAssembler.toOrder(req, idGenerator::id);
         order.place();
 
         // 锁库存
