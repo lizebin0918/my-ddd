@@ -112,4 +112,9 @@ public final class OrderConverter {
                 .map(lockedDetail -> new LockStockDto.LockStockDetailDto(lockedDetail.getSkuId(), lockedDetail.getLockedNum()))
                 .toList());
     }
+
+    public static List<Order> toOrders(List<OrderPo> orders, List<OrderDetailPo> orderDetails) {
+        Map<Long, List<OrderDetailPo>> orderId2OrderDetailPos = StreamEx.of(orderDetails).groupingBy(OrderDetailPo::getOrderId);
+        return orders.stream().map(order -> toOrder(order, orderId2OrderDetailPos.get(order.getOrderId()))).toList();
+    }
 }

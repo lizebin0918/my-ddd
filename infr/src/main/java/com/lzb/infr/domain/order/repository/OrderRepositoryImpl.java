@@ -1,23 +1,30 @@
 package com.lzb.infr.domain.order.repository;
 
+import java.util.Collections;
 import java.util.ConcurrentModificationException;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.LongSupplier;
+import java.util.stream.Collectors;
+import java.util.stream.LongStream;
 
 import com.lzb.component.utils.MyDiff;
 import com.lzb.component.utils.json.JsonUtils;
 import com.lzb.domain.order.aggregate.Order;
+import com.lzb.domain.order.aggregate.OrderAddress;
 import com.lzb.domain.order.repository.OrderRepository;
 import com.lzb.infr.common.BaseRepository;
 import com.lzb.infr.config.cache.CacheConstants;
+import com.lzb.infr.domain.order.converter.OrderConverter;
 import com.lzb.infr.domain.order.persistence.po.OrderDetailPo;
+import com.lzb.infr.domain.order.persistence.po.OrderPo;
 import com.lzb.infr.domain.order.persistence.service.OrderDetailPoService;
 import com.lzb.infr.domain.order.persistence.service.OrderPoService;
-import com.lzb.infr.domain.order.converter.OrderConverter;
-import com.lzb.infr.domain.order.persistence.po.OrderPo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import one.util.streamex.LongStreamEx;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
 import org.springframework.cache.annotation.CacheConfig;
@@ -103,5 +110,16 @@ public class OrderRepositoryImpl extends BaseRepository<Order> implements OrderR
     @Cacheable(key = "#id", unless = "#result == null")
     public Order getInCache(long id) {
         return get(id).orElse(null);
+    }
+
+    @Override
+    public List<Order> list(long... orderIds) {
+        if (ArrayUtils.isEmpty(orderIds)) {
+            return Collections.emptyList();
+        }
+        Set<Long> orderIdSet = LongStreamEx.of(orderIds).boxed().toSet();
+        List<OrderPo> orders = orderPoService.listByIds(orderIdSet);
+        List<OrderDetailPo> orderDetails = orderDetailPoService.listByOrderIds(orderIdSet);
+        return OrderConverter.toOrders(orders, orderDetails);
     }
 }
