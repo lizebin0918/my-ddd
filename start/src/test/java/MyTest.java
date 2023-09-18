@@ -1,8 +1,10 @@
-import com.fasterxml.jackson.annotation.JsonCreator;
+import java.beans.ConstructorProperties;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.lzb.component.utils.json.JsonUtils;
 import com.lzb.domain.common.aggregate.BaseEntity;
+import com.lzb.domain.order.aggregate.Order;
 import lombok.Getter;
 
 /**
@@ -50,14 +52,19 @@ public class MyTest {
                 + "    \"totalShouldPay\":88,\n"
                 + "    \"version\":1\n"
                 + "}";
+        json = "{\"id\":1}";
+        System.out.println(json);
+        Order o = JsonUtils.INSTANCE.readerFor(Order.class).readValue(json);
+        System.out.println(JsonUtils.toJSONString(o));
     }
 
     @Getter
     public static class A extends BaseEntity<A> {
         String name;
 
-        @JsonCreator
-        public A(@JsonProperty("id") long id, @JsonProperty("name") String name) {
+        //@JsonCreator
+        @ConstructorProperties({"id", "name"})
+        public A(/*@JsonProperty("id")*/ long id, /*@JsonProperty("name")*/ String name) {
             super(id);
             this.name = name;
         }

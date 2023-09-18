@@ -17,22 +17,22 @@ import lombok.extern.slf4j.Slf4j;
 @Getter
 public class OrderDetail extends BaseEntity<OrderDetail> {
 
-    private final long orderId;
+    private long orderId;
 
-    private final int skuId;
-
-    @NonNull
-    private final OrderStatus orderStatus;
+    private int skuId;
 
     @NonNull
-    private final BigDecimal price;
+    private OrderStatus orderStatus;
+
+    @NonNull
+    private BigDecimal price;
 
     /**
      * null:未知
      * true:锁定库存
      * false:缺货
      */
-    private final Boolean locked;
+    private Boolean locked;
 
     /**
      * 直接提供给仓储层使用，无需校验业务逻辑

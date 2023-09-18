@@ -1,11 +1,13 @@
 package com.lzb.domain.order.aggregate;
 
+import java.beans.ConstructorProperties;
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.lzb.component.exception.BizException;
 import com.lzb.domain.common.aggregate.BaseAggregate;
 import com.lzb.domain.order.aggregate.builder.OrderAddressBuilder;
@@ -33,25 +35,25 @@ import one.util.streamex.StreamEx;
 public class Order extends BaseAggregate<Order> {
 
     @NonNull
-    private final OrderStatus orderStatus;
+    private OrderStatus orderStatus;
 
     @NonNull
-    private final String currency;
+    private String currency;
 
     @NonNull
-    private final BigDecimal exchangeRate;
+    private BigDecimal exchangeRate;
 
     @NonNull
-    private final BigDecimal totalShouldPay;
+    private BigDecimal totalShouldPay;
 
     @NonNull
-    private final BigDecimal totalActualPay;
+    private BigDecimal totalActualPay;
 
     @NonNull
-    private final OrderAddress orderAddress;
+    private OrderAddress orderAddress;
 
     @NonNull
-    private final OrderDetails orderDetails;
+    private OrderDetails orderDetails;
 
 
     /**
@@ -84,6 +86,11 @@ public class Order extends BaseAggregate<Order> {
         this.totalActualPay = totalActualPay;
         this.orderAddress = orderAddress;
         this.orderDetails = new OrderDetails(orderDetails);
+    }
+
+    @JsonCreator
+    public Order(@JsonProperty("id") int id) {
+        super((long)id);
     }
 
 
