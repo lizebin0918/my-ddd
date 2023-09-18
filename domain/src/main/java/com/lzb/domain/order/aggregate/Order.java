@@ -68,7 +68,6 @@ public class Order extends BaseAggregate<Order> {
      * @param orderAddress
      * @param orderDetails
      */
-    @ConstructorProperties({"id", "version", "orderStatus", "currency", "exchangeRate", "totalShouldPay", "totalActualPay", "orderAddress", "orderDetails"})
     public Order(long id,
             int version,
             @NonNull OrderStatus orderStatus,
@@ -78,6 +77,32 @@ public class Order extends BaseAggregate<Order> {
             @NonNull BigDecimal totalActualPay,
             @NonNull OrderAddress orderAddress,
             @NonNull List<OrderDetail> orderDetails) {
+        this(id, version, orderStatus, currency, exchangeRate, totalShouldPay,
+                totalActualPay, orderAddress, new OrderDetails(orderDetails));
+    }
+
+    /**
+     * 构造器，@ConstructorProperties 用于反序列化
+     * @param id
+     * @param version
+     * @param orderStatus
+     * @param currency
+     * @param exchangeRate
+     * @param totalShouldPay
+     * @param totalActualPay
+     * @param orderAddress
+     * @param orderDetails
+     */
+    @ConstructorProperties({"id", "version", "orderStatus", "currency", "exchangeRate", "totalShouldPay", "totalActualPay", "orderAddress", "orderDetails"})
+    public Order(long id,
+            int version,
+            @NonNull OrderStatus orderStatus,
+            @NonNull String currency,
+            @NonNull BigDecimal exchangeRate,
+            @NonNull BigDecimal totalShouldPay,
+            @NonNull BigDecimal totalActualPay,
+            @NonNull OrderAddress orderAddress,
+            @NonNull OrderDetails orderDetails) {
         super(id);
         this.version = version;
         this.orderStatus = orderStatus;
@@ -86,7 +111,7 @@ public class Order extends BaseAggregate<Order> {
         this.totalShouldPay = totalShouldPay;
         this.totalActualPay = totalActualPay;
         this.orderAddress = orderAddress;
-        this.orderDetails = new OrderDetails(orderDetails);
+        this.orderDetails = orderDetails;
     }
 
     public void updateAddress(String email,
