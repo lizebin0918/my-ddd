@@ -3,9 +3,11 @@ package com.lzb.domain.order.valobj;
 import java.beans.ConstructorProperties;
 import java.io.Serializable;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 @Getter
+@EqualsAndHashCode
 public class FullAddressLine implements Serializable {
 
     private final String addressLine1;

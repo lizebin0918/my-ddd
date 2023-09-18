@@ -4,6 +4,7 @@ import java.beans.ConstructorProperties;
 import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Value;
@@ -14,6 +15,7 @@ import lombok.Value;
  * @author lizebin
  */
 @Getter
+@EqualsAndHashCode
 public class FullName implements Serializable {
 
     private final String firstName;
