@@ -18,7 +18,7 @@ public class MyTest {
         String json = "{\"id\":1,\"name\":\"lzb\",\"addTime\":123}";
         A order = JsonUtils.INSTANCE.readerFor(A.class).readValue(json);
         System.out.println(JsonUtils.toJSONString(order));
-        String s = "{\n"
+        String orderJson = "{\n"
                 + "    \"cancel\":false,\n"
                 + "    \"currency\":\"CNY\",\n"
                 + "    \"events\":null,\n"
@@ -52,9 +52,7 @@ public class MyTest {
                 + "    \"totalShouldPay\":88,\n"
                 + "    \"version\":1\n"
                 + "}";
-        json = "{\"id\":1}";
-        System.out.println(json);
-        Order o = JsonUtils.INSTANCE.readerFor(Order.class).readValue(json);
+        Order o = JsonUtils.INSTANCE.readerFor(Order.class).readValue(orderJson);
         System.out.println(JsonUtils.toJSONString(o));
     }
 

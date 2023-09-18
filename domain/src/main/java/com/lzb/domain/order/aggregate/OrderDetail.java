@@ -1,5 +1,6 @@
 package com.lzb.domain.order.aggregate;
 
+import java.beans.ConstructorProperties;
 import java.math.BigDecimal;
 
 import com.lzb.domain.common.aggregate.BaseEntity;
@@ -42,6 +43,7 @@ public class OrderDetail extends BaseEntity<OrderDetail> {
      * @param orderStatus
      * @param price
      */
+    @ConstructorProperties({"id", "orderId", "skuId", "orderStatus", "price", "locked"})
     public OrderDetail(long id, long orderId, int skuId, @NonNull OrderStatus orderStatus, @NonNull BigDecimal price, Boolean locked) {
         super(id);
         this.orderId = orderId;

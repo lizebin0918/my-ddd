@@ -68,6 +68,7 @@ public class Order extends BaseAggregate<Order> {
      * @param orderAddress
      * @param orderDetails
      */
+    @ConstructorProperties({"id", "version", "orderStatus", "currency", "exchangeRate", "totalShouldPay", "totalActualPay", "orderAddress", "orderDetails"})
     public Order(long id,
             int version,
             @NonNull OrderStatus orderStatus,
@@ -87,12 +88,6 @@ public class Order extends BaseAggregate<Order> {
         this.orderAddress = orderAddress;
         this.orderDetails = new OrderDetails(orderDetails);
     }
-
-    @JsonCreator
-    public Order(@JsonProperty("id") int id) {
-        super((long)id);
-    }
-
 
     public void updateAddress(String email,
             String phoneNumber, FullName fullName,
