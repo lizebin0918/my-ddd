@@ -18,10 +18,10 @@ import lombok.NonNull;
 public class OrderAddress extends BaseEntity<OrderAddress> {
 
     @NonNull
-    private FullName fullName;
+    private final FullName fullName;
 
     @NonNull
-    private FullAddressLine fullAddressLine;
+    private final FullAddressLine fullAddressLine;
 
     /**
      * 邮箱

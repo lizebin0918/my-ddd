@@ -33,25 +33,25 @@ import one.util.streamex.StreamEx;
 public class Order extends BaseAggregate<Order> {
 
     @NonNull
-    private OrderStatus orderStatus;
+    private final OrderStatus orderStatus;
 
     @NonNull
-    private String currency;
+    private final String currency;
 
     @NonNull
-    private BigDecimal exchangeRate;
+    private final BigDecimal exchangeRate;
 
     @NonNull
-    private BigDecimal totalShouldPay;
+    private final BigDecimal totalShouldPay;
 
     @NonNull
-    private BigDecimal totalActualPay;
+    private final BigDecimal totalActualPay;
 
     @NonNull
-    private OrderAddress orderAddress;
+    private final OrderAddress orderAddress;
 
     @NonNull
-    private OrderDetails orderDetails;
+    private final OrderDetails orderDetails;
 
 
     /**
