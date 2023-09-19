@@ -5,6 +5,7 @@ import java.util.List;
 import com.lzb.app.order.query.view.OrderDetailView;
 import com.lzb.app.order.query.view.OrderView;
 import com.lzb.app.order.query.dto.OrderQueryDto;
+import com.lzb.component.dto.ResponseDto;
 
 /**
  * 订单列表<br/>
@@ -27,4 +28,5 @@ public interface OrderQueryAppService {
      */
     OrderDetailView detail(long orderId);
 
+    long count();
 }

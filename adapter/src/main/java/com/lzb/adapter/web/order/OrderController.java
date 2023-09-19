@@ -2,10 +2,12 @@ package com.lzb.adapter.web.order;
 
 import com.lzb.app.order.cmd.PlaceOrderAppService;
 import com.lzb.app.order.cmd.dto.PlaceOrderDto;
+import com.lzb.app.order.query.OrderQueryAppService;
 import com.lzb.component.dto.ResponseDto;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.context.annotation.Lazy;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,9 +25,16 @@ public class OrderController {
 
     private final PlaceOrderAppService placeOrderAppService;
 
+    private final OrderQueryAppService orderQueryAppService;
+
     @PutMapping
-    public ResponseDto<Long> placeOrder(@RequestBody PlaceOrderDto placeOrderDto) {
-        return ResponseDto.success(placeOrderAppService.placeOrder(placeOrderDto));
+    public Long placeOrder(@RequestBody PlaceOrderDto placeOrderDto) {
+        return placeOrderAppService.placeOrder(placeOrderDto);
+    }
+
+    @GetMapping("/count")
+    public Long count() {
+        return orderQueryAppService.count();
     }
 
 }
