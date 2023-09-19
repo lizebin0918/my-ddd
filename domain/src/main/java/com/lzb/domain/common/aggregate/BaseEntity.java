@@ -3,6 +3,7 @@ package com.lzb.domain.common.aggregate;
 
 import java.io.Serializable;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -13,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Getter
+@AllArgsConstructor
 public abstract class BaseEntity<R extends BaseEntity<R>> implements Serializable {
 
     protected BaseEntity(Long id) {

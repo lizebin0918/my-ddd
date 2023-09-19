@@ -4,8 +4,8 @@ import java.beans.ConstructorProperties;
 
 import cn.hutool.core.lang.Assert;
 import com.lzb.domain.common.aggregate.BaseEntity;
-import com.lzb.domain.order.valobj.FullAddressLine;
-import com.lzb.domain.order.valobj.FullName;
+import com.lzb.domain.common.valobj.FullAddressLine;
+import com.lzb.domain.common.valobj.FullName;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NonNull;

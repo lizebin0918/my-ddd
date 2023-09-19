@@ -1,20 +1,17 @@
-package com.lzb.domain.order.valobj;
+package com.lzb.domain.common.valobj;
 
 import java.beans.ConstructorProperties;
 import java.io.Serializable;
 
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 @Getter
 @EqualsAndHashCode
+@AllArgsConstructor
 public class FullAddressLine implements Serializable {
 
     private final String addressLine1;
     private final String addressLine2;
-    @ConstructorProperties({"addressLine1", "addressLine2"})
-    public FullAddressLine(String addressLine1, String addressLine2) {
-        this.addressLine1 = addressLine1;
-        this.addressLine2 = addressLine2;
-    }
 }

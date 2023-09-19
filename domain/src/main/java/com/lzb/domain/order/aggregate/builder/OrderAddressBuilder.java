@@ -3,8 +3,8 @@ package com.lzb.domain.order.aggregate.builder;
 import com.lzb.component.helper.SpringHelper;
 import com.lzb.domain.common.aggregate.BaseBuilder;
 import com.lzb.domain.order.aggregate.OrderAddress;
-import com.lzb.domain.order.valobj.FullAddressLine;
-import com.lzb.domain.order.valobj.FullName;
+import com.lzb.domain.common.valobj.FullAddressLine;
+import com.lzb.domain.common.valobj.FullName;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 

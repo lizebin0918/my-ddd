@@ -1,9 +1,10 @@
-package com.lzb.domain.order.valobj;
+package com.lzb.domain.common.valobj;
 
 import java.beans.ConstructorProperties;
 import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
@@ -16,14 +17,10 @@ import lombok.Value;
  */
 @Getter
 @EqualsAndHashCode
+@AllArgsConstructor
 public class FullName implements Serializable {
 
     private final String firstName;
     private final String lastName;
 
-    @ConstructorProperties({"firstName", "lastName"})
-    public FullName(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
 }

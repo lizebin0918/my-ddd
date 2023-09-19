@@ -1,7 +1,5 @@
 package com.lzb.app.order.cmd.assemble;
 
-import java.util.function.LongSupplier;
-
 import com.lzb.app.order.cmd.dto.PlaceOrderDetailDto;
 import com.lzb.app.order.cmd.dto.PlaceOrderDto;
 import com.lzb.app.order.cmd.dto.UpdateAddressDto;
@@ -12,8 +10,8 @@ import com.lzb.domain.order.aggregate.builder.OrderAddressBuilder;
 import com.lzb.domain.order.aggregate.builder.OrderBuilder;
 import com.lzb.domain.order.aggregate.builder.OrderDetailBuilder;
 import com.lzb.domain.order.enums.OrderStatus;
-import com.lzb.domain.order.valobj.FullAddressLine;
-import com.lzb.domain.order.valobj.FullName;
+import com.lzb.domain.common.valobj.FullAddressLine;
+import com.lzb.domain.common.valobj.FullName;
 import lombok.experimental.UtilityClass;
 
 /**

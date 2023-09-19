@@ -11,7 +11,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.lzb.domain.common.event.DomainEvent;
 import com.lzb.domain.common.exception.IllegalVersionException;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
