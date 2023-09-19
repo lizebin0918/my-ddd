@@ -20,7 +20,6 @@
     "list" : [ {
       "id" : 1,
       "locked" : true,
-      "orderId" : 1,
       "orderStatus" : "WAIT_PAY",
       "price" : 1,
       "skuId" : 1,

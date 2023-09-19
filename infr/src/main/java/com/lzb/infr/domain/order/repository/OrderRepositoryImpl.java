@@ -53,7 +53,7 @@ public class OrderRepositoryImpl extends BaseRepository<Order> implements OrderR
     public LongSupplier doAdd(Order aggregate) {
         OrderPo orderPo = OrderConverter.toOrderPo(aggregate);
         orderPoService.save(orderPo);
-        orderDetailPoService.saveBatch(OrderConverter.toOrderDetailPos(aggregate.getOrderDetails()));
+        orderDetailPoService.saveBatch(OrderConverter.toOrderDetailPos(orderPo.getOrderId(), aggregate.getOrderDetails()));
         return orderPo::getOrderId;
     }
 
@@ -76,8 +76,8 @@ public class OrderRepositoryImpl extends BaseRepository<Order> implements OrderR
      */
     private static ImmutablePair<List<OrderDetailPo>, List<OrderDetailPo>> diffOrderDetailPos(Order order) {
         Order snapshot = order.snapshot();
-        List<OrderDetailPo> currentOrderDetailPos = OrderConverter.toOrderDetailPos(order.getOrderDetails());
-        List<OrderDetailPo> snapshotOrderDetailPos = OrderConverter.toOrderDetailPos(snapshot.getOrderDetails());
+        List<OrderDetailPo> currentOrderDetailPos = OrderConverter.toOrderDetailPos(order.getId(), order.getOrderDetails());
+        List<OrderDetailPo> snapshotOrderDetailPos = OrderConverter.toOrderDetailPos(order.getId(), snapshot.getOrderDetails());
         return MyDiff.diff(OrderDetailPo.class, snapshotOrderDetailPos, currentOrderDetailPos);
     }
 

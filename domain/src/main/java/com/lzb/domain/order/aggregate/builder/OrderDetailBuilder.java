@@ -33,7 +33,6 @@ public class OrderDetailBuilder extends BaseBuilder<OrderDetail> {
     ///////////////////////////////////////////////////////////////////////////
 
     private long id;
-    private long orderId;
     private int skuId;
     private BigDecimal price;
     private OrderStatus orderStatus;
@@ -41,11 +40,6 @@ public class OrderDetailBuilder extends BaseBuilder<OrderDetail> {
 
     public static OrderDetailBuilder newInstance() {
         return SpringHelper.getBean(OrderDetailBuilder.class);
-    }
-
-    public OrderDetailBuilder orderId(long orderId) {
-        this.orderId = orderId;
-        return this;
     }
 
     public OrderDetailBuilder skuId(int skuId) {
@@ -75,7 +69,7 @@ public class OrderDetailBuilder extends BaseBuilder<OrderDetail> {
 
     @Override
     protected OrderDetail doBuild() {
-        return new OrderDetail(id, orderId, skuId, orderStatus, price, locked);
+        return new OrderDetail(id, skuId, orderStatus, price, locked);
     }
 
 }

@@ -21,14 +21,12 @@
     "orderDetails" : {
       "list" : [ {
         "id" : 1,
-        "orderId" : 1,
         "orderStatus" : "WAIT_PAY",
         "price" : 1,
         "skuId" : 1,
         "version" : 1
       }, {
         "id" : 2,
-        "orderId" : 1,
         "orderStatus" : "WAIT_PAY",
         "price" : 10,
         "skuId" : 2,
@@ -62,14 +60,12 @@
     "orderDetails" : {
       "list" : [ {
         "id" : 1,
-        "orderId" : 1,
         "orderStatus" : "WAIT_PAY",
         "price" : 1,
         "skuId" : 1,
         "version" : 1
       }, {
         "id" : 2,
-        "orderId" : 1,
         "orderStatus" : "WAIT_PAY",
         "price" : 10,
         "skuId" : 2,

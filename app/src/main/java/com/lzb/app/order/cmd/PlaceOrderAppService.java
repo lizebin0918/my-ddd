@@ -26,8 +26,6 @@ public class PlaceOrderAppService {
 
     private final StockHandler stockHandler;
 
-    private final IdGenerator idGenerator;
-
     /**
      * 生单
      * @param req
@@ -37,7 +35,7 @@ public class PlaceOrderAppService {
         log.info("place order: {}", req);
 
         // 生单
-        Order order = OrderAssembler.toOrder(req, idGenerator::id);
+        Order order = OrderAssembler.toOrder(req);
         order.place();
 
         // 锁库存

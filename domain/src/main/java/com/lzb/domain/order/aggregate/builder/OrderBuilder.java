@@ -3,8 +3,10 @@ package com.lzb.domain.order.aggregate.builder;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.lzb.component.helper.SpringHelper;
+import com.lzb.component.id.IdGenerator;
 import com.lzb.domain.common.aggregate.BaseBuilder;
 import com.lzb.domain.order.aggregate.Order;
 import com.lzb.domain.order.aggregate.OrderAddress;
@@ -31,11 +33,13 @@ public class OrderBuilder extends BaseBuilder<Order> {
 
     private final SkuValidator skuValidator;
 
+    private final IdGenerator idGenerator;
+
     ///////////////////////////////////////////////////////////////////////////
     // 属性值
     ///////////////////////////////////////////////////////////////////////////
 
-    private long orderId;
+    private Long orderId;
     private String currency;
     private BigDecimal exchangeRate;
     private BigDecimal totalShouldPay;
@@ -99,7 +103,8 @@ public class OrderBuilder extends BaseBuilder<Order> {
 
     @Override
     protected Order doBuild() {
-        return new Order(orderId, version, orderStatus, currency, exchangeRate, totalShouldPay, totalActualPay, orderAddress, orderDetails);
+        return new Order(Optional.ofNullable(orderId)
+                .orElseGet(idGenerator::id), version, orderStatus, currency, exchangeRate, totalShouldPay, totalActualPay, orderAddress, orderDetails);
     }
 
     @Override

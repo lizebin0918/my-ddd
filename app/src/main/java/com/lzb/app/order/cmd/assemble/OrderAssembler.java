@@ -24,10 +24,8 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class OrderAssembler {
 
-    public static Order toOrder(PlaceOrderDto req, LongSupplier idProvider) {
-        long orderId = idProvider.getAsLong();
+    public static Order toOrder(PlaceOrderDto req) {
         OrderBuilder orderBuilder = OrderBuilder.newInstance()
-                .orderId(orderId)
                 .currency(req.currency())
                 .exchangeRate(req.exchangeRate())
                 .totalShouldPay(req.totalShouldPay())
@@ -41,7 +39,6 @@ public class OrderAssembler {
 
         for (PlaceOrderDetailDto detailReq : req.details()) {
             OrderDetail orderDetail = OrderDetailBuilder.newInstance()
-                    .orderId(orderId)
                     .skuId(detailReq.skuId())
                     .price(detailReq.price())
                     .orderStatus(OrderStatus.WAIT_PAY)

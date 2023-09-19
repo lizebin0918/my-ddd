@@ -43,14 +43,14 @@ public final class OrderConverter {
         return orderPo;
     }
 
-    public static List<OrderDetailPo> toOrderDetailPos(OrderDetails orderDetails) {
-        return orderDetails.toStream().map(OrderConverter::toOrderDetailPo).toList();
+    public static List<OrderDetailPo> toOrderDetailPos(long orderId, OrderDetails orderDetails) {
+        return orderDetails.toStream().map(d -> toOrderDetailPo(orderId, d)).toList();
     }
 
-    private static OrderDetailPo toOrderDetailPo(OrderDetail orderDetail) {
+    private static OrderDetailPo toOrderDetailPo(long orderId, OrderDetail orderDetail) {
         OrderDetailPo orderDetailPo = new OrderDetailPo();
         orderDetailPo.setId(orderDetail.getId());
-        orderDetailPo.setOrderId(orderDetail.getOrderId());
+        orderDetailPo.setOrderId(orderId);
         orderDetailPo.setSkuId(orderDetail.getSkuId());
         orderDetailPo.setOrderStatus(orderDetail.getOrderStatus());
         orderDetailPo.setPrice(orderDetail.getPrice());
@@ -85,7 +85,6 @@ public final class OrderConverter {
 
     public static OrderDetail toOrderDetail(OrderDetailPo orderDetailPo) {
         return new OrderDetail(orderDetailPo.getId(),
-                orderDetailPo.getOrderId(),
                 orderDetailPo.getSkuId(), orderDetailPo.getOrderStatus(), orderDetailPo.getPrice(), orderDetailPo.getLocked());
     }
 

@@ -18,8 +18,6 @@ import lombok.extern.slf4j.Slf4j;
 @Getter
 public class OrderDetail extends BaseEntity<OrderDetail> {
 
-    private long orderId;
-
     private int skuId;
 
     @NonNull
@@ -43,10 +41,9 @@ public class OrderDetail extends BaseEntity<OrderDetail> {
      * @param orderStatus
      * @param price
      */
-    @ConstructorProperties({"id", "orderId", "skuId", "orderStatus", "price", "locked"})
-    public OrderDetail(long id, long orderId, int skuId, @NonNull OrderStatus orderStatus, @NonNull BigDecimal price, Boolean locked) {
+    @ConstructorProperties({"id", "skuId", "orderStatus", "price", "locked"})
+    public OrderDetail(long id, int skuId, @NonNull OrderStatus orderStatus, @NonNull BigDecimal price, Boolean locked) {
         super(id);
-        this.orderId = orderId;
         this.skuId = skuId;
         this.orderStatus = orderStatus;
         this.price = price;
