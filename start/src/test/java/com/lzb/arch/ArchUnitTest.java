@@ -1,20 +1,33 @@
 package com.lzb.arch;
 
 import com.lzb.component.exception.BizException;
-import com.tngtech.archunit.core.domain.properties.CanBeAnnotated;
 import com.tngtech.archunit.core.importer.ImportOption;
 import com.tngtech.archunit.junit.AnalyzeClasses;
 import com.tngtech.archunit.junit.ArchTest;
 import com.tngtech.archunit.lang.ArchRule;
+import com.tngtech.archunit.lang.syntax.ArchRuleDefinition;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses;
 import static com.tngtech.archunit.library.Architectures.layeredArchitecture;
 
 @AnalyzeClasses(packages = "com.lzb",
-        importOptions = {/*ImportOption.DoNotIncludeJars.class 需要依赖其他jar */ImportOption.DoNotIncludeTests.class})
+        importOptions = {ImportOption.DoNotIncludeJars.class, ImportOption.DoNotIncludeTests.class})
 //要扫描的package
 public class ArchUnitTest {
+
+    ///////////////////////////////////////////////////////////////////////////
+    // 具体格式
+    ///////////////////////////////////////////////////////////////////////////
+
+    /*
+    ArchRuleDefinition.GIVEN_OBJECTS
+    .that(). PREDICATE
+    .should(). CONDITION
+     */
 
     ///////////////////////////////////////////////////////////////////////////
     // 指定后缀名
@@ -40,14 +53,98 @@ public class ArchUnitTest {
             .areAssignableTo(BizException.class);
 
     ///////////////////////////////////////////////////////////////////////////
-    // domain 不能引用其他包的类
+    // Controller/Repository 命名
     ///////////////////////////////////////////////////////////////////////////
+
+    @ArchTest
+    static ArchRule controllers_should_have_name_ending_with_controller
+            = ArchRuleDefinition.classes()
+            .that().areAnnotatedWith(Controller.class)
+            .should().haveSimpleNameEndingWith(Controller.class.getSimpleName());
+
+
+    @ArchTest
+    static ArchRule repositories_should_have_name_ending_with_repository
+            = ArchRuleDefinition.classes()
+            .that().implement(Repository.class)
+            .should().haveSimpleNameEndingWith("Repository");
+
+    ///////////////////////////////////////////////////////////////////////////
+    // 分层隔离
+    ///////////////////////////////////////////////////////////////////////////
+
     /*@ArchTest
-    public static final ArchRule domain_should_not_access_other_package = noClasses()
-            .that()
-            .resideInAPackage("..domain..")
-            .should()
-            .dependOnClassesThat()
-            .resideInAnyPackage("..adapter..", "..application..", "..infrastructure..");*/
+    static ArchRule layer_dependencies_are_respected = layeredArchitecture()
+            .consideringAllDependencies()
+            .layer("adapter").definedBy("com.lzb..adapter..")
+            .layer("app").definedBy("com.lzb..app..")
+            .layer("domain").definedBy("com.lzb..domain..")
+            .layer("infr").definedBy("com.shopcider..infr..")
+
+            .whereLayer("adapter").mayNotBeAccessedByAnyLayer()
+            // app 层可以被 domain/adapter 调用
+            .whereLayer("app").mayOnlyBeAccessedByLayers("adapter")
+            // domain 层可以被 application/infrastructure/adapter 调用
+            .whereLayer("domain").mayOnlyBeAccessedByLayers("app", "adapter")
+            // infr 可以被其他层调用
+            .whereLayer("infr").mayOnlyBeAccessedByLayers("app", "domain", "adapter");*/
+
+    ///////////////////////////////////////////////////////////////////////////
+    // code smell
+    ///////////////////////////////////////////////////////////////////////////
+
+    /*
+    @ArchTest
+  static ArchRule long_parameters_list = ArchRuleDefinition.methods()
+    .should(new ArchCondition<>("have parameters at most 3") {
+      @Override
+      public void check(JavaMethod item, ConditionEvents events) {
+        if (item.getParameters().size() > 3) {
+          events.add(
+            SimpleConditionEvent.violated(item,
+              "%s have %s parameters".formatted(item.getDescription(), item.getParameters().size()))
+          );
+        }
+      }
+    });
+
+  @ArchTest
+  static ArchRule large_class = ArchRuleDefinition.classes()
+    .should(new ArchCondition<>("contains less than 30 fields") {
+      @Override
+      public void check(JavaClass item, ConditionEvents events) {
+        if (item.getFields().size() > 30) {
+          events.add(
+            SimpleConditionEvent.violated(item,
+              "%s have %s fields".formatted(item.getDescription(), item.getFields().size()))
+          );
+        }
+      }
+    });
+
+  @ArchTest
+  static ArchRule long_method = ArchRuleDefinition.methods()
+    .should(notHaveCodeLinesMoreThan(30));
+
+  private static ArchCondition<JavaMethod> notHaveCodeLinesMoreThan(final int maxLines) {
+    return new ArchCondition<>("not have no more than %s code lines".formatted(maxLines)) {
+      @Override
+      public void check(JavaMethod item, ConditionEvents events) {
+        var first = item.getSourceCodeLocation().getLineNumber();
+        var last = item.getCallsFromSelf().stream().mapToInt(JavaCall::getLineNumber).max()
+          .orElse(first);
+        var lines = last - first + 1;
+        if (lines > maxLines) {
+          events.add(
+            SimpleConditionEvent.violated(
+              item,
+              "%s have %s code lines".formatted(item.getDescription(), lines)
+            )
+          );
+        }
+      }
+    };
+  }
+     */
 
 }
