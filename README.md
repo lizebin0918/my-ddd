@@ -11,4 +11,4 @@
 
 ## 疑问
 - controller的cmd实体在app层定义，如果要传到domain层，那就只能在domian定义了，有点别扭...(最后引入XxxxAssembler把dto转换domain对象)
-
+- 删除OrderDetail.orderId，这是持久化层概念，领域层用不到，删掉之后整个代码逻辑清晰很多
