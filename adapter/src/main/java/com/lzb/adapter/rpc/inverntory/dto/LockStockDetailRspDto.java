@@ -10,7 +10,7 @@ import lombok.Getter;
  */
 @Getter
 @AllArgsConstructor
-public class LockStockRspDetail {
+public class LockStockDetailRspDto {
 
     private final int skuId;
     private final int lockedNum;

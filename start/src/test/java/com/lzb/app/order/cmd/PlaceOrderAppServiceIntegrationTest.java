@@ -6,8 +6,8 @@ import java.util.List;
 
 import com.lzb.BaseIntegrationTest;
 import com.lzb.adapter.rpc.inverntory.InventoryClient;
-import com.lzb.adapter.rpc.inverntory.dto.LockStockRsp;
-import com.lzb.adapter.rpc.inverntory.dto.LockStockRspDetail;
+import com.lzb.adapter.rpc.inverntory.dto.LockStockRspDto;
+import com.lzb.adapter.rpc.inverntory.dto.LockStockDetailRspDto;
 import com.lzb.app.order.cmd.dto.PlaceOrderDetailDto;
 import com.lzb.app.order.cmd.dto.PlaceOrderDto;
 import com.lzb.component.id.IdGenerator;
@@ -42,7 +42,7 @@ class PlaceOrderAppServiceIntegrationTest extends BaseIntegrationTest {
     void should_place_order() {
 
         doReturn(1L).when(idGenerator).id();
-        doReturn(new LockStockRsp(Arrays.asList(new LockStockRspDetail(1, 1)))).when(inventoryClient).lockStock(any());
+        doReturn(new LockStockRspDto(Arrays.asList(new LockStockDetailRspDto(1, 1)))).when(inventoryClient).lockStock(any());
 
         PlaceOrderDto req = new PlaceOrderDto("CNY", BigDecimal.ONE, BigDecimal.ONE, BigDecimal.ONE, "email",
                 "phoneNumber", "firstName", "lastName", "addressLine1", "addressLine2", "country",

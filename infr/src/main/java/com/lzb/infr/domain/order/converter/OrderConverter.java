@@ -5,10 +5,10 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import com.lzb.adapter.rpc.inverntory.dto.LockStockReq;
-import com.lzb.adapter.rpc.inverntory.dto.LockStockReqDetail;
-import com.lzb.adapter.rpc.inverntory.dto.LockStockRsp;
-import com.lzb.adapter.rpc.inverntory.dto.LockStockRspDetail;
+import com.lzb.adapter.rpc.inverntory.dto.LockStockReqDto;
+import com.lzb.adapter.rpc.inverntory.dto.LockStockDetailReqDto;
+import com.lzb.adapter.rpc.inverntory.dto.LockStockRspDto;
+import com.lzb.adapter.rpc.inverntory.dto.LockStockDetailRspDto;
 import com.lzb.domain.order.aggregate.Order;
 import com.lzb.domain.order.aggregate.OrderAddress;
 import com.lzb.domain.order.aggregate.OrderDetail;
@@ -97,17 +97,17 @@ public final class OrderConverter {
 
     }
 
-    public static List<LockStockReqDetail> toLocakStockDetails(OrderDetails orderDetails) {
+    public static List<LockStockDetailReqDto> toLocakStockDetails(OrderDetails orderDetails) {
         Map<Integer, Long> skuId2Num = StreamEx.of(orderDetails.toStream()).groupingBy(OrderDetail::getSkuId, Collectors.counting());
-        return skuId2Num.entrySet().stream().map(entry -> new LockStockReqDetail(entry.getKey(), entry.getValue().intValue())).toList();
+        return skuId2Num.entrySet().stream().map(entry -> new LockStockDetailReqDto(entry.getKey(), entry.getValue().intValue())).toList();
     }
 
-    public static LockStockReq toLockStockReq(long orderId, @NonNull OrderDetails orderDetails) {
-        return new LockStockReq(Objects.toString(orderId), toLocakStockDetails(orderDetails));
+    public static LockStockReqDto toLockStockReq(long orderId, @NonNull OrderDetails orderDetails) {
+        return new LockStockReqDto(Objects.toString(orderId), toLocakStockDetails(orderDetails));
     }
 
-    public static LockStockDto toLockStockResult(LockStockRsp lockStockRsp) {
-        List<LockStockRspDetail> lockedDetails = lockStockRsp.getLockedDetails();
+    public static LockStockDto toLockStockResult(LockStockRspDto lockStockRspDto) {
+        List<LockStockDetailRspDto> lockedDetails = lockStockRspDto.getLockedDetails();
         return new LockStockDto(lockedDetails.stream()
                 .map(lockedDetail -> new LockStockDto.LockStockDetailDto(lockedDetail.getSkuId(), lockedDetail.getLockedNum()))
                 .toList());

@@ -12,8 +12,8 @@ import lombok.Getter;
  */
 @Getter
 @AllArgsConstructor
-public class LockStockRsp {
+public class LockStockRspDto {
 
-    private List<LockStockRspDetail> lockedDetails;
+    private List<LockStockDetailRspDto> lockedDetails;
 
 }

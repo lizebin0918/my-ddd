@@ -1,6 +1,5 @@
 package com.lzb.adapter.rpc.inverntory.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -11,7 +10,7 @@ import lombok.RequiredArgsConstructor;
  */
 @Getter
 @RequiredArgsConstructor
-public class LockStockReqDetail {
+public class LockStockDetailReqDto {
 
     private final int skuId;
     private final int num;

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 import com.lzb.adapter.rpc.inverntory.InventoryClient;
-import com.lzb.adapter.rpc.inverntory.dto.LockStockReq;
+import com.lzb.adapter.rpc.inverntory.dto.LockStockReqDto;
 import com.lzb.domain.order.aggregate.Order;
 import com.lzb.domain.order.dto.LockStockDto;
 import com.lzb.domain.order.dto.SkuDto;
@@ -36,7 +36,7 @@ public class ProductGatewayImpl implements ProductGateway {
 
     @Override
     public LockStockDto lockStock(Order order) {
-        LockStockReq req = OrderConverter.toLockStockReq(order.getId(), order.getOrderDetails());
+        LockStockReqDto req = OrderConverter.toLockStockReq(order.getId(), order.getOrderDetails());
         return OrderConverter.toLockStockResult(inventoryClient.lockStock(req));
     }
 

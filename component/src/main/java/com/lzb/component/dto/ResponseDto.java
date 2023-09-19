@@ -2,11 +2,12 @@ package com.lzb.component.dto;
 
 import java.util.Objects;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.lzb.component.arch.ArchUnitIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;
+import org.junit.Ignore;
 
 /**
  * <br/>
@@ -14,7 +15,6 @@ import lombok.NonNull;
  * @author lizebin
  */
 @Getter
-@Builder
 @AllArgsConstructor
 public class ResponseDto<R> {
 
@@ -41,7 +41,7 @@ public class ResponseDto<R> {
     private R data;
 
     public static <T> ResponseDto<T> success(T data) {
-        return ResponseDto.<T>builder().code(SUCCESS_CODE).data(data).build();
+        return new ResponseDto<>(SUCCESS_CODE, "", data);
     }
 
     /**

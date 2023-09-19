@@ -12,9 +12,9 @@ import lombok.Getter;
  */
 @Getter
 @AllArgsConstructor
-public class LockStockReq {
+public class LockStockReqDto {
 
     private final String channelOrderId;
-    private final List<LockStockReqDetail> details;
+    private final List<LockStockDetailReqDto> details;
 
 }
