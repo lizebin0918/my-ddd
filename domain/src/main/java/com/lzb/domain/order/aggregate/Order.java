@@ -17,8 +17,13 @@ import com.lzb.domain.order.event.OrderCanceledEvent;
 import com.lzb.domain.order.event.OrderPlacedEvent;
 import com.lzb.domain.order.valobj.FullAddressLine;
 import com.lzb.domain.order.valobj.FullName;
+import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.Setter;
+import lombok.experimental.Accessors;
 import lombok.extern.slf4j.Slf4j;
 import one.util.streamex.StreamEx;
 
@@ -32,29 +37,28 @@ import one.util.streamex.StreamEx;
  */
 @Slf4j
 @Getter
+// 方便测试构造
+@Setter(AccessLevel.PROTECTED)
+@Accessors(chain = true)
 public class Order extends BaseAggregate<Order> {
 
-    @NonNull
     private OrderStatus orderStatus;
 
-    @NonNull
     private String currency;
 
-    @NonNull
     private BigDecimal exchangeRate;
 
-    @NonNull
     private BigDecimal totalShouldPay;
 
-    @NonNull
     private BigDecimal totalActualPay;
 
-    @NonNull
     private OrderAddress orderAddress;
 
-    @NonNull
     private OrderDetails orderDetails;
 
+    protected Order(long id) {
+        super(id);
+    }
 
     /**
      * 仓储层使用，无需校验业务逻辑，直接构造

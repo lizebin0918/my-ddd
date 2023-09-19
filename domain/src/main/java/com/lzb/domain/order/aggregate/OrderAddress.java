@@ -3,12 +3,14 @@ package com.lzb.domain.order.aggregate;
 import java.beans.ConstructorProperties;
 
 import cn.hutool.core.lang.Assert;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.lzb.domain.common.aggregate.BaseEntity;
 import com.lzb.domain.order.valobj.FullAddressLine;
 import com.lzb.domain.order.valobj.FullName;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NonNull;
+import lombok.Setter;
+import lombok.experimental.Accessors;
 
 
 /**
@@ -17,31 +19,33 @@ import lombok.NonNull;
  * @author lizebin
  */
 @Getter
+// 方便测试构造
+@Setter(AccessLevel.PROTECTED)
+@Accessors(chain = true)
 public class OrderAddress extends BaseEntity<OrderAddress> {
 
-    @NonNull
     private FullName fullName;
 
-    @NonNull
     private FullAddressLine fullAddressLine;
 
     /**
      * 邮箱
      */
-    @NonNull
     private String email;
 
     /**
      * 电话
      */
-    @NonNull
     private String phoneNumber;
 
     /**
      * 国家
      */
-    @NonNull
     private String country;
+
+    protected OrderAddress(long id) {
+        super(id);
+    }
 
     @ConstructorProperties({"id", "fullName", "fullAddressLine", "email", "phoneNumber", "country"})
     public OrderAddress(Long id,

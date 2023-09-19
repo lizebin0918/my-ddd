@@ -1,7 +1,11 @@
 package com.lzb.domain.order.aggregate;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 import com.lzb.BaseUnitTest;
 import com.lzb.component.utils.json.JsonUtils;
+import com.lzb.domain.order.enums.OrderStatus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -52,6 +56,20 @@ class OrderUnitTest extends BaseUnitTest {
                 }
                                 """;
         Order o = JsonUtils.json2JavaBean(orderJson, Order.class);
+        assertJSON(o);
+    }
+
+    @Test
+    @DisplayName("测试手动setter")
+    void should_setter() {
+        Order o = new Order(1L);
+        o.setCurrency("CNY");
+        o.setExchangeRate(BigDecimal.ONE);
+        o.setOrderStatus(OrderStatus.WAIT_PAY);
+        o.setTotalActualPay(BigDecimal.ONE);
+        o.setTotalShouldPay(BigDecimal.ONE);
+        o.setOrderAddress(new OrderAddress(1L));
+        o.setOrderDetails(new OrderDetails(List.of(new OrderDetail(1L))));
         assertJSON(o);
     }
 

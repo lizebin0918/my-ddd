@@ -5,8 +5,11 @@ import java.math.BigDecimal;
 
 import com.lzb.domain.common.aggregate.BaseEntity;
 import com.lzb.domain.order.enums.OrderStatus;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NonNull;
+import lombok.Setter;
+import lombok.experimental.Accessors;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -16,14 +19,15 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Getter
+// 方便测试构造
+@Setter(AccessLevel.PROTECTED)
+@Accessors(chain = true)
 public class OrderDetail extends BaseEntity<OrderDetail> {
 
     private int skuId;
 
-    @NonNull
     private OrderStatus orderStatus;
 
-    @NonNull
     private BigDecimal price;
 
     /**
@@ -32,6 +36,10 @@ public class OrderDetail extends BaseEntity<OrderDetail> {
      * false:缺货
      */
     private Boolean locked;
+
+    protected OrderDetail(long id) {
+        super(id);
+    }
 
     /**
      * 直接提供给仓储层使用，无需校验业务逻辑
