@@ -25,9 +25,9 @@ public abstract class BaseBuilder<T extends BaseEntity<T>> {
 
     /**
      * 子类重写，校验聚合根
-     * @param agg
+     * @param entity
      */
-    protected void validate(T agg) {
+    protected void validate(T entity) {
 
     }
 

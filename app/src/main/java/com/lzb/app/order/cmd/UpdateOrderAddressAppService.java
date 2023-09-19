@@ -4,6 +4,7 @@ import com.lzb.app.order.cmd.assemble.OrderAssembler;
 import com.lzb.app.order.cmd.dto.UpdateAddressDto;
 import com.lzb.app.order.cmd.dto.UpdateFullNameDto;
 import com.lzb.domain.order.aggregate.Order;
+import com.lzb.domain.order.aggregate.OrderAddress;
 import com.lzb.domain.order.repository.OrderRepository;
 import jakarta.annotation.Resource;
 
@@ -25,13 +26,9 @@ public class UpdateOrderAddressAppService {
      * @param updateOrderAddress
      */
     public void updateAddress(UpdateAddressDto updateOrderAddress) {
-        long orderId = updateOrderAddress.orderId();
-        Order order = orderRepository.getOrThrow(orderId);
-        order.updateAddress(updateOrderAddress.email(),
-                updateOrderAddress.phoneNumber(),
-                OrderAssembler.toFullName(updateOrderAddress.firstName(), updateOrderAddress.lastName()),
-                OrderAssembler.toFullAddressLine(updateOrderAddress.addressLine1(), updateOrderAddress.addressLine2()),
-                updateOrderAddress.country());
+        OrderAddress orderAddress = OrderAssembler.toOrderAddress(updateOrderAddress);
+        Order order = orderRepository.getOrThrow(orderAddress.getId());
+        order.updateAddress(orderAddress);
         orderRepository.update(order);
     }
 

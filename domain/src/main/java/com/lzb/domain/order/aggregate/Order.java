@@ -114,20 +114,10 @@ public class Order extends BaseAggregate<Order> {
         this.orderDetails = orderDetails;
     }
 
-    public void updateAddress(String email,
-            String phoneNumber, FullName fullName,
-            FullAddressLine fullAddressLine, String country) {
+    public void updateAddress(OrderAddress newOrderAddress) {
         if (isShipped()) {
             throw new BizException("订单已发货，不能修改地址");
         }
-        OrderAddress newOrderAddress = OrderAddressBuilder.newInstance(this.orderAddress)
-                .addressLine1(fullAddressLine.getAddressLine1())
-                .addressLine2(fullAddressLine.getAddressLine2())
-                .country(country)
-                .email(email)
-                .firstName(fullName.getFirstName())
-                .lastName(fullName.getLastName())
-                .phoneNumber(phoneNumber).build();
         this.orderAddress = newOrderAddress;
     }
 

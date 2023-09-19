@@ -4,6 +4,7 @@ import java.util.function.LongSupplier;
 
 import com.lzb.app.order.cmd.dto.PlaceOrderDetailDto;
 import com.lzb.app.order.cmd.dto.PlaceOrderDto;
+import com.lzb.app.order.cmd.dto.UpdateAddressDto;
 import com.lzb.domain.order.aggregate.Order;
 import com.lzb.domain.order.aggregate.OrderAddress;
 import com.lzb.domain.order.aggregate.OrderDetail;
@@ -57,6 +58,19 @@ public class OrderAssembler {
 
     public FullAddressLine toFullAddressLine(String addressLine1, String addressLine2) {
         return new FullAddressLine(addressLine1, addressLine2);
+    }
+
+    public OrderAddress toOrderAddress(UpdateAddressDto updateAddressDto) {
+        return OrderAddressBuilder.newInstance()
+                .id(updateAddressDto.orderId())
+                .addressLine1(updateAddressDto.addressLine1())
+                .addressLine2(updateAddressDto.addressLine2())
+                .country(updateAddressDto.country())
+                .email(updateAddressDto.email())
+                .firstName(updateAddressDto.firstName())
+                .lastName(updateAddressDto.lastName())
+                .phoneNumber(updateAddressDto.phoneNumber())
+                .build();
     }
 
 }

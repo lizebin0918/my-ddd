@@ -103,8 +103,8 @@ public class OrderBuilder extends BaseBuilder<Order> {
     }
 
     @Override
-    protected void validate(Order order) {
-        skuValidator.assertAllOfSkuIsOnSale(order.getOrderDetails().getSkuIds());
+    protected void validate(Order entity) {
+        skuValidator.assertAllOfSkuIsOnSale(entity.getOrderDetails().getSkuIds());
     }
 
 }

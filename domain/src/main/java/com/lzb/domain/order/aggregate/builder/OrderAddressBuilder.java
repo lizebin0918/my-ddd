@@ -6,6 +6,7 @@ import com.lzb.domain.order.aggregate.OrderAddress;
 import com.lzb.domain.order.valobj.FullAddressLine;
 import com.lzb.domain.order.valobj.FullName;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Lazy;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Component;
  * Created on : 2023-09-15 22:08
  * @author lizebin
  */
+@Slf4j
 @Component
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @RequiredArgsConstructor(onConstructor = @__(@Lazy))
@@ -96,5 +98,11 @@ public class OrderAddressBuilder extends BaseBuilder<OrderAddress> {
                 new FullName(firstName, lastName),
                 new FullAddressLine(addressLine1, addressLine2),
                 email, phoneNumber, country);
+    }
+
+    @Override
+    protected void validate(OrderAddress entity) {
+        super.validate(entity);
+        log.info("订单地址业务校验");
     }
 }
