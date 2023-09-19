@@ -153,7 +153,7 @@ public class Order extends BaseAggregate<Order> {
      * 取消订单
      */
     public void cancel() {
-        orderStatus = OrderStatus.CANCELED;
+        orderStatus = orderStatus.toCancel();
         orderDetails.forEach(OrderDetail::cancel);
         addEvent(OrderCanceledEvent.create(id));
     }
@@ -163,7 +163,7 @@ public class Order extends BaseAggregate<Order> {
      * @return
      */
     public boolean isCancel() {
-        return OrderStatus.CANCELED == orderStatus;
+        return orderStatus.isCancel();
     }
 
     /**

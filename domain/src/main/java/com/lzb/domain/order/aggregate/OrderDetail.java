@@ -57,7 +57,7 @@ public class OrderDetail extends BaseEntity<OrderDetail> {
      * 订单明细取消
      */
     void cancel() {
-        orderStatus = OrderStatus.CANCELED;
+        orderStatus = orderStatus.toCancel();
     }
 
     /**

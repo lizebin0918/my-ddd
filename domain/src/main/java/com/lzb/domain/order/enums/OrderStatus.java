@@ -18,4 +18,15 @@ public enum OrderStatus implements EnumValue<Integer> {
     private final Integer value;
     private final String desc;
 
+    public OrderStatus toCancel() {
+        if (isCancel()) {
+            throw new IllegalStateException("订单（明细）已取消");
+        }
+        return CANCELED;
+    }
+
+    public boolean isCancel() {
+        return this == CANCELED;
+    }
+
 }
