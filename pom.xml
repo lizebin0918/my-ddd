@@ -412,6 +412,18 @@
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>3.3.1</version>
+					<configuration>
+						<encoding>UTF-8</encoding>
+						<nonFilteredFileExtensions>
+							<!--过滤掉pdf文件，不对其进行重新编码-->
+							<nonFilteredFileExtension>pdf</nonFilteredFileExtension>
+						</nonFilteredFileExtensions>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>
 					<version>3.1.2</version>
 					<dependencies>

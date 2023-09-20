@@ -4,6 +4,7 @@ import com.lzb.app.order.cmd.PlaceOrderAppService;
 import com.lzb.app.order.cmd.dto.PlaceOrderDto;
 import com.lzb.app.order.query.OrderQueryAppService;
 import com.lzb.component.dto.ResponseDto;
+import jakarta.annotation.Resource;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.context.annotation.Lazy;
@@ -20,12 +21,10 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/order")
-@RequiredArgsConstructor(onConstructor = @__(@Lazy))
-public class OrderController {
-
-    private final PlaceOrderAppService placeOrderAppService;
-
-    private final OrderQueryAppService orderQueryAppService;
+public record OrderController(
+        PlaceOrderAppService placeOrderAppService,
+        OrderQueryAppService orderQueryAppService
+) {
 
     @PutMapping
     public Long placeOrder(@RequestBody PlaceOrderDto placeOrderDto) {
