@@ -11,6 +11,7 @@ import com.lzb.domain.common.aggregate.BaseBuilder;
 import com.lzb.domain.order.aggregate.Order;
 import com.lzb.domain.order.aggregate.OrderAddress;
 import com.lzb.domain.order.aggregate.OrderDetail;
+import com.lzb.domain.order.aggregate.OrderDetails;
 import com.lzb.domain.order.enums.OrderStatus;
 import com.lzb.domain.order.service.SkuValidator;
 import lombok.NonNull;
@@ -104,7 +105,7 @@ public class OrderBuilder extends BaseBuilder<Order> {
     @Override
     protected Order doBuild() {
         return new Order(Optional.ofNullable(orderId)
-                .orElseGet(idGenerator::id), version, orderStatus, currency, exchangeRate, totalShouldPay, totalActualPay, orderAddress, orderDetails);
+                .orElseGet(idGenerator::id), version, orderStatus, currency, exchangeRate, totalShouldPay, totalActualPay, orderAddress, new OrderDetails(orderDetails));
     }
 
     @Override

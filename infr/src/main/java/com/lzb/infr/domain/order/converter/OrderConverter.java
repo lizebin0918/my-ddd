@@ -79,8 +79,8 @@ public final class OrderConverter {
                 orderPo.getTotalActualPay(), toOrderAddress(orderPo), toOrderDetails(orderDetailPos));
     }
 
-    public static List<OrderDetail> toOrderDetails(List<OrderDetailPo> orderDetailPos) {
-        return orderDetailPos.stream().map(OrderConverter::toOrderDetail).toList();
+    public static OrderDetails toOrderDetails(List<OrderDetailPo> orderDetailPos) {
+        return new OrderDetails(orderDetailPos.stream().map(OrderConverter::toOrderDetail).toList());
     }
 
     public static OrderDetail toOrderDetail(OrderDetailPo orderDetailPo) {
