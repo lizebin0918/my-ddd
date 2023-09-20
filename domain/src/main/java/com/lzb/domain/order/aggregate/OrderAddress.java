@@ -1,8 +1,7 @@
 package com.lzb.domain.order.aggregate;
 
-import java.beans.ConstructorProperties;
-
 import cn.hutool.core.lang.Assert;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.lzb.domain.common.aggregate.BaseEntity;
 import com.lzb.domain.common.valobj.FullAddressLine;
 import com.lzb.domain.common.valobj.FullName;
@@ -47,7 +46,7 @@ public class OrderAddress extends BaseEntity<OrderAddress> {
         super(id);
     }
 
-    @ConstructorProperties({"id", "fullName", "fullAddressLine", "email", "phoneNumber", "country"})
+    @JsonCreator
     public OrderAddress(Long id,
             @NonNull FullName fullName,
             @NonNull FullAddressLine fullAddressLine,

@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.lzb.component.exception.BizException;
 import com.lzb.domain.common.aggregate.BaseAggregate;
 import com.lzb.domain.order.dto.LockStockDto;
@@ -66,7 +67,7 @@ public class Order extends BaseAggregate<Order> {
      * @param orderAddress
      * @param orderDetails
      */
-    @ConstructorProperties({"id", "version", "orderStatus", "currency", "exchangeRate", "totalShouldPay", "totalActualPay", "orderAddress", "orderDetails"})
+    @JsonCreator
     public Order(long id,
             int version,
             @NonNull OrderStatus orderStatus,

@@ -53,6 +53,7 @@ public class JsonUtils {
             .defaultTimeZone(TimeZone.getTimeZone(ZoneId.systemDefault()))
             .addModule(new JavaTimeModule())
             .addModule(new Jdk8Module())
+            .addModule(new ParameterNamesModule(JsonCreator.Mode.PROPERTIES))
             .build();
 
    static {

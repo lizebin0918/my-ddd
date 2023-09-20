@@ -1,14 +1,10 @@
 package com.lzb.domain.common.valobj;
 
-import java.beans.ConstructorProperties;
 import java.io.Serializable;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NonNull;
-import lombok.Value;
 
 /**
  * 姓名<br/>

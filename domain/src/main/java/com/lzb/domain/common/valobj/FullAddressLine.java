@@ -1,6 +1,5 @@
 package com.lzb.domain.common.valobj;
 
-import java.beans.ConstructorProperties;
 import java.io.Serializable;
 
 import lombok.AllArgsConstructor;

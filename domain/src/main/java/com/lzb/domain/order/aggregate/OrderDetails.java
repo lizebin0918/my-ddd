@@ -32,7 +32,7 @@ public class OrderDetails implements Iterable<OrderDetail>, Serializable, Identi
      * @JsonCreator 用于反序列化
      * @param list
      */
-    @ConstructorProperties({"list"})
+    @JsonCreator
     public OrderDetails(List<OrderDetail> list) {
         this.list = list;
         validate();
