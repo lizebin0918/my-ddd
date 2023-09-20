@@ -25,6 +25,7 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.cfg.ConstructorDetector;
 import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 import lombok.experimental.UtilityClass;
@@ -51,17 +52,16 @@ public class JsonUtils {
             .defaultLocale(Locale.CHINA)
             .defaultTimeZone(TimeZone.getTimeZone(ZoneId.systemDefault()))
             .addModule(new JavaTimeModule())
-            .addModule(new ParameterNamesModule(JsonCreator.Mode.PROPERTIES))
-            .constructorDetector(ConstructorDetector.USE_PROPERTIES_BASED)
-            .propertyNamingStrategy(PropertyNamingStrategies.LOWER_CAMEL_CASE)
+            .addModule(new Jdk8Module())
             .build();
 
-    static {
+   static {
         // 输入非空字段
         OBJECT_MAPPER.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         // 只显示有的字段
         OBJECT_MAPPER.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE);
         OBJECT_MAPPER.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+        OBJECT_MAPPER.setVisibility(PropertyAccessor.CREATOR, JsonAutoDetect.Visibility.NON_PRIVATE);
     }
 
     /**

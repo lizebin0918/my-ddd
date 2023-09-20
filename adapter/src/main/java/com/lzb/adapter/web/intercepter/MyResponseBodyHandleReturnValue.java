@@ -14,6 +14,7 @@ import com.fasterxml.jackson.core.json.JsonWriteFeature;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.lzb.adapter.web.annotation.MyResponseBody;
 import com.lzb.component.dto.ResponseDto;
@@ -43,6 +44,7 @@ public class MyResponseBodyHandleReturnValue implements HandlerMethodReturnValue
             .defaultLocale(Locale.CHINA)
             .defaultTimeZone(TimeZone.getTimeZone(ZoneId.systemDefault()))
             .addModule(new JavaTimeModule())
+            .addModule(new Jdk8Module())
             .build();
 
     static {
@@ -51,6 +53,7 @@ public class MyResponseBodyHandleReturnValue implements HandlerMethodReturnValue
         // 只显示有的字段
         SPRING_MVC_RETURN_OBJECT_MAPPER.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE);
         SPRING_MVC_RETURN_OBJECT_MAPPER.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+        SPRING_MVC_RETURN_OBJECT_MAPPER.setVisibility(PropertyAccessor.CREATOR, JsonAutoDetect.Visibility.NON_PRIVATE);
     }
 
     /**

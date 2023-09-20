@@ -1,11 +1,16 @@
 package com.lzb.domain.order.aggregate;
 
+import java.beans.ConstructorProperties;
 import java.math.BigDecimal;
 import java.util.List;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.lzb.BaseUnitTest;
 import com.lzb.component.utils.json.JsonUtils;
 import com.lzb.domain.order.enums.OrderStatus;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -71,6 +76,21 @@ class OrderUnitTest extends BaseUnitTest {
         o.setOrderAddress(new OrderAddress(1L));
         o.setOrderDetails(new OrderDetails(List.of(new OrderDetail(1L))));
         assertJSON(o);
+    }
+
+    @Test
+    @DisplayName("")
+    @Disabled
+    void should_() {
+        String json = "{\"id\":1}";
+        A a = JsonUtils.json2JavaBean(json, A.class);
+        System.out.println(a.getId());
+    }
+
+    @Getter
+    @AllArgsConstructor
+    static class A {
+        private final int id;
     }
 
 }

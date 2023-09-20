@@ -55,31 +55,6 @@ public class Order extends BaseAggregate<Order> {
     }
 
     /**
-     * 仓储层使用，无需校验业务逻辑，直接构造
-     * @param id
-     * @param version
-     * @param orderStatus
-     * @param currency
-     * @param exchangeRate
-     * @param totalShouldPay
-     * @param totalActualPay
-     * @param orderAddress
-     * @param orderDetails
-     */
-    public Order(long id,
-            int version,
-            @NonNull OrderStatus orderStatus,
-            @NonNull String currency,
-            @NonNull BigDecimal exchangeRate,
-            @NonNull BigDecimal totalShouldPay,
-            @NonNull BigDecimal totalActualPay,
-            @NonNull OrderAddress orderAddress,
-            @NonNull List<OrderDetail> orderDetails) {
-        this(id, version, orderStatus, currency, exchangeRate, totalShouldPay,
-                totalActualPay, orderAddress, new OrderDetails(orderDetails));
-    }
-
-    /**
      * 构造器，@ConstructorProperties 用于反序列化
      * @param id
      * @param version
