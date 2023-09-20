@@ -19,8 +19,7 @@ import lombok.experimental.Accessors;
  */
 @Getter
 // 方便测试构造
-@Setter(AccessLevel.PROTECTED)
-@Accessors(chain = true)
+@Setter(AccessLevel.PACKAGE)
 public class OrderAddress extends BaseEntity<OrderAddress> {
 
     private FullName fullName;
