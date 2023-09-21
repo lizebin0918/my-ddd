@@ -3,13 +3,17 @@ spring:
     lazy-initialization: true
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=my-ddd
+    url: jdbc:postgresql://localhost:15432/postgres?currentSchema=my-ddd
     username: postgres
     password: 123456
   data:
     redis:
       host: localhost
-      port: 6379
+      port: 16379
+  # 如果连接测试库，可以移回测试目录的配置文件
+  sql:
+    init:
+      mode: always
 cache:
   caffeine:
     maximumSize: 1000

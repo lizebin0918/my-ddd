@@ -1,4 +1,4 @@
-create table "order"
+create table if not exists "order"
 (
     order_id         bigint                              not null
         constraint "PRIMARY_order"
@@ -21,7 +21,7 @@ create table "order"
 );
 
 
-create table order_detail
+create table if not exists order_detail
 (
     id           bigint
         constraint "PRIMARY_order_detail"
@@ -35,12 +35,12 @@ create table order_detail
     update_time  timestamp default CURRENT_TIMESTAMP not null
 );
 
-create sequence order_detail_id_seq;
+create sequence if not exists order_detail_id_seq;
 
 alter table order_detail
     alter column id set default nextval('order_detail_id_seq'::regclass);
 
-create table domain_event
+create table if not exists domain_event
 (
     id          bigint                              not null
         primary key,
@@ -57,9 +57,9 @@ create table domain_event
         unique (topic, tag, biz_id)
 );
 
-create index domain_event_sharding_key_index on domain_event (key);
+create index if not exists domain_event_sharding_key_index on domain_event (key);
 
-create sequence domain_event_id_seq;
+create sequence if not exists domain_event_id_seq;
 
 alter table domain_event
     alter column id set default nextval('domain_event_id_seq'::regclass);
