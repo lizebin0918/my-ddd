@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.lzb.adapter.web.test.Status;
+import com.lzb.adapter.web.test.TestOrder;
 import com.lzb.adapter.web.test.TestOrderController;
 import com.lzb.app.order.cmd.PlaceOrderAppService;
 import com.lzb.component.utils.json.JsonUtils;
@@ -23,8 +25,6 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
@@ -32,7 +32,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Created on : 2023-09-06 13:34
  * @Author lizebin
  */
-@WebMvcTest(TestOrderController.class)
+@WebMvcTest({TestOrderController.class})
 class OrderControllerLayerTest {
 
     @MockBean
@@ -61,5 +61,16 @@ class OrderControllerLayerTest {
         MockHttpServletResponse response = mvcResult.getResponse();
         String contentAsString = response.getContentAsString();
         JsonApprovals.verifyJson(contentAsString);
+    }
+
+    @Test
+    @DisplayName("orderNo is blank")
+    void should_exception_when_order_no_is_blank() throws Exception {
+        TestOrder testOrder = new TestOrder("", BigDecimal.ONE, List.of("1", "2", "3"), Status.WAIT);
+        MockHttpServletRequestBuilder content = MockMvcRequestBuilders.post("/test")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(JsonUtils.toJSONString(testOrder));
+        ResultActions perform = mockMvc.perform(content)
+                .andExpect(status().is2xxSuccessful());
     }
 }

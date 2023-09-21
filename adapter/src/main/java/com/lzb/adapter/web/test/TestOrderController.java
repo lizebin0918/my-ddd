@@ -5,7 +5,10 @@ import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 
 import com.lzb.adapter.web.annotation.MyResponseBody;
+import com.lzb.component.utils.json.JsonUtils;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.context.annotation.Lazy;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Created on : 2023-09-12 19:58
  * @author lizebin
  */
+@Slf4j
 @RestController
 @RequestMapping
 @RequiredArgsConstructor(onConstructor = @__(@Lazy))
@@ -25,7 +29,8 @@ public class TestOrderController {
 
     @MyResponseBody
     @PostMapping("/test")
-    public TestOrderResult test(@RequestBody TestOrder order) {
+    public TestOrderResult test(@RequestBody @Valid TestOrder order) {
+        log.info("测试订单 {}", JsonUtils.toJSONString(order));
         LocalDateTime time = LocalDateTime.of(2023, 9, 11, 11, 8, 8);
         return TestOrderResult.builder()
                 .status(order.getStatus())
