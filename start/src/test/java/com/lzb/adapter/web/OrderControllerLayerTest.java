@@ -5,11 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.lzb.BaseTest;
 import com.lzb.adapter.web.test.Status;
 import com.lzb.adapter.web.test.TestOrder;
 import com.lzb.adapter.web.test.TestOrderController;
 import com.lzb.app.order.cmd.PlaceOrderAppService;
 import com.lzb.component.utils.json.JsonUtils;
+import jakarta.servlet.ServletException;
 import org.approvaltests.JsonApprovals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -33,7 +35,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @Author lizebin
  */
 @WebMvcTest({TestOrderController.class})
-class OrderControllerLayerTest {
+class OrderControllerLayerTest extends BaseTest {
 
     @MockBean
     private PlaceOrderAppService placeOrderAppService;
@@ -71,6 +73,16 @@ class OrderControllerLayerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtils.toJSONString(testOrder));
         ResultActions perform = mockMvc.perform(content)
-                .andExpect(status().is2xxSuccessful());
+                .andExpect(status().is4xxClientError());
+    }
+
+    @Test
+    @DisplayName("测试@Validated声明在Controller上，用于校验参数")
+    void should_validate_controller() throws Exception {
+        MockHttpServletRequestBuilder content = MockMvcRequestBuilders.get("/name")
+                .contentType(MediaType.APPLICATION_JSON)
+                .queryParam("name", "1");
+
+        assertThrows(ServletException.class, () -> mockMvc.perform(content));
     }
 }
