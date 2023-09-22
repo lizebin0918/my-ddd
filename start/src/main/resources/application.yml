@@ -20,6 +20,10 @@ spring:
       data-locations: classpath:sql/data.sql
       mode: never
       schema-locations: classpath:sql/schema.sql
+  docker:
+    compose:
+      enabled: false
+      file: compose.yaml
 server:
   port: 8080
 logging:

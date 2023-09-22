@@ -494,9 +494,9 @@
 
 	<profiles>
 		<profile>
-			<id>local</id>
+			<id>dev</id>
 			<properties>
-				<activatedProperties>local</activatedProperties>
+				<activatedProperties>dev</activatedProperties>
 			</properties>
 			<activation>
 				<!--默认环境-->
@@ -504,9 +504,9 @@
 			</activation>
 		</profile>
 		<profile>
-			<id>dev</id>
+			<id>ci</id>
 			<properties>
-				<activatedProperties>dev</activatedProperties>
+				<activatedProperties>ci</activatedProperties>
 			</properties>
 		</profile>
 		<profile>
