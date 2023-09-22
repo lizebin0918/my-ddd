@@ -12,6 +12,7 @@ spring:
   main:
     #不允许循环依赖，先google解决，如果是业务循环依赖，看看中间是否能加一层，如果循环依赖了@SpyBean会报错
     allow-circular-references: false
+    # 默认不要懒加载
     lazy-initialization: false
     allow-bean-definition-overriding: false
   sql:
