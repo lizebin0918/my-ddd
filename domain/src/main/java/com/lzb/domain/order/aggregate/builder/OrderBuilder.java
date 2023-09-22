@@ -29,7 +29,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-@RequiredArgsConstructor(onConstructor = @__(@Lazy))
+@RequiredArgsConstructor
 public class OrderBuilder extends BaseBuilder<Order> {
 
     private final SkuValidator skuValidator;

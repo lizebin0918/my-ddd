@@ -1,11 +1,9 @@
 package com.lzb.app.order.query;
 
-import java.util.List;
-
+import com.lzb.app.common.PageDto;
+import com.lzb.app.order.query.dto.OrderQueryDto;
 import com.lzb.app.order.query.view.OrderDetailView;
 import com.lzb.app.order.query.view.OrderView;
-import com.lzb.app.order.query.dto.OrderQueryDto;
-import com.lzb.component.dto.ResponseDto;
 
 /**
  * 订单列表<br/>
@@ -16,10 +14,10 @@ public interface OrderQueryAppService {
 
     /**
      * 订单列表
-     * @param query
+     * @param queryDto
      * @return
      */
-    List<OrderView> list(OrderQueryDto query);
+    PageDto<OrderView> listForPage(OrderQueryDto queryDto);
 
     /**
      * 订单详情

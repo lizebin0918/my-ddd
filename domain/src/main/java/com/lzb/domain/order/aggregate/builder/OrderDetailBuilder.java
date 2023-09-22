@@ -22,7 +22,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-@RequiredArgsConstructor(onConstructor = @__(@Lazy))
+@RequiredArgsConstructor
 public class OrderDetailBuilder extends BaseBuilder<OrderDetail> {
 
     private final IdGenerator idGenerator;

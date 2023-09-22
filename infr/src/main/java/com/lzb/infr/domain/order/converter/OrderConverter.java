@@ -13,6 +13,7 @@ import com.lzb.domain.order.aggregate.Order;
 import com.lzb.domain.order.aggregate.OrderAddress;
 import com.lzb.domain.order.aggregate.OrderDetail;
 import com.lzb.domain.order.aggregate.OrderDetails;
+import com.lzb.domain.order.aggregate.builder.OrderAddressBuilder;
 import com.lzb.domain.order.dto.LockStockDto;
 import com.lzb.domain.common.valobj.FullAddressLine;
 import com.lzb.domain.common.valobj.FullName;
@@ -115,5 +116,9 @@ public final class OrderConverter {
     public static List<Order> toOrders(List<OrderPo> orders, List<OrderDetailPo> orderDetails) {
         Map<Long, List<OrderDetailPo>> orderId2OrderDetailPos = StreamEx.of(orderDetails).groupingBy(OrderDetailPo::getOrderId);
         return orders.stream().map(order -> toOrder(order, orderId2OrderDetailPos.get(order.getOrderId()))).toList();
+    }
+
+    public static FullName toFullName(String firstName, String lastName) {
+        return new FullName(firstName, lastName);
     }
 }
