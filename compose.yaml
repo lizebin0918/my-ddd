@@ -1,0 +1,17 @@
+services:
+  # 数据会挂在到外部硬盘，启动会报order表已存在的错误，但是testcontainer没这个问题
+  postgres:
+    image: 'postgres:14.9'
+    environment:
+      - 'POSTGRES_DB=postgres'
+      # ${spring.datasource.password}
+      - 'POSTGRES_PASSWORD=123456'
+      # ${spring.datasource.username}
+      - 'POSTGRES_USER=postgres'
+    ports:
+      - '15432:5432'
+  redis:
+    image: 'redis:7.2.0'
+    ports:
+      # 外部端口:内部映射端口
+      - '16379:6379'

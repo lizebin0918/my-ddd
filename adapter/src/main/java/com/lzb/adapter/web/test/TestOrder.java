@@ -3,9 +3,12 @@ package com.lzb.adapter.web.test;
 import java.math.BigDecimal;
 import java.util.List;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import org.springframework.validation.annotation.Validated;
 
 /**
  * <br/>
@@ -17,6 +20,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TestOrder {
 
+    @NotBlank(message = "订单号不能为空串")
     private String orderNo;
     private BigDecimal amount;
     private List<String> skuCodes;
