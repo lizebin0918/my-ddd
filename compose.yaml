@@ -8,6 +8,16 @@ services:
       - 'POSTGRES_PASSWORD=123456'
       # ${spring.datasource.username}
       - 'POSTGRES_USER=postgres'
+    # environment:
+        # NODE_ENV: ${NODE_ENV}
+        # DATABASE_CLIENT: ${DATABASE_CLIENT}
+        # DATABASE_HOST: ${DATABASE_HOST}
+        # DATABASE_PORT: ${DATABASE_PORT}
+        # DATABASE_NAME: ${DATABASE_NAME}
+        # DATABASE_USERNAME: ${DATABASE_USERNAME}
+        # DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+        # DATABASE_SCHEMA: ${DATABASE_SCHEMA}
+        # DATABASE_SSL: ${DATABASE_SSL}
     ports:
       - '15432:5432'
   redis:
