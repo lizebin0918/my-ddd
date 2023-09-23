@@ -1,12 +1,10 @@
 package com.lzb.infr.app.order.converter;
 
 import com.lzb.app.order.query.view.OrderView;
-import com.lzb.domain.common.valobj.FullName;
 import com.lzb.domain.order.repository.OrderRepository;
 import com.lzb.infr.domain.order.converter.OrderConverter;
 import com.lzb.infr.domain.order.persistence.po.OrderPo;
 import lombok.RequiredArgsConstructor;
-import lombok.experimental.UtilityClass;
 
 import org.springframework.stereotype.Component;
 
@@ -21,7 +19,7 @@ public class OrderViewConverter {
 
     private final OrderRepository orderRepository;
 
-    public OrderView convert(OrderPo orderPo, ) {
+    public OrderView convert(OrderPo orderPo) {
         return OrderView.builder()
                 .order(orderRepository.getInCache(orderPo.getOrderId()))
                 .orderId(orderPo.getOrderId())

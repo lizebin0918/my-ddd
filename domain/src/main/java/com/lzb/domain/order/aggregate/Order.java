@@ -147,4 +147,8 @@ public class Order extends BaseAggregate<Order> {
     public void updateFullName(FullName fullName) {
         this.orderAddress.updateFullName(fullName);
     }
+
+    public boolean canCancel() {
+        return false;
+    }
 }

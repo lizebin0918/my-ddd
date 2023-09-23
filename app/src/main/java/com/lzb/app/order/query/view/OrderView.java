@@ -3,9 +3,14 @@ package com.lzb.app.order.query.view;
 import com.lzb.domain.common.valobj.FullName;
 import com.lzb.domain.order.aggregate.Order;
 import com.lzb.domain.order.enums.OrderStatus;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Generated;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.extern.jackson.Jacksonized;
 import net.minidev.json.annotate.JsonIgnore;
 
 /**
@@ -13,9 +18,10 @@ import net.minidev.json.annotate.JsonIgnore;
  * Created on : 2023-09-06 22:44
  * @author mac
  */
-@Builder
-@Getter
 @AllArgsConstructor
+@Getter
+@NoArgsConstructor(access = AccessLevel.PACKAGE)
+@Setter(AccessLevel.PACKAGE)
 public class OrderView {
 
     @JsonIgnore
@@ -41,6 +47,8 @@ public class OrderView {
      */
     private boolean canCancel;
 
-
+    public static OrderViewBuilder builder() {
+        return new OrderViewBuilder();
+    }
 
 }

@@ -28,13 +28,12 @@ public class OrderQueryAppServiceImpl implements OrderQueryAppService {
 
     private final OrderPoService orderPoService;
 
+    private final OrderViewConverter orderViewConverter;
+
     @Override
     public PageDto<OrderView> listForPage(OrderQueryDto queryDto) {
-        LambdaQueryWrapper<OrderPo> query = Wrappers.lambdaQuery(OrderPo.class);
-        query.in(CollectionUtils.isNotEmpty(queryDto.orderIds()), OrderPo::getOrderId, queryDto.orderIds());
-        query.likeRight(StringUtils.isNotBlank(queryDto.email()), OrderPo::getEmail, queryDto.email());
-        Page<OrderPo> page = orderPoService.page(new Page<>(queryDto.pageIndex(), queryDto.pageSize()), query);
-        return PageDto.of(page.getPages(), page.getSize(), page.getTotal(), page.getRecords(), OrderViewConverter::convert);
+        Page<OrderPo> page = orderPoService.listForPage(queryDto);
+        return PageDto.of(page.getPages(), page.getSize(), page.getTotal(), page.getRecords(), orderViewConverter::convert);
     }
 
     @Override

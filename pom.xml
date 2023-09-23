@@ -370,6 +370,12 @@
 				<version>${spring-boot.version}</version>
 			</dependency>
 
+			<dependency>
+				<groupId>de.danielbechler</groupId>
+				<artifactId>java-object-diff</artifactId>
+				<version>0.95</version>
+			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 
