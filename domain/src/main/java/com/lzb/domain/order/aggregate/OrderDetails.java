@@ -62,4 +62,8 @@ public class OrderDetails implements Iterable<OrderDetail>, Serializable, Identi
     public Set<Integer> getSkuIds() {
         return StreamEx.of(list).map(OrderDetail::getSkuId).toSet();
     }
+
+    public int count() {
+        return list.size();
+    }
 }

@@ -1,15 +1,11 @@
 package com.lzb.app.order.query.view;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.lzb.domain.common.valobj.FullName;
 import com.lzb.domain.order.aggregate.Order;
 import com.lzb.domain.order.enums.OrderStatus;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Generated;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.extern.jackson.Jacksonized;
 import net.minidev.json.annotate.JsonIgnore;
 
@@ -18,10 +14,9 @@ import net.minidev.json.annotate.JsonIgnore;
  * Created on : 2023-09-06 22:44
  * @author mac
  */
-@AllArgsConstructor
 @Getter
-@NoArgsConstructor(access = AccessLevel.PACKAGE)
-@Setter(AccessLevel.PACKAGE)
+@Builder
+@Jacksonized
 public class OrderView {
 
     @JsonIgnore
@@ -40,15 +35,17 @@ public class OrderView {
     /**
      * 订单明细数量
      */
-    private int detailCount;
+    @JsonProperty
+    public int getDetailCount() {
+        return order.getOrderDetails().count();
+    }
 
     /**
      * 是否能取消
      */
-    private boolean canCancel;
-
-    public static OrderViewBuilder builder() {
-        return new OrderViewBuilder();
+    @JsonProperty
+    public boolean canCancel() {
+        return order.canCancel();
     }
 
 }

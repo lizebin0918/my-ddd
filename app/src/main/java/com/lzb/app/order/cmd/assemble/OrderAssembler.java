@@ -11,7 +11,6 @@ import com.lzb.domain.order.aggregate.builder.OrderBuilder;
 import com.lzb.domain.order.aggregate.builder.OrderDetailBuilder;
 import com.lzb.domain.order.enums.OrderStatus;
 import lombok.RequiredArgsConstructor;
-import lombok.experimental.UtilityClass;
 
 import org.springframework.stereotype.Component;
 

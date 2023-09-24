@@ -32,49 +32,6 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public final class OrderConverter {
-
-    public static OrderPo toOrderPo(Order order) {
-        OrderPo orderPo = new OrderPo();
-        orderPo.setOrderId(order.getId());
-        orderPo.setOrderStatus(order.getOrderStatus());
-        orderPo.setCurrency(order.getCurrency());
-        orderPo.setExchangeRate(order.getExchangeRate());
-        orderPo.setTotalShouldPay(order.getTotalShouldPay());
-        orderPo.setTotalActualPay(order.getTotalActualPay());
-        orderPo.setVersion(order.getVersion());
-        setOrderAddress(orderPo, order.getOrderAddress());
-        return orderPo;
-    }
-
-    public static List<OrderDetailPo> toOrderDetailPos(long orderId, OrderDetails orderDetails) {
-        return orderDetails.toStream().map(d -> toOrderDetailPo(orderId, d)).toList();
-    }
-
-    private static OrderDetailPo toOrderDetailPo(long orderId, OrderDetail orderDetail) {
-        OrderDetailPo orderDetailPo = new OrderDetailPo();
-        orderDetailPo.setId(orderDetail.getId());
-        orderDetailPo.setOrderId(orderId);
-        orderDetailPo.setSkuId(orderDetail.getSkuId());
-        orderDetailPo.setOrderStatus(orderDetail.getOrderStatus());
-        orderDetailPo.setPrice(orderDetail.getPrice());
-        orderDetailPo.setLocked(orderDetail.getLocked());
-        return orderDetailPo;
-    }
-
-    public static void setOrderAddress(OrderPo orderPo, OrderAddress orderAddress) {
-        orderPo.setEmail(orderAddress.getEmail());
-        orderPo.setPhoneNumber(orderAddress.getPhoneNumber());
-        orderPo.setCountry(orderAddress.getCountry());
-
-        FullName fullName = orderAddress.getFullName();
-        orderPo.setFirstName(fullName.getFirstName());
-        orderPo.setLastName(fullName.getLastName());
-
-        FullAddressLine fullAddressLine = orderAddress.getFullAddressLine();
-        orderPo.setAddressLine1(fullAddressLine.getAddressLine1());
-        orderPo.setAddressLine2(fullAddressLine.getAddressLine2());
-    }
-
     public static Order toOrder(OrderPo orderPo,
             List<OrderDetailPo> orderDetailPos) {
         return new Order(orderPo.getOrderId(), orderPo.getVersion(), orderPo.getOrderStatus(),
