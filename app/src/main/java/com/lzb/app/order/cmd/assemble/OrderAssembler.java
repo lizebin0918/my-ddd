@@ -10,16 +10,18 @@ import com.lzb.domain.order.aggregate.builder.OrderAddressBuilder;
 import com.lzb.domain.order.aggregate.builder.OrderBuilder;
 import com.lzb.domain.order.aggregate.builder.OrderDetailBuilder;
 import com.lzb.domain.order.enums.OrderStatus;
-import com.lzb.domain.common.valobj.FullAddressLine;
-import com.lzb.domain.common.valobj.FullName;
+import lombok.RequiredArgsConstructor;
 import lombok.experimental.UtilityClass;
+
+import org.springframework.stereotype.Component;
 
 /**
  * <br/>
  * Created on : 2023-09-17 13:49
  * @author mac
  */
-@UtilityClass
+@Component
+@RequiredArgsConstructor
 public class OrderAssembler {
 
     public static Order toOrder(PlaceOrderDto req) {
@@ -45,14 +47,6 @@ public class OrderAssembler {
         }
 
         return orderBuilder.build();
-    }
-
-    public FullName toFullName(String firstName, String lastName) {
-        return new FullName(firstName, lastName);
-    }
-
-    public FullAddressLine toFullAddressLine(String addressLine1, String addressLine2) {
-        return new FullAddressLine(addressLine1, addressLine2);
     }
 
     public OrderAddress toOrderAddress(UpdateAddressDto updateAddressDto) {

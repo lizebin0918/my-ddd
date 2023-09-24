@@ -95,8 +95,8 @@ public class OrderAddressBuilder extends BaseBuilder<OrderAddress> {
     @Override
     protected OrderAddress doBuild() {
         return new OrderAddress(id,
-                new FullName(firstName, lastName),
-                new FullAddressLine(addressLine1, addressLine2),
+                FullName.of(firstName, lastName),
+                FullAddressLine.of(addressLine1, addressLine2),
                 email, phoneNumber, country);
     }
 

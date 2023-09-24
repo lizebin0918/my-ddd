@@ -3,6 +3,7 @@ package com.lzb.app.order.cmd;
 import com.lzb.app.order.cmd.assemble.OrderAssembler;
 import com.lzb.app.order.cmd.dto.UpdateAddressDto;
 import com.lzb.app.order.cmd.dto.UpdateFullNameDto;
+import com.lzb.domain.common.valobj.FullName;
 import com.lzb.domain.order.aggregate.Order;
 import com.lzb.domain.order.aggregate.OrderAddress;
 import com.lzb.domain.order.repository.OrderRepository;
@@ -39,7 +40,7 @@ public class UpdateOrderAddressAppService {
     public void updateFullName(UpdateFullNameDto updateFullName) {
         long orderId = updateFullName.orderId();
         Order order = orderRepository.getOrThrow(orderId);
-        order.updateFullName(OrderAssembler.toFullName(updateFullName.firstName(), updateFullName.lastName()));
+        order.updateFullName(FullName.of(updateFullName.firstName(), updateFullName.lastName()));
         orderRepository.update(order);
     }
 

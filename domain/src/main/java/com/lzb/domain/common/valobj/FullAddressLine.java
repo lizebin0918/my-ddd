@@ -8,7 +8,7 @@ import lombok.Getter;
 
 @Getter
 @EqualsAndHashCode
-@AllArgsConstructor
+@AllArgsConstructor(staticName = "of")
 public class FullAddressLine implements Serializable {
 
     private final String addressLine1;

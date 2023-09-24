@@ -5,30 +5,32 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import com.lzb.adapter.rpc.inverntory.dto.LockStockReqDto;
 import com.lzb.adapter.rpc.inverntory.dto.LockStockDetailReqDto;
-import com.lzb.adapter.rpc.inverntory.dto.LockStockRspDto;
 import com.lzb.adapter.rpc.inverntory.dto.LockStockDetailRspDto;
+import com.lzb.adapter.rpc.inverntory.dto.LockStockReqDto;
+import com.lzb.adapter.rpc.inverntory.dto.LockStockRspDto;
+import com.lzb.domain.common.valobj.FullAddressLine;
+import com.lzb.domain.common.valobj.FullName;
 import com.lzb.domain.order.aggregate.Order;
 import com.lzb.domain.order.aggregate.OrderAddress;
 import com.lzb.domain.order.aggregate.OrderDetail;
 import com.lzb.domain.order.aggregate.OrderDetails;
-import com.lzb.domain.order.aggregate.builder.OrderAddressBuilder;
 import com.lzb.domain.order.dto.LockStockDto;
-import com.lzb.domain.common.valobj.FullAddressLine;
-import com.lzb.domain.common.valobj.FullName;
 import com.lzb.infr.domain.order.persistence.po.OrderDetailPo;
 import com.lzb.infr.domain.order.persistence.po.OrderPo;
 import lombok.NonNull;
-import lombok.experimental.UtilityClass;
+import lombok.RequiredArgsConstructor;
 import one.util.streamex.StreamEx;
+
+import org.springframework.stereotype.Component;
 
 /**
  * <br/>
  * Created on : 2023-08-30 23:10
  * @author mac
  */
-@UtilityClass
+@Component
+@RequiredArgsConstructor
 public final class OrderConverter {
 
     public static OrderPo toOrderPo(Order order) {
@@ -91,8 +93,8 @@ public final class OrderConverter {
 
     public static OrderAddress toOrderAddress(OrderPo orderPo) {
         return new OrderAddress(orderPo.getOrderId(),
-                new FullName(orderPo.getFirstName(), orderPo.getLastName()),
-                new FullAddressLine(orderPo.getAddressLine1(), orderPo.getAddressLine2()),
+                FullName.of(orderPo.getFirstName(), orderPo.getLastName()),
+                FullAddressLine.of(orderPo.getAddressLine1(), orderPo.getAddressLine2()),
                 orderPo.getEmail(), orderPo.getPhoneNumber(), orderPo.getCountry());
 
     }
@@ -118,7 +120,4 @@ public final class OrderConverter {
         return orders.stream().map(order -> toOrder(order, orderId2OrderDetailPos.get(order.getOrderId()))).toList();
     }
 
-    public static FullName toFullName(String firstName, String lastName) {
-        return new FullName(firstName, lastName);
-    }
 }

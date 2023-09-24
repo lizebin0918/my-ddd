@@ -13,7 +13,7 @@ import lombok.Getter;
  */
 @Getter
 @EqualsAndHashCode
-@AllArgsConstructor
+@AllArgsConstructor(staticName = "of")
 public class FullName implements Serializable {
 
     private final String firstName;

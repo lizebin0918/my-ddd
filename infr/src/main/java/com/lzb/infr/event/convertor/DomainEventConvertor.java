@@ -6,14 +6,18 @@ import java.util.List;
 import com.lzb.component.utils.json.JsonUtils;
 import com.lzb.domain.common.event.DomainEvent;
 import com.lzb.infr.event.persistence.DomainEventPo;
+import lombok.RequiredArgsConstructor;
 import lombok.experimental.UtilityClass;
+
+import org.springframework.stereotype.Component;
 
 /**
  * <br/>
  * Created on : 2023-09-02 12:57
  * @author lizebin
  */
-@UtilityClass
+@Component
+@RequiredArgsConstructor
 public final class DomainEventConvertor {
 
     public static DomainEventPo toDomainEventPo(String topic, DomainEvent event) {

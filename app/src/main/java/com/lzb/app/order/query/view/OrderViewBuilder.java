@@ -48,8 +48,9 @@ public class OrderViewBuilder {
     }
 
     public OrderView build() {
-        orderView.setDetailCount((int) orderView.getOrder().getOrderDetails().toStream().count());
-        orderView.setCanCancel(orderView.getOrder().canCancel());
+        Order order = orderView.getOrder();
+        orderView.setDetailCount((int) order.getOrderDetails().toStream().count());
+        orderView.setCanCancel(order.canCancel());
         return orderView;
     }
 
