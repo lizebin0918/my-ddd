@@ -47,7 +47,7 @@ public class Signature {
     /**
      * keyVersion
      */
-    private static final String KEY_VERSION = "2";
+    private static final String KEY_VERSION = "keyVersion";
 
     /**
      * RSA256
@@ -70,13 +70,27 @@ public class Signature {
     private String requestBody;
 
 
-    public String sign(String requestTime) throws Exception {
+    String sign(String requestTime) throws Exception {
         String reqContent = httpMethod + " " + uri + "\n" + CLIENT_ID + "." + requestTime + "." + requestBody;
         System.out.println("reqContent is " + "\n" + reqContent);
 
         String originalString = signWithSHA256RSA(reqContent, CIDER_PRIVATE_KEY);
 
         return URLEncoder.encode(originalString, StandardCharsets.UTF_8);
+    }
+
+    public String signatureHeaderPayload(String requestTime) throws Exception {
+        return ALGORITHM +
+                NAME_VALUE_SEPARATOR +
+                RSA_256 +
+                COMMA +
+                KEY_VERSION +
+                NAME_VALUE_SEPARATOR +
+                WorldFirstApi.KEY_VERSION +
+                COMMA +
+                SIGNATURE +
+                NAME_VALUE_SEPARATOR +
+                sign(requestTime);
     }
 
     /**

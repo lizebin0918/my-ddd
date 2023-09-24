@@ -33,13 +33,10 @@ public class Header {
 
     public Map<String, String> formatToMap() throws Exception {
         Map<String, String> headerMap = new HashMap<>();
-        headerMap.put("ClientId", "Client-Id:" + CLIENT_ID);
-        headerMap.put("Signature", StrFormatter.format("Signature:algorithm={}, keyVersion={}, signature={}",
-                signature.getAlgorithm(),
-                signature.getKeyVersion(),
-                signature.sign(getRequestTimeFormat())));
-        headerMap.put("Content-Type", "Content-Type:" + contentType);
-        headerMap.put("Request-Time", "Request-Time:" + getRequestTimeFormat());
+        headerMap.put("ClientId", CLIENT_ID);
+        headerMap.put("Signature", signature.signatureHeaderPayload(getRequestTimeFormat()));
+        headerMap.put("Content-Type", contentType);
+        headerMap.put("Request-Time", getRequestTimeFormat());
         return headerMap;
     }
 
