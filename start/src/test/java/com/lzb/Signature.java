@@ -1,5 +1,6 @@
 package com.lzb;
 
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.security.KeyFactory;
@@ -64,14 +65,14 @@ public class Signature {
     private String httpMethod;
 
     @NonNull
-    private String uri;
+    private String uriQueryString;
 
     @NonNull
     private String requestBody;
 
 
     String sign(String requestTime) throws Exception {
-        String reqContent = httpMethod + " " + uri + "\n" + CLIENT_ID + "." + requestTime + "." + requestBody;
+        String reqContent = httpMethod + " " + uriQueryString + "\n" + CLIENT_ID + "." + requestTime + "." + requestBody;
         System.out.println("reqContent is " + "\n" + reqContent);
 
         String originalString = signWithSHA256RSA(reqContent, CIDER_PRIVATE_KEY);
@@ -134,11 +135,32 @@ public class Signature {
         return kf.generatePublic(X509publicKey);
     }
 
-    String getAlgorithm() {
-        return RSA_256;
+    /**
+     * Check the response of WorldFirst
+     *
+     * @param httpMethod         http method                  e.g., POST, GET
+     * @param uriWithQueryString query string in url          e.g., if your request url is https://{domain_name}.com/ams/api/pay/query uriWithQueryString should be /ams/api/pay/query not https://{domain_name}.com/ams/api/pay/query
+     * @param clientId           clientId issued by WorldFirst    e.g., *****
+     * @param timeString         "response-time" in response  e.g., 2020-01-02T22:36:32-08:00
+     * @param rspBody            json format response         e.g., "{"acquirerId":"xxx","refundAmount":{"currency":"CNY","value":"123"},"refundFromAmount":{"currency":"JPY","value":"234"},"refundId":"xxx","refundTime":"2020-01-03T14:36:32+08:00","result":{"resultCode":"SUCCESS","resultMessage":"success","resultStatus":"S"}}"
+     * @param worldfirstPublicKey    public key from WorldFirst
+     */
+    public static boolean verify(
+            String httpMethod,
+            String uriWithQueryString,
+            String timeString,
+            String rspBody,
+            String signature,
+            String verifyPublicKey) throws Exception {
+        // 1. construct the response content
+        String responseContent = httpMethod + " " + uriWithQueryString + "\n" + CLIENT_ID + "." + timeString + "." + rspBody;
+
+        // 2. decode the signature string
+        String decodedString = URLDecoder.decode(signature, StandardCharsets.UTF_8);
+
+        // 3. verify the response with WorldFirst's public key
+        return verifySignatureWithSHA256RSA(responseContent, decodedString, verifyPublicKey);
+
     }
 
-    String getKeyVersion() {
-        return KEY_VERSION;
-    }
 }
