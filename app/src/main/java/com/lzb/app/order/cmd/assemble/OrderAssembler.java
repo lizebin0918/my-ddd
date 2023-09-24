@@ -49,7 +49,7 @@ public class OrderAssembler {
         return orderBuilder.build();
     }
 
-    public OrderAddress toOrderAddress(UpdateAddressDto updateAddressDto) {
+    public static OrderAddress toOrderAddress(UpdateAddressDto updateAddressDto) {
         return OrderAddressBuilder.newInstance()
                 .id(updateAddressDto.orderId())
                 .addressLine1(updateAddressDto.addressLine1())
