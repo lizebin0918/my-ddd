@@ -78,8 +78,8 @@ public class DiffUnitTest extends BaseUnitTest {
 
         System.out.println(list1.equals(list2));
 
-        // DiffNode diff = ObjectDifferBuilder.buildDefault().compare(list2, list1);
-        DiffNode diff = ObjectDifferBuilder.startBuilding().comparison().ofType(List.class).toUseEqualsMethod().and().comparison().ofType().build().compare(list1, list2);
+        DiffNode diff = ObjectDifferBuilder.buildDefault().compare(list2, list1);
+        // DiffNode diff = ObjectDifferBuilder.startBuilding().comparison().ofType(List.class).toUseEqualsMethod().and().comparison().ofType().build().compare(list1, list2);
 
         diff.visit(new DiffNode.Visitor() {
             @Override

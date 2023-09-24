@@ -28,7 +28,6 @@
 		<mybatis-plus.version>3.5.3.2</mybatis-plus.version>
 		<lombok.version>1.18.28</lombok.version>
 		<approvaltests.version>18.7.1</approvaltests.version>
-		<hutool.version>5.8.21</hutool.version>
 		<testcontainers.version>1.19.0</testcontainers.version>
 		<jackson.version>2.15.2</jackson.version>
 		<javers.version>7.3.2</javers.version>
@@ -40,8 +39,7 @@
 		<archunit.version>1.0.1</archunit.version>
 		<redission.version>3.23.4</redission.version>
 		<commons-lang3.version>3.13.0</commons-lang3.version>
-		<!--<jakarta.version>3.0.2</jakarta.version>-->
-		<!--<hibernate.validator>8.0.1.Final</hibernate.validator>-->
+		<hutool.version>5.8.22</hutool.version>
 	</properties>
 
 	<repositories>
@@ -299,12 +297,6 @@
 			</dependency>
 
 			<dependency>
-				<groupId>cn.hutool</groupId>
-				<artifactId>hutool-core</artifactId>
-				<version>${hutool.version}</version>
-			</dependency>
-
-			<dependency>
 				<groupId>org.apache.commons</groupId>
 				<artifactId>commons-lang3</artifactId>
 				<version>${commons-lang3.version}</version>
@@ -374,6 +366,18 @@
 				<groupId>de.danielbechler</groupId>
 				<artifactId>java-object-diff</artifactId>
 				<version>0.95</version>
+			</dependency>
+
+			<dependency>
+				<groupId>cn.hutool</groupId>
+				<artifactId>hutool-core</artifactId>
+				<version>${hutool.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>cn.hutool</groupId>
+				<artifactId>hutool-http</artifactId>
+				<version>${hutool.version}</version>
 			</dependency>
 
 		</dependencies>
