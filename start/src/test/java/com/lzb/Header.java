@@ -5,9 +5,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
+import cn.hutool.core.text.StrFormatter;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;
+import org.jetbrains.annotations.NotNull;
+
+import static com.lzb.WorldFirstApi.CLIENT_ID;
 
 /**
  * 请求头<br/>
@@ -19,10 +23,7 @@ import lombok.NonNull;
 public class Header {
 
     @NonNull
-    private String clientId;
-
-    @NonNull
-    private String signature;
+    private Signature signature;
 
     @NonNull
     private OffsetDateTime requestTime;
@@ -30,12 +31,20 @@ public class Header {
     @Builder.Default
     private String contentType = "application/json";
 
-    public Map<String, String> formatToMap() {
+    public Map<String, String> formatToMap() throws Exception {
         Map<String, String> headerMap = new HashMap<>();
-        headerMap.put("ClientId", "Client-Id:" + clientId);
-        headerMap.put("Signature", "Signature:algorithm=RSA256, keyVersion=2, signature=" + signature);
+        headerMap.put("ClientId", "Client-Id:" + CLIENT_ID);
+        headerMap.put("Signature", StrFormatter.format("Signature:algorithm={}, keyVersion={}, signature={}",
+                signature.getAlgorithm(),
+                signature.getKeyVersion(),
+                signature.sign(getRequestTimeFormat())));
         headerMap.put("Content-Type", "Content-Type:" + contentType);
-        headerMap.put("Request-Time", "Request-Time:" + DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX").format(requestTime));
+        headerMap.put("Request-Time", "Request-Time:" + getRequestTimeFormat());
         return headerMap;
+    }
+
+    @NotNull
+    private String getRequestTimeFormat() {
+        return DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX").format(requestTime);
     }
 }
