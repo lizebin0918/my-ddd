@@ -1,13 +1,13 @@
 package com.lzb.app.order.query.view;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.lzb.domain.common.valobj.FullName;
 import com.lzb.domain.order.aggregate.Order;
 import com.lzb.domain.order.enums.OrderStatus;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.extern.jackson.Jacksonized;
-import net.minidev.json.annotate.JsonIgnore;
 
 /**
  * 订单View对象<br/>
@@ -17,25 +17,35 @@ import net.minidev.json.annotate.JsonIgnore;
 @Getter
 @Builder
 @Jacksonized
+@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.ANY)
 public class OrderView {
 
     @JsonIgnore
     private Order order;
 
-    private Long orderId;
+    public long getOrderId() {
+        return order.getId();
+    }
 
-    private OrderStatus orderStatus;
+    public OrderStatus getOrderStatus() {
+        return order.getOrderStatus();
+    }
 
-    private FullName fullName;
+    public FullName getFullName() {
+        return order.getOrderAddress().getFullName();
+    }
 
-    private String country;
+    public String getCountry() {
+        return order.getOrderAddress().getCountry();
+    }
 
-    private String email;
+    public String getEmail() {
+        return order.getOrderAddress().getEmail();
+    }
 
     /**
      * 订单明细数量
      */
-    @JsonProperty
     public int getDetailCount() {
         return order.getOrderDetails().count();
     }
@@ -43,7 +53,6 @@ public class OrderView {
     /**
      * 是否能取消
      */
-    @JsonProperty
     public boolean canCancel() {
         return order.canCancel();
     }

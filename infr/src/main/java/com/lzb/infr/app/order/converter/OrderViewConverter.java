@@ -1,9 +1,7 @@
 package com.lzb.infr.app.order.converter;
 
 import com.lzb.app.order.query.view.OrderView;
-import com.lzb.domain.common.valobj.FullName;
 import com.lzb.domain.order.repository.OrderRepository;
-import com.lzb.infr.domain.order.persistence.po.OrderPo;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Component;
@@ -19,14 +17,7 @@ public class OrderViewConverter {
 
     private final OrderRepository orderRepository;
 
-    public OrderView convert(OrderPo orderPo) {
-        return OrderView.builder()
-                .order(orderRepository.getInCache(orderPo.getOrderId()))
-                .orderId(orderPo.getOrderId())
-                .orderStatus(orderPo.getOrderStatus())
-                .fullName(FullName.of(orderPo.getFirstName(), orderPo.getLastName()))
-                .country(orderPo.getCountry())
-                .email(orderPo.getEmail())
-                .build();
+    public OrderView convert(long orderId) {
+        return OrderView.builder().order(orderRepository.getInCache(orderId)).build();
     }
 }

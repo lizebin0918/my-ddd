@@ -29,7 +29,11 @@ public class OrderQueryAppServiceImpl implements OrderQueryAppService {
     @Override
     public PageDto<OrderView> listForPage(OrderQueryDto queryDto) {
         Page<OrderPo> page = orderPoService.listForPage(queryDto);
-        return PageDto.of(page.getPages(), page.getSize(), page.getTotal(), page.getRecords(), orderViewConverter::convert);
+        return PageDto.of(page.getPages(),
+                page.getSize(),
+                page.getTotal(),
+                page.getRecords(),
+                orderPo -> orderViewConverter.convert(orderPo.getOrderId()));
     }
 
     @Override
