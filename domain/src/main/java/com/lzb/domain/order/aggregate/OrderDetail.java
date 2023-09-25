@@ -3,6 +3,7 @@ package com.lzb.domain.order.aggregate;
 import java.beans.ConstructorProperties;
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.lzb.domain.common.aggregate.BaseEntity;
 import com.lzb.domain.order.enums.OrderStatus;
 import lombok.AccessLevel;
@@ -47,7 +48,7 @@ public class OrderDetail extends BaseEntity<OrderDetail> {
      * @param orderStatus
      * @param price
      */
-    @ConstructorProperties({"id", "skuId", "orderStatus", "price", "locked"})
+    @JsonCreator
     public OrderDetail(long id, int skuId, @NonNull OrderStatus orderStatus, @NonNull BigDecimal price, Boolean locked) {
         super(id);
         this.skuId = skuId;

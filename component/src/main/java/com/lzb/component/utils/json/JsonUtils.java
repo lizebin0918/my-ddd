@@ -53,6 +53,7 @@ public class JsonUtils {
             .defaultTimeZone(TimeZone.getTimeZone(ZoneId.systemDefault()))
             .addModule(new JavaTimeModule())
             .addModule(new Jdk8Module())
+            // 通过构造函数声明@JsonCreator反序列化，但是要在maven引入compile插件，加参数:-parameters
             .addModule(new ParameterNamesModule(JsonCreator.Mode.PROPERTIES))
             .build();
 
@@ -62,7 +63,6 @@ public class JsonUtils {
         // 只显示有的字段
         OBJECT_MAPPER.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE);
         OBJECT_MAPPER.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
-        OBJECT_MAPPER.setVisibility(PropertyAccessor.CREATOR, JsonAutoDetect.Visibility.NON_PRIVATE);
     }
 
     /**

@@ -53,7 +53,6 @@ public class MyResponseBodyHandleReturnValue implements HandlerMethodReturnValue
         // 只显示有的字段
         SPRING_MVC_RETURN_OBJECT_MAPPER.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE);
         SPRING_MVC_RETURN_OBJECT_MAPPER.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
-        SPRING_MVC_RETURN_OBJECT_MAPPER.setVisibility(PropertyAccessor.CREATOR, JsonAutoDetect.Visibility.NON_PRIVATE);
     }
 
     /**
