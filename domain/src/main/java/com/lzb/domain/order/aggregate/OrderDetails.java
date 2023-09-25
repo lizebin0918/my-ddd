@@ -1,6 +1,5 @@
 package com.lzb.domain.order.aggregate;
 
-import java.beans.ConstructorProperties;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Iterator;
@@ -10,7 +9,6 @@ import java.util.stream.Stream;
 
 import cn.hutool.core.lang.Assert;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.lzb.domain.common.aggregate.Identified;
 import lombok.extern.slf4j.Slf4j;
 import one.util.streamex.StreamEx;

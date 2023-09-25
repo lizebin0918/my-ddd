@@ -1,6 +1,5 @@
 package com.lzb.domain.order.aggregate;
 
-import java.beans.ConstructorProperties;
 import java.math.BigDecimal;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
