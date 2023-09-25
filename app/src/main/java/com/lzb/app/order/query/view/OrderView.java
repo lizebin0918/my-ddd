@@ -53,7 +53,7 @@ public class OrderView {
     /**
      * 是否能取消
      */
-    public boolean canCancel() {
+    public boolean getCanCancel() {
         return order.canCancel();
     }
 

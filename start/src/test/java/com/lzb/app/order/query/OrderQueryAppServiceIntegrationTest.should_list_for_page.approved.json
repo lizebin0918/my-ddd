@@ -2,6 +2,7 @@
   "pageSize" : 10,
   "pages" : 1,
   "rows" : [ {
+    "canCancel" : false,
     "country" : "CHINA",
     "detailCount" : 2,
     "email" : "123456@qq.com",
