@@ -1,10 +1,12 @@
 # my-ddd
 
 ## 项目信息
-- 技术栈：Java 17、Spring Boot 3、MySQL 8.x、Redis 6.x、MyBatis-Plus
+- 基于COLA的ddd四层架构的demo
+![image](https://github.com/lizebin0918/my-ddd/blob/main/ddd%E5%88%86%E5%B1%82.drawio.png)
+- 技术栈：Java 17、Spring Boot 3、PostgreSQL 14、Redis 6.x、MyBatis-Plus、Docker
 
 ## 运行条件
-- 本机需要安装docker
+- 本机需要安装[Docker](https://www.docker.com/)环境
 
 ## 项目结构
 
