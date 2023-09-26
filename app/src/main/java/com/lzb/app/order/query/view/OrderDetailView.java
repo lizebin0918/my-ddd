@@ -2,14 +2,14 @@ package com.lzb.app.order.query.view;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.lzb.domain.common.valobj.FullAddressLine;
 import com.lzb.domain.common.valobj.FullName;
 import com.lzb.domain.order.aggregate.Order;
-import com.lzb.domain.order.dto.SkuDto;
+import com.lzb.domain.order.dto.SkuInfoDto;
 import com.lzb.domain.order.enums.OrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,6 +25,7 @@ import lombok.extern.jackson.Jacksonized;
 @Jacksonized
 @AllArgsConstructor
 @Getter
+@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.ANY)
 public class OrderDetailView {
 
     @JsonIgnore
@@ -94,13 +95,13 @@ public class OrderDetailView {
     ///////////////////////////////////////////////////////////////////////////
 
     public List<OrderDetail> getOrderDetails() {
-        Map<Integer, SkuDto> skuId2SkuDto = orderDetailViewContext.getSkuId2SkuDto();
+        var skuId2SkuInfo = orderDetailViewContext.getSkuId2SkuInfo();
         return order.getOrderDetails().toStream().map(orderDetail -> {
             return OrderDetail.builder()
                     .orderStatus(orderDetail.getOrderStatus())
                     .price(orderDetail.getPrice())
                     .locked(orderDetail.getLocked())
-                    .picUrl(Optional.ofNullable(skuId2SkuDto.get(orderDetail.getSkuId())).map(SkuDto::picUrl).orElse(null))
+                    .picUrl(Optional.ofNullable(skuId2SkuInfo.get(orderDetail.getSkuId())).map(SkuInfoDto::picUrl).orElse(null))
                     .build();
         }).toList();
     }

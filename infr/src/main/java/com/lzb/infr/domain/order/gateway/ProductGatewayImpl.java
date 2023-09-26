@@ -2,15 +2,18 @@ package com.lzb.infr.domain.order.gateway;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.IntStream;
 
 import com.lzb.adapter.rpc.inverntory.InventoryClient;
 import com.lzb.adapter.rpc.inverntory.dto.LockStockReqDto;
 import com.lzb.domain.order.aggregate.Order;
 import com.lzb.domain.order.dto.LockStockDto;
-import com.lzb.domain.order.dto.SkuDto;
+import com.lzb.domain.order.dto.SkuInfoDto;
+import com.lzb.domain.order.dto.SkuOnSaleDto;
 import com.lzb.domain.order.gateway.ProductGateway;
 import com.lzb.infr.domain.order.converter.OrderConverter;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Component;
@@ -32,12 +35,17 @@ public class ProductGatewayImpl implements ProductGateway {
     private final InventoryClient inventoryClient;
 
     @Override
-    public List<SkuDto> onSale(int... skuIds) {
-        return IntStream.of(skuIds).mapToObj(skuId -> new SkuDto(skuId, true, "picUrl")).toList();
+    public List<SkuOnSaleDto> onSale(Set<Integer> skuIds) {
+        return skuIds.stream().map(skuId -> new SkuOnSaleDto(skuId, true)).toList();
     }
 
     @Override
-    public List<SkuDto> onSale(List<Integer> skuIds) {
+    public List<SkuInfoDto> list(Set<Integer> skuIds) {
+        return skuIds.stream().map(skuId -> new SkuInfoDto(skuId, "name-" + skuId, "picUrl-" + skuId)).toList();
+    }
+
+    @Override
+    public List<SkuOnSaleDto> onSale(List<Integer> skuIds) {
         return Collections.emptyList();
     }
 

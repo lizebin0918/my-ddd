@@ -3,7 +3,7 @@ package com.lzb.domain.order.service;
 import java.util.Set;
 
 import com.lzb.component.exception.BizException;
-import com.lzb.domain.order.dto.SkuDto;
+import com.lzb.domain.order.dto.SkuOnSaleDto;
 import com.lzb.domain.order.gateway.ProductGateway;
 import lombok.RequiredArgsConstructor;
 import one.util.streamex.StreamEx;
@@ -22,13 +22,10 @@ public class SkuValidator {
     private final ProductGateway productGateway;
 
     public void assertAllOfSkuIsOnSale(Set<Integer> skuIds) {
-        boolean allIsOnSale = StreamEx.of(productGateway.onSale(toInts(skuIds))).allMatch(SkuDto::isOnSale);
+        boolean allIsOnSale = StreamEx.of(productGateway.onSale(skuIds)).allMatch(SkuOnSaleDto::isOnSale);
         if (!allIsOnSale) {
             throw new BizException("订单明细包含下架商品，无法创建订单");
         }
-    }
-    private static int[] toInts(Set<Integer> skuIds) {
-        return skuIds.stream().mapToInt(Integer::intValue).toArray();
     }
 
 }

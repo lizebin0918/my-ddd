@@ -28,4 +28,11 @@ class OrderQueryAppServiceIntegrationTest extends BaseIntegrationTest {
         assertJSON(orderQueryAppService.listForPage(query));
     }
 
+    @Test
+    @DisplayName("详情测试")
+    @Sql("/sql/OrderQueryAppServiceIntegrationTest/test_order_detail.sql")
+    void test_order_detail() {
+        assertJSON(orderQueryAppService.detail(1L));
+    }
+
 }

@@ -1,10 +1,8 @@
 package com.lzb.infr.domain.order.gateway;
 
 import java.util.Collections;
-import java.util.List;
 
 import com.lzb.BaseIntegrationTest;
-import com.lzb.domain.order.dto.SkuDto;
 import com.lzb.domain.order.gateway.ProductGateway;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;

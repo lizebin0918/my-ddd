@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import com.lzb.component.exception.BizException;
-import com.lzb.domain.order.dto.SkuDto;
+import com.lzb.domain.order.dto.SkuInfoDto;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,6 +31,10 @@ public class OrderDetailViewContext {
 
     private OrderDetailViewContext() {}
 
+    public static OrderVoContextBuilder builder() {
+        return new OrderVoContextBuilder();
+    }
+
     /**
      * 订单查询线程池，订单查询的线程数不会太多，按道理不会导致OOM
      */
@@ -39,7 +43,7 @@ public class OrderDetailViewContext {
             new ThreadFactoryBuilder().setNameFormat("query-order-context-%d").build()
     );
 
-    private Map<Integer, SkuDto> skuId2SkuDto = Collections.emptyMap();
+    private Map<Integer, SkuInfoDto> skuId2SkuInfo = Collections.emptyMap();
 
     ///////////////////////////////////////////////////////////////////////////
     // Builder
@@ -47,18 +51,15 @@ public class OrderDetailViewContext {
 
     public static class OrderVoContextBuilder {
 
-        private OrderDetailViewContext orderVoContext;
+        private final OrderDetailViewContext orderVoContext;
 
         /**
          * 构建的过程中，异步查询
          */
         private final List<CompletableFuture<Void>> taskList = new ArrayList<>();
 
-        private OrderVoContextBuilder() {}
-
-        public OrderVoContextBuilder builder() {
+        private OrderVoContextBuilder() {
             orderVoContext = new OrderDetailViewContext();
-            return this;
         }
 
         /**
@@ -76,9 +77,9 @@ public class OrderDetailViewContext {
          * @param skuList
          * @return
          */
-        public OrderVoContextBuilder sku(Supplier<List<SkuDto>> skuDtoSupplier) {
-            addTask(() -> orderVoContext.skuId2SkuDto = skuDtoSupplier.get().stream()
-                    .collect(Collectors.toMap(SkuDto::skuId, Function.identity())));
+        public OrderVoContextBuilder sku(Supplier<List<SkuInfoDto>> skuInfoSupplier) {
+            addTask(() -> orderVoContext.skuId2SkuInfo = skuInfoSupplier.get().stream()
+                    .collect(Collectors.toMap(SkuInfoDto::skuId, Function.identity())));
             return this;
         }
 
