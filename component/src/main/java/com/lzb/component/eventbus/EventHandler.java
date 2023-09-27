@@ -1,7 +1,6 @@
 package com.lzb.component.eventbus;
 
 import com.google.common.eventbus.EventBus;
-import com.google.common.eventbus.Subscribe;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -18,7 +17,7 @@ public abstract class EventHandler<T> {
         eventBus.register(this);
     }
 
-    @Subscribe
+    // @Subscribe 无法实现类型转换
     public abstract void handle(T t);
 
 }
