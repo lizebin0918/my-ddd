@@ -1,7 +1,7 @@
 package com.lzb.infr.order.persistence.mapper;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.lzb.BaseMapperTest;
+import com.lzb.BaseMapperUnitTest;
 import com.lzb.infr.domain.order.persistence.mapper.OrderPoMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * Created on : 2023-09-18 22:31
  * @author mac
  */
-class OrderPoMapperUnitTest extends BaseMapperTest {
+class OrderPoMapperUnitUnitTest extends BaseMapperUnitTest {
 
     @Autowired
     private OrderPoMapper orderPoMapper;

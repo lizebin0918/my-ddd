@@ -16,7 +16,6 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import static com.lzb.initializer.DataSourceInitializer.database;
-import static com.lzb.initializer.RedisInitializer.redis;
 
 @Slf4j
 @Testcontainers
@@ -24,7 +23,7 @@ import static com.lzb.initializer.RedisInitializer.redis;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @SpringJUnitConfig(classes = {MybatisPlusConfig.class}, initializers = DataSourceInitializer.class)
 @TestPropertySource(locations = "classpath:application-addition.properties")
-public abstract class BaseMapperTest extends BaseTest {
+public abstract class BaseMapperUnitTest extends BaseTest {
 
     static {
 
