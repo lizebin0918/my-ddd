@@ -2,9 +2,17 @@
 
 ## 项目信息
 - 技术栈：Java 17、Spring Boot 3、PostgreSQL 14、Redis 6.x、MyBatis-Plus、Docker、maven
+- 模块说明
+  - component、test-component相关工具类
+  - adapter
+    - `web`：web层，包含controller、dto、assembler
+    - `rpc`：远程调用
+  - app：应用层，cmd-写、query-查
+  - domain：领域层，包含聚合根、实体、值对象、领域服务、领域事件、枚举定义
+  - infr：基础设施，依赖倒置其它层，主要用于持久化
+  - start：启动模块
 - 基于COLA的ddd四层架构
   ![image](https://github.com/lizebin0918/my-ddd/blob/main/ddd%E5%88%86%E5%B1%82.drawio.png)
-- `component`、`test-component`相关工具类
 
 ## 运行条件
 - 安装docker环境[下载地址](https://www.docker.com/)
