@@ -289,11 +289,11 @@
 				<version>${archunit.version}</version>
 			</dependency>
 
+			<!--com.apifan.common:common-random:1.0.18-->
 			<dependency>
 				<groupId>org.jeasy</groupId>
 				<artifactId>easy-random-core</artifactId>
 				<version>5.0.0</version>
-
 			</dependency>
 
 			<dependency>
