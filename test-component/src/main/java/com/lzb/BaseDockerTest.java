@@ -4,73 +4,28 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.stream.Stream;
 
-import com.redis.testcontainers.RedisContainer;
+import com.lzb.initializer.DataSourceInitializer;
+import com.lzb.initializer.RedisInitializer;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInfo;
-import org.testcontainers.containers.PostgreSQLContainer;
-import org.testcontainers.junit.jupiter.Testcontainers;
-import org.testcontainers.utility.DockerImageName;
 import org.testcontainers.containers.GenericContainer;
+import org.testcontainers.junit.jupiter.Testcontainers;
 
-import org.springframework.context.ApplicationContextInitializer;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.support.TestPropertySourceUtils;
+
+import static com.lzb.initializer.DataSourceInitializer.database;
+import static com.lzb.initializer.RedisInitializer.redis;
 
 @Slf4j
 @Testcontainers(parallel = true)
 @ContextConfiguration(initializers = {
-        BaseDockerTest.DataSourceInitializer.class,
-        BaseDockerTest.RedisInitializer.class
+        DataSourceInitializer.class,
+        RedisInitializer.class
 })
 public abstract class BaseDockerTest extends BaseTest {
-
-
-    ///////////////////////////////////////////////////////////////////////////
-    // docker相关
-    ///////////////////////////////////////////////////////////////////////////
-
-    public static final PostgreSQLContainer<?> database = new PostgreSQLContainer<>("postgres:14.9")
-            .withAccessToHost(true)
-            .withPrivilegedMode(true)
-            .withUsername("postgres")
-            .withPassword("123456")
-            ;
-
-    public static final RedisContainer redis =
-            new RedisContainer(DockerImageName.parse("redis:7.2.0"))
-                    .withExposedPorts(6379);
-
-    static class DataSourceInitializer
-            implements ApplicationContextInitializer<ConfigurableApplicationContext> {
-        @Override
-        public void initialize(ConfigurableApplicationContext applicationContext) {
-            PostgreSQLContainer<?> database = BaseDockerTest.database;
-            TestPropertySourceUtils.addInlinedPropertiesToEnvironment(
-                    applicationContext,
-                    "spring.datasource.url=" + database.getJdbcUrl(),
-                    "spring.datasource.username=" + database.getUsername(),
-                    "spring.datasource.password=" + database.getPassword()
-            );
-        }
-    }
-
-    static class RedisInitializer
-            implements ApplicationContextInitializer<ConfigurableApplicationContext> {
-
-        @Override
-        public void initialize(ConfigurableApplicationContext applicationContext) {
-            RedisContainer redis = BaseDockerTest.redis;
-            TestPropertySourceUtils.addInlinedPropertiesToEnvironment(
-                    applicationContext,
-                    "spring.data.redis.host=" + redis.getHost(),
-                    "spring.data.redis.port=" + redis.getFirstMappedPort()
-            );
-        }
-    }
 
     static {
 

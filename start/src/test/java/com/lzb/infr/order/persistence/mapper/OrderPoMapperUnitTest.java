@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * Created on : 2023-09-18 22:31
  * @author mac
  */
-class OrderPoMapperTest extends BaseMapperTest {
+class OrderPoMapperUnitTest extends BaseMapperTest {
 
     @Autowired
     private OrderPoMapper orderPoMapper;

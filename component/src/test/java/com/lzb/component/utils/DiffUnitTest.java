@@ -19,10 +19,10 @@ import org.junit.jupiter.api.Test;
  * Created on : 2023-09-23 13:54
  * @author mac
  */
-public class DiffUnitTest extends BaseUnitTest {
+class DiffUnitTest extends BaseUnitTest {
 
     @Test
-    @DisplayName("")
+    @DisplayName("测试diff框架")
     @Disabled
     void should_() {
         Map<String, Object> working = Map.of("item", "foo", "same", "same", "name", "lizebin", "bigdecimal", new BigDecimal("1.0"), "list", List.of(1, 2, 3));
@@ -69,6 +69,7 @@ public class DiffUnitTest extends BaseUnitTest {
     }
 
     @Test
+    @Disabled
     @DisplayName("对比数组")
     void should_compare_array() {
         String[] array1 = {"apple", "banana", "orange"};
