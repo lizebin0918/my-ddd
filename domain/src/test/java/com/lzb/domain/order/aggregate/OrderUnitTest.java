@@ -8,7 +8,6 @@ import com.lzb.BaseUnitTest;
 import com.lzb.component.utils.json.JsonUtils;
 import com.lzb.domain.order.enums.OrderStatus;
 import lombok.Getter;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -77,7 +76,7 @@ class OrderUnitTest extends BaseUnitTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("通过构造函数反序列化")
     void should_json_constructor() {
         String json = "{\"id\":1}";
         A a = JsonUtils.json2JavaBean(json, A.class);
