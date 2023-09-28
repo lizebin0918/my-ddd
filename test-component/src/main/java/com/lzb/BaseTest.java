@@ -20,14 +20,13 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.introspect.AnnotatedMember;
 import com.fasterxml.jackson.databind.introspect.JacksonAnnotationIntrospector;
 import com.fasterxml.jackson.databind.json.JsonMapper;
-import com.fasterxml.jackson.databind.util.StdDateFormat;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
 import org.mockito.Mockito;
 
 /**
- * <br/>
+ * 测试基类<br/>
  * Created on : 2023-03-01 10:31
  * @author lizebin
  */

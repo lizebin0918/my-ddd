@@ -54,8 +54,10 @@ class A {}
 - Po的枚举字段类型，统一继承`EnumValue`，在`DefaultEnumValueTypeHandler`转换
 
 ## 测试相关
-- 单元测试继承`BaseUnitTest`
-- 集成测试继承`BaseIntegrationTest`
+- 单元测试继承：`BaseUnitTest`
+- mapper单元测试：`BaseMapperUnitTest`
+- controller单元测试：`BaseControllerUnitTest`
+- 集成测试继承：`BaseIntegrationTest`
 - 命名规范：`被测类名 + 被测方法名 + Unit/Integration + Test`，参考`OrderUnitTest`、`OrderQueryAppServiceIntegrationTest`
 
 ## 编码规范
