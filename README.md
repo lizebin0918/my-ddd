@@ -40,11 +40,6 @@ public class A {
 }
 ```
 - 所有领域Builder都是多例的，参考：`OrderBuilder`或者用lombok的`@Builder`
-```java
-@Builder
-@Jacksonized
-class A {}
-```
 
 ## mybatis-plus
 - 配置类：`MybatisPlusConfig`，注意：全局的更新和插入策略
