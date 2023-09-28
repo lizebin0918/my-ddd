@@ -63,3 +63,24 @@ create sequence if not exists domain_event_id_seq;
 
 alter table domain_event
     alter column id set default nextval('domain_event_id_seq'::regclass);
+
+create table if not exists operation_log
+(
+    id          bigint                              not null
+    primary key,
+    biz_id         bigint,
+    log_table_name text,
+    biz_type       text,
+    old_status     text,
+    new_status     text,
+    remark         text,
+    add_time       timestamp(0) default now(),
+    diff           text,
+    uid            bigint,
+    source         text
+    );
+
+create sequence if not exists operation_log_id_seq;
+
+alter table operation_log
+    alter column id set default nextval('operation_log_id_seq'::regclass);

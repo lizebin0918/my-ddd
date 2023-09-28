@@ -35,7 +35,6 @@ public class MybatisPlusConfig {
         factoryBean.setDataSource(dataSource);
         factoryBean.setTypeHandlersPackage("com.lzb.infr.config.mybatis.handler");
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-        factoryBean.setMapperLocations(resolver.getResources("classpath*:/mapper/**/*.xml"));
         factoryBean.setPlugins(mybatisPlusInterceptor());
         MybatisConfiguration configuration = new MybatisConfiguration();
         configuration.setMapUnderscoreToCamelCase(true);

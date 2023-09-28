@@ -53,4 +53,10 @@ class PlaceOrderAppServiceIntegrationTest extends BaseIntegrationTest {
         assertJSON(order, "id");
     }
 
+    @Test
+    @DisplayName("测试日志组件是否生效")
+    void should_test_log() {
+        placeOrderAppService.testLog();
+    }
+
 }
