@@ -1,6 +1,6 @@
 package com.lzb.component.operation.strategy.impl;
 
-import com.lzb.component.operation.dto.OperationLogDTO;
+import com.lzb.component.operation.dto.OperationLogDto;
 import com.lzb.component.operation.strategy.AbstractOperateLogStorage;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +15,7 @@ public class OperateLogStorageByMybatisPlus extends AbstractOperateLogStorage {
 	OperationLogMapper operationLogMapper;
 
 	@Override
-	public void saveOperationLog(OperationLogDTO dto) {
+	public void saveOperationLog(OperationLogDto dto) {
 		OperationLogDO operationLogDO = new OperationLogDO();
 		operationLogDO.setUid(dto.getUid());
 		operationLogDO.setBizId(dto.getBizId());

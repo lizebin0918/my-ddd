@@ -13,7 +13,7 @@ import com.google.common.collect.Lists;
 import com.lzb.component.operation.annotation.OperateLog;
 import com.lzb.component.operation.annotation.OperateLogs;
 import com.lzb.component.operation.context.OperationLogContext;
-import com.lzb.component.operation.dto.OperationLogDTO;
+import com.lzb.component.operation.dto.OperationLogDto;
 import com.lzb.component.operation.strategy.OperateLogStorage;
 import com.lzb.component.operation.strategy.OperateLogUidService;
 import lombok.AllArgsConstructor;
@@ -44,7 +44,7 @@ public class OperateLogAnnotationInterceptor implements MethodInterceptor {
 	public Object invoke(@Nonnull MethodInvocation invocation) throws Throwable {
 
 		Method method = invocation.getMethod();
-		List<OperationLogDTO> operationLogDTOS = new ArrayList<>();
+		List<OperationLogDto> operationLogDtos = new ArrayList<>();
 		List<OperateLog> operateLogList = new ArrayList<>();
 		if(method.isAnnotationPresent(OperateLog.class)){
 			OperateLog[] operateLogArr = method.getAnnotationsByType(OperateLog.class);
@@ -61,15 +61,15 @@ public class OperateLogAnnotationInterceptor implements MethodInterceptor {
 		Object proceed = proceed(invocation);
 		try {
 			for (OperateLog annotation : operateLogList) {
-				OperationLogDTO operationLogDTO;
+				OperationLogDto operationLogDTO;
 				try {
 					operationLogDTO = builderOperationLogDTO(annotation, invocation);
 				} catch (Exception e){
 					continue;
 				}
-				operationLogDTOS.add(operationLogDTO);
+				operationLogDtos.add(operationLogDTO);
 			}
-			operateLogStorage.saveOperateLog(operationLogDTOS);
+			operateLogStorage.saveOperateLog(operationLogDtos);
 		}
 		catch (Exception e) {
 			// 不抛出异常 不影响正常的log 记录
@@ -87,7 +87,7 @@ public class OperateLogAnnotationInterceptor implements MethodInterceptor {
 		return methodInvocation.proceed();
 	}
 
-	public OperationLogDTO builderOperationLogDTO(OperateLog annotation, MethodInvocation methodInvocation) {
+	public OperationLogDto builderOperationLogDTO(OperateLog annotation, MethodInvocation methodInvocation) {
 
 		Method method = methodInvocation.getMethod();
 		Object[] arguments = methodInvocation.getArguments();
@@ -107,23 +107,23 @@ public class OperateLogAnnotationInterceptor implements MethodInterceptor {
 		String remarkEL = annotation.remark();
 		String sourceEL = annotation.source();
 		String diffIdEl = annotation.diffId();
-		OperationLogDTO operationLogDTO = new OperationLogDTO();
+		OperationLogDto operationLogDTO = new OperationLogDto();
 
 		if (Objects.nonNull(operateLogUidService)) {
 			operationLogDTO.setUid(operateLogUidService.getOperateLogUID());
 		}
 		else {
-			initValue(OperationLogDTO::setUid, operationLogDTO, uidEL, Long.class, context);
+			initValue(OperationLogDto::setUid, operationLogDTO, uidEL, Long.class, context);
 		}
-		initValue(OperationLogDTO::setBizId, operationLogDTO, bizIdEL, Long.class, context);
-		initValue(OperationLogDTO::setTableName, operationLogDTO, tableNameEL, String.class, context);
-		initValue(OperationLogDTO::setBizType, operationLogDTO, bizTypeEL, String.class, context);
-		initValue(OperationLogDTO::setOldStatus, operationLogDTO, oldStatusEL, String.class, context);
-		initValue(OperationLogDTO::setNewStatus, operationLogDTO, newStatusEL, String.class, context);
-		initValue(OperationLogDTO::setRemark, operationLogDTO, remarkEL, String.class, context);
-		initValue(OperationLogDTO::setSource, operationLogDTO, sourceEL, String.class, context);
+		initValue(OperationLogDto::setBizId, operationLogDTO, bizIdEL, Long.class, context);
+		initValue(OperationLogDto::setTableName, operationLogDTO, tableNameEL, String.class, context);
+		initValue(OperationLogDto::setBizType, operationLogDTO, bizTypeEL, String.class, context);
+		initValue(OperationLogDto::setOldStatus, operationLogDTO, oldStatusEL, String.class, context);
+		initValue(OperationLogDto::setNewStatus, operationLogDTO, newStatusEL, String.class, context);
+		initValue(OperationLogDto::setRemark, operationLogDTO, remarkEL, String.class, context);
+		initValue(OperationLogDto::setSource, operationLogDTO, sourceEL, String.class, context);
 		if(StringUtils.isNotEmpty(diffIdEl)){
-			initValue(OperationLogDTO::setDiffId, operationLogDTO, diffIdEl, Integer.class, context);
+			initValue(OperationLogDto::setDiffId, operationLogDTO, diffIdEl, Integer.class, context);
 			operationLogDTO.setDiff(OperationLogContext.getDiffDTOList(operationLogDTO.getDiffId()));
 		}else{
 			operationLogDTO.setDiff(OperationLogContext.getDiffDTOList());

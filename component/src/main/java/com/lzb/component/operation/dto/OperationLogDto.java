@@ -5,7 +5,7 @@ import com.lzb.component.operation.context.OperationLogContext;
 import lombok.Data;
 
 @Data
-public class OperationLogDTO {
+public class OperationLogDto {
 
 	/**
 	 * 用户名
@@ -53,7 +53,7 @@ public class OperationLogDTO {
 
 	private Integer diffId;
 
-	public OperationLogDTO(Builder builder) {
+	public OperationLogDto(Builder builder) {
 		this.uid = builder.uid;
 		this.tableName = builder.tableName;
 		this.bizType = builder.bizType;
@@ -66,7 +66,7 @@ public class OperationLogDTO {
 		this.diffId = builder.diffId;
 	}
 
-	public OperationLogDTO() {
+	public OperationLogDto() {
 	}
 
 	public static Builder builder() {
@@ -181,8 +181,8 @@ public class OperationLogDTO {
 		}
 		
 
-		public OperationLogDTO builder() {
-			return new OperationLogDTO(this);
+		public OperationLogDto builder() {
+			return new OperationLogDto(this);
 		}
 		
 	}
