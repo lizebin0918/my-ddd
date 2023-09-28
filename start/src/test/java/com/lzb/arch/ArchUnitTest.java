@@ -73,21 +73,6 @@ public class ArchUnitTest {
     // 分层隔离
     ///////////////////////////////////////////////////////////////////////////
 
-    /*@ArchTest
-    static ArchRule layer_dependencies_are_respected = layeredArchitecture()
-            .consideringAllDependencies()
-            .layer("adapter").definedBy("com.lzb..adapter..")
-            .layer("app").definedBy("com.lzb..app..")
-            .layer("domain").definedBy("com.lzb..domain..")
-            .layer("infr").definedBy("com.shopcider..infr..")
-
-            .whereLayer("adapter").mayNotBeAccessedByAnyLayer()
-            // app 层可以被 domain/adapter 调用
-            .whereLayer("app").mayOnlyBeAccessedByLayers("adapter")
-            // domain 层可以被 application/infrastructure/adapter 调用
-            .whereLayer("domain").mayOnlyBeAccessedByLayers("app", "adapter")
-            // infr 可以被其他层调用
-            .whereLayer("infr").mayOnlyBeAccessedByLayers("app", "domain", "adapter");*/
 
     ///////////////////////////////////////////////////////////////////////////
     // code smell
