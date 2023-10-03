@@ -5,10 +5,10 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-public class MapLazySupplier<K, V> extends LazySupplier<Map<K, V>> {
+public class MapMemoizeSupplier<K, V> extends MemoizeSupplier<Map<K, V>> {
 
 
-	public MapLazySupplier(Supplier<Map<K, V>> supplier) {
+	public MapMemoizeSupplier(Supplier<Map<K, V>> supplier) {
 		super(supplier);
 	}
 
