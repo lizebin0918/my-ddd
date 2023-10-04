@@ -12,15 +12,11 @@ public class MemoizeSupplier<T> implements Supplier<T> {
 	private final Supplier<T> supplier;
 
 	public MemoizeSupplier(Supplier<T> supplier) {
-		this.supplier = Suppliers.synchronizedSupplier(Suppliers.memoize(supplier::get));
+		this.supplier = Suppliers.memoize(Suppliers.synchronizedSupplier(supplier::get));
 	}
 
 	@Override
 	public T get() {
-		return supplier.get();
-	}
-
-	protected T doGetData() {
 		return supplier.get();
 	}
 
