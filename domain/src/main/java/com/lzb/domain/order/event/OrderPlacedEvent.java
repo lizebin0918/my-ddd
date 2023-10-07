@@ -2,8 +2,7 @@ package com.lzb.domain.order.event;
 
 import java.util.Objects;
 
-import com.lzb.domain.common.event.DomainEvent;
-import lombok.AllArgsConstructor;
+import com.lzb.component.domain.event.DomainEvent;
 import lombok.Getter;
 import lombok.NonNull;
 

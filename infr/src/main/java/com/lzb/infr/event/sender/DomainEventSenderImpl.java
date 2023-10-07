@@ -4,7 +4,7 @@ import java.util.function.Consumer;
 
 import com.google.common.eventbus.EventBus;
 import com.lzb.component.utils.json.JsonUtils;
-import com.lzb.domain.common.event.DomainEvent;
+import com.lzb.component.domain.event.DomainEvent;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 

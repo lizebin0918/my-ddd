@@ -1,10 +1,10 @@
-package com.lzb.domain.common.repository;
+package com.lzb.component.domain.repository;
 
 
 import java.util.Optional;
 
-import com.lzb.domain.common.aggregate.BaseAggregate;
-import com.lzb.domain.common.annotation.Snapshot;
+import com.lzb.component.domain.aggregate.BaseAggregate;
+import com.lzb.component.domain.annotation.Snapshot;
 
 
 

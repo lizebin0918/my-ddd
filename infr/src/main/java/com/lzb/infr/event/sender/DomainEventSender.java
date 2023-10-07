@@ -3,7 +3,7 @@ package com.lzb.infr.event.sender;
 import java.util.Queue;
 import java.util.function.Consumer;
 
-import com.lzb.domain.common.event.DomainEvent;
+import com.lzb.component.domain.event.DomainEvent;
 
 /**
  * 领域事件发送<br/>

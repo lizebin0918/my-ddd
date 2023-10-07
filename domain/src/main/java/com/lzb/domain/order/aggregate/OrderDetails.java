@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 
 import cn.hutool.core.lang.Assert;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.lzb.domain.common.aggregate.Identified;
+import com.lzb.component.domain.aggregate.Identified;
 import lombok.extern.slf4j.Slf4j;
 import one.util.streamex.StreamEx;
 

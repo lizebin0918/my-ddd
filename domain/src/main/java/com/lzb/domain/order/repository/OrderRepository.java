@@ -2,8 +2,8 @@ package com.lzb.domain.order.repository;
 
 import java.util.List;
 
-import com.lzb.domain.common.repository.CacheRepository;
-import com.lzb.domain.common.repository.CommonRepository;
+import com.lzb.component.domain.repository.CacheRepository;
+import com.lzb.component.domain.repository.CommonRepository;
 import com.lzb.domain.order.aggregate.Order;
 
 /**

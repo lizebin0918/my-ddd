@@ -1,4 +1,4 @@
-package com.lzb.domain.common.aggregate;
+package com.lzb.component.domain.aggregate;
 
 import java.util.Collection;
 

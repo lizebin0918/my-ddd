@@ -2,8 +2,8 @@ package com.lzb.infr.domain.order.converter;
 
 import java.util.List;
 
-import com.lzb.domain.common.valobj.FullAddressLine;
-import com.lzb.domain.common.valobj.FullName;
+import com.lzb.domain.order.valobj.FullAddressLine;
+import com.lzb.domain.order.valobj.FullName;
 import com.lzb.domain.order.aggregate.Order;
 import com.lzb.domain.order.aggregate.OrderAddress;
 import com.lzb.domain.order.aggregate.OrderDetail;

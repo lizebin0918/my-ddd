@@ -1,4 +1,4 @@
-package com.lzb.domain.common.aggregate;
+package com.lzb.component.domain.aggregate;
 
 
 import java.util.ArrayList;
@@ -8,13 +8,10 @@ import java.util.Objects;
 import java.util.Queue;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.lzb.domain.common.event.DomainEvent;
-import com.lzb.domain.common.exception.IllegalVersionException;
+import com.lzb.component.domain.event.DomainEvent;
+import com.lzb.component.domain.exception.IllegalVersionException;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 

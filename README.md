@@ -69,3 +69,6 @@ public class A {
   - 结论：领域层只关注业务字段即可
 - testcontainer是否可以去掉？直接用docker-compose运行测试？现在会报错
 - diff识别差异的字段，只更新变更的字段是否可行？
+- 所有Builder都要写`public static OrderBuilder newInstance() {
+  return SpringHelper.getBean(OrderBuilder.class);
+  }`是否可以通过避免这种重复？

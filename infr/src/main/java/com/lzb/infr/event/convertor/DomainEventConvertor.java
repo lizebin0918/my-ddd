@@ -4,10 +4,9 @@ import java.util.Collection;
 import java.util.List;
 
 import com.lzb.component.utils.json.JsonUtils;
-import com.lzb.domain.common.event.DomainEvent;
+import com.lzb.component.domain.event.DomainEvent;
 import com.lzb.infr.event.persistence.DomainEventPo;
 import lombok.RequiredArgsConstructor;
-import lombok.experimental.UtilityClass;
 
 import org.springframework.stereotype.Component;
 

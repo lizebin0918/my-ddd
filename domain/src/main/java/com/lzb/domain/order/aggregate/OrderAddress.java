@@ -2,14 +2,13 @@ package com.lzb.domain.order.aggregate;
 
 import cn.hutool.core.lang.Assert;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.lzb.domain.common.aggregate.BaseEntity;
-import com.lzb.domain.common.valobj.FullAddressLine;
-import com.lzb.domain.common.valobj.FullName;
+import com.lzb.component.domain.aggregate.BaseEntity;
+import com.lzb.domain.order.valobj.FullAddressLine;
+import com.lzb.domain.order.valobj.FullName;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
-import lombok.experimental.Accessors;
 
 
 /**

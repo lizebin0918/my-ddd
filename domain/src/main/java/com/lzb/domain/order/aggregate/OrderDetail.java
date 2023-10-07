@@ -3,7 +3,7 @@ package com.lzb.domain.order.aggregate;
 import java.math.BigDecimal;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.lzb.domain.common.aggregate.BaseEntity;
+import com.lzb.component.domain.aggregate.BaseEntity;
 import com.lzb.domain.order.enums.OrderStatus;
 import lombok.AccessLevel;
 import lombok.Getter;

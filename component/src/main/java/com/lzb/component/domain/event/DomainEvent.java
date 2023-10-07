@@ -1,4 +1,4 @@
-package com.lzb.domain.common.event;
+package com.lzb.component.domain.event;
 
 import java.io.Serializable;
 import java.time.Instant;

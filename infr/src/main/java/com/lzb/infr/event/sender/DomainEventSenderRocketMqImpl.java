@@ -3,7 +3,7 @@ package com.lzb.infr.event.sender;
 import java.util.function.Consumer;
 
 import com.lzb.component.utils.json.JsonUtils;
-import com.lzb.domain.common.event.DomainEvent;
+import com.lzb.component.domain.event.DomainEvent;
 
 import org.springframework.stereotype.Service;
 

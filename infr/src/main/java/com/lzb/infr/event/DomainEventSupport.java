@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Queue;
 
 import com.lzb.component.helper.TransactionHelper;
-import com.lzb.domain.common.event.DomainEvent;
+import com.lzb.component.domain.event.DomainEvent;
 import com.lzb.infr.event.common.Constants;
 import com.lzb.infr.event.convertor.DomainEventConvertor;
 import com.lzb.infr.event.persistence.DomainEventPo;

@@ -7,8 +7,8 @@ import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.lzb.component.exception.BizException;
-import com.lzb.domain.common.aggregate.BaseAggregate;
-import com.lzb.domain.common.valobj.FullName;
+import com.lzb.component.domain.aggregate.BaseAggregate;
+import com.lzb.domain.order.valobj.FullName;
 import com.lzb.domain.order.dto.LockStockDto;
 import com.lzb.domain.order.enums.OrderStatus;
 import com.lzb.domain.order.event.OrderCanceledEvent;

@@ -4,14 +4,13 @@ import java.math.BigDecimal;
 
 import com.lzb.component.helper.SpringHelper;
 import com.lzb.component.id.IdGenerator;
-import com.lzb.domain.common.aggregate.BaseBuilder;
+import com.lzb.component.domain.aggregate.BaseBuilder;
 import com.lzb.domain.order.aggregate.OrderDetail;
 import com.lzb.domain.order.enums.OrderStatus;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
