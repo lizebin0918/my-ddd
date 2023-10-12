@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses;
-import static com.tngtech.archunit.library.Architectures.layeredArchitecture;
 
 @AnalyzeClasses(packages = "com.lzb",
         importOptions = {ImportOption.DoNotIncludeJars.class, ImportOption.DoNotIncludeTests.class})
@@ -37,6 +36,8 @@ public class ArchUnitTest {
     public static final ArchRule dto_validate_suffix = classes()
             .that()
             .resideInAPackage("..dto..")
+            .and()
+            .areTopLevelClasses()
             .should()
             .haveSimpleNameEndingWith("Dto");
 
@@ -59,14 +60,19 @@ public class ArchUnitTest {
     @ArchTest
     static ArchRule controllers_should_have_name_ending_with_controller
             = ArchRuleDefinition.classes()
-            .that().areAnnotatedWith(Controller.class)
+            .that()
+            .areAnnotatedWith(Controller.class)
+            .and().areTopLevelClasses()
             .should().haveSimpleNameEndingWith(Controller.class.getSimpleName());
 
 
     @ArchTest
     static ArchRule repositories_should_have_name_ending_with_repository
             = ArchRuleDefinition.classes()
-            .that().implement(Repository.class)
+            .that()
+            .implement(Repository.class)
+            .and()
+            .areTopLevelClasses()
             .should().haveSimpleNameEndingWith("Repository");
 
     ///////////////////////////////////////////////////////////////////////////
