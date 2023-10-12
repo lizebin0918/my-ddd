@@ -1,9 +1,7 @@
 package com.lzb;
 
-import com.lzb.adapter.web.test.TestOrderController;
 import org.junit.runner.RunWith;
 
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**

@@ -1,4 +1,4 @@
-package com.lzb.adapter.web;
+package com.lzb.adapter.web.controller.test;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import com.lzb.BaseControllerUnitTest;
-import com.lzb.adapter.web.test.Status;
-import com.lzb.adapter.web.test.TestOrder;
-import com.lzb.adapter.web.test.TestOrderController;
+import com.lzb.adapter.web.controller.test.Status;
+import com.lzb.adapter.web.controller.test.TestOrder;
+import com.lzb.adapter.web.controller.test.TestOrderController;
 import com.lzb.app.order.cmd.PlaceOrderAppService;
 import com.lzb.component.utils.json.JsonUtils;
 import jakarta.servlet.ServletException;
@@ -35,7 +35,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @Author lizebin
  */
 @WebMvcTest({TestOrderController.class})
-class OrderControllerUnitTest extends BaseControllerUnitTest {
+class TestOrderControllerUnitTest extends BaseControllerUnitTest {
 
     @MockBean
     private PlaceOrderAppService placeOrderAppService;

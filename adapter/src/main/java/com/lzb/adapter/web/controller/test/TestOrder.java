@@ -1,4 +1,4 @@
-package com.lzb.adapter.web.test;
+package com.lzb.adapter.web.controller.test;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -7,8 +7,6 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import org.springframework.validation.annotation.Validated;
 
 /**
  * <br/>

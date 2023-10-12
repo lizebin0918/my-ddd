@@ -1,4 +1,4 @@
-package com.lzb.adapter.web.order;
+package com.lzb.adapter.web.controller.order;
 
 import com.lzb.app.order.cmd.PlaceOrderAppService;
 import com.lzb.app.order.cmd.dto.PlaceOrderDto;
