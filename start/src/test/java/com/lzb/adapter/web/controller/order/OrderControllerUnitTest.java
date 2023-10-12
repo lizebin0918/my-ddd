@@ -15,11 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
  * Created on : 2023-10-12 10:20
  * @author lizebin
  */
-@WebMvcTest({OrderController.class})
 class OrderControllerUnitTest extends BaseControllerUnitTest {
-
-    @Autowired
-    private MockMvc mockMvc;
 
     @Test
     @DisplayName("测试")

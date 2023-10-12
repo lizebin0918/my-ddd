@@ -34,14 +34,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Created on : 2023-09-06 13:34
  * @Author lizebin
  */
-@WebMvcTest({TestOrderController.class})
 class TestOrderControllerUnitTest extends BaseControllerUnitTest {
 
     @MockBean
     private PlaceOrderAppService placeOrderAppService;
-
-    @Autowired
-    private MockMvc mockMvc;
 
     @Test
     @DisplayName("测试提交参数和返回值")
