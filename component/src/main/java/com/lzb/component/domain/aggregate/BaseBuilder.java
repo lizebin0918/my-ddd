@@ -7,6 +7,16 @@ package com.lzb.component.domain.aggregate;
  */
 public abstract class BaseBuilder<T extends BaseEntity<T>> {
 
+    /*@NotNull
+    @SuppressWarnings("unchecked")
+    public Type getType() {
+        return ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+    }
+
+    public T getInstance() {
+        return SpringHelper.getBean((Class<? extends T>) ((ParameterizedType)getType()).getRawType());
+    }*/
+
     /**
      * 初始化对象
      * @return
