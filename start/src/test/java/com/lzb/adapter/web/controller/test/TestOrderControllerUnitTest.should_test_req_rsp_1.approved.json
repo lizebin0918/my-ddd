@@ -1,10 +1,1 @@
-{
-  "code": "SUCCESS",
-  "data": {
-    "status": "WAIT",
-    "amount": "1",
-    "offsetDateTime": "2023-09-11T11:08:08+08:00",
-    "localDateTime": "2023-09-11T11:08:08",
-    "list": []
-  }
-}
+{"code":"SUCCESS","data":{"order":{"orderNo":"orderNo","amount":"1","skuCodes":["1","2","3"],"status":"WAIT"},"ids":["1","2","3"],"uid":1}}

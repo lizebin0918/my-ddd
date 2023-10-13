@@ -1,32 +1,26 @@
 package com.lzb.adapter.web.controller.test;
 
-import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.lzb.BaseControllerUnitTest;
-import com.lzb.adapter.web.controller.test.Status;
-import com.lzb.adapter.web.controller.test.TestOrder;
-import com.lzb.adapter.web.controller.test.TestOrderController;
 import com.lzb.app.order.cmd.PlaceOrderAppService;
 import com.lzb.component.utils.json.JsonUtils;
 import jakarta.servlet.ServletException;
-import org.approvaltests.JsonApprovals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
-import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -81,12 +75,17 @@ class TestOrderControllerUnitTest extends BaseControllerUnitTest {
     }
 
     @Test
-    @DisplayName("testMultipleParamter")
+    @DisplayName("测试多个参数")
     void should_testMultipleParamter() throws Exception {
+
+        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+        String name = "1";
+        params.put("name", List.of(name));
+        String age = "18";
+        params.put("age", List.of(age));
         MockHttpServletRequestBuilder content = MockMvcRequestBuilders.get("/testMultipleParamter")
                 .contentType(MediaType.APPLICATION_JSON)
-                .queryParam("name", "1")
-                .queryParam("age", "18");
+                .queryParams(params);
 
         ResultActions perform = mockMvc.perform(content)
                 .andExpect(status().is2xxSuccessful());
@@ -94,6 +93,7 @@ class TestOrderControllerUnitTest extends BaseControllerUnitTest {
         MvcResult mvcResult = perform.andReturn();
         MockHttpServletResponse response = mvcResult.getResponse();
         String contentAsString = response.getContentAsString();
+        assertThat(contentAsString).isEqualTo(name + "|" + age);
     }
 
     @Test
@@ -114,13 +114,6 @@ class TestOrderControllerUnitTest extends BaseControllerUnitTest {
                 .andExpect(status().is2xxSuccessful());
 
         assertResponse(perform);
-    }
-
-    private static void assertResponse(ResultActions perform) throws UnsupportedEncodingException {
-        MvcResult mvcResult = perform.andReturn();
-        MockHttpServletResponse response = mvcResult.getResponse();
-        String contentAsString = response.getContentAsString();
-        JsonApprovals.verifyJson(contentAsString);
     }
 
     @Test

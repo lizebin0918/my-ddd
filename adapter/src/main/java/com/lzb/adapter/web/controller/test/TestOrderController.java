@@ -1,14 +1,10 @@
 package com.lzb.adapter.web.controller.test;
 
-import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
-import java.time.ZoneOffset;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.lzb.adapter.web.annotation.MyResponseBody;
-import com.lzb.component.utils.json.JsonUtils;
 import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,35 +29,33 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class TestOrderController {
 
+    /**
+     * 测试RequestBody参数
+     * @param order
+     * @return
+     */
     @MyResponseBody
     @PostMapping("/test")
-    public TestOrderResult test(@RequestBody @Validated TestOrder order) {
-        log.info("测试订单 {}", JsonUtils.toJSONString(order));
-        LocalDateTime time = LocalDateTime.of(2023, 9, 11, 11, 8, 8);
-        return TestOrderResult.builder()
-                .status(order.getStatus())
-                .amount(order.getAmount())
-                .localDateTime(time)
-                .offsetDateTime(OffsetDateTime.of(time, ZoneOffset.ofHours(8)))
-                .build();
+    public TestOrder test(@RequestBody @Validated TestOrder order) {
+        return order;
     }
 
+    /**
+     * body + 参数混合
+     * @param order
+     * @param uid
+     * @param ids
+     * @return
+     */
     @MyResponseBody
     @PostMapping("/test1")
-    public TestOrderResult test1(@RequestBody @Validated TestOrder order, @RequestParam int uid, @RequestParam List<String> ids) {
-        log.info("测试订单-1 {}", JsonUtils.toJSONString(order));
-        LocalDateTime time = LocalDateTime.of(2023, 9, 11, 11, 8, 8);
-        return TestOrderResult.builder()
-                .status(order.getStatus())
-                .amount(order.getAmount())
-                .localDateTime(time)
-                .offsetDateTime(OffsetDateTime.of(time, ZoneOffset.ofHours(8)))
-                .build();
+    public Map<String, Object> test1(@RequestBody @Validated TestOrder order, @RequestParam int uid, @RequestParam List<String> ids) {
+        return Map.of("order", order, "uid", uid, "ids", ids);
     }
 
     @MyResponseBody
     @GetMapping("/test2")
-    public Map<String, Object> test2(TestQuery testQuery, String name, String[] names) {
+    public Map<String, Object> test2(/*@ModelAttribute*/ TestQuery testQuery, String name, String[] names) {
         var map = new HashMap<String, Object>();
         map.put("testQuery", testQuery);
         map.put("name", name);
@@ -83,7 +77,7 @@ public class TestOrderController {
      */
     @GetMapping("/testMultipleParamter")
     public String testMultipleParamter(String name, String age) {
-        return name + ":" + age;
+        return name + "|" + age;
     }
 
 }
