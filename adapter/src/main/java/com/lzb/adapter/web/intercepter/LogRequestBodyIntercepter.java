@@ -23,7 +23,7 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestBodyAdviceAd
  */
 @Slf4j
 @ControllerAdvice
-public class LogRequestBody extends RequestBodyAdviceAdapter {
+public class LogRequestBodyIntercepter extends RequestBodyAdviceAdapter {
 
     @Override
     public boolean supports(MethodParameter methodParameter, Type type, Class<? extends HttpMessageConverter<?>> aClass) {

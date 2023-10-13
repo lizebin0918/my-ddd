@@ -21,7 +21,7 @@ import org.springframework.web.util.ContentCachingResponseWrapper;
  */
 @Slf4j
 @Component
-public class LogReponseBody extends OncePerRequestFilter {
+public class LogReponseBodyIntercepter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)

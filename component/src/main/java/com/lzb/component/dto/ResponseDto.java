@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.junit.Ignore;
 
 /**
@@ -15,12 +16,8 @@ import org.junit.Ignore;
  * @author lizebin
  */
 @Getter
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ResponseDto<R> {
-
-    private ResponseDto() {
-
-    }
 
     public static final String SUCCESS_CODE = "SUCCESS";
 
@@ -28,17 +25,17 @@ public class ResponseDto<R> {
      * 响应状态码
      */
     @NonNull
-    private String code;
+    private final String code;
 
     /**
      * 响应描述
      */
-    private String msg;
+    private final String msg;
 
     /**
      * 响应业务数据
      */
-    private R data;
+    private final R data;
 
     public static <T> ResponseDto<T> success(T data) {
         return new ResponseDto<>(SUCCESS_CODE, "", data);

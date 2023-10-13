@@ -14,7 +14,7 @@ import org.springframework.web.util.ContentCachingRequestWrapper;
 
 @Slf4j
 @Component
-public class LogRequestParam implements HandlerInterceptor {
+public class LogRequestParamIntercepter implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request,

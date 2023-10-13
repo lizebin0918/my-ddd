@@ -2,7 +2,7 @@ package com.lzb.adapter.web.config;
 
 import java.util.List;
 
-import com.lzb.adapter.web.intercepter.LogRequestParam;
+import com.lzb.adapter.web.intercepter.LogRequestParamIntercepter;
 import com.lzb.adapter.web.intercepter.MyResponseBodyHandleReturnValue;
 import jakarta.annotation.Resource;
 
@@ -15,7 +15,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebConfig implements WebMvcConfigurer {
 
     @Resource
-    private LogRequestParam logRequestParam;
+    private LogRequestParamIntercepter logRequestParamIntercepter;
 
     @Override
     public void addReturnValueHandlers(List<HandlerMethodReturnValueHandler> returnValueHandlers) {
@@ -24,7 +24,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(logRequestParam).addPathPatterns("/**");
+        registry.addInterceptor(logRequestParamIntercepter).addPathPatterns("/**");
     }
 
 }
