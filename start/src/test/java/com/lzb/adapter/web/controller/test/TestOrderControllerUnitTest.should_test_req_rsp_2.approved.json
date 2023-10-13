@@ -1,10 +1,19 @@
 {
   "code": "SUCCESS",
   "data": {
-    "status": "WAIT",
-    "amount": "1",
-    "offsetDateTime": "2023-09-11T11:08:08+08:00",
-    "localDateTime": "2023-09-11T11:08:08",
-    "list": []
+    "names": [
+      "lzb2",
+      "lzb3"
+    ],
+    "testQuery": {
+      "uid": 1,
+      "ids": [
+        1,
+        2,
+        3
+      ],
+      "amount": "1.1"
+    },
+    "name": "lzb,lzb1"
   }
 }

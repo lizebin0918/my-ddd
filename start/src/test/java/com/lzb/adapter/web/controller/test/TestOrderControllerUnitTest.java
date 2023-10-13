@@ -1,5 +1,6 @@
 package com.lzb.adapter.web.controller.test;
 
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
@@ -55,10 +56,7 @@ class TestOrderControllerUnitTest extends BaseControllerUnitTest {
         ResultActions perform = mockMvc.perform(content)
                 .andExpect(status().is2xxSuccessful());
 
-        MvcResult mvcResult = perform.andReturn();
-        MockHttpServletResponse response = mvcResult.getResponse();
-        String contentAsString = response.getContentAsString();
-        JsonApprovals.verifyJson(contentAsString);
+        assertResponse(perform);
     }
 
     @Test
@@ -115,6 +113,10 @@ class TestOrderControllerUnitTest extends BaseControllerUnitTest {
         ResultActions perform = mockMvc.perform(content)
                 .andExpect(status().is2xxSuccessful());
 
+        assertResponse(perform);
+    }
+
+    private static void assertResponse(ResultActions perform) throws UnsupportedEncodingException {
         MvcResult mvcResult = perform.andReturn();
         MockHttpServletResponse response = mvcResult.getResponse();
         String contentAsString = response.getContentAsString();
@@ -128,8 +130,14 @@ class TestOrderControllerUnitTest extends BaseControllerUnitTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .queryParam("uid", "1")
                 .queryParam("ids", "1,2,3")
-                .queryParam("amount", "1.1");
+                .queryParam("amount", "1.1")
+                // String name 接收：spring 会自动帮你连起来
+                .queryParam("name", "lzb", "lzb1")
+                .queryParam("names", "lzb2", "lzb3")
+                ;
         ResultActions perform = mockMvc.perform(content)
                 .andExpect(status().is2xxSuccessful());
+
+        assertResponse(perform);
     }
 }

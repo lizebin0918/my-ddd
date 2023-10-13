@@ -3,7 +3,9 @@ package com.lzb.adapter.web.controller.test;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.lzb.adapter.web.annotation.MyResponseBody;
 import com.lzb.component.utils.json.JsonUtils;
@@ -59,8 +61,12 @@ public class TestOrderController {
 
     @MyResponseBody
     @GetMapping("/test2")
-    public void test2(TestQuery testQuery) {
-        log.info("testQuery {}", JsonUtils.toJSONString(testQuery));
+    public Map<String, Object> test2(TestQuery testQuery, String name, String[] names) {
+        var map = new HashMap<String, Object>();
+        map.put("testQuery", testQuery);
+        map.put("name", name);
+        map.put("names", names);
+        return map;
     }
 
     @MyResponseBody

@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 
 /**
@@ -13,7 +12,8 @@ import lombok.Getter;
  *
  * @author lizebin
  */
-@Data
+@Getter
+@AllArgsConstructor
 public class TestQuery {
 
     private int uid;
