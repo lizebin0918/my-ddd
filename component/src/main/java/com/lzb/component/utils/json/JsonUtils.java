@@ -1,6 +1,7 @@
 package com.lzb.component.utils.json;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.time.ZoneId;
 import java.util.Collections;
 import java.util.List;
@@ -16,15 +17,15 @@ import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.json.JsonReadFeature;
-import com.fasterxml.jackson.core.json.JsonWriteFeature;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.cfg.ConstructorDetector;
 import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.fasterxml.jackson.databind.ser.std.NumberSerializer;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
@@ -41,8 +42,6 @@ public class JsonUtils {
             .configure(JsonReadFeature.ALLOW_BACKSLASH_ESCAPING_ANY_CHARACTER, true)
             .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
             .configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true)
-            // BigDecimal写成字符串
-            .configure(JsonWriteFeature.WRITE_NUMBERS_AS_STRINGS, true)
             .configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false)
             // 枚举写成字符串
             .configure(SerializationFeature.WRITE_ENUMS_USING_TO_STRING, true)
@@ -55,6 +54,7 @@ public class JsonUtils {
             .addModule(new Jdk8Module())
             // 通过构造函数声明@JsonCreator反序列化，但是要在maven引入compile插件，加参数:-parameters
             .addModule(new ParameterNamesModule(JsonCreator.Mode.PROPERTIES))
+            .addModule(new SimpleModule().addSerializer(BigDecimal.class, new ToStringSerializer()))
             .build();
 
    static {

@@ -96,6 +96,40 @@ class TestOrderControllerUnitTest extends BaseControllerUnitTest {
         MvcResult mvcResult = perform.andReturn();
         MockHttpServletResponse response = mvcResult.getResponse();
         String contentAsString = response.getContentAsString();
-        System.out.println(contentAsString);
+    }
+
+    @Test
+    @DisplayName("测试提交参数和返回值")
+    void should_test_req_rsp_1() throws Exception {
+        Map<String, Object> params = new HashMap<>();
+        params.put("orderNo", "orderNo");
+        params.put("status", "WAIT");
+        params.put("amount", BigDecimal.ONE);
+        params.put("skuCodes", List.of(1,2,3));
+
+        MockHttpServletRequestBuilder content = MockMvcRequestBuilders.post("/test1")
+                .contentType(MediaType.APPLICATION_JSON)
+                .queryParam("uid", "1")
+                .queryParam("ids", "1,2,3")
+                .content(JsonUtils.toJSONString(params));
+        ResultActions perform = mockMvc.perform(content)
+                .andExpect(status().is2xxSuccessful());
+
+        MvcResult mvcResult = perform.andReturn();
+        MockHttpServletResponse response = mvcResult.getResponse();
+        String contentAsString = response.getContentAsString();
+        JsonApprovals.verifyJson(contentAsString);
+    }
+
+    @Test
+    @DisplayName("测试传参")
+    void should_test_req_rsp_2() throws Exception {
+        MockHttpServletRequestBuilder content = MockMvcRequestBuilders.get("/test2")
+                .contentType(MediaType.APPLICATION_JSON)
+                .queryParam("uid", "1")
+                .queryParam("ids", "1,2,3")
+                .queryParam("amount", "1.1");
+        ResultActions perform = mockMvc.perform(content)
+                .andExpect(status().is2xxSuccessful());
     }
 }

@@ -1,0 +1,10 @@
+{
+  "code": "SUCCESS",
+  "data": {
+    "status": "WAIT",
+    "amount": "1",
+    "offsetDateTime": "2023-09-11T11:08:08+08:00",
+    "localDateTime": "2023-09-11T11:08:08",
+    "list": []
+  }
+}

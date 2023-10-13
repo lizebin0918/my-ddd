@@ -1,5 +1,6 @@
 package com.lzb.adapter.web.intercepter;
 
+import java.math.BigDecimal;
 import java.time.ZoneId;
 import java.util.Locale;
 import java.util.Objects;
@@ -14,6 +15,8 @@ import com.fasterxml.jackson.core.json.JsonWriteFeature;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.lzb.adapter.web.annotation.MyResponseBody;
@@ -33,8 +36,6 @@ public class MyResponseBodyHandleReturnValue implements HandlerMethodReturnValue
             .configure(JsonReadFeature.ALLOW_BACKSLASH_ESCAPING_ANY_CHARACTER, true)
             .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
             .configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true)
-            // BigDecimal写成字符串
-            .configure(JsonWriteFeature.WRITE_NUMBERS_AS_STRINGS, true)
             .configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false)
             // 枚举写成字符串
             .configure(SerializationFeature.WRITE_ENUMS_USING_TO_STRING, true)
@@ -45,6 +46,8 @@ public class MyResponseBodyHandleReturnValue implements HandlerMethodReturnValue
             .defaultTimeZone(TimeZone.getTimeZone(ZoneId.systemDefault()))
             .addModule(new JavaTimeModule())
             .addModule(new Jdk8Module())
+            // BigDecimal写成字符串
+            .addModule(new SimpleModule().addSerializer(BigDecimal.class, new ToStringSerializer()))
             .build();
 
     static {
