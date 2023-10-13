@@ -1,1 +1,19 @@
-{"code":"SUCCESS","data":{"names":["lzb2","lzb3"],"testQuery":{"uid":1,"ids":[1,2,3],"amount":"1.1"},"name":"lzb,lzb1"}}
+{
+  "code": "SUCCESS",
+  "data": {
+    "names": [
+      "lzb2",
+      "lzb3"
+    ],
+    "testQuery": {
+      "uid": 1,
+      "ids": [
+        1,
+        2,
+        3
+      ],
+      "amount": "1.1"
+    },
+    "name": "lzb,lzb1"
+  }
+}

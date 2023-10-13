@@ -1,1 +1,21 @@
-{"code":"SUCCESS","data":{"order":{"orderNo":"orderNo","amount":"1","skuCodes":["1","2","3"],"status":"WAIT"},"ids":["1","2","3"],"uid":1}}
+{
+  "code": "SUCCESS",
+  "data": {
+    "ids": [
+      "1",
+      "2",
+      "3"
+    ],
+    "uid": 1,
+    "order": {
+      "orderNo": "orderNo",
+      "amount": "1",
+      "skuCodes": [
+        "1",
+        "2",
+        "3"
+      ],
+      "status": "WAIT"
+    }
+  }
+}
