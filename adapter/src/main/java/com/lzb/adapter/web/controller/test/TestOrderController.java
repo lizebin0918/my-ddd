@@ -48,4 +48,15 @@ public class TestOrderController {
         return name;
     }
 
+    /**
+     * 请求多个参数
+     * @param name
+     * @param age
+     * @return
+     */
+    @GetMapping("/testMultipleParamter")
+    public String testMultipleParamter(String name, String age) {
+        return name + ":" + age;
+    }
+
 }

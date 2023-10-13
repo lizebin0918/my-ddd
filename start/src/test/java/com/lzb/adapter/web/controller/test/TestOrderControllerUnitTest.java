@@ -81,4 +81,21 @@ class TestOrderControllerUnitTest extends BaseControllerUnitTest {
 
         assertThrows(ServletException.class, () -> mockMvc.perform(content));
     }
+
+    @Test
+    @DisplayName("testMultipleParamter")
+    void should_testMultipleParamter() throws Exception {
+        MockHttpServletRequestBuilder content = MockMvcRequestBuilders.get("/testMultipleParamter")
+                .contentType(MediaType.APPLICATION_JSON)
+                .queryParam("name", "1")
+                .queryParam("age", "18");
+
+        ResultActions perform = mockMvc.perform(content)
+                .andExpect(status().is2xxSuccessful());
+
+        MvcResult mvcResult = perform.andReturn();
+        MockHttpServletResponse response = mvcResult.getResponse();
+        String contentAsString = response.getContentAsString();
+        System.out.println(contentAsString);
+    }
 }
