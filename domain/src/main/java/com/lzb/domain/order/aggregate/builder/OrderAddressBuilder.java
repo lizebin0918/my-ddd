@@ -1,7 +1,7 @@
 package com.lzb.domain.order.aggregate.builder;
 
-import com.lzb.component.helper.SpringHelper;
 import com.lzb.component.domain.aggregate.BaseBuilder;
+import com.lzb.component.helper.SpringHelper;
 import com.lzb.domain.order.aggregate.OrderAddress;
 import com.lzb.domain.order.valobj.FullAddressLine;
 import com.lzb.domain.order.valobj.FullName;
@@ -74,21 +74,6 @@ public class OrderAddressBuilder extends BaseBuilder<OrderAddress> {
 
     public static OrderAddressBuilder newInstance() {
         return SpringHelper.getBean(OrderAddressBuilder.class);
-    }
-
-    public static OrderAddressBuilder newInstance(OrderAddress source) {
-        OrderAddressBuilder orderAddressBuilder = newInstance();
-        FullAddressLine sourcefullAddressLine = source.getFullAddressLine();
-        FullName sourcefullName = source.getFullName();
-        orderAddressBuilder.id(source.getId())
-                .addressLine1(sourcefullAddressLine.getAddressLine1())
-                .addressLine2(sourcefullAddressLine.getAddressLine2())
-                .country(source.getCountry())
-                .email(source.getEmail())
-                .firstName(sourcefullName.getFirstName())
-                .lastName(sourcefullName.getLastName())
-                .phoneNumber(source.getPhoneNumber());
-        return orderAddressBuilder;
     }
 
     @Override
