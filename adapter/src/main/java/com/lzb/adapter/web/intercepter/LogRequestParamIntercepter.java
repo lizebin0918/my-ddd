@@ -20,9 +20,8 @@ public class LogRequestParamIntercepter implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response,
                              Object handler) {
-        ServletRequest servletRequest = new ContentCachingRequestWrapper(request);
-        Map<String, String[]> params = servletRequest.getParameterMap();
-        log.info("request-param {}", JsonUtils.toJSONString(params));
+        log.info("reqeust-url {}", request.getRequestURL());
+        log.info("request-param {}", JsonUtils.toJSONString(request.getParameterMap()));
         return true;
     }
 }
