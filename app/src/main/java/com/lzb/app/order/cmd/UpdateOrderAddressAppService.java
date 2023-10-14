@@ -3,10 +3,10 @@ package com.lzb.app.order.cmd;
 import com.lzb.app.order.cmd.assemble.OrderAssembler;
 import com.lzb.app.order.cmd.dto.UpdateAddressDto;
 import com.lzb.app.order.cmd.dto.UpdateFullNameDto;
-import com.lzb.domain.order.valobj.FullName;
 import com.lzb.domain.order.aggregate.Order;
 import com.lzb.domain.order.aggregate.OrderAddress;
 import com.lzb.domain.order.repository.OrderRepository;
+import com.lzb.domain.order.valobj.FullName;
 import jakarta.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -28,7 +28,7 @@ public class UpdateOrderAddressAppService {
      */
     public void updateAddress(UpdateAddressDto updateOrderAddress) {
         OrderAddress orderAddress = OrderAssembler.toOrderAddress(updateOrderAddress);
-        Order order = orderRepository.getOrThrow(orderAddress.getId());
+        Order order = orderRepository.getOrThrow(updateOrderAddress.orderId());
         order.updateAddress(orderAddress);
         orderRepository.update(order);
     }
