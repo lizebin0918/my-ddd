@@ -2,9 +2,9 @@ package com.lzb.domain.order.aggregate.builder;
 
 import java.math.BigDecimal;
 
+import com.lzb.component.domain.aggregate.BaseBuilder;
 import com.lzb.component.helper.SpringHelper;
 import com.lzb.component.id.IdGenerator;
-import com.lzb.component.domain.aggregate.BaseBuilder;
 import com.lzb.domain.order.aggregate.OrderDetail;
 import com.lzb.domain.order.enums.OrderStatus;
 import lombok.NonNull;
@@ -31,7 +31,6 @@ public class OrderDetailBuilder extends BaseBuilder<OrderDetail> {
     // 属性值
     ///////////////////////////////////////////////////////////////////////////
 
-    private long id;
     private int skuId;
     private BigDecimal price;
     private OrderStatus orderStatus;
@@ -56,11 +55,6 @@ public class OrderDetailBuilder extends BaseBuilder<OrderDetail> {
         return this;
     }
 
-    public OrderDetailBuilder id(long id) {
-        this.id = id;
-        return this;
-    }
-
     public OrderDetailBuilder locked(Boolean locked) {
         this.locked = locked;
         return this;
@@ -68,7 +62,7 @@ public class OrderDetailBuilder extends BaseBuilder<OrderDetail> {
 
     @Override
     protected OrderDetail doBuild() {
-        return new OrderDetail(id, skuId, orderStatus, price, locked);
+        return new OrderDetail(idGenerator.id(), skuId, orderStatus, price, locked);
     }
 
 }

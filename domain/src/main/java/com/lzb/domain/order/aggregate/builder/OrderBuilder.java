@@ -3,11 +3,10 @@ package com.lzb.domain.order.aggregate.builder;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
+import com.lzb.component.domain.aggregate.BaseBuilder;
 import com.lzb.component.helper.SpringHelper;
 import com.lzb.component.id.IdGenerator;
-import com.lzb.component.domain.aggregate.BaseBuilder;
 import com.lzb.domain.order.aggregate.Order;
 import com.lzb.domain.order.aggregate.OrderAddress;
 import com.lzb.domain.order.aggregate.OrderDetail;
@@ -39,7 +38,6 @@ public class OrderBuilder extends BaseBuilder<Order> {
     // 属性值
     ///////////////////////////////////////////////////////////////////////////
 
-    private Long orderId;
     private String currency;
     private BigDecimal exchangeRate;
     private BigDecimal totalShouldPay;
@@ -53,11 +51,6 @@ public class OrderBuilder extends BaseBuilder<Order> {
 
     public static OrderBuilder newInstance() {
         return SpringHelper.getBean(OrderBuilder.class);
-    }
-
-    public OrderBuilder orderId(long orderId) {
-        this.orderId = orderId;
-        return this;
     }
 
     public OrderBuilder currency(@NonNull String currency) {
@@ -103,8 +96,7 @@ public class OrderBuilder extends BaseBuilder<Order> {
 
     @Override
     protected Order doBuild() {
-        return new Order(Optional.ofNullable(orderId)
-                .orElseGet(idGenerator::id), version, orderStatus, currency, exchangeRate, totalShouldPay, totalActualPay, orderAddress, new OrderDetails(orderDetails));
+        return new Order(idGenerator.id(), version, orderStatus, currency, exchangeRate, totalShouldPay, totalActualPay, orderAddress, new OrderDetails(orderDetails));
     }
 
     @Override
