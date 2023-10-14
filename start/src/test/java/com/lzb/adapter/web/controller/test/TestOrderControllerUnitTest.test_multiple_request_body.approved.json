@@ -1,0 +1,13 @@
+{
+  "code": "SUCCESS",
+  "data": {
+    "height": {
+      "value": 1,
+      "unit": "CM"
+    },
+    "name": {
+      "firstName": "firstName",
+      "lastName": "lastName"
+    }
+  }
+}

@@ -80,4 +80,16 @@ public class TestOrderController {
         return name + "|" + age;
     }
 
+    /**
+     * 多个请求对象
+     * @param name
+     * @param height
+     * @return
+     */
+    @MyResponseBody
+    @GetMapping("/testMultipleObjectParamter")
+    public Map<String, Object> testMultipleObjectParamter(FullName name, Height height) {
+        return Map.of("name", name, "height", height);
+    }
+
 }

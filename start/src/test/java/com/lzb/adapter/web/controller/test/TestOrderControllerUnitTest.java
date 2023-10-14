@@ -41,7 +41,7 @@ class TestOrderControllerUnitTest extends BaseControllerUnitTest {
         params.put("orderNo", "orderNo");
         params.put("status", "WAIT");
         params.put("amount", BigDecimal.ONE);
-        params.put("skuCodes", List.of(1,2,3));
+        params.put("skuCodes", List.of(1, 2, 3));
         params.put("a", "a");
 
         MockHttpServletRequestBuilder content = MockMvcRequestBuilders.post("/test")
@@ -103,7 +103,7 @@ class TestOrderControllerUnitTest extends BaseControllerUnitTest {
         params.put("orderNo", "orderNo");
         params.put("status", "WAIT");
         params.put("amount", BigDecimal.ONE);
-        params.put("skuCodes", List.of(1,2,3));
+        params.put("skuCodes", List.of(1, 2, 3));
 
         MockHttpServletRequestBuilder content = MockMvcRequestBuilders.post("/test1")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -126,11 +126,26 @@ class TestOrderControllerUnitTest extends BaseControllerUnitTest {
                 .queryParam("amount", "1.1")
                 // String name 接收：spring 会自动帮你连起来
                 .queryParam("name", "lzb", "lzb1")
-                .queryParam("names", "lzb2", "lzb3")
-                ;
+                .queryParam("names", "lzb2", "lzb3");
         ResultActions perform = mockMvc.perform(content)
                 .andExpect(status().is2xxSuccessful());
 
+        assertResponse(perform);
+    }
+
+    @Test
+    @DisplayName("测试多个对象的请求参数")
+    void test_multiple_request_body() throws Exception {
+        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+        params.put("value", List.of("1"));
+        params.put("unit", List.of("CM"));
+        params.put("firstName", List.of("firstName"));
+        params.put("lastName", List.of("lastName"));
+        MockHttpServletRequestBuilder content = MockMvcRequestBuilders.get("/testMultipleObjectParamter")
+                .contentType(MediaType.APPLICATION_JSON)
+                .params(params);
+        ResultActions perform = mockMvc.perform(content)
+                .andExpect(status().is2xxSuccessful());
         assertResponse(perform);
     }
 }

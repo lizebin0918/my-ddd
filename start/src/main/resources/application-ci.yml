@@ -1,6 +1,7 @@
 spring:
   main:
     lazy-initialization: true
+    banner-mode: off
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:15432/postgres?currentSchema=my-ddd
