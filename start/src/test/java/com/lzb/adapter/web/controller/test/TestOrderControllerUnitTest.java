@@ -9,6 +9,7 @@ import com.lzb.BaseControllerUnitTest;
 import com.lzb.app.order.cmd.PlaceOrderAppService;
 import com.lzb.component.utils.json.JsonUtils;
 import jakarta.servlet.ServletException;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -147,5 +148,15 @@ class TestOrderControllerUnitTest extends BaseControllerUnitTest {
         ResultActions perform = mockMvc.perform(content)
                 .andExpect(status().is2xxSuccessful());
         assertResponse(perform);
+    }
+
+    @Test
+    @Disabled
+    @DisplayName("测试睡眠，看响应时间")
+    void test_sleep() throws Exception {
+        MockHttpServletRequestBuilder content = MockMvcRequestBuilders.get("/testSleep")
+                .contentType(MediaType.APPLICATION_JSON);
+        ResultActions perform = mockMvc.perform(content)
+                .andExpect(status().is2xxSuccessful());
     }
 }

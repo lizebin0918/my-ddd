@@ -92,4 +92,14 @@ public class TestOrderController {
         return Map.of("name", name, "height", height);
     }
 
+    @GetMapping("/testSleep")
+    public String testSleep() {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return "ok";
+    }
+
 }

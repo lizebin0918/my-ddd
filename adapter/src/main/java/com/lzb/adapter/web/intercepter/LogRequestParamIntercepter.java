@@ -1,16 +1,20 @@
 package com.lzb.adapter.web.intercepter;
 
+import java.util.Collections;
 import java.util.Map;
+import java.util.stream.Collectors;
 
+import cn.hutool.http.HttpUtil;
 import com.lzb.component.utils.json.JsonUtils;
-import jakarta.servlet.ServletRequest;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.util.ContentCachingRequestWrapper;
+
+import static com.lzb.component.utils.json.JsonUtils.*;
 
 @Slf4j
 @Component
@@ -21,7 +25,16 @@ public class LogRequestParamIntercepter implements HandlerInterceptor {
                              HttpServletResponse response,
                              Object handler) {
         log.info("reqeust-url {}", request.getRequestURL());
-        log.info("request-param {}", JsonUtils.toJSONString(request.getParameterMap()));
+        log.info("request-header {}", toJSONString(getHeaders(request)));
+        log.info("request-param {}", toJSONString(request.getParameterMap()));
         return true;
     }
+
+    @NotNull
+    private static Map<String, String> getHeaders(HttpServletRequest request) {
+        return Collections.list(request.getHeaderNames())
+                .stream()
+                .collect(Collectors.toMap(h -> h, request::getHeader));
+    }
+
 }

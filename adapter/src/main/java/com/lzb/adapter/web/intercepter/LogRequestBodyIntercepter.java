@@ -54,7 +54,6 @@ public class LogRequestBodyIntercepter extends RequestBodyAdviceAdapter {
         }
 
         String body = new String(content, StandardCharsets.UTF_8);
-        log.info("request-header {}", httpInputMessage.getHeaders());
         log.info("request-body {}", body);
         return new HttpInputMessage() {
             @Override
