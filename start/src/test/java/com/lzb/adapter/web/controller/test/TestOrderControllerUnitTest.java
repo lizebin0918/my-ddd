@@ -159,4 +159,19 @@ class TestOrderControllerUnitTest extends BaseControllerUnitTest {
         ResultActions perform = mockMvc.perform(content)
                 .andExpect(status().is2xxSuccessful());
     }
+
+    @Test
+    @DisplayName("测试long集合提交")
+    void should_long_ids() throws Exception {
+        MockHttpServletRequestBuilder content = MockMvcRequestBuilders.post("/ids")
+                .contentType(MediaType.APPLICATION_JSON)
+                //.content(JsonUtils.toJSONString(Map.of("id", 1, "ids", List.of(1L, 2L, 3L))));
+                //.content("{\"ids\":[1,2,3]}");
+                //.content("{\"ids\":\"\"}"); // 报错
+                .content("{\"id\":\"\",\"ids\":[1, 2, 3]}");
+        ResultActions perform = mockMvc.perform(content)
+                .andExpect(status().is2xxSuccessful());
+
+    }
+
 }

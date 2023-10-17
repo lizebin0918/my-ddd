@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.lzb.adapter.web.annotation.MyResponseBody;
+import com.lzb.component.utils.json.JsonUtils;
 import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -100,6 +101,11 @@ public class TestOrderController {
             e.printStackTrace();
         }
         return "ok";
+    }
+
+    @PostMapping("/ids")
+    public String ids(@RequestBody Ids ids) {
+        return JsonUtils.toJSONString(ids);
     }
 
 }

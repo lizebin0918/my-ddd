@@ -24,7 +24,6 @@ import org.springframework.validation.annotation.Validated;
  * Created on : 2023-09-09 20:27
  * @author lizebin
  */
-@Validated
 @Component
 @RequiredArgsConstructor
 public class ProductGatewayImpl implements ProductGateway {
