@@ -1,14 +1,15 @@
 package com.lzb.adapter.web.intercepter;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.lzb.component.dto.ResponseDto;
 import com.lzb.component.exception.BizException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
-import org.redisson.api.RedissonClient;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
@@ -21,9 +22,6 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 @ControllerAdvice
 @Slf4j
 public class ExceptionHandler {
-
-    @Autowired
-    RedissonClient redissonClient;
 
     @ResponseBody
     @org.springframework.web.bind.annotation.ExceptionHandler(MissingServletRequestParameterException.class)
@@ -39,20 +37,14 @@ public class ExceptionHandler {
 
     @ResponseBody
     @org.springframework.web.bind.annotation.ExceptionHandler(ConstraintViolationException.class)
-    public ResponseDto<Void> constraintViolationException (HttpServletRequest request, HttpServletResponse response, Object handler, ConstraintViolationException ex) {
-        /*ResponseDto<Void> baseResponse = new ResponseDto<Void>();
-        baseResponse.setCode("PARAM_ERROR");
-        Map<String, String> errors = new HashMap<>();
-        ex.getConstraintViolations().forEach(constraintViolation -> {
-            errors.put(constraintViolation.getPropertyPath().toString(), constraintViolation.getMessage());
-        });
-        baseResponse.setMsg(errors.toString());
-        Map<String, String> map = new HashMap<>();
-        map.put("uri", request.getRequestURI());
-        map.put("msg", ex.getMessage());
-        MonitorUtil.monitorWithTags(runtimeMetricsKey, map);
-        return baseResponse;*/
-        return null;
+    public ResponseDto<Void> constraintViolationException(HttpServletRequest request,
+            HttpServletResponse response,
+            Object handler,
+            ConstraintViolationException ex) {
+        ResponseDto<Void> baseResponse = new ResponseDto<>("PARAM_ERROR", "参数错误", null);
+        ex.getConstraintViolations().forEach(constraintViolation ->
+                log.info("{} {}", constraintViolation.getPropertyPath().toString(), constraintViolation.getMessage()));
+        return baseResponse;
     }
 
 

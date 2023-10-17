@@ -72,7 +72,10 @@ class TestOrderControllerUnitTest extends BaseControllerUnitTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .queryParam("name", "1");
 
-        assertThrows(ServletException.class, () -> mockMvc.perform(content));
+        ResultActions perform = mockMvc.perform(content)
+                .andExpect(status().is2xxSuccessful());
+
+        assertResponse(perform);
     }
 
     @Test

@@ -1,6 +1,7 @@
 package com.lzb;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 
 import org.junit.runner.RunWith;
 
@@ -27,7 +28,7 @@ public abstract class BaseControllerUnitTest extends BaseTest {
     protected void assertResponse(ResultActions perform) throws UnsupportedEncodingException {
         MvcResult mvcResult = perform.andReturn();
         MockHttpServletResponse response = mvcResult.getResponse();
-        String contentAsString = response.getContentAsString();
+        String contentAsString = response.getContentAsString(Charset.defaultCharset());
         assertJSON(contentAsString);
     }
 }
