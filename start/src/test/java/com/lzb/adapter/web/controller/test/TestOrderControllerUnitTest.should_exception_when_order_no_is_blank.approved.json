@@ -1,8 +1,8 @@
 {
   "code": "PARAM_ERROR",
   "msg": "参数错误",
-  "data": [
-    "size must be between 4 and 10"
-  ],
+  "data": {
+    "orderNo": "订单号不能为空串"
+  },
   "success": false
 }

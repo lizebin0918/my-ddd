@@ -1,7 +1,9 @@
 package com.lzb.adapter.web.intercepter;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import com.lzb.component.dto.ResponseDto;
 import com.lzb.component.exception.BizException;
@@ -12,44 +14,57 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;
+import org.springframework.validation.FieldError;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 @ControllerAdvice
 @Slf4j
-public class ExceptionHandler {
+public class MyExceptionHandler {
+
+    public static final String PARAM_ERROR = "PARAM_ERROR";
 
     @ResponseBody
-    @org.springframework.web.bind.annotation.ExceptionHandler(MissingServletRequestParameterException.class)
-    public ResponseDto<Void> argumentMissingError(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
-       return null;
+    @ExceptionHandler(MissingServletRequestParameterException.class)
+    public ResponseDto<Void> argumentMissingError(HttpServletRequest request,
+            HttpServletResponse response, Object handler, Exception ex) {
+        return new ResponseDto<>(PARAM_ERROR, ex.getMessage(), null);
     }
 
     @ResponseBody
-    @org.springframework.web.bind.annotation.ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseDto<Void> methodArgumentNotValidException(HttpServletRequest request, HttpServletResponse response, Object handler, MethodArgumentNotValidException ex) {
-        return null;
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseDto<Map<String, String>> methodArgumentNotValidException(HttpServletRequest request,
+            HttpServletResponse response, Object handler, MethodArgumentNotValidException ex) {
+        Map<String, String> errors = new HashMap<>();
+        ex.getBindingResult().getAllErrors().forEach(error -> {
+            String fieldName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+            errors.put(fieldName, errorMessage);
+        });
+        return new ResponseDto<>(PARAM_ERROR, "参数错误", errors);
     }
 
     @ResponseBody
-    @org.springframework.web.bind.annotation.ExceptionHandler(ConstraintViolationException.class)
-    public ResponseDto<Void> constraintViolationException(HttpServletRequest request,
-            HttpServletResponse response,
-            Object handler,
-            ConstraintViolationException ex) {
-        ResponseDto<Void> baseResponse = new ResponseDto<>("PARAM_ERROR", "参数错误", null);
-        ex.getConstraintViolations().forEach(constraintViolation ->
-                log.info("{} {}", constraintViolation.getPropertyPath().toString(), constraintViolation.getMessage()));
-        return baseResponse;
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseDto<Set<String>> constraintViolationException(HttpServletRequest request,
+            HttpServletResponse response, Object handler, ConstraintViolationException ex) {
+        Set<String> errorMsgs = new HashSet<>();
+        ex.getConstraintViolations().forEach(constraintViolation -> {
+            String message = constraintViolation.getMessage();
+            log.error("{} {}", constraintViolation.getPropertyPath().toString(), message);
+            errorMsgs.add(message);
+        });
+        return new ResponseDto<>(PARAM_ERROR, "参数错误", errorMsgs);
     }
 
 
     @ResponseBody
-    @org.springframework.web.bind.annotation.ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     public ResponseDto<Void> argumentMissingError(HttpServletRequest request, HttpServletResponse response, Object handler, HttpRequestMethodNotSupportedException ex) {
         /*ResponseDto<Void> baseResponse = new ResponseDto<Void>();
         baseResponse.setCode("REQUEST_METHOD_ERROR");
@@ -64,7 +79,7 @@ public class ExceptionHandler {
     }
 
     @ResponseBody
-    @org.springframework.web.bind.annotation.ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public ResponseDto<Void> methodArgumentTypeMismatchException(HttpServletRequest request, HttpServletResponse response, Object handler, MethodArgumentTypeMismatchException ex) {
         /*ResponseDto<Void> baseResponse = new ResponseDto<Void>();
         baseResponse.setCode("PARAM_ERROR");
@@ -79,7 +94,7 @@ public class ExceptionHandler {
     }
 
     @ResponseBody
-    @org.springframework.web.bind.annotation.ExceptionHandler(BindException.class)
+    @ExceptionHandler(BindException.class)
     public ResponseDto<Void> bindError(HttpServletRequest request, HttpServletResponse response, Object handler, BindException ex) {
         /*String errMessage = ex.getFieldErrors().stream().map(fieldError -> fieldError.getField() + ":" + fieldError.getDefaultMessage()).collect(Collectors.joining(","));
         ResponseDto<Void> baseResponse = new ResponseDto<Void>();
@@ -100,7 +115,7 @@ public class ExceptionHandler {
      * 抓取所有的错误
      */
     @ResponseBody
-    @org.springframework.web.bind.annotation.ExceptionHandler(Exception.class)
+    @ExceptionHandler(Exception.class)
     public ResponseDto<Void> defaultErrorHandle(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception{
         /*log.error("defaultErrorHandle server error ", ex);
         ResponseDto<Void> baseResponse = new ResponseDto<Void>();
@@ -163,7 +178,7 @@ public class ExceptionHandler {
      * 所有的业务错误
      */
     @ResponseBody
-    @org.springframework.web.bind.annotation.ExceptionHandler(BizException.class)
+    @ExceptionHandler(BizException.class)
     public ResponseDto<Void> bizExceptionHandle(HttpServletRequest request, HttpServletResponse response, Object handler, BizException bizException) {
         /*ResponseDto<Void> baseResponse = new ResponseDto<Void>();
         baseResponse.setCode(bizException.getCode());
@@ -181,7 +196,7 @@ public class ExceptionHandler {
     }
 
     @ResponseBody
-    @org.springframework.web.bind.annotation.ExceptionHandler(NumberFormatException.class)
+    @ExceptionHandler(NumberFormatException.class)
     public ResponseDto<Void> numberFormatExceptionHandle(HttpServletRequest request,
                                                          HttpServletResponse response,
                                                          Object handler, NumberFormatException numberFormatException) {
@@ -204,7 +219,7 @@ public class ExceptionHandler {
      * POST请求参数格式转化异常
      */
     @ResponseBody
-    @org.springframework.web.bind.annotation.ExceptionHandler(HttpMessageNotReadableException.class)
+    @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseDto<Void> httpMessageNotReadableExceptionHandle(HttpServletRequest request,
                                                                    HttpServletResponse response,
                                                                    Object handler, HttpMessageNotReadableException httpMessageNotReadableException) {

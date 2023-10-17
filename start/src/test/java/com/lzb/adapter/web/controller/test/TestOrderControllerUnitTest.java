@@ -8,7 +8,6 @@ import java.util.Map;
 import com.lzb.BaseControllerUnitTest;
 import com.lzb.app.order.cmd.PlaceOrderAppService;
 import com.lzb.component.utils.json.JsonUtils;
-import jakarta.servlet.ServletException;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -62,7 +61,8 @@ class TestOrderControllerUnitTest extends BaseControllerUnitTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtils.toJSONString(testOrder));
         ResultActions perform = mockMvc.perform(content)
-                .andExpect(status().is4xxClientError());
+                .andExpect(status().is2xxSuccessful());
+        assertResponse(perform);
     }
 
     @Test
