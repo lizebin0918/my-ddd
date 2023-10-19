@@ -60,7 +60,7 @@ class PlaceOrderAppServiceIntegrationTest extends BaseIntegrationTest {
         return req;
     }
 
-    /*@Test
+    @Test
     @DisplayName("测试缓存查询")
     void should_place_order_in_cache() {
 
@@ -71,7 +71,7 @@ class PlaceOrderAppServiceIntegrationTest extends BaseIntegrationTest {
         assertThat(orderRepository.getInCache(orderId).isEmpty()).isTrue();
         placeOrderAppService.placeOrder(createPlaceOrderDto());
         assertThat(orderRepository.getInCache(orderId).isPresent()).isTrue();
-    }*/
+    }
 
     @Test
     @DisplayName("测试日志组件是否生效")

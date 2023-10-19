@@ -2,13 +2,16 @@ package com.lzb;
 
 import com.lzb.config.MockBeanConfig;
 import com.lzb.config.TestConfig;
+import org.junit.jupiter.api.BeforeEach;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.cache.CacheManager;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +26,9 @@ import org.springframework.transaction.annotation.Transactional;
 @SpringBootTest(classes = Application.class)
 @Import({TestConfig.class, MockBeanConfig.class})
 public abstract class BaseIntegrationTest extends BaseDockerTest implements InitializingBean, BeanFactoryAware {
+
+    @Autowired
+    private CacheManager cacheManager;
 
     protected ConfigurableListableBeanFactory beanFactory;
 
@@ -45,6 +51,11 @@ public abstract class BaseIntegrationTest extends BaseDockerTest implements Init
 
         MockBeanConfig.initSpyBean();
 
+    }
+
+    @BeforeEach
+    public void beforeEach() {
+        cacheManager.getCacheNames().forEach(cacheName -> cacheManager.getCache(cacheName).clear());
     }
 
 }
