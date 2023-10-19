@@ -1,6 +1,9 @@
 package com.lzb.infr.app.order.converter;
 
+import java.util.Optional;
+
 import com.lzb.app.order.query.view.OrderView;
+import com.lzb.domain.order.aggregate.Order;
 import com.lzb.domain.order.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -18,6 +21,8 @@ public class OrderViewConverter {
     private final OrderRepository orderRepository;
 
     public OrderView convert(long orderId) {
-        return OrderView.builder().order(orderRepository.getInCache(orderId)).build();
+        return orderRepository.getInCache(orderId)
+                .map(order -> OrderView.builder().order(order).build())
+                .orElseThrow();
     }
 }

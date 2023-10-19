@@ -104,10 +104,15 @@ public class OrderRepositoryImpl extends BaseRepository<Order> implements OrderR
         return Optional.of(OrderConverter.toOrder(orderPo, orderDetailPos));
     }
 
+    /**
+     * 不缓存为null的值
+     * @param id
+     * @return
+     */
     @Override
     @Cacheable(key = "#id", unless = "#result == null")
-    public Order getInCache(long id) {
-        return get(id).orElse(null);
+    public Optional<Order> getInCache(long id) {
+        return get(id);
     }
 
     @Override

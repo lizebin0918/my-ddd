@@ -17,6 +17,8 @@ import com.lzb.infr.domain.order.repository.OrderRepositoryImpl;
 import com.lzb.infr.event.persistence.DomainEventPo;
 import com.lzb.infr.event.persistence.service.DomainEventPoService;
 import jakarta.annotation.Resource;
+import jakarta.validation.constraints.AssertTrue;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
@@ -110,8 +112,8 @@ class OrderRepositoryImplIntegrationTest extends BaseIntegrationTest {
     void should_get_in_cache() {
 
         long orderId = 1L;
-        Order order1 = orderRepository.getInCache(orderId);
-        Order order2 = orderRepository.getInCache(orderId);
+        Order order1 = orderRepository.getInCache(orderId).orElseThrow();
+        Order order2 = orderRepository.getInCache(orderId).orElseThrow();
 
         assertThat(order1.snapshot()).isNull();
         assertThat(order2.snapshot()).isNull();
@@ -125,17 +127,24 @@ class OrderRepositoryImplIntegrationTest extends BaseIntegrationTest {
     @Sql("/sql/OrderRepositoryImplIntegrationTest/should_clear_cache_when_get_in_cache.sql")
     void should_clear_cache_when_get_in_cache() {
         long orderId = 1L;
-        Order order = orderRepository.getInCache(orderId);
+        Order order = orderRepository.getInCache(orderId).orElseThrow();
         assertThat(order).isNotNull();
 
         order = orderRepository.getOrThrow(orderId);
         order.cancel();
         orderRepository.update(order);
 
-        Order cacheOrder = orderRepository.getInCache(orderId);
+        Order cacheOrder = orderRepository.getInCache(orderId).orElseThrow();
         assertThat(cacheOrder.isCancel()).isTrue();
         assertThat(cacheOrder.getVersion()).isEqualTo(2);
         assertJSON(cacheOrder);
+    }
+
+    @Test
+    @DisplayName("测试数据不存在的情况")
+    void should_return_empty_when_order_not_found() {
+        assertThat(orderRepository.getInCache(1L).isEmpty()).isTrue();
+
     }
 
 }

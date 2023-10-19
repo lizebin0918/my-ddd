@@ -1,5 +1,7 @@
 package com.lzb.component.domain.repository;
 
+import java.util.Optional;
+
 import com.lzb.component.domain.aggregate.BaseAggregate;
 
 /**
@@ -14,6 +16,6 @@ public interface CacheRepository<R extends BaseAggregate<R>> {
      * @param id
      * @return
      */
-    R getInCache(long id);
+    Optional<R> getInCache(long id);
 
 }

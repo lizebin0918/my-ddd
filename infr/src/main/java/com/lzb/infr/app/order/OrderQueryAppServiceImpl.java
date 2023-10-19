@@ -46,7 +46,7 @@ public class OrderQueryAppServiceImpl implements OrderQueryAppService {
 
     @Override
     public OrderDetailView detail(long orderId) {
-        Order order = orderRepository.getInCache(orderId);
+        Order order = orderRepository.getInCache(orderId).orElseThrow();
         OrderDetailViewContext context = OrderDetailViewContext.builder()
                 .sku(() -> productGateway.list(order.getOrderDetails().getSkuIds()))
                 .build();
