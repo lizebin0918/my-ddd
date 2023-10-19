@@ -9,10 +9,12 @@ import java.util.List;
 import java.util.Map;
 
 import cn.hutool.core.util.IdUtil;
+import com.baomidou.mybatisplus.core.metadata.TableInfoHelper;
 import com.lzb.BaseIntegrationTest;
 import com.lzb.component.helper.SpringHelper;
 import com.lzb.domain.order.aggregate.Order;
 import com.lzb.domain.order.repository.OrderRepository;
+import com.lzb.infr.domain.order.persistence.po.OrderPo;
 import com.lzb.infr.domain.order.repository.OrderRepositoryImpl;
 import com.lzb.infr.event.persistence.DomainEventPo;
 import com.lzb.infr.event.persistence.service.DomainEventPoService;
@@ -23,7 +25,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.jdbc.JdbcTestUtils;
 
 import static java.time.Instant.ofEpochMilli;
 
@@ -37,6 +41,9 @@ class OrderRepositoryImplIntegrationTest extends BaseIntegrationTest {
 
     @Resource
     private SpringHelper springHelper;
+
+    @Resource
+    private JdbcTemplate jdbcTemplate;
 
     @Test
     @DisplayName("测试SpringHelper")
@@ -113,6 +120,9 @@ class OrderRepositoryImplIntegrationTest extends BaseIntegrationTest {
 
         long orderId = 1L;
         Order order1 = orderRepository.getInCache(orderId).orElseThrow();
+
+        JdbcTestUtils.deleteFromTables(jdbcTemplate, TableInfoHelper.getTableInfo(OrderPo.class).getTableName());
+
         Order order2 = orderRepository.getInCache(orderId).orElseThrow();
 
         assertThat(order1.snapshot()).isNull();
