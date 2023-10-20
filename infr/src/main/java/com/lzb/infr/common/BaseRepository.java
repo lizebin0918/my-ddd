@@ -1,6 +1,7 @@
 package com.lzb.infr.common;
 
 
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.LongSupplier;
 
@@ -13,15 +14,23 @@ import lombok.NonNull;
 import lombok.Setter;
 
 import org.springframework.aop.framework.AopContext;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 
 @Setter
-public abstract class BaseRepository<R extends BaseAggregate<R>> implements CommonRepository<R> {
+public abstract class BaseRepository<R extends BaseAggregate<R>> implements CommonRepository<R>, ApplicationContextAware {
+
+    private ApplicationContext applicationContext;
 
     @Resource
     protected TransactionHelper transactionHelper;
 
     @Resource
     protected DomainEventSupport domainEventSupport;
+
+    public void setApplicationContext(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
+    }
 
     /**
      * 添加聚合根
@@ -40,6 +49,9 @@ public abstract class BaseRepository<R extends BaseAggregate<R>> implements Comm
     public abstract Runnable doUpdate(R aggregate);
 
     private BaseRepository<R> getCurrentProxy() {
+        if (Objects.isNull(applicationContext)) {
+            return this;
+        }
         return (BaseRepository<R>) AopContext.currentProxy();
     }
 
