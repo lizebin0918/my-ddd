@@ -46,13 +46,7 @@ public class LogRequestBodyIntercepter extends RequestBodyAdviceAdapter {
             Type type,
             Class<? extends HttpMessageConverter<?>> aClass) throws IOException {
 
-
         byte[] content = StreamUtils.copyToByteArray(httpInputMessage.getBody());
-        if (methodParameter.getParameterType().equals(MultipartFile.class)) {
-            log.info("文件上传，不打印body");
-            return httpInputMessage;
-        }
-
         String body = new String(content, StandardCharsets.UTF_8);
         log.info("request-body {}", body);
         return new HttpInputMessage() {

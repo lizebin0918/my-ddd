@@ -1,5 +1,6 @@
 package com.lzb.adapter.web.controller.test;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * <br/>
@@ -106,6 +108,18 @@ public class TestOrderController {
     @PostMapping("/ids")
     public String ids(@RequestBody Ids ids) {
         return JsonUtils.toJSONString(ids);
+    }
+
+    /**
+     * 文件上传
+     * @param file
+     * @return
+     * @throws IOException
+     */
+    @PostMapping("/upload")
+    public String upload(@RequestParam("file") MultipartFile file) throws IOException {
+        log.info("文件名 {} byteSize {}", file.getOriginalFilename(), file.getBytes().length);
+        return "success";
     }
 
 }
