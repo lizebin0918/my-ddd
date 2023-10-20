@@ -20,14 +20,15 @@ import org.springframework.context.ApplicationContextAware;
 @Setter
 public abstract class BaseRepository<R extends BaseAggregate<R>> implements CommonRepository<R>, ApplicationContextAware {
 
-    private ApplicationContext applicationContext;
-
     @Resource
     protected TransactionHelper transactionHelper;
 
     @Resource
     protected DomainEventSupport domainEventSupport;
 
+    private ApplicationContext applicationContext;
+
+    @Override
     public void setApplicationContext(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
     }
@@ -48,7 +49,7 @@ public abstract class BaseRepository<R extends BaseAggregate<R>> implements Comm
      */
     public abstract Runnable doUpdate(R aggregate);
 
-    private BaseRepository<R> getCurrentProxy() {
+    protected BaseRepository<R> getCurrentProxy() {
         if (Objects.isNull(applicationContext)) {
             return this;
         }
