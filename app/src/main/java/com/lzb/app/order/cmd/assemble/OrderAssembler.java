@@ -10,6 +10,8 @@ import com.lzb.domain.order.aggregate.builder.OrderAddressBuilder;
 import com.lzb.domain.order.aggregate.builder.OrderBuilder;
 import com.lzb.domain.order.aggregate.builder.OrderDetailBuilder;
 import com.lzb.domain.order.enums.OrderStatus;
+import com.lzb.domain.order.valobj.FullAddressLine;
+import com.lzb.domain.order.valobj.FullName;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Component;
@@ -31,9 +33,13 @@ public class OrderAssembler {
                 .totalActualPay(req.totalActualPay())
                 .orderStatus(OrderStatus.WAIT_PAY);
 
-        OrderAddress orderAddress = OrderAddressBuilder.newInstance().email(req.email()).phoneNumber(req.phoneNumber())
-                .firstName(req.firstName()).lastName(req.lastName()).addressLine1(req.addressLine1())
-                .addressLine2(req.addressLine2()).country(req.country()).build();
+        OrderAddress orderAddress = OrderAddressBuilder.newInstance()
+                .email(req.email())
+                .phoneNumber(req.phoneNumber())
+                .fullName(FullName.of(req.firstName(), req.lastName()))
+                .fullAddressLine(FullAddressLine.of(req.addressLine1(), req.addressLine2()))
+                .country(req.country())
+                .build();
         orderBuilder.orderAddress(orderAddress);
 
         for (PlaceOrderDetailDto detailReq : req.details()) {
@@ -51,12 +57,10 @@ public class OrderAssembler {
     public static OrderAddress toOrderAddress(UpdateAddressDto updateAddressDto) {
         return OrderAddressBuilder.newInstance()
                 .id(updateAddressDto.orderId())
-                .addressLine1(updateAddressDto.addressLine1())
-                .addressLine2(updateAddressDto.addressLine2())
+                .fullName(FullName.of(updateAddressDto.firstName(), updateAddressDto.lastName()))
+                .fullAddressLine(FullAddressLine.of(updateAddressDto.addressLine1(), updateAddressDto.addressLine2()))
                 .country(updateAddressDto.country())
                 .email(updateAddressDto.email())
-                .firstName(updateAddressDto.firstName())
-                .lastName(updateAddressDto.lastName())
                 .phoneNumber(updateAddressDto.phoneNumber())
                 .build();
     }

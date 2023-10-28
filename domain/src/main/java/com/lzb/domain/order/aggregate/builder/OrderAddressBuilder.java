@@ -32,6 +32,11 @@ public class OrderAddressBuilder extends BaseBuilder<OrderAddress> {
     private String addressLine2;
     private String country;
 
+    private FullName fullName;
+
+    private FullAddressLine fullAddressLine;
+
+
     public OrderAddressBuilder id(long id) {
         this.id = id;
         return this;
@@ -47,26 +52,6 @@ public class OrderAddressBuilder extends BaseBuilder<OrderAddress> {
         return this;
     }
 
-    public OrderAddressBuilder firstName(String firstName) {
-        this.firstName = firstName;
-        return this;
-    }
-
-    public OrderAddressBuilder lastName(String lastName) {
-        this.lastName = lastName;
-        return this;
-    }
-
-    public OrderAddressBuilder addressLine1(String addressLine1) {
-        this.addressLine1 = addressLine1;
-        return this;
-    }
-
-    public OrderAddressBuilder addressLine2(String addressLine2) {
-        this.addressLine2 = addressLine2;
-        return this;
-    }
-
     public OrderAddressBuilder country(String country) {
         this.country = country;
         return this;
@@ -76,12 +61,19 @@ public class OrderAddressBuilder extends BaseBuilder<OrderAddress> {
         return SpringHelper.getBean(OrderAddressBuilder.class);
     }
 
+    public OrderAddressBuilder fullName(FullName fullName) {
+        this.fullName = fullName;
+        return this;
+    }
+
+    public OrderAddressBuilder fullAddressLine(FullAddressLine fullAddressLine) {
+        this.fullAddressLine = fullAddressLine;
+        return this;
+    }
+
     @Override
     protected OrderAddress doBuild() {
-        return new OrderAddress(id,
-                FullName.of(firstName, lastName),
-                FullAddressLine.of(addressLine1, addressLine2),
-                email, phoneNumber, country);
+        return new OrderAddress(id, fullName, fullAddressLine, email, phoneNumber, country);
     }
 
     @Override
