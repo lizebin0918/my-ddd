@@ -9,6 +9,7 @@ import com.lzb.component.utils.json.JsonUtils;
 import com.lzb.domain.order.enums.OrderStatus;
 import lombok.Getter;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -75,12 +76,16 @@ class OrderUnitTest extends BaseUnitTest {
         assertJSON(o);
     }
 
-    @Test
-    @DisplayName("通过构造函数反序列化")
-    void should_json_constructor() {
-        String json = "{\"id\":1}";
-        A a = JsonUtils.json2JavaBean(json, A.class);
-        assertThat(a.getId()).isEqualTo(1);
+    @Nested
+    class WithJson {
+        @Test
+        @DisplayName("通过构造函数反序列化")
+        void should_json_constructor() {
+            String json = "{\"id\":1}";
+            A a = JsonUtils.json2JavaBean(json, A.class);
+            assertThat(a.getId()).isEqualTo(1);
+            assertJSON(a);
+        }
     }
 
     @Getter
