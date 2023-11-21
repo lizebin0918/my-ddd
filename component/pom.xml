@@ -144,6 +144,11 @@
             <artifactId>transmittable-thread-local</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>io.vavr</groupId>
+            <artifactId>vavr-jackson</artifactId>
+        </dependency>
+
 
     </dependencies>
 

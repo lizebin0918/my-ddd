@@ -24,11 +24,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import com.fasterxml.jackson.databind.ser.std.NumberSerializer;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
+import io.vavr.jackson.datatype.VavrModule;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.Nullable;
@@ -55,6 +55,7 @@ public class JsonUtils {
             // 通过构造函数声明@JsonCreator反序列化，但是要在maven引入compile插件，加参数:-parameters
             .addModule(new ParameterNamesModule(JsonCreator.Mode.PROPERTIES))
             .addModule(new SimpleModule().addSerializer(BigDecimal.class, new ToStringSerializer()))
+            .addModule(new VavrModule())
             .build();
 
    static {

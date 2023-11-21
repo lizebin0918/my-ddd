@@ -35,6 +35,7 @@
 		<caffeine.version>3.1.8</caffeine.version>
 		<commons-collections4.version>4.4</commons-collections4.version>
 		<io.vavr.version>0.10.4</io.vavr.version>
+		<io.vavr.jackson.version>0.10.3</io.vavr.jackson.version>
 		<streamex.version>0.8.1</streamex.version>
 		<archunit.version>1.0.1</archunit.version>
 		<redission.version>3.23.4</redission.version>
@@ -297,6 +298,12 @@
 				<groupId>io.vavr</groupId>
 				<artifactId>vavr</artifactId>
 				<version>${io.vavr.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>io.vavr</groupId>
+				<artifactId>vavr-jackson</artifactId>
+				<version>${io.vavr.jackson.version}</version>
 			</dependency>
 
 			<dependency>

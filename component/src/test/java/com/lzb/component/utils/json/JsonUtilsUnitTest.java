@@ -7,8 +7,8 @@ import java.time.LocalTime;
 import java.time.OffsetDateTime;
 
 import com.lzb.BaseUnitTest;
+import io.vavr.collection.List;
 import lombok.Data;
-import lombok.Getter;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -39,6 +39,13 @@ class JsonUtilsUnitTest extends BaseUnitTest {
         a.setLocalDateTime(LocalDateTime.MIN);
         a.setOffsetDateTime(OffsetDateTime.MIN);
         System.out.println(JsonUtils.toJSONString(a));
+    }
+
+    @Test
+    @DisplayName("测试vavr的json序列化")
+    void should_to_json() {
+        List<Integer> list = List.of(1, 2, 3);
+        System.out.println(JsonUtils.toJSONString(list));
     }
 
 }
