@@ -15,10 +15,12 @@ import com.lzb.component.utils.DateUtils;
 import com.lzb.domain.order.enums.OrderStatus;
 import com.lzb.infr.domain.order.persistence.po.OrderPo;
 import com.lzb.infr.domain.order.persistence.service.OrderPoService;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StopWatch;
 
 /**
  * <br/>
@@ -159,6 +161,22 @@ class OrderPoServiceIntegrationTest extends BaseIntegrationTest {
         list.add(orderPo1);
 
         orderPoService.saveBatch(list);
+    }
+
+    @Test
+    @Disabled
+    @DisplayName("查询2万个id会怎样")
+    void should_query_20_thousand() {
+        List<Long> ids = new ArrayList<>();
+        for (int i = 0; i < 20000; i++) {
+            ids.add((long) i);
+        }
+        StopWatch timer = new StopWatch();
+        timer.start();
+        System.out.println("start query");
+        orderPoService.listByIds(ids);
+        timer.stop();
+        System.out.println(timer.getTotalTimeSeconds());
     }
 
 }
