@@ -17,16 +17,16 @@
 		<module>adapter</module>
 	</modules>
 	<properties>
-		<java.version>17</java.version>
-		<maven.compiler.target>17</maven.compiler.target>
-		<maven.compiler.source>17</maven.compiler.source>
+		<java.version>21</java.version>
+		<maven.compiler.target>21</maven.compiler.target>
+		<maven.compiler.source>21</maven.compiler.source>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<spring-boot.version>3.2.0</spring-boot.version>
 		<postgresql.version>42.3.8</postgresql.version>
 		<mybatis-plus.version>3.5.4.1</mybatis-plus.version>
-		<lombok.version>1.18.28</lombok.version>
+		<lombok.version>1.18.30</lombok.version>
 		<approvaltests.version>18.7.1</approvaltests.version>
 		<testcontainers.version>1.19.0</testcontainers.version>
 		<jackson.version>2.15.2</jackson.version>
