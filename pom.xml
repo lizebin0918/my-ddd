@@ -27,7 +27,7 @@
 		<postgresql.version>42.3.8</postgresql.version>
 		<mybatis-plus.version>3.5.4.1</mybatis-plus.version>
 		<lombok.version>1.18.30</lombok.version>
-		<approvaltests.version>18.7.1</approvaltests.version>
+		<approvaltests.version>22.3.2</approvaltests.version>
 		<testcontainers.version>1.19.3</testcontainers.version>
 		<jackson.version>2.15.2</jackson.version>
 		<javers.version>7.3.2</javers.version>
@@ -37,7 +37,7 @@
 		<io.vavr.version>0.10.4</io.vavr.version>
 		<io.vavr.jackson.version>0.10.3</io.vavr.jackson.version>
 		<streamex.version>0.8.1</streamex.version>
-		<archunit.version>1.0.1</archunit.version>
+		<archunit.version>1.2.1</archunit.version>
 		<redission.version>3.23.4</redission.version>
 		<commons-lang3.version>3.13.0</commons-lang3.version>
 		<hutool.version>5.8.22</hutool.version>
