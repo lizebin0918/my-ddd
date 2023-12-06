@@ -1,7 +1,7 @@
 # my-ddd
 
 ## 项目信息
-- 技术栈：Java 17、Spring Boot 3、PostgreSQL 14、Redis 6.x、MyBatis-Plus、Docker、maven
+- 技术栈：Java 21、Spring Boot 3.2、PostgreSQL 14、Redis 6.x、MyBatis-Plus、Docker、maven
 - 模块说明
   - component、test-component相关工具类
   - adapter
@@ -16,7 +16,7 @@
 
 ## 运行条件
 - 安装docker环境[下载地址](https://www.docker.com/)
-- Java 17+
+- Java 21+
 
 ## 本地启动
 - web
