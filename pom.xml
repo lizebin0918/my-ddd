@@ -24,12 +24,12 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<spring-boot.version>3.2.0</spring-boot.version>
-		<postgresql.version>42.3.8</postgresql.version>
+		<postgresql.version>42.7.1</postgresql.version>
 		<mybatis-plus.version>3.5.4.1</mybatis-plus.version>
 		<lombok.version>1.18.30</lombok.version>
 		<approvaltests.version>22.3.2</approvaltests.version>
 		<testcontainers.version>1.19.3</testcontainers.version>
-		<jackson.version>2.15.2</jackson.version>
+		<jackson.version>2.16.0</jackson.version>
 		<javers.version>7.3.2</javers.version>
 		<guava.version>32.1.2-jre</guava.version>
 		<caffeine.version>3.1.8</caffeine.version>
