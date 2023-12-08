@@ -28,11 +28,6 @@ import org.springframework.validation.annotation.Validated;
 @RequiredArgsConstructor
 public class ProductGatewayImpl implements ProductGateway {
 
-    /**
-     * 库存服务
-     */
-    private final InventoryClient inventoryClient;
-
     @Override
     public List<SkuOnSaleDto> onSale(Set<Integer> skuIds) {
         return skuIds.stream().map(skuId -> new SkuOnSaleDto(skuId, true)).toList();
@@ -46,12 +41,6 @@ public class ProductGatewayImpl implements ProductGateway {
     @Override
     public List<SkuOnSaleDto> onSale(List<Integer> skuIds) {
         return Collections.emptyList();
-    }
-
-    @Override
-    public LockStockDto lockStock(Order order) {
-        LockStockReqDto req = OrderConverter.toLockStockReq(order.getId(), order.getOrderDetails());
-        return OrderConverter.toLockStockResult(inventoryClient.lockStock(req));
     }
 
 }

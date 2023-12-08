@@ -3,6 +3,7 @@ package com.lzb.domain.order.service;
 import com.lzb.domain.order.aggregate.Order;
 import com.lzb.domain.order.dto.LockStockDto;
 import com.lzb.domain.order.gateway.ProductGateway;
+import com.lzb.domain.order.repository.ProductRepository;
 import lombok.AllArgsConstructor;
 
 import org.springframework.stereotype.Component;
@@ -16,14 +17,14 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class StockHandler {
 
-    private final ProductGateway productGateway;
+    private final ProductRepository productRepository;
 
     /**
      * 锁定库存
      * @param order
      */
     public void lockStock(Order order) {
-        LockStockDto lockStockDto = productGateway.lockStock(order);
+        LockStockDto lockStockDto = productRepository.lockStock(order);
         order.updateLockStock(lockStockDto);
     }
 

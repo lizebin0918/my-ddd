@@ -41,10 +41,4 @@ public interface ProductGateway {
      */
     List<SkuOnSaleDto> onSale(@NotEmpty List<Integer> skuIds);
 
-    /**
-     * 锁定库存
-     * @param order
-     * @return
-     */
-    LockStockDto lockStock(Order order);
 }
