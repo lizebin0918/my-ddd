@@ -4,11 +4,10 @@ import com.lzb.adapter.rpc.inverntory.InventoryClient;
 import com.lzb.adapter.rpc.inverntory.dto.LockStockReqDto;
 import com.lzb.domain.order.aggregate.Order;
 import com.lzb.domain.order.dto.LockStockDto;
-import com.lzb.domain.order.repository.ProductRepository;
+import com.lzb.domain.order.repository.StockRepository;
 import com.lzb.infr.domain.order.converter.OrderConverter;
 import lombok.RequiredArgsConstructor;
 
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -18,7 +17,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 @RequiredArgsConstructor
-public class ProductRepositoryImpl implements ProductRepository {
+public class StockRepositoryImpl implements StockRepository {
 
     /**
      * 库存服务
