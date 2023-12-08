@@ -21,6 +21,7 @@ public class StockHandler {
 
     /**
      * 锁定库存
+     * 这个动作不能声明成接口，最终的锁库存结果，需要更新到订单上，这一步算业务逻辑
      * @param order
      */
     public void lockStock(Order order) {
