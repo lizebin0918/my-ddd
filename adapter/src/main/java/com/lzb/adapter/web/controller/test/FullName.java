@@ -1,12 +1,19 @@
 package com.lzb.adapter.web.controller.test;
 
-import lombok.AllArgsConstructor;
+import com.lzb.component.utils.validation.ValidatorUtils;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 
 @Getter
-@AllArgsConstructor
 public class FullName {
 
-    private String firstName;
-    private String lastName;
+    @NotBlank(message = "firstName不能为空")
+    private final String firstName;
+    private final String lastName;
+
+    public FullName(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        ValidatorUtils.validate(this);
+    }
 }

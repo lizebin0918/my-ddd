@@ -1,0 +1,8 @@
+{
+  "code": "PARAM_ERROR",
+  "msg": "参数错误",
+  "data": [
+    "firstName不能为空"
+  ],
+  "success": false
+}

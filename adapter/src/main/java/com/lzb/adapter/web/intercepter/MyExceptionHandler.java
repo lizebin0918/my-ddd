@@ -6,22 +6,17 @@ import java.util.Map;
 import java.util.Set;
 
 import com.lzb.component.dto.ResponseDto;
-import com.lzb.component.exception.BizException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 
-import org.springframework.http.converter.HttpMessageNotReadableException;
-import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
-import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 @ControllerAdvice
 @Slf4j
@@ -61,12 +56,12 @@ public class MyExceptionHandler {
         });
         return new ResponseDto<>(PARAM_ERROR, "参数错误", errorMsgs);
     }
-
+/*
 
     @ResponseBody
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     public ResponseDto<Void> argumentMissingError(HttpServletRequest request, HttpServletResponse response, Object handler, HttpRequestMethodNotSupportedException ex) {
-        /*ResponseDto<Void> baseResponse = new ResponseDto<Void>();
+        *//*ResponseDto<Void> baseResponse = new ResponseDto<Void>();
         baseResponse.setCode("REQUEST_METHOD_ERROR");
         String message = ex.getMessage();
         baseResponse.setMsg(message);
@@ -74,14 +69,14 @@ public class MyExceptionHandler {
         map.put("uri", request.getRequestURI());
         map.put("msg", ex.getMessage());
         MonitorUtil.monitorWithTags(runtimeMetricsKey, map);
-        return baseResponse;*/
+        return baseResponse;*//*
         return null;
     }
 
     @ResponseBody
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public ResponseDto<Void> methodArgumentTypeMismatchException(HttpServletRequest request, HttpServletResponse response, Object handler, MethodArgumentTypeMismatchException ex) {
-        /*ResponseDto<Void> baseResponse = new ResponseDto<Void>();
+        *//*ResponseDto<Void> baseResponse = new ResponseDto<Void>();
         baseResponse.setCode("PARAM_ERROR");
         String message = ex.getMessage();
         baseResponse.setMsg(message);
@@ -89,14 +84,14 @@ public class MyExceptionHandler {
         map.put("uri", request.getRequestURI());
         map.put("msg", ex.getMessage());
         MonitorUtil.monitorWithTags(runtimeMetricsKey, map);
-        return baseResponse;*/
+        return baseResponse;*//*
         return null;
     }
 
     @ResponseBody
     @ExceptionHandler(BindException.class)
     public ResponseDto<Void> bindError(HttpServletRequest request, HttpServletResponse response, Object handler, BindException ex) {
-        /*String errMessage = ex.getFieldErrors().stream().map(fieldError -> fieldError.getField() + ":" + fieldError.getDefaultMessage()).collect(Collectors.joining(","));
+        *//*String errMessage = ex.getFieldErrors().stream().map(fieldError -> fieldError.getField() + ":" + fieldError.getDefaultMessage()).collect(Collectors.joining(","));
         ResponseDto<Void> baseResponse = new ResponseDto<Void>();
         baseResponse.setCode("PARAM_ERROR");
         baseResponse.setMsg(errMessage);
@@ -107,17 +102,17 @@ public class MyExceptionHandler {
         map.put("uri", request.getRequestURI());
         map.put("msg", ex.getMessage());
         MonitorUtil.monitorWithTags(runtimeMetricsKey, map);
-        return baseResponse;*/
+        return baseResponse;*//*
         return null;
     }
 
-    /**
+    *//**
      * 抓取所有的错误
-     */
+     *//*
     @ResponseBody
     @ExceptionHandler(Exception.class)
     public ResponseDto<Void> defaultErrorHandle(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception{
-        /*log.error("defaultErrorHandle server error ", ex);
+        *//*log.error("defaultErrorHandle server error ", ex);
         ResponseDto<Void> baseResponse = new ResponseDto<Void>();
         baseResponse.setCode("SERVICE_ERROR");
         if (plutusConfig.isPrd()) {
@@ -169,18 +164,18 @@ public class MyExceptionHandler {
         } else {
             baseResponse.setMsg("错误消息:" + ex.getMessage());
         }
-        return baseResponse;*/
+        return baseResponse;*//*
         return null;
     }
 
 
-    /**
+    *//**
      * 所有的业务错误
-     */
+     *//*
     @ResponseBody
     @ExceptionHandler(BizException.class)
     public ResponseDto<Void> bizExceptionHandle(HttpServletRequest request, HttpServletResponse response, Object handler, BizException bizException) {
-        /*ResponseDto<Void> baseResponse = new ResponseDto<Void>();
+        *//*ResponseDto<Void> baseResponse = new ResponseDto<Void>();
         baseResponse.setCode(bizException.getCode());
         String serverBusy = Optional.ofNullable(bizException.getMessage()).orElse("Server busy");
         baseResponse.setMsg(serverBusy);
@@ -191,7 +186,7 @@ public class MyExceptionHandler {
         map.put("uri", request.getRequestURI());
         map.put("msg", serverBusy);
         MonitorUtil.monitorWithTags(bizMetricsKey, map);
-        return baseResponse;*/
+        return baseResponse;*//*
         return null;
     }
 
@@ -200,7 +195,7 @@ public class MyExceptionHandler {
     public ResponseDto<Void> numberFormatExceptionHandle(HttpServletRequest request,
                                                          HttpServletResponse response,
                                                          Object handler, NumberFormatException numberFormatException) {
-       /* ResponseDto<Void> baseResponse = new ResponseDto<Void>();
+       *//* ResponseDto<Void> baseResponse = new ResponseDto<Void>();
         baseResponse.setCode("NUMBER_FORMAT_ERROR");
         String msg = "输入的数据格式不对";
         baseResponse.setMsg(msg);
@@ -211,19 +206,19 @@ public class MyExceptionHandler {
         map.put("uri", request.getRequestURI());
         map.put("msg", msg);
         MonitorUtil.monitorWithTags(runtimeMetricsKey, map);
-        return baseResponse;*/
+        return baseResponse;*//*
         return null;
     }
 
-    /**
+    *//**
      * POST请求参数格式转化异常
-     */
+     *//*
     @ResponseBody
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseDto<Void> httpMessageNotReadableExceptionHandle(HttpServletRequest request,
                                                                    HttpServletResponse response,
                                                                    Object handler, HttpMessageNotReadableException httpMessageNotReadableException) {
-        /*ResponseDto<Void> baseResponse = new ResponseDto<Void>();
+        *//*ResponseDto<Void> baseResponse = new ResponseDto<Void>();
         baseResponse.setCode("DATA_FORMAT_ERROR");
         String msg = "数据格式错误";
         baseResponse.setMsg(msg);
@@ -234,8 +229,8 @@ public class MyExceptionHandler {
         map.put("uri", request.getRequestURI());
         map.put("msg", msg);
         MonitorUtil.monitorWithTags(runtimeMetricsKey, map);
-        return baseResponse;*/
+        return baseResponse;*//*
         return null;
-    }
+    }*/
 
 }

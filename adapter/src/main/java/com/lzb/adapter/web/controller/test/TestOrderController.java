@@ -122,4 +122,13 @@ public class TestOrderController {
         return "success";
     }
 
+    /**
+     * firstName 不能为空
+     * @param fullName
+     */
+    @PostMapping("/testFullNameNotNull")
+    public void testFullNameNotNull(@RequestBody FullName fullName) {
+        log.info("testFullNameNotNull: {}", fullName);
+    }
+
 }

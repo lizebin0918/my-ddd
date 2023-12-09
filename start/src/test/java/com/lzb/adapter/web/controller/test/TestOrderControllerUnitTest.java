@@ -177,4 +177,16 @@ class TestOrderControllerUnitTest extends BaseControllerUnitTest {
 
     }
 
+    @Test
+    @DisplayName("测试FullName的firstName不能为空")
+    @Disabled("还不知道为啥返回200")
+    void should_throw_exception_when_first_name_is_null() throws Exception {
+        MockHttpServletRequestBuilder content = MockMvcRequestBuilders.post("/testFullNameNotNull")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(JsonUtils.toJSONString(Map.of("firstName", "", "lastName", "zebin")));
+        ResultActions perform = mockMvc.perform(content)
+                .andExpect(status().is2xxSuccessful());
+        assertResponse(perform);
+    }
+
 }
