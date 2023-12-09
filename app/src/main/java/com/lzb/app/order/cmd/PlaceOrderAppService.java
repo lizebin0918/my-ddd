@@ -4,7 +4,7 @@ import com.lzb.app.order.cmd.assemble.OrderAssembler;
 import com.lzb.app.order.cmd.dto.PlaceOrderDto;
 import com.lzb.component.operation.annotation.OperateLog;
 import com.lzb.component.operation.context.OperationLogContext;
-import com.lzb.domain.order.aggregate.Order;
+import com.lzb.domain.order.aggregation.Order;
 import com.lzb.domain.order.repository.OrderRepository;
 import com.lzb.domain.order.service.StockHandler;
 import lombok.RequiredArgsConstructor;

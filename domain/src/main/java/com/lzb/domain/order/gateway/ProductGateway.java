@@ -3,8 +3,6 @@ package com.lzb.domain.order.gateway;
 import java.util.List;
 import java.util.Set;
 
-import com.lzb.domain.order.aggregate.Order;
-import com.lzb.domain.order.dto.LockStockDto;
 import com.lzb.domain.order.dto.SkuInfoDto;
 import com.lzb.domain.order.dto.SkuOnSaleDto;
 import jakarta.validation.constraints.NotEmpty;

@@ -7,7 +7,7 @@ import com.lzb.app.order.query.dto.OrderQueryDto;
 import com.lzb.app.order.query.view.OrderDetailView;
 import com.lzb.app.order.query.view.OrderDetailViewContext;
 import com.lzb.app.order.query.view.OrderView;
-import com.lzb.domain.order.aggregate.Order;
+import com.lzb.domain.order.aggregation.Order;
 import com.lzb.domain.order.gateway.ProductGateway;
 import com.lzb.domain.order.repository.OrderRepository;
 import com.lzb.infr.app.order.converter.OrderViewConverter;

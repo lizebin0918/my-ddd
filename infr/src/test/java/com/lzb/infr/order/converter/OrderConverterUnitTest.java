@@ -3,8 +3,8 @@ package com.lzb.infr.order.converter;
 import java.math.BigDecimal;
 
 import com.lzb.BaseUnitTest;
-import com.lzb.domain.order.aggregate.OrderAddress;
-import com.lzb.domain.order.aggregate.OrderDetail;
+import com.lzb.domain.order.aggregation.OrderAddress;
+import com.lzb.domain.order.aggregation.OrderDetail;
 import com.lzb.domain.order.enums.OrderStatus;
 import com.lzb.infr.domain.order.converter.OrderConverter;
 import com.lzb.infr.domain.order.persistence.po.OrderDetailPo;

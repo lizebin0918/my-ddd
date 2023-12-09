@@ -1,4 +1,4 @@
-package com.lzb.domain.order.aggregate.builder;
+package com.lzb.domain.order.aggregation.builder;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -7,10 +7,10 @@ import java.util.List;
 import com.lzb.component.domain.aggregate.BaseBuilder;
 import com.lzb.component.helper.SpringHelper;
 import com.lzb.component.id.IdGenerator;
-import com.lzb.domain.order.aggregate.Order;
-import com.lzb.domain.order.aggregate.OrderAddress;
-import com.lzb.domain.order.aggregate.OrderDetail;
-import com.lzb.domain.order.aggregate.OrderDetails;
+import com.lzb.domain.order.aggregation.Order;
+import com.lzb.domain.order.aggregation.OrderAddress;
+import com.lzb.domain.order.aggregation.OrderDetail;
+import com.lzb.domain.order.aggregation.OrderDetails;
 import com.lzb.domain.order.enums.OrderStatus;
 import com.lzb.domain.order.service.SkuValidator;
 import lombok.NonNull;

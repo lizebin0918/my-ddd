@@ -2,12 +2,12 @@ package com.lzb.infr.domain.order.converter;
 
 import java.util.List;
 
+import com.lzb.domain.order.aggregation.Order;
+import com.lzb.domain.order.aggregation.OrderAddress;
+import com.lzb.domain.order.aggregation.OrderDetail;
+import com.lzb.domain.order.aggregation.OrderDetails;
 import com.lzb.domain.order.valobj.FullAddressLine;
 import com.lzb.domain.order.valobj.FullName;
-import com.lzb.domain.order.aggregate.Order;
-import com.lzb.domain.order.aggregate.OrderAddress;
-import com.lzb.domain.order.aggregate.OrderDetail;
-import com.lzb.domain.order.aggregate.OrderDetails;
 import com.lzb.infr.domain.order.persistence.po.OrderDetailPo;
 import com.lzb.infr.domain.order.persistence.po.OrderPo;
 import lombok.RequiredArgsConstructor;

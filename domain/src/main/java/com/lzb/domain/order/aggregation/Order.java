@@ -1,4 +1,4 @@
-package com.lzb.domain.order.aggregate;
+package com.lzb.domain.order.aggregation;
 
 import java.math.BigDecimal;
 import java.util.Collections;
@@ -6,13 +6,13 @@ import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.lzb.component.exception.BizException;
 import com.lzb.component.domain.aggregate.BaseAggregate;
-import com.lzb.domain.order.valobj.FullName;
+import com.lzb.component.exception.BizException;
 import com.lzb.domain.order.dto.LockStockDto;
 import com.lzb.domain.order.enums.OrderStatus;
 import com.lzb.domain.order.event.OrderCanceledEvent;
 import com.lzb.domain.order.event.OrderPlacedEvent;
+import com.lzb.domain.order.valobj.FullName;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NonNull;

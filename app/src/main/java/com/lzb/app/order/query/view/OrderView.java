@@ -2,9 +2,9 @@ package com.lzb.app.order.query.view;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.lzb.domain.order.valobj.FullName;
-import com.lzb.domain.order.aggregate.Order;
+import com.lzb.domain.order.aggregation.Order;
 import com.lzb.domain.order.enums.OrderStatus;
+import com.lzb.domain.order.valobj.FullName;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.extern.jackson.Jacksonized;

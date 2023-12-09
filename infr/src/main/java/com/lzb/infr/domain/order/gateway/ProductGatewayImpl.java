@@ -3,21 +3,13 @@ package com.lzb.infr.domain.order.gateway;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.IntStream;
 
-import com.lzb.adapter.rpc.inverntory.InventoryClient;
-import com.lzb.adapter.rpc.inverntory.dto.LockStockReqDto;
-import com.lzb.domain.order.aggregate.Order;
-import com.lzb.domain.order.dto.LockStockDto;
 import com.lzb.domain.order.dto.SkuInfoDto;
 import com.lzb.domain.order.dto.SkuOnSaleDto;
 import com.lzb.domain.order.gateway.ProductGateway;
-import com.lzb.infr.domain.order.converter.OrderConverter;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Component;
-import org.springframework.validation.annotation.Validated;
 
 /**
  * <br/>

@@ -1,4 +1,4 @@
-package com.lzb.domain.order.aggregate;
+package com.lzb.domain.order.aggregation;
 
 import cn.hutool.core.lang.Assert;
 import com.fasterxml.jackson.annotation.JsonCreator;

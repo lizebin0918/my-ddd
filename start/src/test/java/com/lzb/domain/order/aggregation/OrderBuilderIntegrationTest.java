@@ -1,9 +1,9 @@
-package com.lzb.domain.order.aggregate;
+package com.lzb.domain.order.aggregation;
 
 import com.lzb.BaseIntegrationTest;
 import com.lzb.component.helper.SpringHelper;
 import com.lzb.component.id.IdGenerator;
-import com.lzb.domain.order.aggregate.builder.OrderBuilder;
+import com.lzb.domain.order.aggregation.builder.OrderBuilder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.lzb.component.domain.repository.CacheRepository;
 import com.lzb.component.domain.repository.CommonRepository;
-import com.lzb.domain.order.aggregate.Order;
+import com.lzb.domain.order.aggregation.Order;
 
 /**
  * <br/>

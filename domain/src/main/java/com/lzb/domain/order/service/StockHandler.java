@@ -1,6 +1,6 @@
 package com.lzb.domain.order.service;
 
-import com.lzb.domain.order.aggregate.Order;
+import com.lzb.domain.order.aggregation.Order;
 import com.lzb.domain.order.dto.LockStockDto;
 import com.lzb.domain.order.repository.StockRepository;
 import lombok.AllArgsConstructor;

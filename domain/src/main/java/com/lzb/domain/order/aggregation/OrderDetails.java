@@ -1,4 +1,4 @@
-package com.lzb.domain.order.aggregate;
+package com.lzb.domain.order.aggregation;
 
 import java.io.Serializable;
 import java.util.Collection;

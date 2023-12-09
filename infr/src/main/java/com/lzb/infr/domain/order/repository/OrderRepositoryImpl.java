@@ -9,7 +9,7 @@ import java.util.function.LongSupplier;
 
 import com.lzb.component.utils.MyDiff;
 import com.lzb.component.utils.json.JsonUtils;
-import com.lzb.domain.order.aggregate.Order;
+import com.lzb.domain.order.aggregation.Order;
 import com.lzb.domain.order.repository.OrderRepository;
 import com.lzb.infr.common.BaseRepository;
 import com.lzb.infr.config.cache.CacheConstants;

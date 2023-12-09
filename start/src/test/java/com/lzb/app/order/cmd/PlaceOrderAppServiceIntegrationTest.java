@@ -6,12 +6,12 @@ import java.util.List;
 
 import com.lzb.BaseIntegrationTest;
 import com.lzb.adapter.rpc.inverntory.InventoryClient;
-import com.lzb.adapter.rpc.inverntory.dto.LockStockRspDto;
 import com.lzb.adapter.rpc.inverntory.dto.LockStockDetailRspDto;
+import com.lzb.adapter.rpc.inverntory.dto.LockStockRspDto;
 import com.lzb.app.order.cmd.dto.PlaceOrderDetailDto;
 import com.lzb.app.order.cmd.dto.PlaceOrderDto;
 import com.lzb.component.id.IdGenerator;
-import com.lzb.domain.order.aggregate.Order;
+import com.lzb.domain.order.aggregation.Order;
 import com.lzb.domain.order.repository.OrderRepository;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.DisplayName;
