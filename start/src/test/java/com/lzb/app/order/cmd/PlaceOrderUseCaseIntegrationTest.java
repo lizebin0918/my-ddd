@@ -24,13 +24,13 @@ import org.springframework.beans.factory.annotation.Autowired;
  * Created on : 2023-09-09 14:23
  * @author lizebin
  */
-class PlaceOrderAppServiceIntegrationTest extends BaseIntegrationTest {
+class PlaceOrderUseCaseIntegrationTest extends BaseIntegrationTest {
     
     @Autowired
     private IdGenerator idGenerator;
 
     @Autowired
-    private PlaceOrderAppService placeOrderAppService;
+    private PlaceOrderUseCase placeOrderUseCase;
 
     @Autowired
     private OrderRepository orderRepository;
@@ -47,7 +47,7 @@ class PlaceOrderAppServiceIntegrationTest extends BaseIntegrationTest {
 
         PlaceOrderDto req = createPlaceOrderDto();
 
-        long orderId = placeOrderAppService.placeOrder(req);
+        long orderId = placeOrderUseCase.placeOrder(req);
         Order order = orderRepository.getOrThrow(orderId);
         assertJSON(order, "id");
     }
@@ -69,14 +69,9 @@ class PlaceOrderAppServiceIntegrationTest extends BaseIntegrationTest {
         doReturn(new LockStockRspDto(Arrays.asList(new LockStockDetailRspDto(1, 1)))).when(inventoryClient).lockStock(any());
 
         assertThat(orderRepository.getInCache(orderId).isEmpty()).isTrue();
-        placeOrderAppService.placeOrder(createPlaceOrderDto());
+        placeOrderUseCase.placeOrder(createPlaceOrderDto());
         assertThat(orderRepository.getInCache(orderId).isPresent()).isTrue();
     }
 
-    @Test
-    @DisplayName("测试日志组件是否生效")
-    void should_test_log() {
-        placeOrderAppService.testLog();
-    }
 
 }

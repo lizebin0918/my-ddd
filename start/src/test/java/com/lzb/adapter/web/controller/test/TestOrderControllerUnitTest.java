@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.lzb.BaseControllerUnitTest;
-import com.lzb.app.order.cmd.PlaceOrderAppService;
+import com.lzb.app.order.cmd.PlaceOrderUseCase;
 import com.lzb.component.utils.json.JsonUtils;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
@@ -32,7 +32,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class TestOrderControllerUnitTest extends BaseControllerUnitTest {
 
     @MockBean
-    private PlaceOrderAppService placeOrderAppService;
+    private PlaceOrderUseCase placeOrderUseCase;
 
     @Test
     @DisplayName("测试提交参数和返回值")

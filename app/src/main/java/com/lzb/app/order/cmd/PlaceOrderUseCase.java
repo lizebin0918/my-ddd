@@ -2,8 +2,6 @@ package com.lzb.app.order.cmd;
 
 import com.lzb.app.order.cmd.assemble.OrderAssembler;
 import com.lzb.app.order.cmd.dto.PlaceOrderDto;
-import com.lzb.component.operation.annotation.OperateLog;
-import com.lzb.component.operation.context.OperationLogContext;
 import com.lzb.domain.order.aggregation.Order;
 import com.lzb.domain.order.repository.OrderRepository;
 import com.lzb.domain.order.service.StockHandler;
@@ -20,7 +18,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class PlaceOrderAppService {
+public class PlaceOrderUseCase {
 
     private final OrderRepository orders;
 
@@ -43,14 +41,6 @@ public class PlaceOrderAppService {
 
         orders.add(order);
         return order.getId();
-    }
-
-    @OperateLog(bizId = "#bizId", bizType = "#operateType", tableName = "#businessType")
-    public void testLog() {
-        OperationLogContext.put("bizId", "1");
-        OperationLogContext.put("operateType", "日志测试");
-        OperationLogContext.put("businessType", "order");
-        log.info("test log");
     }
 
 }

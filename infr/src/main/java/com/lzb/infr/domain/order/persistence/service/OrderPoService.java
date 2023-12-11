@@ -33,9 +33,4 @@ public class OrderPoService extends ServiceImpl<OrderPoMapper, OrderPo> implemen
         return page(new Page<>(queryDto.pageIndex(), queryDto.pageSize()), query);
     }
 
-    public void update1() {
-        List<String> fields = List.of("order_status", "email");
-
-    }
-
 }
