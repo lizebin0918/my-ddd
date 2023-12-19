@@ -5,7 +5,7 @@ import java.util.Set;
 
 import com.lzb.domain.order.dto.SkuInfoDto;
 import com.lzb.domain.order.dto.SkuOnSaleDto;
-import com.lzb.domain.order.gateway.OrderProductGateway;
+import com.lzb.domain.order.gateway.ProductGateway;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Component;
@@ -17,7 +17,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @RequiredArgsConstructor
-public class ProductGatewayImpl implements OrderProductGateway {
+public class ProductGatewayImpl implements
+        com.lzb.domain.order.gateway.ProductGateway,
+        com.lzb.domain.product.gateway.ProductGateway  {
 
     @Override
     public List<SkuOnSaleDto> onSale(Set<Integer> skuIds) {

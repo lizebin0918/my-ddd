@@ -8,7 +8,7 @@ import com.lzb.app.order.query.view.OrderDetailView;
 import com.lzb.app.order.query.view.OrderDetailViewContext;
 import com.lzb.app.order.query.view.OrderView;
 import com.lzb.domain.order.aggregation.Order;
-import com.lzb.domain.order.gateway.OrderProductGateway;
+import com.lzb.domain.order.gateway.ProductGateway;
 import com.lzb.domain.order.repository.OrderRepository;
 import com.lzb.infr.order.app.converter.OrderViewConverter;
 import com.lzb.infr.order.domian.persistence.po.OrderPo;
@@ -32,7 +32,7 @@ public class OrderQueryAppServiceImpl implements OrderQueryAppService {
 
     private final OrderRepository orderRepository;
 
-    private final OrderProductGateway orderProductGateway;
+    private final ProductGateway productGateway;
 
     @Override
     public PageDto<OrderView> listForPage(OrderQueryDto queryDto) {
@@ -48,7 +48,7 @@ public class OrderQueryAppServiceImpl implements OrderQueryAppService {
     public OrderDetailView detail(long orderId) {
         Order order = orderRepository.getInCache(orderId).orElseThrow();
         OrderDetailViewContext context = OrderDetailViewContext.builder()
-                .sku(() -> orderProductGateway.list(order.getOrderDetails().getSkuIds()))
+                .sku(() -> productGateway.list(order.getOrderDetails().getSkuIds()))
                 .build();
         return OrderDetailView.builder().order(order).orderDetailViewContext(context).build();
     }

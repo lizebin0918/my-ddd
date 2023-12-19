@@ -8,7 +8,7 @@ import com.lzb.domain.order.dto.LockStockDto;
  * Created on : 2023-12-08 19:29
  * @author lizebin
  */
-public interface OrderStockRepository {
+public interface StockRepository {
 
     /**
      * 锁定库存

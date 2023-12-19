@@ -2,7 +2,7 @@ package com.lzb.domain.order.service;
 
 import com.lzb.domain.order.aggregation.Order;
 import com.lzb.domain.order.dto.LockStockDto;
-import com.lzb.domain.order.repository.OrderStockRepository;
+import com.lzb.domain.order.repository.StockRepository;
 import lombok.AllArgsConstructor;
 
 import org.springframework.stereotype.Component;
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class StockHandler {
 
-    private final OrderStockRepository orderStockRepository;
+    private final StockRepository stockRepository;
 
     /**
      * 锁定库存
@@ -24,7 +24,7 @@ public class StockHandler {
      * @param order
      */
     public void lockStock(Order order) {
-        LockStockDto lockStockDto = orderStockRepository.lockStock(order);
+        LockStockDto lockStockDto = stockRepository.lockStock(order);
         order.updateLockStock(lockStockDto);
     }
 

@@ -2,7 +2,7 @@ package com.lzb.infr.order.domian.repository;
 
 import com.lzb.domain.order.aggregation.Order;
 import com.lzb.domain.order.dto.LockStockDto;
-import com.lzb.domain.order.repository.OrderStockRepository;
+import com.lzb.domain.order.repository.StockRepository;
 import com.lzb.infr.order.domian.converter.OrderConverter;
 import com.lzb.infr.stock.rpc.InventoryClient;
 import com.lzb.infr.stock.rpc.dto.LockStockReqDto;
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 @RequiredArgsConstructor
-public class StockRepositoryImpl implements OrderStockRepository {
+public class StockRepositoryImpl implements StockRepository {
 
     /**
      * 库存服务

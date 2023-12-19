@@ -15,7 +15,7 @@ import org.springframework.validation.annotation.Validated;
  * @author mac
  */
 @Validated
-public interface OrderProductGateway {
+public interface ProductGateway {
 
     /**
      * 查询上架的sku状态
