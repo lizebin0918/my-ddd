@@ -1,6 +1,5 @@
-package com.lzb.infr.product;
+package com.lzb.infr.product.domain.gateway;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
