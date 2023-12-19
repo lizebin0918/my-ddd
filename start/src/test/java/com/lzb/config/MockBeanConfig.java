@@ -6,10 +6,10 @@ import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.List;
 
-import com.lzb.adapter.rpc.inverntory.InventoryClient;
 import com.lzb.annotation.MockBeanInit;
 import com.lzb.component.helper.TransactionHelper;
 import com.lzb.component.id.IdGenerator;
+import com.lzb.infr.stock.rpc.InventoryClient;
 import org.jetbrains.annotations.NotNull;
 import org.mockito.MockingDetails;
 import org.mockito.Mockito;

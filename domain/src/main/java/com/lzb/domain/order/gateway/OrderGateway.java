@@ -2,6 +2,8 @@ package com.lzb.domain.order.gateway;
 
 import java.util.Set;
 
+import jakarta.validation.constraints.NotBlank;
+
 import org.springframework.validation.annotation.Validated;
 
 /**
@@ -12,6 +14,6 @@ import org.springframework.validation.annotation.Validated;
 @Validated
 public interface OrderGateway {
 
-    Set<Long> queryByEmail(String email);
+    Set<Long> queryByEmail(@NotBlank(message = "邮箱不能为空") String email);
 
 }
