@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.lzb.BaseControllerUnitTest;
+import com.lzb.adapter.web.test.Status;
+import com.lzb.adapter.web.test.TestOrder;
 import com.lzb.app.order.cmd.PlaceOrderUseCase;
 import com.lzb.component.utils.json.JsonUtils;
 import org.junit.jupiter.api.Disabled;

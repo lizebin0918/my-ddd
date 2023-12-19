@@ -1,4 +1,4 @@
-package com.lzb.adapter.web.intercepter;
+package com.lzb.adapter.web.common.intercepter;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

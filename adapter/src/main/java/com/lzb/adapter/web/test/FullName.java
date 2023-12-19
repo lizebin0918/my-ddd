@@ -1,4 +1,4 @@
-package com.lzb.adapter.web.controller.test;
+package com.lzb.adapter.web.test;
 
 import com.lzb.component.utils.validation.ValidatorUtils;
 import jakarta.validation.constraints.NotBlank;

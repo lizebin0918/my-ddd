@@ -1,4 +1,4 @@
-package com.lzb.adapter.web.controller.order;
+package com.lzb.adapter.web.order;
 
 import com.lzb.app.order.query.OrderQueryAppService;
 

@@ -1,4 +1,4 @@
-package com.lzb.adapter.web.controller.test;
+package com.lzb.adapter.web.test;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

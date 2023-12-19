@@ -1,11 +1,11 @@
-package com.lzb.adapter.web.controller.test;
+package com.lzb.adapter.web.test;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.lzb.adapter.web.annotation.MyResponseBody;
+import com.lzb.adapter.web.common.annotation.MyResponseBody;
 import com.lzb.component.utils.json.JsonUtils;
 import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;

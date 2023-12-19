@@ -1,4 +1,4 @@
-package com.lzb.adapter.web.intercepter;
+package com.lzb.adapter.web.common.intercepter;
 
 import java.util.Collections;
 import java.util.Map;
