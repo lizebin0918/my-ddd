@@ -2,6 +2,10 @@ package com.lzb.component.domain.repository;
 
 
 import com.lzb.component.domain.aggregate.BaseAggregate;
+import com.lzb.component.domain.aop.UpdateAroundAspect;
+import jakarta.validation.constraints.NotNull;
+
+import org.springframework.validation.annotation.Validated;
 
 /**
  * 更新聚合根<br/>
@@ -9,14 +13,15 @@ import com.lzb.component.domain.aggregate.BaseAggregate;
  *
  * @author lizebin
  */
+@Validated
 public interface UpdateRepository<R extends BaseAggregate<R>> {
 
     /**
      * 更新聚合根
-     * 默认包含aop增强：校验聚合根是否有快照 ${@link com.lzb.infr.aop.UpdateAroundAspect}
+     * 默认包含aop增强：校验聚合根是否有快照 ${@link UpdateAroundAspect}
      *
      * @param aggregate
      */
-    void update(R aggregate);
+    void update(@NotNull(message = "聚合根不能为空") R aggregate);
 
 }

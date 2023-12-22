@@ -14,11 +14,12 @@ import com.lzb.BaseIntegrationTest;
 import com.lzb.component.helper.SpringHelper;
 import com.lzb.domain.order.aggregation.Order;
 import com.lzb.domain.order.repository.OrderRepository;
-import com.lzb.infr.order.domian.persistence.po.OrderPo;
-import com.lzb.infr.order.domian.repository.OrderRepositoryImpl;
 import com.lzb.infr.event.persistence.DomainEventPo;
 import com.lzb.infr.event.persistence.service.DomainEventPoService;
+import com.lzb.infr.order.domian.persistence.po.OrderPo;
+import com.lzb.infr.order.domian.repository.OrderRepositoryImpl;
 import jakarta.annotation.Resource;
+import jakarta.validation.ConstraintViolationException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
@@ -153,6 +154,13 @@ class OrderRepositoryImplIntegrationTest extends BaseIntegrationTest {
     void should_return_empty_when_order_not_found() {
         assertThat(orderRepository.getInCache(1L).isEmpty()).isTrue();
 
+    }
+
+    @Test
+    @DisplayName("测试空聚合根")
+    void should_throw_exception_when_input_null() {
+        assertThrows(ConstraintViolationException.class, () -> orderRepository.add(null));
+        assertThrows(ConstraintViolationException.class, () -> orderRepository.update(null));
     }
 
 }
