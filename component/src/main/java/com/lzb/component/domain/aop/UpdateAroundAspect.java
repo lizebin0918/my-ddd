@@ -26,7 +26,6 @@ public class UpdateAroundAspect {
      */
     @Around("execution(* com.lzb.component.domain.repository.UpdateRepository.update(..))")
     public Object handleRequestMethod(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
-        Object result = null;
         Object[] paramValues = proceedingJoinPoint.getArgs();
         if (Objects.nonNull(paramValues) && paramValues.length > 0) {
             Object aggregateRoot = paramValues[0];
@@ -35,7 +34,7 @@ public class UpdateAroundAspect {
                 log.info("聚合根/实体更新 快照 {}", JsonUtils.toJSONString(snapshotHolder.snapshot()));
                 log.info("聚合根/实体更新 当前 {}", JsonUtils.toJSONString(aggregateRoot));
                 try {
-                    result = proceedingJoinPoint.proceed(paramValues);
+                    return proceedingJoinPoint.proceed(paramValues);
                 } catch (Exception e) {
                     log.error("聚合根更新异常 ", e);
                     throw e;
@@ -44,7 +43,7 @@ public class UpdateAroundAspect {
                 }
             }
         }
-        return result;
+        return proceedingJoinPoint.proceed(paramValues);
     }
 
 }
