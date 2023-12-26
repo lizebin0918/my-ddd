@@ -24,7 +24,7 @@ public class UpdateAroundAspect {
     /**
      * 支持方法 or 注解
      */
-    @Around("execution(* com.lzb.component.domain.repository.UpdateRepository.update(..))")
+    @Around("execution(* com.*.domain.repository.UpdateRepository.update(..))")
     public Object handleRequestMethod(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         Object[] paramValues = proceedingJoinPoint.getArgs();
         if (Objects.nonNull(paramValues) && paramValues.length > 0) {
