@@ -8,6 +8,7 @@ import com.lzb.domain.product.repository.ProductRepository;
 import com.lzb.infr.common.BaseRepository;
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Repository;
  * @author lizebin
  */
 @Repository
-@RequiredArgsConstructor
+@RequiredArgsConstructor(onConstructor_ = @Lazy)
 public class ProductRepositoryImpl extends BaseRepository<Product> implements ProductRepository {
 
 

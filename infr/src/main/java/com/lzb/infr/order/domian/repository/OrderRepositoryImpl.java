@@ -28,6 +28,7 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -37,7 +38,7 @@ import org.springframework.stereotype.Repository;
  */
 @Slf4j
 @Repository(OrderRepositoryImpl.BEAN_NAME)
-@RequiredArgsConstructor
+@RequiredArgsConstructor(onConstructor_ = @Lazy)
 @CacheConfig(cacheNames = {CacheConstants.ORDER})
 public class OrderRepositoryImpl extends BaseRepository<Order> implements OrderRepository {
 

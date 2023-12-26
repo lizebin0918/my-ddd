@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -20,7 +21,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-@RequiredArgsConstructor
+@RequiredArgsConstructor(onConstructor_ = @Lazy)
 public class OrderAddressBuilder extends BaseBuilder<OrderAddress> {
 
     private Long id;

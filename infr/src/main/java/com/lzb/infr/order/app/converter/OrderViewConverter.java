@@ -4,6 +4,7 @@ import com.lzb.app.order.query.view.OrderView;
 import com.lzb.domain.order.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Component;
  * @author mac
  */
 @Component
-@RequiredArgsConstructor
+@RequiredArgsConstructor(onConstructor_ = @Lazy)
 public class OrderViewConverter {
 
     private final OrderRepository orderRepository;

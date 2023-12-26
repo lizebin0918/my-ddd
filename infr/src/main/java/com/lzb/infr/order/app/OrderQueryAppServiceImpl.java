@@ -15,6 +15,7 @@ import com.lzb.infr.order.domian.persistence.po.OrderPo;
 import com.lzb.infr.order.domian.persistence.service.OrderPoService;
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 /**
@@ -23,7 +24,7 @@ import org.springframework.stereotype.Service;
  * @author mac
  */
 @Service
-@RequiredArgsConstructor
+@RequiredArgsConstructor(onConstructor_ = @Lazy)
 public class OrderQueryAppServiceImpl implements OrderQueryAppService {
 
     private final OrderPoService orderPoService;

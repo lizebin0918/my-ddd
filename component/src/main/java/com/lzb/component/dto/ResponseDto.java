@@ -2,13 +2,11 @@ package com.lzb.component.dto;
 
 import java.util.Objects;
 
-import com.lzb.component.arch.ArchUnitIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.junit.Ignore;
+
+import org.springframework.context.annotation.Lazy;
 
 /**
  * <br/>

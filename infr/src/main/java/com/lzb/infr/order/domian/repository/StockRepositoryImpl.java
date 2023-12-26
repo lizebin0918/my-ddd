@@ -8,6 +8,7 @@ import com.lzb.infr.stock.rpc.InventoryClient;
 import com.lzb.infr.stock.rpc.dto.LockStockReqDto;
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Repository;
  * @author lizebin
  */
 @Repository
-@RequiredArgsConstructor
+@RequiredArgsConstructor(onConstructor_ = @Lazy)
 public class StockRepositoryImpl implements StockRepository {
 
     /**

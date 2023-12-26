@@ -1,5 +1,6 @@
 package com.lzb.infr.stock.rpc.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -9,7 +10,7 @@ import lombok.RequiredArgsConstructor;
  * @author lizebin
  */
 @Getter
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class LockStockDetailReqDto {
 
     private final int skuId;

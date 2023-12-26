@@ -14,6 +14,7 @@ import com.lzb.domain.order.valobj.FullAddressLine;
 import com.lzb.domain.order.valobj.FullName;
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 /**
@@ -22,7 +23,7 @@ import org.springframework.stereotype.Component;
  * @author mac
  */
 @Component
-@RequiredArgsConstructor
+@RequiredArgsConstructor(onConstructor_ = @Lazy)
 public class OrderAssembler {
 
     public static Order toOrder(PlaceOrderDto req) {

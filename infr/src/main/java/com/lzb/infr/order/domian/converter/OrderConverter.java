@@ -22,6 +22,7 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import one.util.streamex.StreamEx;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 /**
@@ -30,7 +31,7 @@ import org.springframework.stereotype.Component;
  * @author mac
  */
 @Component
-@RequiredArgsConstructor
+@RequiredArgsConstructor(onConstructor_ = @Lazy)
 public final class OrderConverter {
     public static Order toOrder(OrderPo orderPo,
             List<OrderDetailPo> orderDetailPos) {

@@ -14,7 +14,7 @@ import one.util.streamex.StreamEx;
  * @author mac
  */
 @Getter
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class LockStockDto {
 
     @NonNull

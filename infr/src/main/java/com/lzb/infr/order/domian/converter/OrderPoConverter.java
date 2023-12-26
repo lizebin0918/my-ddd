@@ -12,6 +12,7 @@ import com.lzb.infr.order.domian.persistence.po.OrderDetailPo;
 import com.lzb.infr.order.domian.persistence.po.OrderPo;
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 /**
@@ -20,7 +21,7 @@ import org.springframework.stereotype.Component;
  * @author mac
  */
 @Component
-@RequiredArgsConstructor
+@RequiredArgsConstructor(onConstructor_ = @Lazy)
 public class OrderPoConverter {
 
     public static OrderPo toOrderPo(Order order) {

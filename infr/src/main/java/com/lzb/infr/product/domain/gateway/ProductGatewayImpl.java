@@ -5,9 +5,9 @@ import java.util.Set;
 
 import com.lzb.domain.order.dto.SkuInfoDto;
 import com.lzb.domain.order.dto.SkuOnSaleDto;
-import com.lzb.domain.order.gateway.ProductGateway;
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 /**
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
  * @author lizebin
  */
 @Component
-@RequiredArgsConstructor
+@RequiredArgsConstructor(onConstructor_ = @Lazy)
 public class ProductGatewayImpl implements
         com.lzb.domain.order.gateway.ProductGateway,
         com.lzb.domain.product.gateway.ProductGateway  {

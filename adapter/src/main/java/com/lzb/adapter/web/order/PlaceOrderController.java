@@ -4,6 +4,7 @@ import com.lzb.app.order.cmd.PlaceOrderUseCase;
 import com.lzb.app.order.cmd.dto.PlaceOrderDto;
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,11 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
  * @author lizebin
  */
 @RestController
-@RequiredArgsConstructor
+@RequiredArgsConstructor(onConstructor_ = @Lazy)
 @RequestMapping("/order")
 public class PlaceOrderController {
 
-    private PlaceOrderUseCase placeOrderUseCase;
+    private final PlaceOrderUseCase placeOrderUseCase;
 
     @PutMapping
     Long placeOrder(@RequestBody PlaceOrderDto placeOrderDto) {

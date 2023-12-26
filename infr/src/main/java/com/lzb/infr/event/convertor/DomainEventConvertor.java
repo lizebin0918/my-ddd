@@ -3,11 +3,12 @@ package com.lzb.infr.event.convertor;
 import java.util.Collection;
 import java.util.List;
 
-import com.lzb.component.utils.json.JsonUtils;
 import com.lzb.component.domain.event.DomainEvent;
+import com.lzb.component.utils.json.JsonUtils;
 import com.lzb.infr.event.persistence.DomainEventPo;
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 /**
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Component;
  * @author lizebin
  */
 @Component
-@RequiredArgsConstructor
+@RequiredArgsConstructor(onConstructor_ = @Lazy)
 public final class DomainEventConvertor {
 
     public static DomainEventPo toDomainEventPo(String topic, DomainEvent event) {

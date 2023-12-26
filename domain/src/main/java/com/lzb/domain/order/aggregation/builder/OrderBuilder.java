@@ -17,6 +17,7 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -27,7 +28,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-@RequiredArgsConstructor
+@RequiredArgsConstructor(onConstructor_ = @Lazy)
 public class OrderBuilder extends BaseBuilder<Order> {
 
     private final SkuValidator skuValidator;
