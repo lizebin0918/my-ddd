@@ -5,6 +5,6 @@ package com.lzb.domain.order.valobj;
  * Created on : 2023-12-26 12:42
  * @author lizebin
  */
-public record SkuValObj(int skuId, String name, String picUrl, boolean onSaleFlag) {
+public record Sku(int skuId, String name, String picUrl, boolean onSaleFlag) {
 
 }

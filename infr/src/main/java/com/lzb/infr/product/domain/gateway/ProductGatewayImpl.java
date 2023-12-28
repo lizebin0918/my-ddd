@@ -3,8 +3,8 @@ package com.lzb.infr.product.domain.gateway;
 import java.util.List;
 import java.util.Set;
 
-import com.lzb.domain.order.dto.SkuInfoDto;
 import com.lzb.domain.order.dto.SkuOnSaleDto;
+import com.lzb.domain.order.valobj.Sku;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.context.annotation.Lazy;
@@ -27,8 +27,8 @@ public class ProductGatewayImpl implements
     }
 
     @Override
-    public List<SkuInfoDto> list(Set<Integer> skuIds) {
-        return skuIds.stream().map(skuId -> new SkuInfoDto(skuId, "name-" + skuId, "picUrl-" + skuId)).toList();
+    public List<Sku> list(Set<Integer> skuIds) {
+        return skuIds.stream().map(skuId -> new Sku(skuId, "name-" + skuId, "picUrl-" + skuId, true)).toList();
     }
 
 }

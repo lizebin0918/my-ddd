@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import com.lzb.component.exception.BizException;
-import com.lzb.domain.order.dto.SkuInfoDto;
+import com.lzb.domain.order.valobj.Sku;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -43,7 +43,7 @@ public class OrderDetailViewContext {
             new ThreadFactoryBuilder().setNameFormat("query-order-context-%d").build()
     );
 
-    private Map<Integer, SkuInfoDto> skuId2SkuInfo = Collections.emptyMap();
+    private Map<Integer, Sku> skuId2SkuInfo = Collections.emptyMap();
 
     ///////////////////////////////////////////////////////////////////////////
     // Builder
@@ -77,9 +77,9 @@ public class OrderDetailViewContext {
          * @param skuList
          * @return
          */
-        public OrderVoContextBuilder sku(Supplier<List<SkuInfoDto>> skuInfoSupplier) {
+        public OrderVoContextBuilder sku(Supplier<List<Sku>> skuInfoSupplier) {
             addTask(() -> orderVoContext.skuId2SkuInfo = skuInfoSupplier.get().stream()
-                    .collect(Collectors.toMap(SkuInfoDto::skuId, Function.identity())));
+                    .collect(Collectors.toMap(Sku::skuId, Function.identity())));
             return this;
         }
 

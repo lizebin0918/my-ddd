@@ -3,8 +3,8 @@ package com.lzb.domain.order.gateway;
 import java.util.List;
 import java.util.Set;
 
-import com.lzb.domain.order.dto.SkuInfoDto;
 import com.lzb.domain.order.dto.SkuOnSaleDto;
+import com.lzb.domain.order.valobj.Sku;
 import jakarta.validation.constraints.NotEmpty;
 
 import org.springframework.validation.annotation.Validated;
@@ -30,6 +30,6 @@ public interface ProductGateway {
      * @param skuIds
      * @return
      */
-    List<SkuInfoDto> list(@NotEmpty Set<Integer> skuIds);
+    List<Sku> list(@NotEmpty Set<Integer> skuIds);
 
 }

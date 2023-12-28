@@ -17,7 +17,6 @@ import lombok.Setter;
  * @author lizebin
  */
 @Getter
-// 方便测试构造
 @Setter(AccessLevel.PACKAGE)
 public class OrderAddress extends BaseEntity<OrderAddress> {
 
