@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.lzb.component.domain.aggregate.BaseAggregate;
@@ -13,6 +15,7 @@ import com.lzb.domain.order.enums.OrderStatus;
 import com.lzb.domain.order.event.OrderCanceledEvent;
 import com.lzb.domain.order.event.OrderPlacedEvent;
 import com.lzb.domain.order.valobj.FullName;
+import com.lzb.domain.order.valobj.SkuStockLock;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NonNull;
@@ -102,6 +105,17 @@ public class Order extends BaseAggregate<Order> {
             List<OrderDetail> skuOrderDetails = skuId2OrderDetails.getOrDefault(skuId, Collections.emptyList());
             for (int i = 1; i <= skuOrderDetails.size(); i++) {
                 skuOrderDetails.get(i - 1).updateLocked(i <= lockStock.getDetail(skuId).getLockedNum());
+            }
+        });
+    }
+
+    public void updateSkuLockStock(List<SkuStockLock> skuStockLocks) {
+        Map<Integer, SkuStockLock> skuId2Lock = skuStockLocks.stream().collect(Collectors.toMap(SkuStockLock::skuId, Function.identity()));
+        Map<Integer, List<OrderDetail>> skuId2OrderDetails = StreamEx.of(orderDetails.toStream()).groupingBy(OrderDetail::getSkuId);
+        skuId2OrderDetails.keySet().forEach(skuId -> {
+            List<OrderDetail> skuOrderDetails = skuId2OrderDetails.getOrDefault(skuId, Collections.emptyList());
+            for (int i = 1; i <= skuOrderDetails.size(); i++) {
+                skuOrderDetails.get(i - 1).updateLocked(i <= skuId2Lock.get(skuId).lockedNum());
             }
         });
     }
