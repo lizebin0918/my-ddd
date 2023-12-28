@@ -3,7 +3,7 @@ package com.lzb.infr.product.domain.gateway;
 import java.util.List;
 import java.util.Set;
 
-import com.lzb.domain.order.dto.SkuOnSaleDto;
+import com.lzb.domain.order.valobj.OnSaleSku;
 import com.lzb.domain.order.valobj.Sku;
 import lombok.RequiredArgsConstructor;
 
@@ -22,13 +22,13 @@ public class ProductGatewayImpl implements
         com.lzb.domain.product.gateway.ProductGateway  {
 
     @Override
-    public List<SkuOnSaleDto> onSale(Set<Integer> skuIds) {
-        return skuIds.stream().map(skuId -> new SkuOnSaleDto(skuId, true)).toList();
+    public List<OnSaleSku> onSale(Set<Integer> skuIds) {
+        return skuIds.stream().map(skuId -> new OnSaleSku(new Sku(skuId), true)).toList();
     }
 
     @Override
     public List<Sku> list(Set<Integer> skuIds) {
-        return skuIds.stream().map(skuId -> new Sku(skuId, "name-" + skuId, "picUrl-" + skuId, true)).toList();
+        return skuIds.stream().map(skuId -> new Sku(skuId, "name-" + skuId, "picUrl-" + skuId)).toList();
     }
 
 }

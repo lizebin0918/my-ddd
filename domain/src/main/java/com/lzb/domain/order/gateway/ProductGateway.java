@@ -3,7 +3,7 @@ package com.lzb.domain.order.gateway;
 import java.util.List;
 import java.util.Set;
 
-import com.lzb.domain.order.dto.SkuOnSaleDto;
+import com.lzb.domain.order.valobj.OnSaleSku;
 import com.lzb.domain.order.valobj.Sku;
 import jakarta.validation.constraints.NotEmpty;
 
@@ -22,7 +22,7 @@ public interface ProductGateway {
      * @param skuIds
      * @return
      */
-    List<SkuOnSaleDto> onSale(@NotEmpty Set<Integer> skuIds);
+    List<OnSaleSku> onSale(@NotEmpty Set<Integer> skuIds);
 
     /**
      * 查询sku信息
