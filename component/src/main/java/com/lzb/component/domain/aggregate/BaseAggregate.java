@@ -13,6 +13,7 @@ import com.lzb.component.domain.exception.IllegalVersionException;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -24,6 +25,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Getter
+@SuperBuilder
 public abstract class BaseAggregate<R extends BaseEntity<R>> extends BaseEntity<R> {
 
     /**

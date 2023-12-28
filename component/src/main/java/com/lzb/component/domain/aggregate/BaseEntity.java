@@ -5,6 +5,7 @@ import java.io.Serializable;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -15,6 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Getter
 @AllArgsConstructor
+@SuperBuilder
 public abstract class BaseEntity<R extends BaseEntity<R>> implements Serializable {
 
     protected BaseEntity(Long id) {

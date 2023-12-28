@@ -66,7 +66,7 @@ public class A {
 
 ## 疑问
 - controller的cmd实体在app层定义，如果要传到domain层，那就只能在domian定义了，有点别扭
-  - 结论：最后引入XxxxAssembler把dto转换domain对象
+  - 结论：最后引入XxxxAssembler把dto转换domain对象（cmd里面的各个参数可能涉及多个逻辑，不仅仅是领域对象，可能是领域服务的传参）
 - 删除OrderDetail.orderId，这是持久化层用到的字段，领域层用不到，删掉之后整个代码逻辑清晰很多
   - 结论：领域层只关注业务字段即可
 - testcontainer是否可以去掉？直接用docker-compose运行测试？现在会报错
