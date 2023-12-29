@@ -1,7 +1,9 @@
 package com.lzb.domain.order.repository;
 
+import java.util.List;
+
 import com.lzb.domain.order.aggregation.Order;
-import com.lzb.domain.order.dto.LockStockDto;
+import com.lzb.domain.order.dto.SkuStockLock;
 
 /**
  * order调product<br/>
@@ -15,6 +17,6 @@ public interface StockRepository {
      * @param order
      * @return
      */
-    LockStockDto lockStock(Order order);
+    List<SkuStockLock> lockStock(Order order);
 
 }

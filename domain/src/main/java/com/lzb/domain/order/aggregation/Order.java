@@ -15,7 +15,7 @@ import com.lzb.domain.order.enums.OrderStatus;
 import com.lzb.domain.order.event.OrderCanceledEvent;
 import com.lzb.domain.order.event.OrderPlacedEvent;
 import com.lzb.domain.order.valobj.FullName;
-import com.lzb.domain.order.valobj.SkuStockLock;
+import com.lzb.domain.order.dto.SkuStockLock;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NonNull;
@@ -93,20 +93,6 @@ public class Order extends BaseAggregate<Order> {
             throw new BizException("订单已发货，不能修改地址");
         }
         this.orderAddress = newOrderAddress;
-    }
-
-    /**
-     * 更新库存结果
-     * @param lockStock
-     */
-    public void updateLockStock(LockStockDto lockStock) {
-        Map<Integer, List<OrderDetail>> skuId2OrderDetails = StreamEx.of(orderDetails.toStream()).groupingBy(OrderDetail::getSkuId);
-        skuId2OrderDetails.keySet().forEach(skuId -> {
-            List<OrderDetail> skuOrderDetails = skuId2OrderDetails.getOrDefault(skuId, Collections.emptyList());
-            for (int i = 1; i <= skuOrderDetails.size(); i++) {
-                skuOrderDetails.get(i - 1).updateLocked(i <= lockStock.getDetail(skuId).getLockedNum());
-            }
-        });
     }
 
     public void updateSkuLockStock(List<SkuStockLock> skuStockLocks) {
