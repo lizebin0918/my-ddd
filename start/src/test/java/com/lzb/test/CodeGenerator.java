@@ -28,11 +28,12 @@ public class CodeGenerator {
     }
 
     public static void main(String[] args) {
+        String path = "/Users/lizebin/Desktop/";
         FastAutoGenerator.create("jdbc:postgresql://localhost:5432/test", "postgres", "Abc123456")
                 .globalConfig(builder -> {
                     builder.author("lizebin") // 设置作者
-                            .enableSwagger() // 开启 swagger 模式
-                            .outputDir("/Users/lizebin/Desktop/"); // 指定输出目录
+                            //.enableSwagger() // 开启 swagger 模式
+                            .outputDir(path); // 指定输出目录
                 })
                 .dataSourceConfig(builder -> builder.typeConvertHandler((globalConfig, typeRegistry, metaInfo) -> {
                     int typeCode = metaInfo.getJdbcType().TYPE_CODE;
@@ -46,7 +47,7 @@ public class CodeGenerator {
                 .packageConfig(builder -> {
                     builder.parent("com.lzb") // 设置父包名
                             .moduleName("system") // 设置父包模块名
-                            .pathInfo(Collections.singletonMap(OutputFile.xml, "D://")); // 设置mapperXml生成路径
+                            .pathInfo(Collections.singletonMap(OutputFile.xml, path)); // 设置mapperXml生成路径
                 })
                 .strategyConfig(builder -> {
                     builder.addInclude("cart_detail") // 设置需要生成的表名
