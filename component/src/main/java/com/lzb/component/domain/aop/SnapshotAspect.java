@@ -20,8 +20,8 @@ public class SnapshotAspect {
      * @param pjp
      * @param returnVal
      */
-    @AfterReturning(pointcut = "execution(* com.*.domain.repository.GetRepository.get(..)) " +
-            "|| @annotation(com.*.domain.annotation.Snapshot)",
+    @AfterReturning(pointcut = "execution(* com.lzb.component.domain.repository.GetRepository.get(..)) " +
+            "|| @annotation(com.lzb.component.domain.annotation.Snapshot)",
             returning = "returnVal")
     public void handleRequestMethod(JoinPoint pjp, Object returnVal) {
         if (returnVal instanceof BaseAggregate<?> aggregate) {

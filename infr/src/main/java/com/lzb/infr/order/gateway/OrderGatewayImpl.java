@@ -1,31 +1,32 @@
-package com.lzb.infr.order.app;
+package com.lzb.infr.order.gateway;
+
+import java.util.Set;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.lzb.app.common.PageDto;
-import com.lzb.app.order.query.OrderQueryAppService;
-import com.lzb.app.order.query.dto.OrderQueryDto;
+import com.lzb.app.order.query.dto.QueryOrderDto;
 import com.lzb.app.order.query.view.OrderDetailView;
 import com.lzb.app.order.query.view.OrderDetailViewContext;
 import com.lzb.app.order.query.view.OrderView;
 import com.lzb.domain.order.aggregation.Order;
 import com.lzb.domain.order.gateway.ProductGateway;
 import com.lzb.domain.order.repository.OrderRepository;
-import com.lzb.infr.order.app.converter.OrderViewConverter;
-import com.lzb.infr.order.domian.persistence.po.OrderPo;
-import com.lzb.infr.order.domian.persistence.service.OrderPoService;
+import com.lzb.infr.order.converter.OrderViewConverter;
+import com.lzb.infr.order.persistence.po.OrderPo;
+import com.lzb.infr.order.persistence.service.OrderPoService;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.context.annotation.Lazy;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 /**
- * <br/>
- * Created on : 2023-09-06 22:48
- * @author mac
+ * 订单gateway实现<br/>
+ * Created on : 2023-12-19 10:00
+ * @author lizebin
  */
-@Service
-@RequiredArgsConstructor(onConstructor_ = @Lazy)
-public class OrderQueryAppServiceImpl implements OrderQueryAppService {
+@Component
+@RequiredArgsConstructor(onConstructor = @__(@Lazy))
+public class OrderGatewayImpl implements com.lzb.domain.order.gateway.OrderGateway, com.lzb.app.order.query.gateway.OrderGateway {
 
     private final OrderPoService orderPoService;
 
@@ -36,7 +37,12 @@ public class OrderQueryAppServiceImpl implements OrderQueryAppService {
     private final ProductGateway productGateway;
 
     @Override
-    public PageDto<OrderView> listForPage(OrderQueryDto queryDto) {
+    public Set<Long> queryByEmail(String email) {
+        return Set.of();
+    }
+
+    @Override
+    public PageDto<OrderView> listForPage(QueryOrderDto queryDto) {
         Page<OrderPo> page = orderPoService.listForPage(queryDto);
         return PageDto.of(page.getPages(),
                 page.getSize(),

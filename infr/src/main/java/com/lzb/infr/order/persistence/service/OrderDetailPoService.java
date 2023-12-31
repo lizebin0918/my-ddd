@@ -1,4 +1,4 @@
-package com.lzb.infr.order.domian.persistence.service;
+package com.lzb.infr.order.persistence.service;
 
 import java.util.List;
 import java.util.Set;
@@ -6,8 +6,8 @@ import java.util.Set;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.lzb.infr.order.domian.persistence.mapper.OrderDetailPoMapper;
-import com.lzb.infr.order.domian.persistence.po.OrderDetailPo;
+import com.lzb.infr.order.persistence.mapper.OrderDetailPoMapper;
+import com.lzb.infr.order.persistence.po.OrderDetailPo;
 
 import org.springframework.stereotype.Service;
 

@@ -1,11 +1,11 @@
-package com.lzb.infr.order.domian.repository;
+package com.lzb.infr.order.repository;
 
 import java.util.List;
 
 import com.lzb.domain.order.aggregation.Order;
 import com.lzb.domain.order.dto.SkuStockLock;
 import com.lzb.domain.order.repository.StockRepository;
-import com.lzb.infr.order.domian.converter.OrderConverter;
+import com.lzb.infr.order.converter.OrderConverter;
 import com.lzb.infr.stock.rpc.InventoryClient;
 import com.lzb.infr.stock.rpc.dto.LockStockReqDto;
 import lombok.RequiredArgsConstructor;

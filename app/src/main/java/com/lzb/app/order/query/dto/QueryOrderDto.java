@@ -7,7 +7,7 @@ import java.util.Set;
  * Created on : 2023-09-06 13:46
  * @author lizebin
  */
-public record OrderQueryDto(
+public record QueryOrderDto(
         /*
           可以对多个订单号做格式校验？
          */

@@ -1,4 +1,4 @@
-package com.lzb.infr.order.domian.persistence.po;
+package com.lzb.infr.order.persistence.po;
 
 import java.math.BigDecimal;
 

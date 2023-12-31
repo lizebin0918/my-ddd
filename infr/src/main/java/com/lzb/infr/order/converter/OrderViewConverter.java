@@ -1,4 +1,4 @@
-package com.lzb.infr.order.app.converter;
+package com.lzb.infr.order.converter;
 
 import com.lzb.app.order.query.view.OrderView;
 import com.lzb.domain.order.repository.OrderRepository;

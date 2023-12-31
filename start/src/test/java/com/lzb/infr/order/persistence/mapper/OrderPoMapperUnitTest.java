@@ -2,7 +2,6 @@ package com.lzb.infr.order.persistence.mapper;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.lzb.BaseMapperUnitTest;
-import com.lzb.infr.order.domian.persistence.mapper.OrderPoMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

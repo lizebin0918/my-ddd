@@ -3,7 +3,7 @@ package com.lzb.app.order.query;
 import java.util.Set;
 
 import com.lzb.BaseIntegrationTest;
-import com.lzb.app.order.query.dto.OrderQueryDto;
+import com.lzb.app.order.query.dto.QueryOrderDto;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,7 +24,7 @@ class OrderQueryAppServiceIntegrationTest extends BaseIntegrationTest {
     @DisplayName("列表测试")
     @Sql("/sql/OrderQueryAppServiceIntegrationTest/should_list_for_page.sql")
     void should_list_for_page() {
-        OrderQueryDto query = new OrderQueryDto(Set.of(), "", 1, 10);
+        QueryOrderDto query = new QueryOrderDto(Set.of(), "", 1, 10);
         assertJSON(orderQueryAppService.listForPage(query));
     }
 
