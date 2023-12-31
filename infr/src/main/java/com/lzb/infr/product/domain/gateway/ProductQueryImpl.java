@@ -3,6 +3,7 @@ package com.lzb.infr.product.domain.gateway;
 import java.util.List;
 import java.util.Set;
 
+import com.lzb.domain.order.query.ProductQuery;
 import com.lzb.domain.order.valobj.OnSaleSku;
 import com.lzb.domain.order.valobj.Sku;
 import lombok.RequiredArgsConstructor;
@@ -17,8 +18,8 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @RequiredArgsConstructor(onConstructor_ = @Lazy)
-public class ProductGatewayImpl implements
-        com.lzb.domain.order.gateway.ProductGateway,
+public class ProductQueryImpl implements
+        ProductQuery,
         com.lzb.domain.product.gateway.ProductGateway  {
 
     @Override

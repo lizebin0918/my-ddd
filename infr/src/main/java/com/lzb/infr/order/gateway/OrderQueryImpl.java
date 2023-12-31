@@ -1,7 +1,5 @@
 package com.lzb.infr.order.gateway;
 
-import java.util.Set;
-
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.lzb.app.common.PageDto;
 import com.lzb.app.order.query.dto.QueryOrderDto;
@@ -10,7 +8,7 @@ import com.lzb.app.order.query.vo.OrderDetailView;
 import com.lzb.app.order.query.vo.OrderDetailViewContext;
 import com.lzb.app.order.query.vo.OrderView;
 import com.lzb.domain.order.aggregation.Order;
-import com.lzb.domain.order.gateway.ProductGateway;
+import com.lzb.domain.order.query.ProductQuery;
 import com.lzb.domain.order.repository.OrderRepository;
 import com.lzb.infr.order.converter.OrderViewConverter;
 import com.lzb.infr.order.persistence.po.OrderPo;
@@ -27,7 +25,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @RequiredArgsConstructor(onConstructor = @__(@Lazy))
-public class OrderQueryImpl implements com.lzb.domain.order.gateway.OrderGateway, OrderQuery {
+public class OrderQueryImpl implements OrderQuery {
 
     private final OrderPoService orderPoService;
 
@@ -35,12 +33,7 @@ public class OrderQueryImpl implements com.lzb.domain.order.gateway.OrderGateway
 
     private final OrderRepository orderRepository;
 
-    private final ProductGateway productGateway;
-
-    @Override
-    public Set<Long> queryByEmail(String email) {
-        return Set.of();
-    }
+    private final ProductQuery productQuery;
 
     @Override
     public PageDto<OrderView> listForPage(QueryOrderDto queryDto) {
@@ -56,7 +49,7 @@ public class OrderQueryImpl implements com.lzb.domain.order.gateway.OrderGateway
     public OrderDetailView detail(long orderId) {
         Order order = orderRepository.getInCache(orderId).orElseThrow();
         OrderDetailViewContext context = OrderDetailViewContext.builder()
-                .sku(() -> productGateway.list(order.getOrderDetails().getSkuIds()))
+                .sku(() -> productQuery.list(order.getOrderDetails().getSkuIds()))
                 .build();
         return OrderDetailView.builder().order(order).orderDetailViewContext(context).build();
     }

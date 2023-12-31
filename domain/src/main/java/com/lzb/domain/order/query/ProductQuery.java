@@ -1,4 +1,4 @@
-package com.lzb.domain.order.gateway;
+package com.lzb.domain.order.query;
 
 import java.util.List;
 import java.util.Set;
@@ -15,7 +15,7 @@ import org.springframework.validation.annotation.Validated;
  * @author mac
  */
 @Validated
-public interface ProductGateway {
+public interface ProductQuery {
 
     /**
      * 查询上架的sku状态
