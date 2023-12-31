@@ -16,8 +16,8 @@ import org.springframework.stereotype.Service;
  * @author lizebin
  */
 @Service
-@RequiredArgsConstructor(staticName = "of", onConstructor_ = @Lazy)
-public class ProductDbGateway implements ProductGateway {
+@RequiredArgsConstructor(onConstructor_ = @Lazy)
+public class ProductGatewayDb implements ProductGateway {
 
     @Override
     public List<Sku> list(Set<Integer> skuIds) {

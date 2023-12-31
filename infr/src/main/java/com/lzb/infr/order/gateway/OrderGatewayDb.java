@@ -25,7 +25,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @RequiredArgsConstructor(onConstructor = @__(@Lazy))
-public class OrderDbGateway implements OrderGateway {
+public class OrderGatewayDb implements OrderGateway {
 
     private final OrderPoService orderPoService;
 

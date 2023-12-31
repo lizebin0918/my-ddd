@@ -37,12 +37,10 @@ import org.springframework.stereotype.Repository;
  * @author mac
  */
 @Slf4j
-@Repository(OrderDbRepository.BEAN_NAME)
+@Repository
 @RequiredArgsConstructor(onConstructor_ = @Lazy)
 @CacheConfig(cacheNames = {CacheConstants.ORDER})
-public class OrderDbRepository extends BaseRepository<Order> implements OrderRepository {
-
-    public static final String BEAN_NAME = "OrderDbRepository";
+public class OrderRepositoryDb extends BaseRepository<Order> implements OrderRepository {
 
     private final OrderPoService orderPoService;
 

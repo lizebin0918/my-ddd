@@ -17,7 +17,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 @RequiredArgsConstructor
-public class ProductDbRepository implements ProductRepository {
+public class ProductRepositoryDb implements ProductRepository {
 
     @Override
     public List<OnSaleSku> onSale(Set<Integer> skuIds) {
