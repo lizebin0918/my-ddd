@@ -3,7 +3,7 @@ package com.lzb.infr.order.repository;
 import java.util.List;
 
 import com.lzb.domain.order.aggregation.Order;
-import com.lzb.domain.order.dto.SkuStockLock;
+import com.lzb.domain.order.dto.SkuStockLockDto;
 import com.lzb.domain.order.repository.StockRepository;
 import com.lzb.infr.order.converter.OrderConverter;
 import com.lzb.infr.stock.rpc.InventoryClient;
@@ -28,7 +28,7 @@ public class StockRepositoryImpl implements StockRepository {
     private final InventoryClient inventoryClient;
 
     @Override
-    public List<SkuStockLock> lockStock(Order order) {
+    public List<SkuStockLockDto> lockStock(Order order) {
         LockStockReqDto req = OrderConverter.toLockStockReq(order.getId(), order.getOrderDetails());
         return OrderConverter.toLockStockResult(inventoryClient.lockStock(req));
     }

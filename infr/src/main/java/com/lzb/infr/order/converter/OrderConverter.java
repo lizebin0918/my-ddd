@@ -9,7 +9,7 @@ import com.lzb.domain.order.aggregation.Order;
 import com.lzb.domain.order.aggregation.OrderAddress;
 import com.lzb.domain.order.aggregation.OrderDetail;
 import com.lzb.domain.order.aggregation.OrderDetails;
-import com.lzb.domain.order.dto.SkuStockLock;
+import com.lzb.domain.order.dto.SkuStockLockDto;
 import com.lzb.domain.order.valobj.FullAddressLine;
 import com.lzb.domain.order.valobj.FullName;
 import com.lzb.infr.order.persistence.po.OrderDetailPo;
@@ -66,10 +66,10 @@ public final class OrderConverter {
         return new LockStockReqDto(Objects.toString(orderId), toLocakStockDetails(orderDetails));
     }
 
-    public static List<SkuStockLock> toLockStockResult(LockStockRspDto lockStockRspDto) {
+    public static List<SkuStockLockDto> toLockStockResult(LockStockRspDto lockStockRspDto) {
         List<LockStockDetailRspDto> lockedDetails = lockStockRspDto.getLockedDetails();
         return lockedDetails.stream()
-                .map(lockedDetail -> new SkuStockLock(lockedDetail.getSkuId(), lockedDetail.getLockedNum()))
+                .map(lockedDetail -> new SkuStockLockDto(lockedDetail.getSkuId(), lockedDetail.getLockedNum()))
                 .toList();
     }
 

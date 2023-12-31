@@ -2,9 +2,8 @@ package com.lzb.app.order.query;
 
 import com.lzb.app.common.PageDto;
 import com.lzb.app.order.query.dto.QueryOrderDto;
-import com.lzb.app.order.query.gateway.OrderGateway;
-import com.lzb.app.order.query.view.OrderDetailView;
-import com.lzb.app.order.query.view.OrderView;
+import com.lzb.app.order.query.vo.OrderDetailView;
+import com.lzb.app.order.query.vo.OrderView;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.context.annotation.Lazy;
@@ -19,7 +18,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor(onConstructor = @__(@Lazy))
 public class OrderQueryAppService {
 
-    private final OrderGateway orderGateway;
+    private final OrderQuery orderQuery;
 
     /**
      * 订单列表
@@ -27,7 +26,7 @@ public class OrderQueryAppService {
      * @return
      */
     public PageDto<OrderView> listForPage(QueryOrderDto queryDto) {
-        return orderGateway.listForPage(queryDto);
+        return orderQuery.listForPage(queryDto);
     }
 
     /**
@@ -36,11 +35,11 @@ public class OrderQueryAppService {
      * @return
      */
     public OrderDetailView detail(long orderId) {
-        return orderGateway.detail(orderId);
+        return orderQuery.detail(orderId);
     }
 
     public long count(){
-        return orderGateway.count();
+        return orderQuery.count();
     }
 
 }

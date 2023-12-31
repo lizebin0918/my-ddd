@@ -1,4 +1,4 @@
-package com.lzb.app.order.query.view;
+package com.lzb.app.order.query.vo;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;

@@ -1,6 +1,6 @@
 package com.lzb.infr.order.converter;
 
-import com.lzb.app.order.query.view.OrderView;
+import com.lzb.app.order.query.vo.OrderView;
 import com.lzb.domain.order.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 

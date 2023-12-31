@@ -1,4 +1,4 @@
-package com.lzb.app.order.query.view;
+package com.lzb.app.order.query.vo;
 
 import java.util.ArrayList;
 import java.util.Collections;

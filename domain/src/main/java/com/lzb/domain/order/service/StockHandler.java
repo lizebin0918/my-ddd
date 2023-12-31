@@ -3,7 +3,7 @@ package com.lzb.domain.order.service;
 import java.util.List;
 
 import com.lzb.domain.order.aggregation.Order;
-import com.lzb.domain.order.dto.SkuStockLock;
+import com.lzb.domain.order.dto.SkuStockLockDto;
 import com.lzb.domain.order.repository.StockRepository;
 import lombok.AllArgsConstructor;
 
@@ -26,8 +26,8 @@ public class StockHandler {
      * @param order
      */
     public void lockStock(Order order) {
-        List<SkuStockLock> skuStockLocks  = stockRepository.lockStock(order);
-        order.updateSkuLockStock(skuStockLocks);
+        List<SkuStockLockDto> skuStockLockDtos = stockRepository.lockStock(order);
+        order.updateSkuLockStock(skuStockLockDtos);
     }
 
 }

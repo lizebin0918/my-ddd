@@ -5,9 +5,10 @@ import java.util.Set;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.lzb.app.common.PageDto;
 import com.lzb.app.order.query.dto.QueryOrderDto;
-import com.lzb.app.order.query.view.OrderDetailView;
-import com.lzb.app.order.query.view.OrderDetailViewContext;
-import com.lzb.app.order.query.view.OrderView;
+import com.lzb.app.order.query.OrderQuery;
+import com.lzb.app.order.query.vo.OrderDetailView;
+import com.lzb.app.order.query.vo.OrderDetailViewContext;
+import com.lzb.app.order.query.vo.OrderView;
 import com.lzb.domain.order.aggregation.Order;
 import com.lzb.domain.order.gateway.ProductGateway;
 import com.lzb.domain.order.repository.OrderRepository;
@@ -26,7 +27,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @RequiredArgsConstructor(onConstructor = @__(@Lazy))
-public class OrderGatewayImpl implements com.lzb.domain.order.gateway.OrderGateway, com.lzb.app.order.query.gateway.OrderGateway {
+public class OrderQueryImpl implements com.lzb.domain.order.gateway.OrderGateway, OrderQuery {
 
     private final OrderPoService orderPoService;
 

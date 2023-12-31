@@ -10,12 +10,11 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.lzb.component.domain.aggregate.BaseAggregate;
 import com.lzb.component.exception.BizException;
-import com.lzb.domain.order.dto.LockStockDto;
 import com.lzb.domain.order.enums.OrderStatus;
 import com.lzb.domain.order.event.OrderCanceledEvent;
 import com.lzb.domain.order.event.OrderPlacedEvent;
 import com.lzb.domain.order.valobj.FullName;
-import com.lzb.domain.order.dto.SkuStockLock;
+import com.lzb.domain.order.dto.SkuStockLockDto;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NonNull;
@@ -95,8 +94,8 @@ public class Order extends BaseAggregate<Order> {
         this.orderAddress = newOrderAddress;
     }
 
-    public void updateSkuLockStock(List<SkuStockLock> skuStockLocks) {
-        Map<Integer, SkuStockLock> skuId2Lock = skuStockLocks.stream().collect(Collectors.toMap(SkuStockLock::skuId, Function.identity()));
+    public void updateSkuLockStock(List<SkuStockLockDto> skuStockLockDtos) {
+        Map<Integer, SkuStockLockDto> skuId2Lock = skuStockLockDtos.stream().collect(Collectors.toMap(SkuStockLockDto::skuId, Function.identity()));
         Map<Integer, List<OrderDetail>> skuId2OrderDetails = StreamEx.of(orderDetails.toStream()).groupingBy(OrderDetail::getSkuId);
         skuId2OrderDetails.keySet().forEach(skuId -> {
             List<OrderDetail> skuOrderDetails = skuId2OrderDetails.getOrDefault(skuId, Collections.emptyList());

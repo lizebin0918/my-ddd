@@ -1,4 +1,4 @@
-package com.lzb.app.order.query.view;
+package com.lzb.app.order.query.vo;
 
 import java.math.BigDecimal;
 import java.util.List;
