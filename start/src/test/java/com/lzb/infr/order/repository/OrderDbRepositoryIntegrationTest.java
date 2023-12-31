@@ -29,9 +29,9 @@ import org.springframework.test.jdbc.JdbcTestUtils;
 
 import static java.time.Instant.ofEpochMilli;
 
-class OrderRepositoryImplIntegrationTest extends BaseIntegrationTest {
+class OrderDbRepositoryIntegrationTest extends BaseIntegrationTest {
 
-    @Resource(name = OrderRepositoryImpl.BEAN_NAME)
+    @Resource(name = OrderDbRepository.BEAN_NAME)
     private OrderRepository orderRepository;
 
     @Resource
@@ -46,7 +46,7 @@ class OrderRepositoryImplIntegrationTest extends BaseIntegrationTest {
     @Test
     @DisplayName("测试SpringHelper")
     void should_get_bean_from_spring_helper() {
-        assertThat(springHelper.getBean(OrderRepositoryImpl.BEAN_NAME)).isNotNull();
+        assertThat(springHelper.getBean(OrderDbRepository.BEAN_NAME)).isNotNull();
     }
 
     @Test

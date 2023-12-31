@@ -20,7 +20,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 @RequiredArgsConstructor(onConstructor_ = @Lazy)
-public class StockRepositoryImpl implements StockRepository {
+public class StockRpcRepository implements StockRepository {
 
     /**
      * 库存服务

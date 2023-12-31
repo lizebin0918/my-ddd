@@ -1,4 +1,4 @@
-package com.lzb.infr.product.domain.repository;
+package com.lzb.infr.product.repository;
 
 import java.util.Optional;
 import java.util.function.LongSupplier;

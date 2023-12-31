@@ -2,13 +2,13 @@ package com.lzb.infr.order.gateway;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.lzb.app.common.PageDto;
+import com.lzb.app.order.query.gateway.OrderGateway;
+import com.lzb.app.order.query.gateway.ProductGateway;
 import com.lzb.app.order.query.dto.QueryOrderDto;
-import com.lzb.app.order.query.OrderQuery;
 import com.lzb.app.order.query.vo.OrderDetailView;
 import com.lzb.app.order.query.vo.OrderDetailViewContext;
 import com.lzb.app.order.query.vo.OrderView;
 import com.lzb.domain.order.aggregation.Order;
-import com.lzb.domain.order.query.ProductQuery;
 import com.lzb.domain.order.repository.OrderRepository;
 import com.lzb.infr.order.converter.OrderViewConverter;
 import com.lzb.infr.order.persistence.po.OrderPo;
@@ -25,7 +25,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @RequiredArgsConstructor(onConstructor = @__(@Lazy))
-public class OrderQueryImpl implements OrderQuery {
+public class OrderDbGateway implements OrderGateway {
 
     private final OrderPoService orderPoService;
 
@@ -33,7 +33,7 @@ public class OrderQueryImpl implements OrderQuery {
 
     private final OrderRepository orderRepository;
 
-    private final ProductQuery productQuery;
+    private final ProductGateway productGateway;
 
     @Override
     public PageDto<OrderView> listForPage(QueryOrderDto queryDto) {
@@ -49,7 +49,7 @@ public class OrderQueryImpl implements OrderQuery {
     public OrderDetailView detail(long orderId) {
         Order order = orderRepository.getInCache(orderId).orElseThrow();
         OrderDetailViewContext context = OrderDetailViewContext.builder()
-                .sku(() -> productQuery.list(order.getOrderDetails().getSkuIds()))
+                .sku(() -> productGateway.list(order.getOrderDetails().getSkuIds()))
                 .build();
         return OrderDetailView.builder().order(order).orderDetailViewContext(context).build();
     }

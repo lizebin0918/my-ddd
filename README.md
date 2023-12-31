@@ -9,7 +9,7 @@
     - `rpc`：远程调用
   - app：应用层，cmd-写、query-查
   - domain：领域层，包含聚合根、实体、值对象、领域服务、领域事件、枚举定义
-    - `repository`:只做新增、修改、删除
+    - `repository`:~~只做新增、修改、删除~~，可以做crud，返回聚合根或者值对象，domain不需要gateway
     - ~~`gateway`:只做查询（理由：domain层只面向仓储）~~
   - infr：基础设施，依赖倒置其它层，主要用于持久化
   - start：启动模块
