@@ -3,7 +3,7 @@ package com.lzb.component.domain.aop;
 import java.util.Objects;
 
 import com.lzb.component.utils.json.JsonUtils;
-import com.lzb.component.domain.aggregate.BaseAggregate;
+import com.lzb.component.domain.aggregate.BaseAggregation;
 import jakarta.annotation.Priority;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -29,7 +29,7 @@ public class UpdateAroundAspect {
         Object[] paramValues = proceedingJoinPoint.getArgs();
         if (Objects.nonNull(paramValues) && paramValues.length > 0) {
             Object aggregateRoot = paramValues[0];
-            if (aggregateRoot instanceof BaseAggregate<?> snapshotHolder) {
+            if (aggregateRoot instanceof BaseAggregation<?> snapshotHolder) {
                 snapshotHolder.checkForVersion();
                 log.info("聚合根/实体更新 快照 {}", JsonUtils.toJSONString(snapshotHolder.snapshot()));
                 log.info("聚合根/实体更新 当前 {}", JsonUtils.toJSONString(aggregateRoot));

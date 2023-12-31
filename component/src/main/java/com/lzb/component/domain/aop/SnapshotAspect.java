@@ -2,7 +2,7 @@ package com.lzb.component.domain.aop;
 
 import java.util.Optional;
 
-import com.lzb.component.domain.aggregate.BaseAggregate;
+import com.lzb.component.domain.aggregate.BaseAggregation;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -24,13 +24,13 @@ public class SnapshotAspect {
             "|| @annotation(com.lzb.component.domain.annotation.Snapshot)",
             returning = "returnVal")
     public void handleRequestMethod(JoinPoint pjp, Object returnVal) {
-        if (returnVal instanceof BaseAggregate<?> aggregate) {
+        if (returnVal instanceof BaseAggregation<?> aggregate) {
             aggregate.attachSnapshot();
             return;
         }
         if (returnVal instanceof Optional<?> returnValOpt
                 && returnValOpt.isPresent()
-                && returnValOpt.get() instanceof BaseAggregate<?> aggregate) {
+                && returnValOpt.get() instanceof BaseAggregation<?> aggregate) {
             aggregate.attachSnapshot();
         }
     }

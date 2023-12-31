@@ -26,7 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Getter
 @SuperBuilder
-public abstract class BaseAggregate<R extends BaseEntity<R>> extends BaseEntity<R> {
+public abstract class BaseAggregation<R extends BaseEntity<R>> extends BaseEntity<R> {
 
     /**
      * 领域事件
@@ -47,7 +47,7 @@ public abstract class BaseAggregate<R extends BaseEntity<R>> extends BaseEntity<
     @Setter(AccessLevel.NONE)
     private final transient Snapshot<R> snapshot = new Snapshot<>();
 
-    protected BaseAggregate(long id) {
+    protected BaseAggregation(long id) {
         super(id);
     }
 

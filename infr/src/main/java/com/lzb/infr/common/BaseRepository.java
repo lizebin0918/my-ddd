@@ -6,7 +6,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.LongSupplier;
 
 import com.lzb.component.helper.TransactionHelper;
-import com.lzb.component.domain.aggregate.BaseAggregate;
+import com.lzb.component.domain.aggregate.BaseAggregation;
 import com.lzb.component.domain.repository.CommonRepository;
 import com.lzb.infr.event.DomainEventSupport;
 import jakarta.annotation.Resource;
@@ -18,7 +18,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
 @Setter
-public abstract class BaseRepository<R extends BaseAggregate<R>> implements CommonRepository<R>, ApplicationContextAware {
+public abstract class BaseRepository<R extends BaseAggregation<R>> implements CommonRepository<R>, ApplicationContextAware {
 
     @Resource
     protected TransactionHelper transactionHelper;

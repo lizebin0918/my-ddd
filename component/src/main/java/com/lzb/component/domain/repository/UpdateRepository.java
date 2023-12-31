@@ -1,7 +1,7 @@
 package com.lzb.component.domain.repository;
 
 
-import com.lzb.component.domain.aggregate.BaseAggregate;
+import com.lzb.component.domain.aggregate.BaseAggregation;
 import com.lzb.component.domain.aop.UpdateAroundAspect;
 import jakarta.validation.constraints.NotNull;
 
@@ -14,7 +14,7 @@ import org.springframework.validation.annotation.Validated;
  * @author lizebin
  */
 @Validated
-public interface UpdateRepository<R extends BaseAggregate<R>> {
+public interface UpdateRepository<R extends BaseAggregation<R>> {
 
     /**
      * 更新聚合根

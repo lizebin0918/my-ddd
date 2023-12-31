@@ -3,7 +3,7 @@ package com.lzb.component.domain.repository;
 
 import java.util.Optional;
 
-import com.lzb.component.domain.aggregate.BaseAggregate;
+import com.lzb.component.domain.aggregate.BaseAggregation;
 import com.lzb.component.domain.annotation.Snapshot;
 
 
@@ -14,7 +14,7 @@ import com.lzb.component.domain.annotation.Snapshot;
  *
  * @author lizebin
  */
-public interface GetRepository<R extends BaseAggregate<R>> {
+public interface GetRepository<R extends BaseAggregation<R>> {
 
     /**
      * 根据id查询

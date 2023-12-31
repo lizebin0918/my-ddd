@@ -8,7 +8,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.lzb.component.domain.aggregate.BaseAggregate;
+import com.lzb.component.domain.aggregate.BaseAggregation;
 import com.lzb.component.exception.BizException;
 import com.lzb.domain.order.enums.OrderStatus;
 import com.lzb.domain.order.event.OrderCanceledEvent;
@@ -34,7 +34,7 @@ import one.util.streamex.StreamEx;
 @Getter
 // 方便测试构造
 @Setter(AccessLevel.PACKAGE)
-public class Order extends BaseAggregate<Order> {
+public class Order extends BaseAggregation<Order> {
 
     private OrderStatus orderStatus;
 
