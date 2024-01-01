@@ -3,7 +3,6 @@ package com.lzb.infr.domain.order.gateway;
 import java.util.Collections;
 
 import com.lzb.BaseIntegrationTest;
-import com.lzb.app.order.query.gateway.ProductGateway;
 import com.lzb.domain.order.repository.ProductRepository;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;

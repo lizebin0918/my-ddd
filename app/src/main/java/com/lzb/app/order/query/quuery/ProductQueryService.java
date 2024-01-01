@@ -1,11 +1,11 @@
-package com.lzb.app.order.query.gateway;
+package com.lzb.app.order.query.quuery;
 
 import java.util.List;
 import java.util.Set;
 
 import com.lzb.domain.order.valobj.Sku;
 
-public interface ProductGateway {
+public interface ProductQueryService {
 
     /**
      * 查询sku信息

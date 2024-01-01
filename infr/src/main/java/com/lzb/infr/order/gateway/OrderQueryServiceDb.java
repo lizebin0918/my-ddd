@@ -2,8 +2,8 @@ package com.lzb.infr.order.gateway;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.lzb.app.common.PageDto;
-import com.lzb.app.order.query.gateway.OrderGateway;
-import com.lzb.app.order.query.gateway.ProductGateway;
+import com.lzb.app.order.query.quuery.OrderQueryService;
+import com.lzb.app.order.query.quuery.ProductQueryService;
 import com.lzb.app.order.query.dto.QueryOrderDto;
 import com.lzb.app.order.query.vo.OrderDetailView;
 import com.lzb.app.order.query.vo.OrderDetailViewContext;
@@ -25,7 +25,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @RequiredArgsConstructor(onConstructor = @__(@Lazy))
-public class OrderGatewayDb implements OrderGateway {
+public class OrderQueryServiceDb implements OrderQueryService {
 
     private final OrderPoService orderPoService;
 
@@ -33,7 +33,7 @@ public class OrderGatewayDb implements OrderGateway {
 
     private final OrderRepository orderRepository;
 
-    private final ProductGateway productGateway;
+    private final ProductQueryService productQueryService;
 
     @Override
     public PageDto<OrderView> listForPage(QueryOrderDto queryDto) {
@@ -49,7 +49,7 @@ public class OrderGatewayDb implements OrderGateway {
     public OrderDetailView detail(long orderId) {
         Order order = orderRepository.getInCache(orderId).orElseThrow();
         OrderDetailViewContext context = OrderDetailViewContext.builder()
-                .sku(() -> productGateway.list(order.getOrderDetails().getSkuIds()))
+                .sku(() -> productQueryService.list(order.getOrderDetails().getSkuIds()))
                 .build();
         return OrderDetailView.builder().order(order).orderDetailViewContext(context).build();
     }

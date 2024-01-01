@@ -3,7 +3,7 @@ package com.lzb.infr.order.gateway;
 import java.util.List;
 import java.util.Set;
 
-import com.lzb.app.order.query.gateway.ProductGateway;
+import com.lzb.app.order.query.quuery.ProductQueryService;
 import com.lzb.domain.order.valobj.Sku;
 import lombok.RequiredArgsConstructor;
 
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @RequiredArgsConstructor(onConstructor_ = @Lazy)
-public class ProductGatewayDb implements ProductGateway {
+public class ProductQueryServiceDb implements ProductQueryService {
 
     @Override
     public List<Sku> list(Set<Integer> skuIds) {

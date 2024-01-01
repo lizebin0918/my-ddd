@@ -1,4 +1,4 @@
-package com.lzb.app.order.query.gateway;
+package com.lzb.app.order.query.quuery;
 
 import com.lzb.app.common.PageDto;
 import com.lzb.app.order.query.dto.QueryOrderDto;
@@ -10,7 +10,7 @@ import com.lzb.app.order.query.vo.OrderView;
  * Created on : 2023-12-31 15:17
  * @author lizebin
  */
-public interface OrderGateway {
+public interface OrderQueryService {
 
     /**
      * 订单列表
