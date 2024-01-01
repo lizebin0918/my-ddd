@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.lzb.app.order.query.quuery.ProductQueryService;
-import com.lzb.domain.order.valobj.Sku;
+import com.lzb.domain.order.aggregation.valobj.Sku;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.context.annotation.Lazy;

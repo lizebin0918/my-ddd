@@ -1,6 +1,7 @@
 package com.lzb.domain.order.valobj;
 
 import com.lzb.BaseUnitTest;
+import com.lzb.domain.order.aggregation.valobj.FullName;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

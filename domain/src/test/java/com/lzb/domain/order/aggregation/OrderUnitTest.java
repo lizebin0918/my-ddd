@@ -6,7 +6,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.lzb.BaseUnitTest;
 import com.lzb.component.utils.json.JsonUtils;
-import com.lzb.domain.order.enums.OrderStatus;
+import com.lzb.domain.order.aggregation.valobj.OrderStatus;
 import lombok.Getter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;

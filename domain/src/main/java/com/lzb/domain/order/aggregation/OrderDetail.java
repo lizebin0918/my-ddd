@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.lzb.component.domain.aggregate.BaseEntity;
-import com.lzb.domain.order.enums.OrderStatus;
+import com.lzb.domain.order.aggregation.valobj.OrderStatus;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NonNull;

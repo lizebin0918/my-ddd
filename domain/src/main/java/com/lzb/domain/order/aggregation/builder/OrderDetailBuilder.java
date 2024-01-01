@@ -6,7 +6,7 @@ import com.lzb.component.domain.aggregate.BaseBuilder;
 import com.lzb.component.helper.SpringHelper;
 import com.lzb.component.id.IdGenerator;
 import com.lzb.domain.order.aggregation.OrderDetail;
-import com.lzb.domain.order.enums.OrderStatus;
+import com.lzb.domain.order.aggregation.valobj.OrderStatus;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 

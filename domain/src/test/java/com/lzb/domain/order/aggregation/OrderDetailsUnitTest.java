@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import com.lzb.BaseUnitTest;
-import com.lzb.domain.order.enums.OrderStatus;
+import com.lzb.domain.order.aggregation.valobj.OrderStatus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

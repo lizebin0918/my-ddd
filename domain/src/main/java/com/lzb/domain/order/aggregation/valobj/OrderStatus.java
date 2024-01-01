@@ -1,4 +1,4 @@
-package com.lzb.domain.order.enums;
+package com.lzb.domain.order.aggregation.valobj;
 
 import com.lzb.component.utils.enums.EnumValue;
 import lombok.AllArgsConstructor;

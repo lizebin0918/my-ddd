@@ -4,7 +4,7 @@ import java.util.Set;
 
 import com.lzb.component.exception.BizException;
 import com.lzb.domain.order.repository.ProductRepository;
-import com.lzb.domain.order.valobj.OnSaleSku;
+import com.lzb.domain.order.aggregation.valobj.OnSaleSku;
 import lombok.RequiredArgsConstructor;
 import one.util.streamex.StreamEx;
 

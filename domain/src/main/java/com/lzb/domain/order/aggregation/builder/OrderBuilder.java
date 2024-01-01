@@ -11,7 +11,7 @@ import com.lzb.domain.order.aggregation.Order;
 import com.lzb.domain.order.aggregation.OrderAddress;
 import com.lzb.domain.order.aggregation.OrderDetail;
 import com.lzb.domain.order.aggregation.OrderDetails;
-import com.lzb.domain.order.enums.OrderStatus;
+import com.lzb.domain.order.aggregation.valobj.OrderStatus;
 import com.lzb.domain.order.service.SkuValidator;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;

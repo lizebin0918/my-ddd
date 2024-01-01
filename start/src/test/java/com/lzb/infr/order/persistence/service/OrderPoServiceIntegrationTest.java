@@ -12,7 +12,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.lzb.BaseIntegrationTest;
 import com.lzb.component.utils.DateUtils;
-import com.lzb.domain.order.enums.OrderStatus;
+import com.lzb.domain.order.aggregation.valobj.OrderStatus;
 import com.lzb.infr.order.persistence.po.OrderPo;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;

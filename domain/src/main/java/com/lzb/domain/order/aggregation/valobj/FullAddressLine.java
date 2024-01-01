@@ -1,4 +1,4 @@
-package com.lzb.domain.order.valobj;
+package com.lzb.domain.order.aggregation.valobj;
 
 import java.io.Serializable;
 

@@ -3,7 +3,7 @@ package com.lzb.app.order.query.quuery;
 import java.util.List;
 import java.util.Set;
 
-import com.lzb.domain.order.valobj.Sku;
+import com.lzb.domain.order.aggregation.valobj.Sku;
 
 public interface ProductQueryService {
 

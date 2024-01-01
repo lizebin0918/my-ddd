@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import com.lzb.component.exception.BizException;
-import com.lzb.domain.order.valobj.Sku;
+import com.lzb.domain.order.aggregation.valobj.Sku;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 

@@ -18,7 +18,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 @RequiredArgsConstructor(onConstructor_ = @Lazy)
-public class ProductRepositoryImpl extends BaseRepository<Product> implements ProductRepository {
+public class ProductRepositoryDb extends BaseRepository<Product> implements ProductRepository {
 
 
     @Override

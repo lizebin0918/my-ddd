@@ -6,7 +6,7 @@ import com.lzb.app.order.cmd.dto.UpdateFullNameDto;
 import com.lzb.domain.order.aggregation.Order;
 import com.lzb.domain.order.aggregation.OrderAddress;
 import com.lzb.domain.order.repository.OrderRepository;
-import com.lzb.domain.order.valobj.FullName;
+import com.lzb.domain.order.aggregation.valobj.FullName;
 import jakarta.annotation.Resource;
 
 import org.springframework.stereotype.Service;

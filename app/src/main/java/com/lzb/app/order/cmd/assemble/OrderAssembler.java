@@ -9,9 +9,9 @@ import com.lzb.domain.order.aggregation.OrderDetail;
 import com.lzb.domain.order.aggregation.builder.OrderAddressBuilder;
 import com.lzb.domain.order.aggregation.builder.OrderBuilder;
 import com.lzb.domain.order.aggregation.builder.OrderDetailBuilder;
-import com.lzb.domain.order.enums.OrderStatus;
-import com.lzb.domain.order.valobj.FullAddressLine;
-import com.lzb.domain.order.valobj.FullName;
+import com.lzb.domain.order.aggregation.valobj.OrderStatus;
+import com.lzb.domain.order.aggregation.valobj.FullAddressLine;
+import com.lzb.domain.order.aggregation.valobj.FullName;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.context.annotation.Lazy;
