@@ -71,7 +71,7 @@ class OrderUnitTest extends BaseUnitTest {
         o.setOrderStatus(OrderStatus.WAIT_PAY);
         o.setTotalActualPay(BigDecimal.ONE);
         o.setTotalShouldPay(BigDecimal.ONE);
-        o.setOrderAddress(new OrderAddress());
+        o.setOrderAddress(OrderAddress.builder().build());
         o.setOrderDetails(new OrderDetails(List.of(new OrderDetail(1L))));
         assertJSON(o);
     }

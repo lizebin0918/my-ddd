@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.stream.Stream;
 
 import cn.hutool.core.lang.Assert;
@@ -22,7 +23,7 @@ import one.util.streamex.StreamEx;
  * @author lizebin
  */
 @Slf4j
-public class OrderDetails implements Iterable<OrderDetail>, Serializable, Identified<OrderDetail> {
+public class OrderDetails implements Iterable<OrderDetail>, Serializable, Identified<OrderDetail, Long> {
 
     private final List<OrderDetail> list;
 
@@ -56,6 +57,12 @@ public class OrderDetails implements Iterable<OrderDetail>, Serializable, Identi
     public Collection<OrderDetail> getCollection() {
         return list;
     }
+
+    @Override
+    public Function<OrderDetail, Long> identify() {
+        return OrderDetail::getId;
+    }
+
 
     public Set<Integer> getSkuIds() {
         return StreamEx.of(list).map(OrderDetail::getSkuId).toSet();

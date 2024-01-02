@@ -1,8 +1,6 @@
 package com.lzb.domain.order.aggregation;
 
-import cn.hutool.core.lang.Assert;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.lzb.component.domain.aggregate.BaseEntity;
 import com.lzb.domain.order.aggregation.valobj.FullAddressLine;
 import com.lzb.domain.order.aggregation.valobj.FullName;
 import lombok.AccessLevel;
@@ -40,10 +38,6 @@ public class OrderAddress {
      * 国家
      */
     private String country;
-
-    public OrderAddress() {
-
-    }
 
     @JsonCreator
     public OrderAddress(

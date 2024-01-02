@@ -1,11 +1,12 @@
 package com.lzb.component.domain.aggregate;
 
 import java.util.Collection;
+import java.util.function.Function;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
-public interface Identified<T extends BaseEntity<T>> {
+public interface Identified<T, I> {
 
     @JsonIgnore
     default boolean isDuplicated() {
@@ -13,10 +14,13 @@ public interface Identified<T extends BaseEntity<T>> {
         if (collection == null || collection.isEmpty()) {
             return false;
         }
-        long count = collection.stream().map(BaseEntity::getId).distinct().count();
+        long count = collection.stream().map(identify()).distinct().count();
         return count != collection.size();
     }
 
     @JsonIgnore
     Collection<T> getCollection();
+
+    @JsonIgnore
+    Function<T, I> identify();
 }

@@ -9,9 +9,9 @@ import com.lzb.domain.order.aggregation.Order;
 import com.lzb.domain.order.aggregation.OrderAddress;
 import com.lzb.domain.order.aggregation.OrderDetail;
 import com.lzb.domain.order.aggregation.OrderDetails;
-import com.lzb.domain.order.dto.SkuStockLockDto;
 import com.lzb.domain.order.aggregation.valobj.FullAddressLine;
 import com.lzb.domain.order.aggregation.valobj.FullName;
+import com.lzb.domain.order.dto.SkuStockLockDto;
 import com.lzb.infr.order.persistence.po.OrderDetailPo;
 import com.lzb.infr.order.persistence.po.OrderPo;
 import com.lzb.infr.stock.rpc.dto.LockStockDetailReqDto;
@@ -54,7 +54,6 @@ public final class OrderConverter {
                 FullName.of(orderPo.getFirstName(), orderPo.getLastName()),
                 FullAddressLine.of(orderPo.getAddressLine1(), orderPo.getAddressLine2()),
                 orderPo.getEmail(), orderPo.getPhoneNumber(), orderPo.getCountry());
-
     }
 
     public static List<LockStockDetailReqDto> toLocakStockDetails(OrderDetails orderDetails) {
