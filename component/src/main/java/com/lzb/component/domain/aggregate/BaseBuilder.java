@@ -5,7 +5,7 @@ package com.lzb.component.domain.aggregate;
  * Created on : 2023-09-12 13:32
  * @author lizebin
  */
-public abstract class BaseBuilder<T extends BaseEntity<T>> {
+public abstract class BaseBuilder<T> {
 
     /*@NotNull
     @SuppressWarnings("unchecked")

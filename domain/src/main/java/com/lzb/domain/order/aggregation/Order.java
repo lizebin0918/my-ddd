@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import cn.hutool.core.lang.Assert;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.lzb.component.domain.aggregate.BaseAggregation;
 import com.lzb.component.exception.BizException;
@@ -138,11 +139,12 @@ public class Order extends BaseAggregation<Order> {
     }
 
     /**
-     * 只更新姓名
+     * 更新姓名
      * @param fullName
      */
     public void updateFullName(FullName fullName) {
-        this.orderAddress.updateFullName(fullName);
+        Assert.notBlank(fullName.getFirstName(), "firstName is null");
+        this.orderAddress = orderAddress.toBuilder().fullName(fullName).build();
     }
 
     public boolean canCancel() {

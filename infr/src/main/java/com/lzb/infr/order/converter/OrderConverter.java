@@ -50,7 +50,7 @@ public final class OrderConverter {
     }
 
     public static OrderAddress toOrderAddress(OrderPo orderPo) {
-        return new OrderAddress(orderPo.getOrderId(),
+        return new OrderAddress(
                 FullName.of(orderPo.getFirstName(), orderPo.getLastName()),
                 FullAddressLine.of(orderPo.getAddressLine1(), orderPo.getAddressLine2()),
                 orderPo.getEmail(), orderPo.getPhoneNumber(), orderPo.getCountry());

@@ -1,15 +1,13 @@
 {
-  "country" : "country",
-  "email" : "thisIsEmail@qq.com",
-  "fullAddressLine" : {
-    "addressLine1" : "addressLine1",
-    "addressLine2" : "addreaaLine2"
+  "country": "country",
+  "email": "thisIsEmail@qq.com",
+  "fullAddressLine": {
+    "addressLine1": "addressLine1",
+    "addressLine2": "addreaaLine2"
   },
-  "fullName" : {
-    "firstName" : "firstName",
-    "lastName" : "lastName"
+  "fullName": {
+    "firstName": "firstName",
+    "lastName": "lastName"
   },
-  "id" : 888,
-  "phoneNumber" : "123456",
-  "version" : 1
+  "phoneNumber": "123456"
 }

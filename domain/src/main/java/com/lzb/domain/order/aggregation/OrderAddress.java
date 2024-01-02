@@ -6,6 +6,7 @@ import com.lzb.component.domain.aggregate.BaseEntity;
 import com.lzb.domain.order.aggregation.valobj.FullAddressLine;
 import com.lzb.domain.order.aggregation.valobj.FullName;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
@@ -18,7 +19,8 @@ import lombok.Setter;
  */
 @Getter
 @Setter(AccessLevel.PACKAGE)
-public class OrderAddress extends BaseEntity<OrderAddress> {
+@Builder(toBuilder = true)
+public class OrderAddress {
 
     private FullName fullName;
 
@@ -39,18 +41,17 @@ public class OrderAddress extends BaseEntity<OrderAddress> {
      */
     private String country;
 
-    protected OrderAddress(long id) {
-        super(id);
+    public OrderAddress() {
+
     }
 
     @JsonCreator
-    public OrderAddress(Long id,
+    public OrderAddress(
             @NonNull FullName fullName,
             @NonNull FullAddressLine fullAddressLine,
             @NonNull String email,
             @NonNull String phoneNumber,
             @NonNull String country) {
-        super(id);
         this.fullName = fullName;
         this.fullAddressLine = fullAddressLine;
         this.email = email;
@@ -58,12 +59,4 @@ public class OrderAddress extends BaseEntity<OrderAddress> {
         this.country = country;
     }
 
-    /**
-     * 更新姓名
-     * @param fullName
-     */
-    void updateFullName(FullName fullName) {
-        Assert.notBlank(fullName.getFirstName(), "firstName is null");
-        this.fullName = fullName;
-    }
 }

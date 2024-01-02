@@ -74,7 +74,7 @@ public class OrderAddressBuilder extends BaseBuilder<OrderAddress> {
 
     @Override
     protected OrderAddress doBuild() {
-        return new OrderAddress(id, fullName, fullAddressLine, email, phoneNumber, country);
+        return new OrderAddress(fullName, fullAddressLine, email, phoneNumber, country);
     }
 
     @Override
