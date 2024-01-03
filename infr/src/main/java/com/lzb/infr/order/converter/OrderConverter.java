@@ -35,9 +35,17 @@ import org.springframework.stereotype.Component;
 public final class OrderConverter {
     public static Order toOrder(OrderPo orderPo,
             List<OrderDetailPo> orderDetailPos) {
-        return new Order(orderPo.getOrderId(), orderPo.getVersion(), orderPo.getOrderStatus(),
-                orderPo.getCurrency(), orderPo.getExchangeRate(), orderPo.getTotalShouldPay(),
-                orderPo.getTotalActualPay(), toOrderAddress(orderPo), toOrderDetails(orderDetailPos));
+        return Order.builder()
+                .id(orderPo.getOrderId())
+                .version(orderPo.getVersion())
+                .orderStatus(orderPo.getOrderStatus())
+                .currency(orderPo.getCurrency())
+                .exchangeRate(orderPo.getExchangeRate())
+                .totalShouldPay(orderPo.getTotalShouldPay())
+                .totalActualPay(orderPo.getTotalActualPay())
+                .orderAddress(toOrderAddress(orderPo))
+                .orderDetails(toOrderDetails(orderDetailPos))
+                .build();
     }
 
     public static OrderDetails toOrderDetails(List<OrderDetailPo> orderDetailPos) {
@@ -45,15 +53,23 @@ public final class OrderConverter {
     }
 
     public static OrderDetail toOrderDetail(OrderDetailPo orderDetailPo) {
-        return new OrderDetail(orderDetailPo.getId(),
-                orderDetailPo.getSkuId(), orderDetailPo.getOrderStatus(), orderDetailPo.getPrice(), orderDetailPo.getLocked());
+        return OrderDetail.builder()
+                .id(orderDetailPo.getId())
+                .skuId(orderDetailPo.getSkuId())
+                .orderStatus(orderDetailPo.getOrderStatus())
+                .price(orderDetailPo.getPrice())
+                .locked(orderDetailPo.getLocked())
+                .build();
     }
 
     public static OrderAddress toOrderAddress(OrderPo orderPo) {
-        return new OrderAddress(
-                FullName.of(orderPo.getFirstName(), orderPo.getLastName()),
-                FullAddressLine.of(orderPo.getAddressLine1(), orderPo.getAddressLine2()),
-                orderPo.getEmail(), orderPo.getPhoneNumber(), orderPo.getCountry());
+        return OrderAddress.builder()
+                .fullName(FullName.of(orderPo.getFirstName(), orderPo.getLastName()))
+                .fullAddressLine(FullAddressLine.of(orderPo.getAddressLine1(), orderPo.getAddressLine2()))
+                .email(orderPo.getEmail())
+                .phoneNumber(orderPo.getPhoneNumber())
+                .country(orderPo.getCountry())
+                .build();
     }
 
     public static List<LockStockDetailReqDto> toLocakStockDetails(OrderDetails orderDetails) {

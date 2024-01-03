@@ -13,14 +13,6 @@ import org.junit.jupiter.api.Test;
 
 class OrderConverterUnitTest extends BaseUnitTest {
 
-    @org.junit.jupiter.api.Test
-    void toOrder() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void toOrderDetails() {
-    }
-
     @Test
     @DisplayName("测试字段映射")
     void toOrderDetail() {

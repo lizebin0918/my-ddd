@@ -4,6 +4,7 @@ package com.lzb.component.domain.aggregate;
 import java.io.Serializable;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +33,7 @@ public abstract class BaseEntity<R extends BaseEntity<R>> implements Serializabl
     /**
      * 版本号，乐观锁使用,若数据库没有此字段，可忽略此字段
      */
-    protected int version;
+    @Builder.Default
+    protected int version = 1;
 
 }

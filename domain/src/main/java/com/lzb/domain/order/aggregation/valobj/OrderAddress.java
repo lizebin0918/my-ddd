@@ -2,7 +2,6 @@ package com.lzb.domain.order.aggregation.valobj;
 
 import java.io.Serializable;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -39,19 +38,5 @@ public class OrderAddress implements Serializable {
      * 国家
      */
     private String country;
-
-    @JsonCreator
-    public OrderAddress(
-            FullName fullName,
-            FullAddressLine fullAddressLine,
-            String email,
-            String phoneNumber,
-            String country) {
-        this.fullName = fullName;
-        this.fullAddressLine = fullAddressLine;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.country = country;
-    }
 
 }

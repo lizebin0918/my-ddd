@@ -10,7 +10,6 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import cn.hutool.core.lang.Assert;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.lzb.component.domain.aggregate.BaseAggregation;
 import com.lzb.component.exception.BizException;
 import com.lzb.domain.order.aggregation.valobj.FullName;
@@ -56,39 +55,6 @@ public class Order extends BaseAggregation<Order> {
     private OrderAddress orderAddress;
 
     private OrderDetails orderDetails;
-
-    /**
-     * 构造器，@ConstructorProperties 用于反序列化
-     * @param id
-     * @param version
-     * @param orderStatus
-     * @param currency
-     * @param exchangeRate
-     * @param totalShouldPay
-     * @param totalActualPay
-     * @param orderAddress
-     * @param orderDetails
-     */
-    @JsonCreator
-    public Order(long id,
-            int version,
-            @NonNull OrderStatus orderStatus,
-            @NonNull String currency,
-            @NonNull BigDecimal exchangeRate,
-            @NonNull BigDecimal totalShouldPay,
-            @NonNull BigDecimal totalActualPay,
-            @NonNull OrderAddress orderAddress,
-            @NonNull OrderDetails orderDetails) {
-        super(id);
-        this.version = version;
-        this.orderStatus = orderStatus;
-        this.currency = currency;
-        this.exchangeRate = exchangeRate;
-        this.totalShouldPay = totalShouldPay;
-        this.totalActualPay = totalActualPay;
-        this.orderAddress = orderAddress;
-        this.orderDetails = orderDetails;
-    }
 
     public void updateAddress(OrderAddress newOrderAddress) {
         if (isShipped()) {

@@ -30,5 +30,5 @@
   "orderStatus": "WAIT_PAY",
   "totalActualPay": 1,
   "totalShouldPay": 1,
-  "version": 0
+  "version": 1
 }

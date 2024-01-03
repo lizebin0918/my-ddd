@@ -2,12 +2,10 @@ package com.lzb.domain.order.aggregation;
 
 import java.math.BigDecimal;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.lzb.component.domain.aggregate.BaseEntity;
 import com.lzb.domain.order.aggregation.valobj.OrderStatus;
 import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
@@ -37,23 +35,6 @@ public class OrderDetail extends BaseEntity<OrderDetail> {
      * false:缺货
      */
     private Boolean locked;
-
-    /**
-     * 直接提供给仓储层使用，无需校验业务逻辑
-     * @param id
-     * @param orderId
-     * @param skuId
-     * @param orderStatus
-     * @param price
-     */
-    @JsonCreator
-    public OrderDetail(long id, int skuId, @NonNull OrderStatus orderStatus, @NonNull BigDecimal price, Boolean locked) {
-        super(id);
-        this.skuId = skuId;
-        this.orderStatus = orderStatus;
-        this.price = price;
-        this.locked = locked;
-    }
 
     /**
      * 订单明细取消
