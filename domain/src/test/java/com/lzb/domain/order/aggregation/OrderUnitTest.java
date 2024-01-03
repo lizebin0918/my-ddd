@@ -6,6 +6,8 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.lzb.BaseUnitTest;
 import com.lzb.component.utils.json.JsonUtils;
+import com.lzb.domain.order.aggregation.valobj.FullName;
+import com.lzb.domain.order.aggregation.valobj.OrderAddress;
 import com.lzb.domain.order.aggregation.valobj.OrderStatus;
 import lombok.Getter;
 import org.junit.jupiter.api.DisplayName;
@@ -65,14 +67,14 @@ class OrderUnitTest extends BaseUnitTest {
     @Test
     @DisplayName("测试手动setter")
     void should_setter() {
-        Order o = new Order(1L);
+        Order o = Order.builder().id(1L).build();
         o.setCurrency("CNY");
         o.setExchangeRate(BigDecimal.ONE);
         o.setOrderStatus(OrderStatus.WAIT_PAY);
         o.setTotalActualPay(BigDecimal.ONE);
         o.setTotalShouldPay(BigDecimal.ONE);
-        o.setOrderAddress(OrderAddress.builder().build());
-        o.setOrderDetails(new OrderDetails(List.of(new OrderDetail(1L))));
+        o.setOrderAddress(OrderAddress.builder().fullName(FullName.of("firstName", "lastName")).build());
+        o.setOrderDetails(new OrderDetails(List.of(OrderDetail.builder().id(1L).skuId(1).orderStatus(OrderStatus.WAIT_PAY).build())));
         assertJSON(o);
     }
 

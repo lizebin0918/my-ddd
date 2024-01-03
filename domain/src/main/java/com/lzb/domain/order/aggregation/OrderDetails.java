@@ -8,7 +8,6 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
-import cn.hutool.core.lang.Assert;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.lzb.component.domain.aggregate.Identified;
 import lombok.extern.slf4j.Slf4j;
@@ -38,7 +37,6 @@ public class OrderDetails implements Iterable<OrderDetail>, Serializable, Identi
     }
 
     void validate() {
-        Assert.notEmpty(this.list, "订单明细不能为空");
         if (isDuplicated()) {
             throw new IllegalArgumentException("订单明细id重复");
         }
@@ -70,5 +68,9 @@ public class OrderDetails implements Iterable<OrderDetail>, Serializable, Identi
 
     public int count() {
         return list.size();
+    }
+
+    void add(OrderDetail orderDetail) {
+        list.add(orderDetail);
     }
 }

@@ -1,13 +1,13 @@
-package com.lzb.domain.order.aggregation;
+package com.lzb.domain.order.aggregation.valobj;
+
+import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.lzb.domain.order.aggregation.valobj.FullAddressLine;
-import com.lzb.domain.order.aggregation.valobj.FullName;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.Setter;
+import lombok.extern.jackson.Jacksonized;
 
 
 /**
@@ -17,8 +17,9 @@ import lombok.Setter;
  */
 @Getter
 @Setter(AccessLevel.PACKAGE)
+@Jacksonized
 @Builder(toBuilder = true)
-public class OrderAddress {
+public class OrderAddress implements Serializable {
 
     private FullName fullName;
 
@@ -41,11 +42,11 @@ public class OrderAddress {
 
     @JsonCreator
     public OrderAddress(
-            @NonNull FullName fullName,
-            @NonNull FullAddressLine fullAddressLine,
-            @NonNull String email,
-            @NonNull String phoneNumber,
-            @NonNull String country) {
+            FullName fullName,
+            FullAddressLine fullAddressLine,
+            String email,
+            String phoneNumber,
+            String country) {
         this.fullName = fullName;
         this.fullAddressLine = fullAddressLine;
         this.email = email;

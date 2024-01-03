@@ -1,9 +1,11 @@
 package com.lzb.domain.order.aggregation;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -11,15 +13,18 @@ import cn.hutool.core.lang.Assert;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.lzb.component.domain.aggregate.BaseAggregation;
 import com.lzb.component.exception.BizException;
+import com.lzb.domain.order.aggregation.valobj.FullName;
+import com.lzb.domain.order.aggregation.valobj.OrderAddress;
 import com.lzb.domain.order.aggregation.valobj.OrderStatus;
+import com.lzb.domain.order.dto.SkuStockLockDto;
 import com.lzb.domain.order.event.OrderCanceledEvent;
 import com.lzb.domain.order.event.OrderPlacedEvent;
-import com.lzb.domain.order.aggregation.valobj.FullName;
-import com.lzb.domain.order.dto.SkuStockLockDto;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
+import lombok.extern.jackson.Jacksonized;
 import lombok.extern.slf4j.Slf4j;
 import one.util.streamex.StreamEx;
 
@@ -33,7 +38,8 @@ import one.util.streamex.StreamEx;
  */
 @Slf4j
 @Getter
-// 方便测试构造
+@Jacksonized
+@SuperBuilder
 @Setter(AccessLevel.PACKAGE)
 public class Order extends BaseAggregation<Order> {
 
@@ -50,10 +56,6 @@ public class Order extends BaseAggregation<Order> {
     private OrderAddress orderAddress;
 
     private OrderDetails orderDetails;
-
-    protected Order(long id) {
-        super(id);
-    }
 
     /**
      * 构造器，@ConstructorProperties 用于反序列化
@@ -149,5 +151,12 @@ public class Order extends BaseAggregation<Order> {
 
     public boolean canCancel() {
         return false;
+    }
+
+    public void addOrderDetail(@NonNull OrderDetail orderDetail) {
+        if (Objects.isNull(orderDetails)) {
+            this.orderDetails = new OrderDetails(new ArrayList<>());
+        }
+        orderDetails.add(orderDetail);
     }
 }
