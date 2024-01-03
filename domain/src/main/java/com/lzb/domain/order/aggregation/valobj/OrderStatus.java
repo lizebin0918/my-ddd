@@ -1,5 +1,7 @@
 package com.lzb.domain.order.aggregation.valobj;
 
+import java.io.Serializable;
+
 import com.lzb.component.utils.enums.EnumValue;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,7 +13,7 @@ import lombok.Getter;
  */
 @Getter
 @AllArgsConstructor
-public enum OrderStatus implements EnumValue<Integer> {
+public enum OrderStatus implements EnumValue<Integer>, Serializable {
 
     WAIT_PAY(0, "待支付"), PAID(1, "已支付"), CANCELED(2, "已取消");
 

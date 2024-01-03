@@ -75,3 +75,5 @@ public class A {
 - 所有Builder都要写`public static OrderBuilder newInstance() {
   return SpringHelper.getBean(OrderBuilder.class);
   }`是否可以通过避免这种重复？
+- 感觉手动builder更简洁
+- 聚合根、实体、值对象的校验应该用validation，支持更加复杂的规则
