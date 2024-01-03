@@ -8,9 +8,9 @@ import java.util.Optional;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.lzb.domain.order.aggregation.Order;
-import com.lzb.domain.order.aggregation.valobj.OrderStatus;
 import com.lzb.domain.order.aggregation.valobj.FullAddressLine;
 import com.lzb.domain.order.aggregation.valobj.FullName;
+import com.lzb.domain.order.aggregation.valobj.OrderStatus;
 import com.lzb.domain.order.aggregation.valobj.Sku;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -56,7 +56,7 @@ public class OrderDetailView {
     ///////////////////////////////////////////////////////////////////////////
 
     public OrderAddress getOrderAddress() {
-        com.lzb.domain.order.aggregation.OrderAddress orderAddress = order.getOrderAddress();
+        com.lzb.domain.order.aggregation.valobj.OrderAddress orderAddress = order.getOrderAddress();
         return OrderAddress.builder()
                 .fullName(orderAddress.getFullName())
                 .fullAddressLine(orderAddress.getFullAddressLine())

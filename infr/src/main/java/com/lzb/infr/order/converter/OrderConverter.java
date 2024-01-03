@@ -6,11 +6,11 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import com.lzb.domain.order.aggregation.Order;
-import com.lzb.domain.order.aggregation.OrderAddress;
 import com.lzb.domain.order.aggregation.OrderDetail;
 import com.lzb.domain.order.aggregation.OrderDetails;
 import com.lzb.domain.order.aggregation.valobj.FullAddressLine;
 import com.lzb.domain.order.aggregation.valobj.FullName;
+import com.lzb.domain.order.aggregation.valobj.OrderAddress;
 import com.lzb.domain.order.dto.SkuStockLockDto;
 import com.lzb.infr.order.persistence.po.OrderDetailPo;
 import com.lzb.infr.order.persistence.po.OrderPo;
