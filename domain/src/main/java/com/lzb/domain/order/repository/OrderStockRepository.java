@@ -10,7 +10,7 @@ import com.lzb.domain.order.dto.SkuStockLockDto;
  * Created on : 2023-12-08 19:29
  * @author lizebin
  */
-public interface StockRepository {
+public interface OrderStockRepository {
 
     /**
      * 锁定库存

@@ -15,7 +15,7 @@ import org.springframework.test.context.jdbc.Sql;
  * Created on : 2023-09-23 08:21
  * @author mac
  */
-class OrderQueryServiceAppServiceIntegrationTest extends BaseIntegrationTest {
+class OrderQueryAppServiceIntegrationTest extends BaseIntegrationTest {
 
     @Resource
     private OrderQueryAppService orderQueryAppService;

@@ -6,12 +6,15 @@ import java.util.Set;
 import com.lzb.domain.order.aggregation.valobj.OnSaleSku;
 import jakarta.validation.constraints.NotEmpty;
 
+import org.springframework.validation.annotation.Validated;
+
 /**
  * <br/>
  * Created on : 2023-12-31 16:55
  * @author lizebin
  */
-public interface ProductRepository {
+@Validated
+public interface OrderProductRepository {
 
     /**
      * 查询上架的sku状态

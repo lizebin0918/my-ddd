@@ -3,7 +3,7 @@ package com.lzb.infr.order.repository;
 import java.util.List;
 import java.util.Set;
 
-import com.lzb.domain.order.repository.ProductRepository;
+import com.lzb.domain.order.repository.OrderProductRepository;
 import com.lzb.domain.order.aggregation.valobj.OnSaleSku;
 import com.lzb.domain.order.aggregation.valobj.Sku;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 @RequiredArgsConstructor
-public class ProductRepositoryDb implements ProductRepository {
+public class OrderProductRepositoryDb implements OrderProductRepository {
 
     @Override
     public List<OnSaleSku> onSale(Set<Integer> skuIds) {

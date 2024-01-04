@@ -25,6 +25,8 @@ public class PlaceOrderUseCase {
 
     private final StockHandler stockHandler;
 
+    private final OrderAssembler orderAssembler;
+
     /**
      * 生单
      * @param req
@@ -34,7 +36,7 @@ public class PlaceOrderUseCase {
         log.info("place order: {}", req);
 
         // 生单
-        Order order = OrderAssembler.toOrder(req);
+        Order order = orderAssembler.toOrder(req);
         order.place();
 
         // 锁库存

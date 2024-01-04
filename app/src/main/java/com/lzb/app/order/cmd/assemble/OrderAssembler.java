@@ -3,6 +3,7 @@ package com.lzb.app.order.cmd.assemble;
 import com.lzb.app.order.cmd.dto.PlaceOrderDetailDto;
 import com.lzb.app.order.cmd.dto.PlaceOrderDto;
 import com.lzb.app.order.cmd.dto.UpdateAddressDto;
+import com.lzb.component.id.IdGenerator;
 import com.lzb.domain.order.aggregation.Order;
 import com.lzb.domain.order.aggregation.OrderDetail;
 import com.lzb.domain.order.aggregation.valobj.FullAddressLine;
@@ -23,7 +24,9 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor(onConstructor_ = @Lazy)
 public class OrderAssembler {
 
-    public static Order toOrder(PlaceOrderDto req) {
+    private final IdGenerator idGenerator;
+
+    public Order toOrder(PlaceOrderDto req) {
 
         OrderAddress orderAddress = OrderAddress.builder()
                 .email(req.email())
@@ -40,6 +43,7 @@ public class OrderAssembler {
                 .totalActualPay(req.totalActualPay())
                 .orderStatus(OrderStatus.WAIT_PAY)
                 .orderAddress(orderAddress)
+                .id(idGenerator.id())
                 .build();
 
         for (PlaceOrderDetailDto detailReq : req.details()) {
@@ -47,6 +51,7 @@ public class OrderAssembler {
                     .skuId(detailReq.skuId())
                     .price(detailReq.price())
                     .orderStatus(OrderStatus.WAIT_PAY)
+                    .id(idGenerator.id())
                     .build();
             order.addOrderDetail(orderDetail);
         }
