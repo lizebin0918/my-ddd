@@ -1,23 +1,21 @@
-package com.lzb.infr.order.repository;
+package com.lzb.infr.order.query;
 
 import java.util.List;
 import java.util.Set;
 
-import com.lzb.domain.order.repository.OrderProductRepository;
 import com.lzb.domain.order.aggregation.valobj.OnSaleSku;
 import com.lzb.domain.order.aggregation.valobj.Sku;
-import lombok.RequiredArgsConstructor;
+import com.lzb.domain.order.service.query.OnSaleQueryService;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
 /**
  * <br/>
- * Created on : 2023-12-31 16:56
+ * Created on : 2024-01-05 13:46
  * @author lizebin
  */
-@Repository
-@RequiredArgsConstructor
-public class OrderProductRepositoryDb implements OrderProductRepository {
+@Component
+public class OnSaleQueryServiceDb implements OnSaleQueryService {
 
     @Override
     public List<OnSaleSku> onSale(Set<Integer> skuIds) {

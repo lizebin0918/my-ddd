@@ -3,8 +3,8 @@ package com.lzb.domain.order.service;
 import java.util.Set;
 
 import com.lzb.component.exception.BizException;
-import com.lzb.domain.order.repository.OrderProductRepository;
 import com.lzb.domain.order.aggregation.valobj.OnSaleSku;
+import com.lzb.domain.order.service.query.OnSaleQueryService;
 import lombok.RequiredArgsConstructor;
 import one.util.streamex.StreamEx;
 
@@ -20,10 +20,10 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor(onConstructor_ = @Lazy)
 public class SkuValidator {
 
-    private final OrderProductRepository orderProductRepository;
+    private final OnSaleQueryService onSaleQueryService;
 
     public void assertAllOfSkuIsOnSale(Set<Integer> skuIds) {
-        boolean allIsOnSale = StreamEx.of(orderProductRepository.onSale(skuIds)).allMatch(OnSaleSku::isOnSale);
+        boolean allIsOnSale = StreamEx.of(onSaleQueryService.onSale(skuIds)).allMatch(OnSaleSku::isOnSale);
         if (!allIsOnSale) {
             throw new BizException("订单明细包含下架商品，无法创建订单");
         }

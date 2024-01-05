@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.lzb.domain.order.aggregation.Order;
 import com.lzb.domain.order.dto.SkuStockLockDto;
-import com.lzb.domain.order.repository.OrderStockRepository;
+import com.lzb.domain.order.service.StockLockService;
 import com.lzb.infr.order.converter.OrderConverter;
 import com.lzb.infr.stock.rpc.InventoryClient;
 import com.lzb.infr.stock.rpc.dto.LockStockReqDto;
@@ -20,7 +20,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 @RequiredArgsConstructor(onConstructor_ = @Lazy)
-public class OrderStockRepositoryRpc implements OrderStockRepository {
+public class StockLockServiceRpc implements StockLockService {
 
     /**
      * 库存服务

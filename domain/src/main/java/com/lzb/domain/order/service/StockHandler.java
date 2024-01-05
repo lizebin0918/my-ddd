@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.lzb.domain.order.aggregation.Order;
 import com.lzb.domain.order.dto.SkuStockLockDto;
-import com.lzb.domain.order.repository.OrderStockRepository;
 import lombok.AllArgsConstructor;
 
 import org.springframework.stereotype.Component;
@@ -18,7 +17,7 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class StockHandler {
 
-    private final OrderStockRepository orderStockRepository;
+    private final StockLockService stockLockService;
 
     /**
      * 锁定库存
@@ -26,7 +25,7 @@ public class StockHandler {
      * @param order
      */
     public void lockStock(Order order) {
-        List<SkuStockLockDto> skuStockLockDtos = orderStockRepository.lockStock(order);
+        List<SkuStockLockDto> skuStockLockDtos = stockLockService.lockStock(order);
         order.updateSkuLockStock(skuStockLockDtos);
     }
 

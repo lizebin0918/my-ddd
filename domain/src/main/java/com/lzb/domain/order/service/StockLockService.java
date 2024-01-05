@@ -1,4 +1,4 @@
-package com.lzb.domain.order.repository;
+package com.lzb.domain.order.service;
 
 import java.util.List;
 
@@ -6,11 +6,11 @@ import com.lzb.domain.order.aggregation.Order;
 import com.lzb.domain.order.dto.SkuStockLockDto;
 
 /**
- * order调product<br/>
- * Created on : 2023-12-08 19:29
+ * 库存锁定<br/>
+ * Created on : 2024-01-05 13:50
  * @author lizebin
  */
-public interface OrderStockRepository {
+public interface StockLockService {
 
     /**
      * 锁定库存

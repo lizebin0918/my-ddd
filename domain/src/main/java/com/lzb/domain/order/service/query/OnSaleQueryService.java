@@ -1,4 +1,4 @@
-package com.lzb.domain.order.repository;
+package com.lzb.domain.order.service.query;
 
 import java.util.List;
 import java.util.Set;
@@ -6,15 +6,12 @@ import java.util.Set;
 import com.lzb.domain.order.aggregation.valobj.OnSaleSku;
 import jakarta.validation.constraints.NotEmpty;
 
-import org.springframework.validation.annotation.Validated;
-
 /**
  * <br/>
- * Created on : 2023-12-31 16:55
+ * Created on : 2024-01-05 13:45
  * @author lizebin
  */
-@Validated
-public interface OrderProductRepository {
+public interface OnSaleQueryService {
 
     /**
      * 查询上架的sku状态
