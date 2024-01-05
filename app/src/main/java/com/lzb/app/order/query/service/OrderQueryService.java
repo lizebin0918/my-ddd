@@ -1,4 +1,4 @@
-package com.lzb.app.order.query.quuery;
+package com.lzb.app.order.query.service;
 
 import com.lzb.app.common.PageDto;
 import com.lzb.app.order.query.dto.QueryOrderDto;

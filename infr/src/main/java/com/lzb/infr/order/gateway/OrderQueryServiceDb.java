@@ -2,8 +2,8 @@ package com.lzb.infr.order.gateway;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.lzb.app.common.PageDto;
-import com.lzb.app.order.query.quuery.OrderQueryService;
-import com.lzb.app.order.query.quuery.ProductQueryService;
+import com.lzb.app.order.query.service.OrderQueryService;
+import com.lzb.app.order.query.service.ProductQueryService;
 import com.lzb.app.order.query.dto.QueryOrderDto;
 import com.lzb.app.order.query.vo.OrderDetailView;
 import com.lzb.app.order.query.vo.OrderDetailViewContext;

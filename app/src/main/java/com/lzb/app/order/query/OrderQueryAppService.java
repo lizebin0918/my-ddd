@@ -2,7 +2,7 @@ package com.lzb.app.order.query;
 
 import com.lzb.app.common.PageDto;
 import com.lzb.app.order.query.dto.QueryOrderDto;
-import com.lzb.app.order.query.quuery.OrderQueryService;
+import com.lzb.app.order.query.service.OrderQueryService;
 import com.lzb.app.order.query.vo.OrderDetailView;
 import com.lzb.app.order.query.vo.OrderView;
 import lombok.RequiredArgsConstructor;

@@ -3,7 +3,7 @@ package com.lzb.infr.order.gateway;
 import java.util.List;
 import java.util.Set;
 
-import com.lzb.app.order.query.quuery.ProductQueryService;
+import com.lzb.app.order.query.service.ProductQueryService;
 import com.lzb.domain.order.aggregation.valobj.Sku;
 import lombok.RequiredArgsConstructor;
 

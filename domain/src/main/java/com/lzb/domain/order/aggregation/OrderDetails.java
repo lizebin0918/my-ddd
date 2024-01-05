@@ -1,9 +1,11 @@
 package com.lzb.domain.order.aggregation;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Stream;
@@ -32,11 +34,14 @@ public class OrderDetails implements Iterable<OrderDetail>, Serializable, Identi
      */
     @JsonCreator
     public OrderDetails(List<OrderDetail> list) {
-        this.list = list;
+        this.list = Objects.requireNonNullElse(list, new ArrayList<>());
         validate();
     }
 
     void validate() {
+        if (list.isEmpty()) {
+            return;
+        }
         if (isDuplicated()) {
             throw new IllegalArgumentException("订单明细id重复");
         }
