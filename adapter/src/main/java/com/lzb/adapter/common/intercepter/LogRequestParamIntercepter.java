@@ -1,11 +1,9 @@
-package com.lzb.adapter.web.common.intercepter;
+package com.lzb.adapter.common.intercepter;
 
 import java.util.Collections;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import cn.hutool.http.HttpUtil;
-import com.lzb.component.utils.json.JsonUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import static com.lzb.component.utils.json.JsonUtils.*;
+import static com.lzb.component.utils.json.JsonUtils.toJSONString;
 
 @Slf4j
 @Component

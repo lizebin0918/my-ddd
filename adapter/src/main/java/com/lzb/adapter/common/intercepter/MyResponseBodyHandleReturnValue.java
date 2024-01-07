@@ -1,4 +1,4 @@
-package com.lzb.adapter.web.common.intercepter;
+package com.lzb.adapter.common.intercepter;
 
 import java.math.BigDecimal;
 import java.time.ZoneId;
@@ -18,7 +18,7 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.lzb.adapter.web.common.annotation.MyResponseBody;
+import com.lzb.adapter.common.annotation.MyResponseBody;
 import com.lzb.component.dto.ResponseDto;
 import jakarta.servlet.http.HttpServletResponse;
 

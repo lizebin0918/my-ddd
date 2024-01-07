@@ -1,9 +1,9 @@
-package com.lzb.adapter.web.common.config;
+package com.lzb.adapter.common.config;
 
 import java.util.List;
 
-import com.lzb.adapter.web.common.intercepter.LogRequestParamIntercepter;
-import com.lzb.adapter.web.common.intercepter.MyResponseBodyHandleReturnValue;
+import com.lzb.adapter.common.intercepter.LogRequestParamIntercepter;
+import com.lzb.adapter.common.intercepter.MyResponseBodyHandleReturnValue;
 import jakarta.annotation.Resource;
 
 import org.springframework.context.annotation.Configuration;

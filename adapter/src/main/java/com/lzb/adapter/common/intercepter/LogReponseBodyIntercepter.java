@@ -1,4 +1,4 @@
-package com.lzb.adapter.web.common.intercepter;
+package com.lzb.adapter.common.intercepter;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

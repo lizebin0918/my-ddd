@@ -1,4 +1,4 @@
-package com.lzb.adapter.web.common.intercepter;
+package com.lzb.adapter.common.intercepter;
 
 import java.util.HashMap;
 import java.util.HashSet;

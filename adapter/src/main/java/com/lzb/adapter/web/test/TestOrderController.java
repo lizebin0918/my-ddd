@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.lzb.adapter.web.common.annotation.MyResponseBody;
+import com.lzb.adapter.common.annotation.MyResponseBody;
 import com.lzb.component.utils.json.JsonUtils;
 import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
